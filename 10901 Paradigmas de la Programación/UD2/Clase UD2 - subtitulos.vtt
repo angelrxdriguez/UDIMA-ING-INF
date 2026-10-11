@@ -1,0 +1,3593 @@
+WEBVTT
+
+1
+00:00:13.230 --> 00:00:14.160
+Buenas tardes.
+
+2
+00:00:17.670 --> 00:00:18.000
+Hola.
+
+3
+00:00:19.530 --> 00:00:23.400
+Hola, Mark. Hola, David. Hola, buenas tardes.
+
+4
+00:00:26.190 --> 00:00:31.830
+Bien, vamos a iniciar la sesión correspondiente a la unidad número
+
+5
+00:00:31.860 --> 00:00:32.190
+dos
+
+6
+00:00:33.720 --> 00:00:35.700
+de la asignatura de Paradigma de Programación.
+
+7
+00:00:45.780 --> 00:00:51.690
+Como hemos mencionado la semana anterior, en la asignatura vamos a ver el
+
+8
+00:00:51.720 --> 00:00:52.920
+conjunto de paradigmas
+
+9
+00:00:54.840 --> 00:00:57.660
+y iniciaremos con el paradigma funcional.
+
+10
+00:00:57.960 --> 00:01:03.540
+Hoy lo que vamos a estudiar es cómo es este modelo,
+
+11
+00:01:04.051 --> 00:01:08.220
+que es uno de los más antiguos y uno de los fundamentales de la informática,
+
+12
+00:01:09.571 --> 00:01:14.970
+a través de lo que es la elegancia matemática y temas de expresividad
+
+13
+00:01:15.571 --> 00:01:17.010
+dentro de lo que es desarrollo de software,
+
+14
+00:01:19.830 --> 00:01:25.410
+se puede utilizar. Este paradigma es uno de los paradigmas
+
+15
+00:01:25.470 --> 00:01:28.020
+iniciales, junto con el paradigma procedimental
+
+16
+00:01:29.490 --> 00:01:31.620
+o la familia de paradigmas procedimentales.
+
+17
+00:01:34.110 --> 00:01:35.010
+Este paradigma
+
+18
+00:01:36.660 --> 00:01:41.760
+se caracteriza por su elegancia a partir de ciertas funciones matemáticas
+
+19
+00:01:42.330 --> 00:01:46.801
+puras. De ahí también es que viene el nombre de este
+
+20
+00:01:48.000 --> 00:01:48.510
+paradigma.
+
+21
+00:01:52.590 --> 00:01:57.450
+Si queremos ver un poco los orígenes, esto se podía dar
+
+22
+00:01:58.141 --> 00:02:04.110
+cuando Alonzo Church, en 1934, introdujo el famoso cálculo
+
+23
+00:02:04.170 --> 00:02:04.590
+lambda,
+
+24
+00:02:06.870 --> 00:02:10.560
+como base para los estudios en lo que viene a ser la computabilidad.
+
+25
+00:02:14.160 --> 00:02:16.950
+Su objetivo inicial era dar órdenes a una máquina,
+
+26
+00:02:18.810 --> 00:02:22.830
+pero también considerando el tema de la expresividad.
+
+27
+00:02:23.190 --> 00:02:23.340
+No
+
+28
+00:02:26.671 --> 00:02:31.530
+necesariamente con la necesidad de enfocarse en describir paso a paso la secuencia
+
+29
+00:02:31.560 --> 00:02:36.990
+de computación, sino basada en la evaluación de expresiones,
+
+30
+00:02:39.240 --> 00:02:42.690
+en lugar de lo que viene a ser la ejecución de los comandos.
+
+31
+00:02:44.070 --> 00:02:49.530
+Aquí comienza el tema de que no se quiere describir el paso a paso,
+
+32
+00:02:50.190 --> 00:02:55.080
+lo que se contrapone un poco con algo que estaba en ese tiempo, que era el tema
+
+33
+00:02:55.141 --> 00:02:56.040
+procedimental.
+
+34
+00:02:58.080 --> 00:02:58.200
+Si
+
+35
+00:03:00.990 --> 00:03:06.630
+hacemos una comparación entre los dos esquemas, tanto el procedimental versus
+
+36
+00:03:06.660 --> 00:03:12.421
+declarativo, teniendo en cuenta que la parte procedimental fue la que en un inicio
+
+37
+00:03:12.480 --> 00:03:12.840
+tuvo
+
+38
+00:03:14.430 --> 00:03:18.930
+un mayor empuje, generalmente por cuestiones ligadas al hardware.
+
+39
+00:03:19.860 --> 00:03:21.810
+Cuando fueron propuestas ambos
+
+40
+00:03:24.690 --> 00:03:29.520
+paradigmas, contábamos con computadoras muy básicas,
+
+41
+00:03:31.351 --> 00:03:36.930
+que en este caso se prestaban mejor para trabajar según el enfoque de von
+
+42
+00:03:36.960 --> 00:03:41.851
+Neumann, a nivel de un solo procesador, acceso a la memoria,
+
+43
+00:03:44.550 --> 00:03:48.240
+que es básicamente en lo que se basa el estilo procedimental.
+
+44
+00:03:49.470 --> 00:03:50.701
+El paradigma procedimental
+
+45
+00:03:52.110 --> 00:03:57.390
+está basado en el cómo. Bastante ligado a aprovechar los recursos de computador.
+
+46
+00:03:59.550 --> 00:04:05.190
+Tenemos pocos recursos, entonces tenemos que decirle a la computadora cómo resolver
+
+47
+00:04:05.250 --> 00:04:08.970
+el problema, siempre teniendo en cuenta justamente esa limitación de los pocos
+
+48
+00:04:09.000 --> 00:04:09.630
+recursos.
+
+49
+00:04:12.360 --> 00:04:16.890
+Generalmente, aquí tenemos en la parte procedimental, estructuras de control de
+
+50
+00:04:16.951 --> 00:04:22.080
+flujo, como condicionales, como bucles, while, bucle for,
+
+51
+00:04:23.970 --> 00:04:25.170
+y se requería,
+
+52
+00:04:26.640 --> 00:04:31.470
+en este caso, la gestión adecuada de la memoria constantemente.
+
+53
+00:04:32.100 --> 00:04:32.910
+Constantemente,
+
+54
+00:04:34.140 --> 00:04:36.781
+mediante las definiciones de variables,
+
+55
+00:04:38.610 --> 00:04:42.451
+tener cuidado de dónde se va a copiar, de dónde se va a extraer, dónde se va a
+
+56
+00:04:42.510 --> 00:04:43.650
+actualizar la información.
+
+57
+00:04:44.940 --> 00:04:50.910
+Todo eso se tiene que tener en cuenta a la hora de resolver los problemas.
+
+58
+00:04:51.630 --> 00:04:53.130
+En cambio, en el estilo declarativo,
+
+59
+00:04:55.560 --> 00:05:00.810
+aquí la idea es que el control no esté estrictamente dado por el programador a la
+
+60
+00:05:00.870 --> 00:05:06.781
+hora de ejecutar. Pero estamos más preocupados por qué es lo que
+
+61
+00:05:06.810 --> 00:05:07.830
+se quiere conseguir.
+
+62
+00:05:09.781 --> 00:05:14.520
+Hacemos uso de transformaciones que se van ejecutando en orden estricto.
+
+63
+00:05:16.591 --> 00:05:22.560
+Inicialmente, estaba asociado a resolver problemas matemáticos, por eso la
+
+64
+00:05:22.591 --> 00:05:28.560
+idea aquí era hacer un símil entre el concepto de función matemática
+
+65
+00:05:29.370 --> 00:05:30.810
+con el concepto de función,
+
+66
+00:05:32.070 --> 00:05:35.610
+en este caso, para programador o para computadores.
+
+67
+00:05:37.980 --> 00:05:43.560
+Si bien es cierto, el estilo declarativo era muy interesante,
+
+68
+00:05:44.100 --> 00:05:48.031
+podemos ver más adelante que va a tener estas condiciones dentro de ella, que va a
+
+69
+00:05:48.091 --> 00:05:53.850
+ser más demandante de hardware. Y cuando fue, en este caso, propuesto,
+
+70
+00:05:55.050 --> 00:05:57.091
+el hardware tenía sus limitaciones.
+
+71
+00:05:58.201 --> 00:05:59.880
+Hoy en día, esas limitaciones
+
+72
+00:06:01.140 --> 00:06:05.250
+se han ido superando. Podemos encontrar computadoras con más de un núcleo, por
+
+73
+00:06:05.310 --> 00:06:11.250
+ejemplo, con bastante memoria. Entonces, esas limitaciones iniciales hoy en día
+
+74
+00:06:11.310 --> 00:06:16.591
+ya no son tan así. Y es por eso que para muchos problemas
+
+75
+00:06:17.370 --> 00:06:22.890
+de computadoras se está volviendo a retomar este paradigma.
+
+76
+00:06:25.169 --> 00:06:29.880
+Este paradigma se basa, o podemos mencionar, cinco pilares
+
+77
+00:06:30.841 --> 00:06:35.670
+fundamentales dentro de este paradigma, que lo vamos a ir en un momento viendo
+
+78
+00:06:36.841 --> 00:06:37.651
+paso a paso.
+
+79
+00:06:39.811 --> 00:06:45.420
+Y en la segunda parte de la asignatura vamos a ver de repente
+
+80
+00:06:45.451 --> 00:06:51.360
+alguna parte práctica, viendo en este caso un lenguaje
+
+81
+00:06:51.390 --> 00:06:52.290
+de programación.
+
+82
+00:06:53.760 --> 00:06:58.440
+Y la próxima semana tiramos de repente explorando cómo resolver esto con otro
+
+83
+00:06:58.500 --> 00:06:59.490
+lenguaje de programación.
+
+84
+00:07:01.831 --> 00:07:05.670
+Aquí hay lenguajes que inicialmente
+
+85
+00:07:07.050 --> 00:07:09.120
+fueron adaptados para este paradigma,
+
+86
+00:07:11.100 --> 00:07:13.020
+y lenguajes también que nacieron
+
+87
+00:07:14.581 --> 00:07:16.440
+pensando en este paradigma.
+
+88
+00:07:17.730 --> 00:07:22.050
+Y lenguajes actuales que soportan múltiples paradigmas que también se pueden
+
+89
+00:07:22.110 --> 00:07:27.151
+adaptar a este. Los pilares que podemos mencionar son estos cinco que están aquí en
+
+90
+00:07:27.180 --> 00:07:32.490
+la memoria. El primer pilar, asociado justamente al comportamiento matemático,
+
+91
+00:07:33.210 --> 00:07:35.341
+conocido con esta transparencia referencial.
+
+92
+00:07:36.960 --> 00:07:37.230
+Aquí, ya
+
+93
+00:07:38.460 --> 00:07:42.300
+hemos dicho que la idea es manejar el concepto de función.
+
+94
+00:07:44.250 --> 00:07:49.860
+El concepto de composición de funciones, que es un concepto matemático, también se
+
+95
+00:07:49.890 --> 00:07:53.790
+va a llevar a cabo aquí dentro de este paradigma.
+
+96
+00:07:54.690 --> 00:08:00.660
+Una composición de funciones es: yo defino una función Y igual a F de X,
+
+97
+00:08:03.240 --> 00:08:08.311
+matemáticamente. De repente, Y igual a F de X.
+
+98
+00:08:10.020 --> 00:08:14.910
+Pero también podía definir un Z igual
+
+99
+00:08:15.990 --> 00:08:16.951
+a F de Y.
+
+100
+00:08:20.341 --> 00:08:26.250
+Donde Y, también es una función. Ahí vamos viendo que
+
+101
+00:08:26.820 --> 00:08:32.250
+se va generando una composición de funciones en
+
+102
+00:08:32.341 --> 00:08:34.831
+esta forma de trabajar.
+
+103
+00:08:36.480 --> 00:08:36.961
+Luego,
+
+104
+00:08:38.370 --> 00:08:44.070
+las funciones son tratadas como si fueran datos, es decir, se puede
+
+105
+00:08:44.100 --> 00:08:47.250
+acceder a ellas a partir de posiciones de memoria.
+
+106
+00:08:49.200 --> 00:08:52.590
+También esto es conocido como las famosas funciones de orden superior.
+
+107
+00:08:54.210 --> 00:08:55.020
+El hecho de
+
+108
+00:08:56.340 --> 00:09:01.800
+no manejar el tema de los estados, es decir, no estar
+
+109
+00:09:01.860 --> 00:09:05.100
+actualizando el valor de una variable.
+
+110
+00:09:05.880 --> 00:09:10.590
+Aquí no se modifican las celdas de memoria, no se actualizan.
+
+111
+00:09:12.510 --> 00:09:17.550
+Y finalmente, el último paso es la evaluación diferida y el
+
+112
+00:09:17.610 --> 00:09:21.330
+polimorfismo. La evaluación diferida tiene que ver con el hecho de
+
+113
+00:09:22.651 --> 00:09:25.350
+evaluar las funciones solamente cuando se necesite.
+
+114
+00:09:26.760 --> 00:09:32.580
+Y el polimorfismo, que tiene que ver con que las funciones pueden soportar trabajar
+
+115
+00:09:32.670 --> 00:09:35.910
+con distintos tipos de datos, operar sobre distintos tipos de datos
+
+116
+00:09:42.288 --> 00:09:43.608
+Aquí un poco de información
+
+117
+00:09:44.838 --> 00:09:47.868
+justamente acerca de esta parte de
+
+118
+00:09:50.568 --> 00:09:55.608
+la primera regla de oro. En este caso, la primera característica, la transparencia
+
+119
+00:09:56.268 --> 00:09:57.108
+referencial.
+
+120
+00:09:59.058 --> 00:10:02.238
+Aquí la idea es que una función se debe comportar como una caja negra.
+
+121
+00:10:03.318 --> 00:10:09.228
+Tiene sentido, porque la idea es no enfocarnos en el paso a paso, sino
+
+122
+00:10:09.288 --> 00:10:11.448
+tratar de ver la función como una caja negra.
+
+123
+00:10:13.638 --> 00:10:16.668
+Lo que sí tenemos que tener en cuenta es que va a haber datos de entrada,
+
+124
+00:10:17.958 --> 00:10:21.708
+y estamos interesados en que estos datos de entrada siempre produzcan el mismo
+
+125
+00:10:21.738 --> 00:10:22.398
+resultado.
+
+126
+00:10:23.928 --> 00:10:28.608
+Esa transparencia referencial viene justamente asociada con eso, a que esta función
+
+127
+00:10:28.668 --> 00:10:34.368
+es determinista. Dada una entrada, siempre vamos a tener la misma salida, y eso es
+
+128
+00:10:34.368 --> 00:10:37.728
+lo que se busca. ¿Cuándo no ocurre esto?
+
+129
+00:10:38.719 --> 00:10:42.288
+En lenguajes donde ocurren lo que se conoce como efectos laterales.
+
+130
+00:10:43.338 --> 00:10:44.178
+Un efecto lateral
+
+131
+00:10:46.638 --> 00:10:51.858
+se puede dar en otros lenguajes, ya sea por errores o de repente
+
+132
+00:10:51.918 --> 00:10:57.469
+porque en este caso hacer una tarea
+
+133
+00:10:57.498 --> 00:11:02.238
+determinada. ¿Cuándo encontramos estos efectos de lado?
+
+134
+00:11:02.298 --> 00:11:04.938
+Como por ejemplo, se pueden ver en C++.
+
+135
+00:11:06.258 --> 00:11:09.588
+De repente, cuando hacemos uso de variables globales y modificamos las variables
+
+136
+00:11:09.618 --> 00:11:15.349
+globales, en algunos casos esto puede originar errores a la
+
+137
+00:11:15.378 --> 00:11:15.858
+hora de
+
+138
+00:11:17.868 --> 00:11:22.428
+resolver un problema, como se puede ver en el ejemplo que aquí se presenta, donde
+
+139
+00:11:22.488 --> 00:11:24.798
+definimos una variable global,
+
+140
+00:11:26.328 --> 00:11:31.008
+SW, en C++, y a la hora de definir la función
+
+141
+00:11:32.058 --> 00:11:37.788
+modificamos esta variable. Modificamos esta variable y eso va a hacer
+
+142
+00:11:38.178 --> 00:11:38.508
+que
+
+143
+00:11:39.738 --> 00:11:44.868
+se origine un efecto de lado, de tal manera que a la hora de ejecutar la función,
+
+144
+00:11:45.708 --> 00:11:51.618
+por ejemplo aquí, no se tuvo en cuenta que el orden de cómo llamamos a la
+
+145
+00:11:51.648 --> 00:11:52.248
+función
+
+146
+00:11:55.038 --> 00:11:56.748
+va a hacer que se generen diferentes resultados.
+
+147
+00:11:56.808 --> 00:12:01.878
+De tal manera que en este ejemplo, que puede ser un ejemplo dado por un error o de
+
+148
+00:12:01.938 --> 00:12:07.849
+repente por algo que se necesitaba en ese momento para resolver algo del
+
+149
+00:12:07.878 --> 00:12:08.388
+problema.
+
+150
+00:12:09.678 --> 00:12:13.398
+Pero vemos que cuando ejecutamos esta función,
+
+151
+00:12:15.228 --> 00:12:20.118
+llamamos primero a función dos y luego llamamos a función tres, el resultado no va
+
+152
+00:12:20.118 --> 00:12:23.778
+a ser lo mismo que cuando llamemos a función tres y llamemos a función dos.
+
+153
+00:12:24.768 --> 00:12:25.518
+En este caso,
+
+154
+00:12:26.898 --> 00:12:29.508
+matemáticamente, esto no es dable.
+
+155
+00:12:29.808 --> 00:12:30.678
+Matemáticamente,
+
+156
+00:12:31.878 --> 00:12:37.338
+la idea es que sea cual sea el caso, cuando yo llame a función dos, siempre me dé
+
+157
+00:12:37.368 --> 00:12:37.849
+lo mismo.
+
+158
+00:12:39.558 --> 00:12:42.798
+En este caso es un ejemplo inventado,
+
+159
+00:12:44.388 --> 00:12:49.518
+pero en algunos casos sí va a ser necesario resolver el problema de esta manera.
+
+160
+00:12:51.078 --> 00:12:56.178
+Otro caso donde se puede encontrar este efecto de lado en lenguajes como C++, de
+
+161
+00:12:56.207 --> 00:13:01.159
+repente puede ser cuando pasamos da una función, se pasan argumentos, modificamos
+
+162
+00:13:01.189 --> 00:13:04.068
+un argumento que se pasa por referencia a una función,
+
+163
+00:13:06.589 --> 00:13:09.198
+cuando alteramos algunas estructuras externas,
+
+164
+00:13:10.668 --> 00:13:13.038
+de repente lo que son operaciones de entrada y salida,
+
+165
+00:13:14.538 --> 00:13:16.488
+cuando nos comunicamos con hardware.
+
+166
+00:13:18.018 --> 00:13:22.969
+En esos casos, o queremos saber el estado del sistema, el estado del hardware,
+
+167
+00:13:24.198 --> 00:13:27.348
+son casos en los cuales se pueden presentar estos famosos efectos de lado.
+
+168
+00:13:28.758 --> 00:13:34.518
+Y como les decía, se puede presentar comúnmente e inclusive muchas veces puede ser
+
+169
+00:13:34.788 --> 00:13:35.358
+necesario,
+
+170
+00:13:36.708 --> 00:13:40.578
+pero va a originar ciertos problemas, como de repente la pérdida de transparencia
+
+171
+00:13:40.638 --> 00:13:42.558
+referencial, que justamente es esta parte de acá,
+
+172
+00:13:43.818 --> 00:13:44.958
+lo que provoca que una función no
+
+173
+00:13:46.518 --> 00:13:50.689
+pueda devolver siempre el mismo valor, aunque se den los mismos datos de entrada.
+
+174
+00:13:51.798 --> 00:13:57.288
+Y también lo otro es que a la hora de depurar este tipo de situaciones,
+
+175
+00:13:57.888 --> 00:14:00.378
+es un poco complejo a la hora de ver
+
+176
+00:14:01.578 --> 00:14:06.678
+en qué momento se da este fallo, dónde está ocurriendo este fallo por este tipo de
+
+177
+00:14:06.738 --> 00:14:12.168
+situaciones. En lenguajes de tipo funcionales,
+
+178
+00:14:13.098 --> 00:14:15.678
+se trata de evitar este tipo de comportamientos.
+
+179
+00:14:18.888 --> 00:14:24.229
+El otro pilar que podríamos mencionar
+
+180
+00:14:26.328 --> 00:14:30.378
+es en este caso la composición funcional, que hemos mencionado.
+
+181
+00:14:33.229 --> 00:14:38.208
+En este programa, la idea es no ver justamente este paradigma, no ver al programa
+
+182
+00:14:38.268 --> 00:14:44.089
+como si fuera una lista de tareas, sino resolver los problemas como
+
+183
+00:14:44.148 --> 00:14:47.719
+una composición de funciones o una cadena de funciones.
+
+184
+00:14:47.988 --> 00:14:52.548
+Entonces, aquí en el paradigma funcional, ese es el enfoque para resolver un
+
+185
+00:14:52.578 --> 00:14:53.148
+problema.
+
+186
+00:14:54.378 --> 00:14:58.278
+Resolver los problemas manejando una cadena de funciones.
+
+187
+00:14:58.848 --> 00:15:01.698
+Entonces, imaginemos que tenemos de repente una
+
+188
+00:15:05.268 --> 00:15:09.738
+lista y queremos seleccionar los elementos pares de la lista y después queremos
+
+189
+00:15:09.798 --> 00:15:11.418
+sumar todos los elementos.
+
+190
+00:15:12.738 --> 00:15:17.689
+Ahí pensar, encontrar una función que me permita encontrar los elementos pares.
+
+191
+00:15:18.558 --> 00:15:23.208
+Y ese resultado se lo paso a otra función que va a tomar los elementos y los va a
+
+192
+00:15:23.238 --> 00:15:28.818
+sumar. Esa es la idea de cómo resolver problemas mediante este paradigma,
+
+193
+00:15:29.448 --> 00:15:31.729
+mediante la composición de funciones.
+
+194
+00:15:33.678 --> 00:15:39.378
+Esto es posible, lógicamente, gracias a que se cumpla el primer pilar, que es
+
+195
+00:15:39.409 --> 00:15:41.538
+el pilar de la transparencia referencial.
+
+196
+00:15:45.078 --> 00:15:49.248
+Gracias a esta transparencia referencial es que podemos sustituir valores sin
+
+197
+00:15:49.278 --> 00:15:53.659
+ningún problema y poder alcanzar este resultado esperado.
+
+198
+00:15:54.108 --> 00:15:59.388
+Aquí vemos que justamente el requisito para que esto funcione sin problemas es la
+
+199
+00:15:59.418 --> 00:16:03.768
+transparencia referencial y los ejemplos que podemos mencionar son, como decíamos,
+
+200
+00:16:04.608 --> 00:16:07.548
+manipulaciones de listas, de esas estructuras tipo listas
+
+201
+00:16:09.138 --> 00:16:13.638
+en las cuales podemos hacer diferentes operaciones como ordenación, filtrado,
+
+202
+00:16:13.969 --> 00:16:18.318
+operaciones sobre cada elemento, sobre todos los elementos.
+
+203
+00:16:23.508 --> 00:16:29.118
+El otro pilar importante es
+
+204
+00:16:31.969 --> 00:16:37.878
+el hecho de que aquí a las funciones las vamos a conocer como objetos de primera
+
+205
+00:16:37.939 --> 00:16:43.788
+clase. ¿Qué quiere decir esto? Que podemos tratar a las funciones como si fueran
+
+206
+00:16:43.818 --> 00:16:46.398
+cualquier otro dato. ¿Eso qué implica?
+
+207
+00:16:46.998 --> 00:16:49.848
+Implica que podamos pasar como parámetros a las funciones,
+
+208
+00:16:53.148 --> 00:16:57.738
+para poder calcularlos y que ese valor de retorno
+
+209
+00:16:57.828 --> 00:17:01.398
+pueda ser tomado por otra función.
+
+210
+00:17:02.778 --> 00:17:08.628
+Esto en otros lenguajes, como de repente C, requeriría otro tipo de manipulaciones,
+
+211
+00:17:08.719 --> 00:17:10.488
+como por ejemplo el uso de punteros.
+
+212
+00:17:12.108 --> 00:17:17.358
+Aquí no. En este tipo de paradigmas, esto es directo a la hora de poder
+
+213
+00:17:17.748 --> 00:17:23.268
+trabajarlo. Cualquier lenguaje que soporte el paradigma funcional debería poder
+
+214
+00:17:23.298 --> 00:17:28.308
+trabajarlo sin el uso de elementos complejos, como por ejemplo los punteros, donde
+
+215
+00:17:28.399 --> 00:17:31.128
+nos metemos con direcciones de memoria.
+
+216
+00:17:32.659 --> 00:17:38.388
+Entonces, esto es nativo para este tipo de lenguajes y nos permite poder generar
+
+217
+00:17:38.478 --> 00:17:42.948
+código que sea altamente reutilizable y abstracto.
+
+218
+00:17:45.768 --> 00:17:51.288
+Este vendría a ser el tercer enfoque, que también está un poco relacionado, como
+
+219
+00:17:51.318 --> 00:17:56.298
+vemos, con la parte de acá, con la parte de composición de funciones.
+
+220
+00:17:57.138 --> 00:18:01.518
+Una función, al ser tratada como datos, puede ser parámetro de otra función
+
+221
+00:18:01.818 --> 00:18:07.218
+directamente. Entonces, aquí estos pilares están relacionados.
+
+222
+00:18:11.718 --> 00:18:16.998
+Otro elemento importante que podríamos mencionar aquí
+
+223
+00:18:17.928 --> 00:18:21.378
+es el tema de que no queremos
+
+224
+00:18:23.778 --> 00:18:26.808
+que el programador manipule directamente la memoria.
+
+225
+00:18:28.159 --> 00:18:34.038
+Para eso evitamos sentencias de actualización de una variable, que lo que
+
+226
+00:18:34.068 --> 00:18:34.458
+hace es
+
+227
+00:18:35.778 --> 00:18:38.748
+modificar el valor que tenía una dirección de memoria.
+
+228
+00:18:39.288 --> 00:18:44.089
+Entonces, si es que no hacemos eso, nos olvidamos del tema
+
+229
+00:18:44.149 --> 00:18:48.528
+del estado. Esa es una de las diferencias,
+
+230
+00:18:50.868 --> 00:18:56.190
+un diferencial de este paradigma, que no existe este concepto de estado O la celda
+
+231
+00:18:56.220 --> 00:19:01.320
+de memoria modificable, que es como se le llama a este elemento de estado.
+
+232
+00:19:02.310 --> 00:19:04.560
+Eso quiere decir que no van a existir
+
+233
+00:19:05.820 --> 00:19:11.730
+asignaciones destructivas, como A igual a B, donde el valor de B se le
+
+234
+00:19:11.790 --> 00:19:12.690
+asigna al valor de A.
+
+235
+00:19:14.010 --> 00:19:19.801
+Tampoco va a haber bucles iterativos, como bucle for o bucle while,
+
+236
+00:19:20.010 --> 00:19:24.090
+donde dentro de estos tenemos contadores que vamos actualizando sus valores.
+
+237
+00:19:25.080 --> 00:19:30.900
+Tampoco se va a poder utilizar. Aquí la idea es manejar un flujo que
+
+238
+00:19:30.930 --> 00:19:32.040
+siempre vamos hacia adelante.
+
+239
+00:19:34.830 --> 00:19:40.710
+Sacamos provecho de las transformaciones para generar nuevos valores locales, para
+
+240
+00:19:40.740 --> 00:19:44.970
+hacer, si queremos hacer un cálculo intermedio, usamos estas transformaciones para
+
+241
+00:19:45.000 --> 00:19:46.380
+obtener valores intermedios.
+
+242
+00:19:48.930 --> 00:19:54.840
+Esa es la forma como funciona ante la ausencia de los estados.
+
+243
+00:20:00.330 --> 00:20:05.040
+La otra forma, así como la idea es llevar toda función y poder componer funciones,
+
+244
+00:20:05.760 --> 00:20:10.861
+el otro elemento importante aquí que podemos o que debemos utilizar es
+
+245
+00:20:11.551 --> 00:20:15.660
+sacar provecho al concepto de recursividad, que es básicamente la respuesta a
+
+246
+00:20:16.020 --> 00:20:19.111
+nuestra pregunta. Si no podemos usar bucles, ya que los bucles nos permiten
+
+247
+00:20:19.140 --> 00:20:23.310
+resolver una gran cantidad de problemas, ¿cómo es que podemos
+
+248
+00:20:24.450 --> 00:20:28.080
+resolver algunos problemas que requieren este tipo de
+
+249
+00:20:29.340 --> 00:20:32.940
+solución? Aquí la clave es la recursividad.
+
+250
+00:20:35.250 --> 00:20:39.270
+No usamos bucles, porque como sabemos, si lo utilizan,
+
+251
+00:20:40.801 --> 00:20:46.020
+usar un bucle requiere mutar una variable de control y una variable total, que
+
+252
+00:20:46.051 --> 00:20:47.340
+puede ser una variable acumulativa.
+
+253
+00:20:48.000 --> 00:20:52.530
+Como el ejemplo que vemos aquí, tenemos un bucle en el cual
+
+254
+00:20:53.520 --> 00:20:59.340
+internamente estamos actualizando una variable, una variable de control, estamos
+
+255
+00:20:59.430 --> 00:21:04.950
+ahí mutando, y lo otro es que requerimos una variable global o una variable
+
+256
+00:21:05.490 --> 00:21:09.871
+acumuladora, que va acumulando los valores, actualizando su valor.
+
+257
+00:21:11.640 --> 00:21:15.240
+Como nosotros estamos evitando esto, no podemos utilizar este tipo de
+
+258
+00:21:16.650 --> 00:21:19.530
+bucles. ¿Cuál es la solución? La solución es,
+
+259
+00:21:20.970 --> 00:21:21.720
+en este caso,
+
+260
+00:21:24.121 --> 00:21:29.340
+hacer uso de la recursividad. Aquí definimos una función con un parámetro,
+
+261
+00:21:29.760 --> 00:21:32.371
+internamente llamamos a otra función.
+
+262
+00:21:33.090 --> 00:21:35.371
+Aquí tenemos un ejemplo de un lenguaje que
+
+263
+00:21:36.750 --> 00:21:41.880
+nace para poder académicamente utilizar este paradigma, que es en este caso el
+
+264
+00:21:41.910 --> 00:21:42.540
+lenguaje Go.
+
+265
+00:21:44.640 --> 00:21:49.650
+Nos muestra un ejemplo de cómo resolver este problema usando el concepto de
+
+266
+00:21:50.010 --> 00:21:50.880
+recursividad.
+
+267
+00:21:54.030 --> 00:21:56.280
+Internamente, la idea es
+
+268
+00:21:58.950 --> 00:22:04.770
+que partimos desde un valor inicial y vamos a ir, en este caso, siendo llamado a la
+
+269
+00:22:04.801 --> 00:22:09.960
+misma función. La idea es que esto no sea infinita, siempre la idea es que llegue a
+
+270
+00:22:09.990 --> 00:22:10.740
+un límite final
+
+271
+00:22:11.970 --> 00:22:16.500
+donde el valor sea conocido. Justamente eso se hace en este tipo de lenguajes,
+
+272
+00:22:16.830 --> 00:22:21.420
+teniendo un caso base. Generalmente, este tipo de problemas, usando recursividad,
+
+273
+00:22:21.690 --> 00:22:25.350
+usamos un caso general y un caso base.
+
+274
+00:22:25.650 --> 00:22:28.020
+El caso base es el caso inicial.
+
+275
+00:22:30.060 --> 00:22:35.580
+La forma como resolvemos los problemas aquí es teniendo en cuenta esta forma de
+
+276
+00:22:35.640 --> 00:22:36.030
+trabajo.
+
+277
+00:22:38.820 --> 00:22:41.790
+Luego también tenemos el polimorfismo,
+
+278
+00:22:44.190 --> 00:22:45.660
+que viene a ser en este caso,
+
+279
+00:22:47.820 --> 00:22:50.130
+que hemos dicho que permitía un poco
+
+280
+00:22:51.720 --> 00:22:57.420
+a este lenguaje, que las funciones o los operadores puedan manejar sin ningún
+
+281
+00:22:57.450 --> 00:22:59.970
+problema diferentes tipos de datos.
+
+282
+00:23:01.470 --> 00:23:04.740
+Hay tres tipos de formas en que podemos utilizar el polimorfismo.
+
+283
+00:23:06.600 --> 00:23:09.450
+En este caso, cuando hacemos una sobrecarga, es decir,
+
+284
+00:23:10.801 --> 00:23:15.270
+en el caso de una función, podemos usar el mismo nombre de la función y que soporte
+
+285
+00:23:15.330 --> 00:23:18.450
+distintos argumentos, distintos tipos de datos por argumento.
+
+286
+00:23:20.040 --> 00:23:24.180
+En este caso, el comportamiento dinámico, en el cual
+
+287
+00:23:25.621 --> 00:23:29.940
+utilizamos el concepto de jerarquías de clase para definir ciertos comportamientos
+
+288
+00:23:30.270 --> 00:23:32.760
+dependiendo del tipo de dato, internamente.
+
+289
+00:23:34.140 --> 00:23:36.060
+Y en este caso,
+
+290
+00:23:37.410 --> 00:23:41.850
+la forma paramétrica, donde internamente se pueden utilizar plantillas
+
+291
+00:23:43.650 --> 00:23:48.780
+que tienen una misma lógica que se puede aplicar ante distintos tipos de objetos.
+
+292
+00:23:50.310 --> 00:23:55.440
+Principalmente, aquí los ejemplos que utilizamos son cuando manejamos listas, por
+
+293
+00:23:55.500 --> 00:23:55.801
+ejemplo.
+
+294
+00:23:57.871 --> 00:24:03.450
+Una función que aplicamos sobre una lista podría funcionar tanto para una lista de
+
+295
+00:24:03.510 --> 00:24:07.861
+números enteros, una lista de números decimales o de repente una lista que tiene
+
+296
+00:24:07.890 --> 00:24:11.430
+palabras. Estas son
+
+297
+00:24:13.200 --> 00:24:18.690
+las diferentes formas en que podemos trabajar el polimorfismo dentro de este
+
+298
+00:24:18.750 --> 00:24:19.290
+paradigma.
+
+299
+00:24:23.850 --> 00:24:28.980
+Otro concepto que también podríamos mencionar un poco es la evaluación.
+
+300
+00:24:29.970 --> 00:24:34.590
+Generalmente, en la mayoría de lenguajes procedimentales,
+
+301
+00:24:36.330 --> 00:24:41.790
+la forma como hacemos la evaluación de las sentencias es en forma ansiosa.
+
+302
+00:24:42.570 --> 00:24:47.190
+Es decir, una vez que generamos las funciones, las
+
+303
+00:24:48.150 --> 00:24:49.770
+evaluamos para todos los argumentos.
+
+304
+00:24:54.420 --> 00:24:59.520
+Y esto hace que los lenguajes sean fáciles de poder implementar, sean
+
+305
+00:24:59.640 --> 00:25:03.420
+relativamente eficientes, sean más rápidos.
+
+306
+00:25:04.260 --> 00:25:05.910
+Pero hay una desventaja de repente:
+
+307
+00:25:10.080 --> 00:25:15.030
+en algunos casos los argumentos no se utilizan, que son algunas arbustos que se
+
+308
+00:25:15.060 --> 00:25:18.270
+aplican a la hora de trabajar dentro de este tipo de paradigma funcional.
+
+309
+00:25:20.100 --> 00:25:25.740
+Entonces, existe una alternativa a la evaluación ansiosa, que es en este
+
+310
+00:25:25.799 --> 00:25:28.861
+caso la evaluación diferida.
+
+311
+00:25:30.480 --> 00:25:32.910
+Aquí evaluamos los argumentos
+
+312
+00:25:34.890 --> 00:25:37.530
+cuando el cuerpo de la función realmente los necesita.
+
+313
+00:25:39.361 --> 00:25:43.801
+Eso es muy importante en el paradigma funcional para poder manejar de repente
+
+314
+00:25:43.890 --> 00:25:46.080
+estructuras con datos infinitos, por ejemplo.
+
+315
+00:25:48.840 --> 00:25:52.380
+Es decir, podemos nosotros aquí definir, en este caso, una lista infinita,
+
+316
+00:25:54.270 --> 00:25:57.780
+pero solamente de acuerdo a un problema determinado podríamos pedir los elementos
+
+317
+00:25:57.810 --> 00:26:02.280
+necesarios para resolver parte de este problema.
+
+318
+00:26:03.270 --> 00:26:09.210
+Por ejemplo, aquí tenemos una lista infinita de números pares, pero que
+
+319
+00:26:09.241 --> 00:26:13.680
+en un momento determinado solamente necesitamos operar sobre los tres primeros
+
+320
+00:26:13.710 --> 00:26:19.200
+elementos. Y si esos elementos ya existen, se va a poder operar sobre ellos sin
+
+321
+00:26:19.230 --> 00:26:23.700
+ningún problema, a pesar de que la lista es definida como una lista infinita, que
+
+322
+00:26:23.730 --> 00:26:29.491
+para algún caso se podría necesitar dentro para poder complementar este
+
+323
+00:26:29.520 --> 00:26:29.940
+paradigma.
+
+324
+00:26:36.810 --> 00:26:42.090
+Hay un tema. Hemos, por ejemplo, mencionado que generalmente los efectos de lado
+
+325
+00:26:43.111 --> 00:26:43.470
+se dan
+
+326
+00:26:44.790 --> 00:26:49.710
+cuando queremos manejar la entrada y salida,
+
+327
+00:26:51.780 --> 00:26:55.230
+en este caso con nuestros programas, cuando queremos de repente interactuar con la
+
+328
+00:26:55.260 --> 00:26:56.040
+consola,
+
+329
+00:26:57.420 --> 00:27:02.611
+con el teclado, con la pantalla. Ese tipo de operaciones internamente
+
+330
+00:27:02.970 --> 00:27:07.830
+requiere una operación que es manipulación, que manipularía la
+
+331
+00:27:08.551 --> 00:27:12.571
+memoria directamente y que podría generar un efecto de lado.
+
+332
+00:27:13.650 --> 00:27:19.620
+Entonces, ¿cómo nosotros podemos utilizar eso que es necesario
+
+333
+00:27:20.040 --> 00:27:23.551
+en los lenguajes dentro de este paradigma?
+
+334
+00:27:25.080 --> 00:27:27.870
+La clave es mediante un concepto conocido, las monadas.
+
+335
+00:27:29.071 --> 00:27:33.930
+Las monadas es un elemento que permite encapsular las acciones procedimentales.
+
+336
+00:27:34.321 --> 00:27:35.430
+Aquello que es procedimental,
+
+337
+00:27:36.900 --> 00:27:42.241
+si se requiere, en este caso, lo podemos encapsular dentro de una mónada.
+
+338
+00:27:44.700 --> 00:27:49.260
+Y de esa manera, como que ya no perdemos la transparencia referencial de este
+
+339
+00:27:49.321 --> 00:27:51.450
+paradigma ni tampoco la pureza.
+
+340
+00:27:53.970 --> 00:27:59.790
+Logramos que todo el programa siga considerándose transparente.
+
+341
+00:28:03.378 --> 00:28:04.158
+Pero para poder
+
+342
+00:28:05.568 --> 00:28:09.649
+encapsular este comportamiento procedimental,
+
+343
+00:28:11.358 --> 00:28:16.339
+igual tiene que haber comunicación entre lo que hace este bloque procedimental con
+
+344
+00:28:16.399 --> 00:28:21.108
+el resto del código basado en paradigma funcional.
+
+345
+00:28:21.948 --> 00:28:27.498
+Estas monadas deben permitir acceder a funciones o secuencias de
+
+346
+00:28:27.558 --> 00:28:28.698
+operaciones,
+
+347
+00:28:29.988 --> 00:28:32.718
+para que haya interacción entre
+
+348
+00:28:33.919 --> 00:28:37.608
+lo que encapsula las monadas y el resto de nuestro programa.
+
+349
+00:28:38.029 --> 00:28:39.108
+¿Esto
+
+350
+00:28:40.518 --> 00:28:46.008
+con qué finalidad? Con la finalidad de poder eliminar los
+
+351
+00:28:46.068 --> 00:28:47.118
+efectos de lado.
+
+352
+00:28:50.297 --> 00:28:56.149
+La forma cómo se utilizan las monadas va a depender mucho del tipo de programa
+
+353
+00:28:56.779 --> 00:28:58.248
+o lenguaje que estemos utilizando.
+
+354
+00:28:59.389 --> 00:29:02.358
+Dependerá mucho del tipo de lenguaje que se elija.
+
+355
+00:29:03.318 --> 00:29:09.198
+Generalmente, en esta unidad hacemos ejemplos con tres
+
+356
+00:29:09.228 --> 00:29:10.128
+tipos de lenguajes.
+
+357
+00:29:11.448 --> 00:29:13.788
+Uno es el lenguaje más antiguo, que es el Lisp.
+
+358
+00:29:15.169 --> 00:29:19.068
+Por ahí algunos ejemplos con lenguaje Hop, que es un lenguaje un poco más
+
+359
+00:29:21.768 --> 00:29:26.958
+nacido para este paradigma, pero del área académica.
+
+360
+00:29:27.139 --> 00:29:28.578
+No vamos a encontrar de repente
+
+361
+00:29:29.899 --> 00:29:32.419
+muchas aplicaciones reales con este lenguaje.
+
+362
+00:29:33.649 --> 00:29:38.928
+Es más, si buscamos estos compiladores
+
+363
+00:29:39.589 --> 00:29:44.928
+en línea que existen o traductores en línea de lenguajes, intérpretes de lenguajes,
+
+364
+00:29:48.018 --> 00:29:52.698
+no lo encontramos. Se requiere instalar un binario para poder utilizarlo.
+
+365
+00:29:53.358 --> 00:29:58.998
+Pero para poder manejar ciertos fundamentos, que a veces lenguajes como Lisp no lo
+
+366
+00:29:59.029 --> 00:30:02.658
+tienen de forma nativa, es muy interesante mostrar algunos casos.
+
+367
+00:30:04.068 --> 00:30:07.368
+Un lenguaje más reciente que sí tiene más
+
+368
+00:30:08.808 --> 00:30:14.298
+aplicaciones es el lenguaje Haskell, que también soporta este paradigma
+
+369
+00:30:14.358 --> 00:30:14.928
+funcional.
+
+370
+00:30:21.889 --> 00:30:22.399
+Habíamos dicho que
+
+371
+00:30:25.578 --> 00:30:30.678
+este tipo de lenguajes trabajan bastante bien con algunos
+
+372
+00:30:31.578 --> 00:30:35.779
+elementos predefinidos para manipulación de estructuras de datos, como en el caso
+
+373
+00:30:35.839 --> 00:30:37.578
+de las listas.
+
+374
+00:30:39.919 --> 00:30:45.438
+Aquí podemos hacer un manejo de información simbólica en elementos como las listas.
+
+375
+00:30:52.128 --> 00:30:55.848
+Si bien es cierto el lenguaje Lisp no es un lenguaje que nació en el paradigma
+
+376
+00:30:55.908 --> 00:31:01.878
+funcional, fue uno de los primeros lenguajes sobre el cual se comenzaron a trabajar
+
+377
+00:31:01.968 --> 00:31:04.458
+estos elementos del paradigma funcional.
+
+378
+00:31:04.728 --> 00:31:07.158
+Aquí se comenzó
+
+379
+00:31:08.748 --> 00:31:14.538
+a colocar operadores que permitan manejar las listas en forma de
+
+380
+00:31:14.568 --> 00:31:20.478
+unidades mínimas. Y acá, en el caso de las listas, es muy
+
+381
+00:31:20.538 --> 00:31:25.998
+interesante el manejo de dos operadores, que es poder dividir la lista en dos
+
+382
+00:31:26.058 --> 00:31:31.968
+partes. Y esta forma de hacerlo permite resolver una cantidad de problemas
+
+383
+00:31:32.029 --> 00:31:37.548
+asociados a listas. Es decir, dada una lista determinada, tener un elemento, como
+
+384
+00:31:37.669 --> 00:31:38.808
+en este caso
+
+385
+00:31:40.339 --> 00:31:44.988
+la palabra CAR, que nos permite acceder a la cabeza de la lista, que sería el
+
+386
+00:31:45.048 --> 00:31:48.018
+primer elemento. Y lo que resta de la lista,
+
+387
+00:31:50.149 --> 00:31:55.639
+se puede acceder con la palabra reservada CDR, en este lenguaje
+
+388
+00:31:56.358 --> 00:32:01.938
+Lisp. Y utilizando estos dos elementos podemos resolver una cantidad de problemas a
+
+389
+00:32:01.968 --> 00:32:06.139
+la hora de querer acceder o querer descomponer una lista, tanto descomponer una
+
+390
+00:32:06.169 --> 00:32:09.108
+lista como crear una lista.
+
+391
+00:32:12.558 --> 00:32:18.408
+Si lo vemos esto como estructura de datos, una lista está compuesta de elementos,
+
+392
+00:32:19.008 --> 00:32:22.908
+que vendrían a ser los átomos, que podrían ser números, caracteres.
+
+393
+00:32:24.108 --> 00:32:29.058
+Y luego, para poder acceder a esos elementos mediante forma simbólica, podemos
+
+394
+00:32:29.118 --> 00:32:33.169
+hacer uso de la palabra reservada CAR y la palabra reservada CDR.
+
+395
+00:32:34.068 --> 00:32:39.288
+Como hoy vamos a ver algo de Lisp, he subido inclusive una miniguía para poder
+
+396
+00:32:39.678 --> 00:32:40.518
+trabajarlo.
+
+397
+00:32:42.048 --> 00:32:45.498
+Esto se va a poder explicar con algunos ejemplos aquí.
+
+398
+00:32:48.678 --> 00:32:50.839
+Esto nos permite
+
+399
+00:32:54.529 --> 00:32:59.118
+definir cuáles son las características principales de este paradigma.
+
+400
+00:32:59.419 --> 00:33:04.698
+Y aquí, en este penúltimo slide, podemos definir algunas de
+
+401
+00:33:06.048 --> 00:33:10.098
+las ventajas claras que nos entrega este paradigma.
+
+402
+00:33:11.868 --> 00:33:14.628
+Básicamente, podríamos mencionar que
+
+403
+00:33:16.008 --> 00:33:17.958
+nos brinda una simplicidad formal
+
+404
+00:33:19.428 --> 00:33:24.048
+con menos comandos. Si lo comparamos con otros lenguajes, requiere menos comandos
+
+405
+00:33:24.169 --> 00:33:24.919
+para poder hacer
+
+406
+00:33:26.298 --> 00:33:27.438
+las tareas.
+
+407
+00:33:28.998 --> 00:33:34.548
+Este paradigma tiene una capacidad para poder realizar razonamientos matemáticos,
+
+408
+00:33:35.868 --> 00:33:40.608
+usar la parte matemática dentro de lo que viene a ser la corrección de los códigos,
+
+409
+00:33:42.738 --> 00:33:44.779
+resolver los problemas en forma concisa.
+
+410
+00:33:44.839 --> 00:33:50.358
+Muchas de las soluciones de este paradigma son más concisas que
+
+411
+00:33:50.958 --> 00:33:53.448
+las soluciones pensadas en la parte procedimental.
+
+412
+00:33:55.308 --> 00:33:59.899
+En algunos casos podemos encontrar inclusive una relación de 10 a 1 en líneas de
+
+413
+00:33:59.928 --> 00:34:00.348
+código.
+
+414
+00:34:02.058 --> 00:34:05.538
+Otro elemento es el hecho de no tener los efectos laterales.
+
+415
+00:34:07.548 --> 00:34:12.978
+Y básicamente podemos encontrar cierta seguridad para poder utilizarlo dentro de
+
+416
+00:34:15.888 --> 00:34:20.238
+situaciones en las cuales hoy en día es importante utilizarlo, como por ejemplo la
+
+417
+00:34:20.298 --> 00:34:24.949
+programación paralela o la programación concurrente.
+
+418
+00:34:24.978 --> 00:34:30.078
+Entonces, tener en cuenta este paradigma a la hora de querer aprovechar,
+
+419
+00:34:32.478 --> 00:34:35.029
+tener diferentes procesadores
+
+420
+00:34:36.319 --> 00:34:37.699
+o poder manejar hilos.
+
+421
+00:34:39.408 --> 00:34:43.608
+Trabaja bastante bien con este paradigma, en este caso
+
+422
+00:34:44.988 --> 00:34:45.529
+funcional.
+
+423
+00:34:56.569 --> 00:34:57.288
+Lógicamente que
+
+424
+00:34:58.638 --> 00:35:04.338
+nosotros, como programadores, en la parte comercial está muy
+
+425
+00:35:04.368 --> 00:35:08.358
+popularizado el hecho de utilizar paradigmas procedimentales.
+
+426
+00:35:09.918 --> 00:35:14.178
+Lógicamente, como estamos acostumbrados a paradigmas procedimentales, comenzar a
+
+427
+00:35:14.208 --> 00:35:19.578
+utilizar o a pensar en utilizar paradigmas funcionales
+
+428
+00:35:21.199 --> 00:35:26.628
+no es tan sencillo generalmente, porque cuando tenemos un problema, por intuición
+
+429
+00:35:26.688 --> 00:35:29.178
+comenzamos a resolverlo en forma procedimental.
+
+430
+00:35:29.928 --> 00:35:31.699
+Entonces, puede ser un poquito
+
+431
+00:35:33.108 --> 00:35:38.718
+complejo al inicio el hecho de tener en cuenta qué cosas,
+
+432
+00:35:40.848 --> 00:35:46.308
+en este caso estos pilares y cómo podemos utilizarlos, es algo
+
+433
+00:35:46.338 --> 00:35:49.699
+que se va a tener que conseguir un poco con la práctica.
+
+434
+00:35:53.238 --> 00:35:57.438
+¿Por qué? Porque no va a ser para nosotros tan intuitivo, tan intuitivo como lo que
+
+435
+00:35:57.498 --> 00:35:59.268
+ya conocemos en la parte procedimental.
+
+436
+00:35:59.538 --> 00:36:04.458
+Todo lo que nosotros queremos generalmente llevar a resolver utilizando bucles.
+
+437
+00:36:05.988 --> 00:36:07.158
+Y aquí no, acá
+
+438
+00:36:09.199 --> 00:36:14.538
+la idea es utilizar, en este caso, el paradigma funcional, por más que
+
+439
+00:36:16.548 --> 00:36:21.438
+si lo vemos desde el punto de vista de hardware, efectivamente va a requerir un
+
+440
+00:36:21.498 --> 00:36:24.258
+mayor uso de memoria y
+
+441
+00:36:25.638 --> 00:36:30.918
+el hecho de poder utilizar la recursividad.
+
+442
+00:36:31.608 --> 00:36:37.338
+Entonces, esto lo podemos ver como una opción más, como una
+
+443
+00:36:37.368 --> 00:36:42.738
+herramienta más para de repente lograr tener arquitecturas que sean, en este caso
+
+444
+00:36:42.798 --> 00:36:46.668
+formales, elegantes, que se puedan utilizar
+
+445
+00:36:47.029 --> 00:36:52.788
+en algunos casos
+
+446
+00:36:52.848 --> 00:36:56.628
+dentro de lo que viene a ser la concurrencia natural.
+
+447
+00:36:58.938 --> 00:37:02.988
+Generalmente ahí, cuando se quiere trabajar, manejar bastante bien la concurrencia
+
+448
+00:37:03.018 --> 00:37:03.408
+natural,
+
+449
+00:37:06.888 --> 00:37:10.878
+sería un buen caso para poder utilizar este paradigma.
+
+450
+00:37:13.746 --> 00:37:19.626
+Todos estos elementos se
+
+451
+00:37:19.656 --> 00:37:25.446
+trataron de plasmar el día de hoy en una guía que ya se encuentra en
+
+452
+00:37:26.106 --> 00:37:29.346
+el aula virtual.
+
+453
+00:37:51.126 --> 00:37:52.476
+Entonces, en el aula virtual
+
+454
+00:37:54.756 --> 00:37:58.626
+habíamos activado por acá en esta semana
+
+455
+00:38:00.906 --> 00:38:05.226
+la teoría acerca del paradigma funcional.
+
+456
+00:38:09.366 --> 00:38:13.206
+Ahí hay un manual de Lisp para poder trabajar.
+
+457
+00:38:13.836 --> 00:38:15.846
+Hoy día vamos a ver el lenguaje Lisp
+
+458
+00:38:18.606 --> 00:38:20.016
+y también ya está visible
+
+459
+00:38:21.427 --> 00:38:26.406
+la primera parte del ADC, asociada justamente con el paradigma funcional.
+
+460
+00:38:29.016 --> 00:38:33.756
+Vamos a ver hoy día Lisp, la próxima semana algunos ejemplos como el lenguaje
+
+461
+00:38:33.817 --> 00:38:39.246
+Haskell y Haskell. Y básicamente en la evaluación
+
+462
+00:38:39.726 --> 00:38:45.186
+hay un conjunto de ejercicios que hay que resolver siguiendo las pautas que están
+
+463
+00:38:45.276 --> 00:38:48.726
+muy bien descritas en este documento,
+
+464
+00:38:50.677 --> 00:38:55.716
+donde ustedes pueden resolver esos problemas utilizando cualquiera de los
+
+465
+00:38:56.466 --> 00:39:01.836
+lenguajes que manejemos en clase o inclusive adaptando otros lenguajes.
+
+466
+00:39:02.317 --> 00:39:07.806
+Se puede usar Java, se puede usar Python, pero tienen que considerar
+
+467
+00:39:07.866 --> 00:39:10.986
+que efectivamente están utilizando
+
+468
+00:39:12.427 --> 00:39:16.026
+alguno de los cinco pilares o de los elementos que hemos mencionado dentro del
+
+469
+00:39:16.056 --> 00:39:20.436
+paradigma funcional. No tiene sentido que uses Java y después estés usando de
+
+470
+00:39:20.496 --> 00:39:23.286
+repente mutación de variables,
+
+471
+00:39:25.026 --> 00:39:28.446
+que no son propias de este lenguaje.
+
+472
+00:39:30.216 --> 00:39:35.946
+Voy a colocar un video de la
+
+473
+00:39:35.976 --> 00:39:41.286
+asignatura, en este caso desarrollado por algunos de los profesores anteriores de
+
+474
+00:39:41.346 --> 00:39:41.616
+la
+
+475
+00:39:42.817 --> 00:39:43.626
+asignatura,
+
+476
+00:39:46.146 --> 00:39:50.466
+donde se muestra cómo instalar, en este caso
+
+477
+00:39:52.716 --> 00:39:53.166
+Lisp,
+
+478
+00:39:54.636 --> 00:39:56.166
+dentro de la computadora.
+
+479
+00:39:57.786 --> 00:40:01.746
+Ahí el video ustedes lo pueden observar, pero para poder hacer pruebas rápidas
+
+480
+00:40:02.797 --> 00:40:08.106
+podemos utilizar plataformas como esta de acá, en la cual podemos probar código.
+
+481
+00:40:08.496 --> 00:40:13.146
+Por ejemplo, aquí podemos probar Lisp. Esta es una variante de Lisp.
+
+482
+00:40:14.616 --> 00:40:17.766
+La guía en que estamos trabajando ahora soporta
+
+483
+00:40:19.056 --> 00:40:21.126
+sin ningún problema esta información.
+
+484
+00:40:21.427 --> 00:40:23.016
+Lo
+
+485
+00:40:27.246 --> 00:40:31.806
+que hemos colocado en la guía del Lisp puro es soportado por el Common Lisp, que es
+
+486
+00:40:31.836 --> 00:40:33.156
+una variante de Lisp.
+
+487
+00:40:34.686 --> 00:40:37.896
+Entonces, aquí en esta plataforma, en esta sección, podemos colocar nuestros
+
+488
+00:40:37.956 --> 00:40:41.376
+códigos. Si requerimos en algún momento interactuar con
+
+489
+00:40:42.606 --> 00:40:45.696
+la consola, podemos por acá ingresar
+
+490
+00:40:45.726 --> 00:40:50.946
+valores de entrada,
+
+491
+00:40:51.696 --> 00:40:53.797
+y acá tendremos en este caso la salida.
+
+492
+00:40:53.856 --> 00:40:58.146
+Acá hay un ejemplo sencillo de cómo
+
+493
+00:40:59.496 --> 00:41:02.646
+comunicarnos con salidas.
+
+494
+00:41:04.206 --> 00:41:09.876
+En este caso, usando format podemos
+
+495
+00:41:10.596 --> 00:41:15.486
+imprimir por la salida la palabra "Hello
+
+496
+00:41:15.636 --> 00:41:21.216
+world". Entonces, en la guía que
+
+497
+00:41:21.246 --> 00:41:21.876
+estamos
+
+498
+00:41:22.056 --> 00:41:28.986
+trabajando,
+
+499
+00:41:29.106 --> 00:41:33.786
+que lo pueden descargar del aula virtual,
+
+500
+00:41:35.047 --> 00:41:38.826
+vamos a describir de qué trata y vamos a ir probando
+
+501
+00:41:40.056 --> 00:41:42.547
+un poco los códigos.
+
+502
+00:41:42.786 --> 00:41:55.026
+¿Cómo
+
+503
+00:41:55.056 --> 00:41:56.886
+estructurada está la guía del lenguaje?
+
+504
+00:41:57.756 --> 00:42:01.446
+Tiene una primera parte con lo
+
+505
+00:42:02.797 --> 00:42:05.766
+básico necesario para poder
+
+506
+00:42:07.297 --> 00:42:09.786
+manejar la sintaxis del lenguaje Lisp:
+
+507
+00:42:11.286 --> 00:42:16.177
+temas como evaluación de entrada y salida, de memoria.
+
+508
+00:42:18.756 --> 00:42:23.047
+Y luego, en la segunda parte, un poco
+
+509
+00:42:25.476 --> 00:42:27.456
+de cómo se manipulan directamente las listas.
+
+510
+00:42:27.756 --> 00:42:31.086
+La parte de lista la hemos sacado en una sección aparte.
+
+511
+00:42:33.786 --> 00:42:39.306
+Y luego algunos ejemplos de lo que se puede probar dentro de Lisp, de lo más
+
+512
+00:42:39.366 --> 00:42:44.376
+importante en este caso, de los cinco pilares. Entonces, hay ejemplos detallados.
+
+513
+00:42:45.006 --> 00:42:45.216
+Se
+
+514
+00:42:47.196 --> 00:42:49.026
+supone que ya entendiendo lo anterior,
+
+515
+00:42:50.346 --> 00:42:55.086
+se pueden entender los ejemplos de los cinco pilares
+
+516
+00:42:56.406 --> 00:43:00.427
+asociados a este lenguaje y finalmente una comparación.
+
+517
+00:43:00.756 --> 00:43:04.297
+Pero lo que vamos a hacer ahora es simplemente ir describiendo gran parte de esta
+
+518
+00:43:04.446 --> 00:43:06.817
+guía dentro de
+
+519
+00:43:06.966 --> 00:43:16.086
+este
+
+520
+00:43:16.146 --> 00:43:21.067
+entorno en línea para probar el lenguaje.
+
+521
+00:43:24.427 --> 00:43:28.206
+Entonces, tienen ahí una primera opción
+
+522
+00:43:29.766 --> 00:43:34.116
+de lenguaje para poder resolver esos problemas,
+
+523
+00:43:35.047 --> 00:43:39.966
+en este caso de la
+
+524
+00:43:41.496 --> 00:43:42.186
+evaluación
+
+525
+00:43:43.567 --> 00:43:44.585
+que se va a trabajar.
+
+526
+00:43:45.936 --> 00:43:48.276
+Entonces, dentro de la guía,
+
+527
+00:43:48.786 --> 00:43:54.756
+la forma en que trabajamos dentro
+
+528
+00:43:54.846 --> 00:43:54.996
+de
+
+529
+00:43:56.436 --> 00:44:02.166
+este lenguaje es utilizando lo que se conoce como
+
+530
+00:44:02.226 --> 00:44:07.776
+las expresiones S, en las cuales colocamos dentro
+
+531
+00:44:07.866 --> 00:44:13.476
+de paréntesis argumentos. Esos argumentos
+
+532
+00:44:14.076 --> 00:44:15.396
+van a estar de la forma
+
+533
+00:44:19.236 --> 00:44:21.067
+o elementos, se llaman argumentos elementos.
+
+534
+00:44:21.186 --> 00:44:26.646
+Entonces, dentro de las expresiones S las delimitamos con paréntesis, y dentro de
+
+535
+00:44:26.856 --> 00:44:30.216
+los paréntesis, la forma de trabajar es
+
+536
+00:44:32.586 --> 00:44:33.876
+aquella que usamos en calculadoras,
+
+537
+00:44:35.797 --> 00:44:40.086
+lo que tiene que ver con la notación polaca. Vamos a ver, algo pasó con esto.
+
+538
+00:44:45.096 --> 00:44:46.356
+Denme un segundo.
+
+539
+00:45:24.246 --> 00:45:29.976
+Entonces, como les iba contando, aquí la forma es delimitamos
+
+540
+00:45:30.246 --> 00:45:34.956
+entre paréntesis, y dentro de los paréntesis colocamos tipo la notación polaca de
+
+541
+00:45:34.986 --> 00:45:40.297
+calculadora y notación prefija. Cuando colocamos primero el operador y luego
+
+542
+00:45:40.326 --> 00:45:44.166
+colocamos los operandos, de tal manera que si queremos de repente usar un operador
+
+543
+00:45:44.196 --> 00:45:47.196
+binario como la suma de elementos,
+
+544
+00:45:49.297 --> 00:45:52.746
+colocamos simplemente de esta manera.
+
+545
+00:45:56.376 --> 00:46:01.567
+Ya se ejecutó, pero es una ejecución interna, que está en la memoria del
+
+546
+00:46:01.626 --> 00:46:06.936
+computador. Si nosotros quisiéramos ver ese resultado, podemos
+
+547
+00:46:06.966 --> 00:46:10.956
+utilizar print, que es la salida de pantalla.
+
+548
+00:46:11.496 --> 00:46:13.266
+Pero igual, si queremos utilizar print
+
+549
+00:46:14.646 --> 00:46:19.416
+La misma idea es que colocamos acá el operador print y luego
+
+550
+00:46:19.446 --> 00:46:25.326
+colocamos el argumento. En este caso, si yo quisiera imprimir un número,
+
+551
+00:46:26.797 --> 00:46:28.806
+sería así. Y
+
+552
+00:46:30.336 --> 00:46:36.096
+si quiero imprimir algo más complejo, estaría entre
+
+553
+00:46:36.216 --> 00:46:37.596
+paréntesis. Si yo quisiera,
+
+554
+00:46:38.976 --> 00:46:42.996
+en este caso, ejecutar esta parte y mostrar aquí,
+
+555
+00:46:45.666 --> 00:46:48.606
+estamos mostrando lo que se va a ejecutar primero en esta parte de acá y ese
+
+556
+00:46:48.636 --> 00:46:53.226
+resultado se va a pasar aquí a print y se va a imprimir.
+
+557
+00:46:54.036 --> 00:46:56.797
+Entonces, un poco que también estamos trabajando internamente, sin querer, la
+
+558
+00:46:56.826 --> 00:46:59.916
+composición de funciones, que es uno de los pilares de este paradigma.
+
+559
+00:47:00.936 --> 00:47:01.866
+Ahora, si nosotros
+
+560
+00:47:03.696 --> 00:47:07.866
+quisiéramos que esto que está acá lo
+
+561
+00:47:11.047 --> 00:47:14.946
+imprimiéramos como si fuera una lista,
+
+562
+00:47:16.927 --> 00:47:19.476
+podemos utilizar aquí el operador
+
+563
+00:47:22.177 --> 00:47:22.956
+apóstrofe.
+
+564
+00:47:25.476 --> 00:47:31.116
+Ahora va a considerar que todo lo que está después del apóstrofe es algo que se
+
+565
+00:47:31.146 --> 00:47:34.297
+puede imprimir, carácter por carácter.
+
+566
+00:47:36.547 --> 00:47:40.206
+Lo mismo si nosotros queremos aplicar
+
+567
+00:47:41.766 --> 00:47:42.126
+otra
+
+568
+00:47:43.776 --> 00:47:45.186
+forma, que puede ser
+
+569
+00:47:47.496 --> 00:47:49.056
+usando esta palabra reservada.
+
+570
+00:47:56.286 --> 00:48:00.696
+Solamente que si quiero usar la palabra reservada, debo colocar entre paréntesis y
+
+571
+00:48:00.726 --> 00:48:06.547
+luego la palabra reservada y después aquello que deseo imprimir, que
+
+572
+00:48:06.576 --> 00:48:09.846
+son dos, tres, una lista con esos elementos.
+
+573
+00:48:15.726 --> 00:48:19.866
+Ya está. Entonces es similar. Y de repente lo que está acá,
+
+574
+00:48:21.366 --> 00:48:23.016
+como le digo, puede ser algo más complejo.
+
+575
+00:48:24.636 --> 00:48:26.166
+Yo aquí puedo colocar comentarios.
+
+576
+00:48:28.596 --> 00:48:34.326
+Si de repente yo lo que quiero hacer es la operación dos por cuatro
+
+577
+00:48:34.386 --> 00:48:35.677
+más cinco,
+
+578
+00:48:37.177 --> 00:48:41.226
+como está en la guía. Aquí hay que tener en cuenta que esa operación hay que
+
+579
+00:48:41.256 --> 00:48:43.536
+hacerla en notación polaca.
+
+580
+00:48:45.067 --> 00:48:46.026
+Asterisco.
+
+581
+00:48:47.556 --> 00:48:51.486
+Aquí vamos a imprimir directamente el resultado.
+
+582
+00:48:53.556 --> 00:48:58.626
+Entonces, si queremos imprimir ese resultado, colocamos este paréntesis.
+
+583
+00:49:00.756 --> 00:49:02.736
+Operación, asterisco,
+
+584
+00:49:04.297 --> 00:49:10.206
+queremos operar dos con algo más. Ese algo es lo que está acá,
+
+585
+00:49:10.356 --> 00:49:14.346
+que sería más cuatro y cinco.
+
+586
+00:49:16.116 --> 00:49:18.876
+Si es que los paréntesis están bien,
+
+587
+00:49:21.186 --> 00:49:25.086
+estaría la respuesta ahí, de dos por cuatro más cinco.
+
+588
+00:49:27.665 --> 00:49:33.036
+Aquí los comentarios pueden comenzar con un punto y coma.
+
+589
+00:49:34.896 --> 00:49:38.106
+Aquí también hay buenas prácticas de programación.
+
+590
+00:49:38.496 --> 00:49:43.026
+Generalmente usan cuando el comentario es pequeño, en la misma línea de discusión
+
+591
+00:49:43.086 --> 00:49:48.696
+se puede colocar así. Si se quiere colocar un comentario un poco más de una
+
+592
+00:49:49.896 --> 00:49:54.006
+sola línea, podemos utilizar punto y coma,
+
+593
+00:49:55.567 --> 00:50:00.276
+de esta manera. Y a veces podemos encontrar hasta tres puntos y coma si queremos
+
+594
+00:50:00.336 --> 00:50:01.416
+manejar de repente un
+
+595
+00:50:03.156 --> 00:50:09.067
+bloque de código y definir diferentes
+
+596
+00:50:09.096 --> 00:50:14.826
+bloques de código. Pero al final, al detectar el primer punto y coma, ya nota todo
+
+597
+00:50:14.886 --> 00:50:16.476
+lo que viene después como un comentario.
+
+598
+00:50:17.226 --> 00:50:22.476
+También como buenas prácticas, un comentario corto, un comentario en una línea
+
+599
+00:50:23.556 --> 00:50:25.686
+y esto para definir un bloque.
+
+600
+00:50:27.067 --> 00:50:31.297
+Un bloque, esto es un bloque. Y básicamente es
+
+601
+00:50:32.797 --> 00:50:33.966
+la forma cómo
+
+602
+00:50:35.556 --> 00:50:35.946
+se
+
+603
+00:50:37.266 --> 00:50:37.506
+puede
+
+604
+00:50:39.006 --> 00:50:44.677
+imprimir mensajes. En la guía van a ver otro ejemplo de impresión más detallado
+
+605
+00:50:45.036 --> 00:50:46.146
+usando format.
+
+606
+00:50:48.096 --> 00:50:53.346
+Lo revisan. ¿Qué más podemos ver en la guía?
+
+607
+00:50:53.406 --> 00:50:57.396
+El tema de los ámbitos. He colocado
+
+608
+00:50:59.616 --> 00:51:05.436
+una parte en la guía donde se menciona el uso de variables globales versus
+
+609
+00:51:05.466 --> 00:51:09.666
+variables locales. Y ustedes podrían decir: "Pero usted me había dicho que los
+
+610
+00:51:09.756 --> 00:51:14.406
+efectos de lado se dan justamente cuando usamos variables globales".
+
+611
+00:51:16.416 --> 00:51:20.196
+Ha quedado así en la guía, porque recuerden que Lis no nació pensando en
+
+612
+00:51:22.087 --> 00:51:27.876
+este paradigma funcional, sino que el paradigma funcional se adecuó en este caso a
+
+613
+00:51:29.196 --> 00:51:29.496
+Lis,
+
+614
+00:51:31.596 --> 00:51:35.196
+o se incluyó dentro de Lis después de que Lis existía.
+
+615
+00:51:35.916 --> 00:51:40.536
+Entonces, va a haber cosas que va a soportar, que no necesariamente van a ser
+
+616
+00:51:41.916 --> 00:51:44.196
+100 % funcional.
+
+617
+00:51:45.996 --> 00:51:51.036
+Pero de repente, si en el código ustedes ven un código donde usan paradigma
+
+618
+00:51:51.126 --> 00:51:56.406
+de variables globales, ahí hay teoría de cómo presentarla.
+
+619
+00:51:58.656 --> 00:52:03.996
+Pero en este caso, veamos mejor el ejemplo que es asociado a una
+
+620
+00:52:04.027 --> 00:52:04.777
+variable
+
+621
+00:52:06.337 --> 00:52:08.976
+local, que es lo que siempre usamos.
+
+622
+00:52:09.277 --> 00:52:12.756
+Si en algún momento necesitamos utilizar una variable local,
+
+623
+00:52:14.587 --> 00:52:17.677
+dentro de este lenguaje,
+
+624
+00:52:20.736 --> 00:52:25.506
+la forma de utilizar es usando la palabra reservada let.
+
+625
+00:52:27.756 --> 00:52:28.656
+Que en este caso,
+
+626
+00:52:30.006 --> 00:52:35.587
+esta variable local solamente va a existir en un entorno,
+
+627
+00:52:37.236 --> 00:52:42.696
+como por ejemplo, definido acá. Entonces, en este entorno, que comienza en este
+
+628
+00:52:42.756 --> 00:52:44.587
+paréntesis y cierra este paréntesis,
+
+629
+00:52:45.936 --> 00:52:50.616
+nosotros vamos a definir la función let.
+
+630
+00:52:53.527 --> 00:52:58.536
+En este caso, la variable que vamos a definir va a ser dos variables.
+
+631
+00:52:59.406 --> 00:53:00.456
+La variable base
+
+632
+00:53:02.466 --> 00:53:04.596
+y la variable
+
+633
+00:53:08.826 --> 00:53:13.626
+altura. Variable base, que va a tener el valor de 10, la variable altura, que va a
+
+634
+00:53:13.656 --> 00:53:14.976
+tener el valor de 5.
+
+635
+00:53:18.126 --> 00:53:23.346
+Y luego, en la siguiente línea, definimos una
+
+636
+00:53:23.376 --> 00:53:27.696
+operación utilizando esas variables.
+
+637
+00:53:28.476 --> 00:53:32.677
+En este caso, vamos a multiplicar base
+
+638
+00:53:33.966 --> 00:53:34.777
+por altura.
+
+639
+00:53:36.246 --> 00:53:40.476
+Lo multiplicamos y luego lo dividimos, base por altura entre dos.
+
+640
+00:53:40.956 --> 00:53:42.006
+Estamos calculando un área.
+
+641
+00:53:44.376 --> 00:53:46.927
+Pero todo eso dentro de la función.
+
+642
+00:53:48.246 --> 00:53:54.126
+Al ejecutar esto, obtenemos el valor, en este caso de base por altura entre dos.
+
+643
+00:53:56.406 --> 00:54:00.337
+En este caso se usó un print. Déjenme revisar aquí algo.
+
+644
+00:54:00.396 --> 00:54:02.706
+¿Qué pasa si borramos este print acá
+
+645
+00:54:04.686 --> 00:54:05.677
+y este print acá?
+
+646
+00:54:08.166 --> 00:54:12.966
+Claro, ahí no va a imprimir nada, pero vamos a ver que no era necesario colocar
+
+647
+00:54:13.027 --> 00:54:17.136
+todo esto dentro de este print, ya que la idea era imprimir.
+
+648
+00:54:18.846 --> 00:54:21.547
+Esto podemos colocarlo dentro de print
+
+649
+00:54:23.076 --> 00:54:27.096
+y esto dentro de print. A veces usar muchos paréntesis
+
+650
+00:54:29.047 --> 00:54:33.696
+no ayuda mucho. A veces encontramos que algunos programas,
+
+651
+00:54:35.376 --> 00:54:41.286
+como las llaves en lenguajes como C++, podemos encontrar que en C++ alguien puede
+
+652
+00:54:41.316 --> 00:54:43.326
+escribir toda la sentencia en una sola línea.
+
+653
+00:54:44.106 --> 00:54:49.626
+Pero por propósitos de poder visualizar, podemos colocarlo de esta manera.
+
+654
+00:54:50.557 --> 00:54:52.146
+El programa es un poco más ordenado.
+
+655
+00:54:52.206 --> 00:54:53.976
+Decimos que todo esto de acá está dentro
+
+656
+00:54:55.446 --> 00:54:56.196
+de este bloque.
+
+657
+00:54:57.726 --> 00:54:57.876
+Y
+
+658
+00:54:59.076 --> 00:55:01.236
+aquí estaríamos
+
+659
+00:55:02.886 --> 00:55:03.726
+imprimiendo
+
+660
+00:55:05.016 --> 00:55:05.826
+esta parte.
+
+661
+00:55:07.057 --> 00:55:11.226
+Esa sería la mejor forma. Y en la guía lo he puesto acá arriba, pero no sería
+
+662
+00:55:11.256 --> 00:55:14.677
+necesario colocar la definición de variables dentro del print.
+
+663
+00:55:15.186 --> 00:55:20.766
+Acá la idea es definir las variables y después recién
+
+664
+00:55:21.307 --> 00:55:25.446
+imprimir. Imprimir, en este caso la
+
+665
+00:55:27.576 --> 00:55:30.606
+hacer uso de esas variables locales, que solamente van a existir
+
+666
+00:55:31.807 --> 00:55:33.186
+dentro de este entorno.
+
+667
+00:55:34.386 --> 00:55:36.036
+O también podría existir dentro de una función.
+
+668
+00:55:36.096 --> 00:55:39.756
+Es como si definiéramos dentro de una función, si definimos una variable dentro de
+
+669
+00:55:39.786 --> 00:55:44.706
+una función, solamente va a existir en el ámbito de la función, aquí va a existir
+
+670
+00:55:44.766 --> 00:55:47.886
+en este ámbito de estos paréntesis, nada más.
+
+671
+00:55:48.816 --> 00:55:50.856
+Si la moveríamos fuera, a base de altura,
+
+672
+00:55:52.236 --> 00:55:53.646
+no funcionaría este código.
+
+673
+00:55:56.826 --> 00:55:57.666
+Y esto nos lleva
+
+674
+00:56:01.777 --> 00:56:06.126
+a las funciones. El siguiente punto que se toca en esta mini guía es
+
+675
+00:56:08.316 --> 00:56:09.996
+cómo definir una función.
+
+676
+00:56:16.716 --> 00:56:20.047
+Aquí la idea de definir una función
+
+677
+00:56:27.277 --> 00:56:30.246
+podemos verlo de esta manera. Usamos la palabra reservada
+
+678
+00:56:31.746 --> 00:56:32.136
+de fun,
+
+679
+00:56:34.356 --> 00:56:34.777
+luego
+
+680
+00:56:36.186 --> 00:56:41.047
+el nombre que tenemos que poner a la función, paréntesis, y lo que va debajo es, en
+
+681
+00:56:41.136 --> 00:56:43.236
+este caso, lo que se
+
+682
+00:56:43.386 --> 00:56:48.036
+ejecutaría dentro de la
+
+683
+00:56:49.177 --> 00:56:49.686
+función.
+
+684
+00:56:52.626 --> 00:56:58.027
+En la guía hay tres ejemplos rapiditos de cómo
+
+685
+00:56:58.087 --> 00:56:58.777
+manejar
+
+686
+00:57:00.277 --> 00:57:06.246
+las funciones. Vamos a ponerlos aquí para explicarlos rápidamente.
+
+687
+00:57:06.456 --> 00:57:10.326
+Porque en el primer caso, no considerábamos argumentos.
+
+688
+00:57:10.896 --> 00:57:12.666
+En los siguientes
+
+689
+00:57:13.896 --> 00:57:18.066
+dos casos, sí. Acá tenemos una función sin argumentos.
+
+690
+00:57:19.656 --> 00:57:24.547
+Aquí estamos definiendo la función y aquí estamos ejecutándola.
+
+691
+00:57:26.166 --> 00:57:28.777
+Acá tenemos otra función.
+
+692
+00:57:31.236 --> 00:57:32.166
+En este caso,
+
+693
+00:57:33.606 --> 00:57:35.886
+vamos a ponerle un espacio para diferenciarla.
+
+694
+00:57:36.906 --> 00:57:39.606
+Esta es la función, que suma dos números,
+
+695
+00:57:43.656 --> 00:57:48.636
+y acá estamos probando la función, evaluando la función dentro de sumar.
+
+696
+00:57:51.606 --> 00:57:53.856
+Siempre acá todo entre paréntesis, no olvidar.
+
+697
+00:57:54.486 --> 00:58:00.066
+Y acá siempre el concepto de operando, operadores.
+
+698
+00:58:01.746 --> 00:58:03.726
+Y acá tenemos otro ejemplo
+
+699
+00:58:06.337 --> 00:58:07.146
+de esta función,
+
+700
+00:58:08.766 --> 00:58:13.807
+donde podemos definir en este caso a un usuario.
+
+701
+00:58:15.547 --> 00:58:21.216
+Donde estamos concatenando. Un problema de print es que no reconoce
+
+702
+00:58:21.936 --> 00:58:24.636
+las tildes, ni reconoce el
+
+703
+00:58:27.576 --> 00:58:31.027
+abrir la señal de interrogación de apertura.
+
+704
+00:58:32.226 --> 00:58:35.677
+Por eso se ha colocado aquí de esta manera, en este ejemplo.
+
+705
+00:58:37.686 --> 00:58:41.557
+Pero, por ejemplo, acá definimos una función que va a recibir un nombre.
+
+706
+00:58:41.976 --> 00:58:46.087
+Aquí estamos usándolo. Este usuario lo estamos definiendo como si fuera una cadena
+
+707
+00:58:47.226 --> 00:58:49.087
+de texto. ¿Por qué? Porque cuando
+
+708
+00:58:50.406 --> 00:58:52.746
+usemos esta función, vamos a concatenar
+
+709
+00:58:54.396 --> 00:58:55.027
+cadenas.
+
+710
+00:58:56.346 --> 00:59:01.536
+Vamos a concatenar estas cadenas que están acá.
+
+711
+00:59:01.716 --> 00:59:02.286
+Estas
+
+712
+00:59:03.726 --> 00:59:07.116
+tres cadenas que están acá. Entonces, cuando ejecutamos,
+
+713
+00:59:08.946 --> 00:59:14.646
+este es el efecto de saludar de la función saludar, este es el efecto de la
+
+714
+00:59:14.706 --> 00:59:20.496
+función sumar, este es el efecto de la función saludar a un
+
+715
+00:59:20.766 --> 00:59:21.876
+determinado usuario.
+
+716
+00:59:23.436 --> 00:59:27.726
+Entonces, son ejemplos de cómo trabajar las
+
+717
+00:59:28.566 --> 00:59:34.297
+funciones dentro de este lenguaje.
+
+718
+00:59:36.786 --> 00:59:42.576
+Aquí habíamos dicho que luego una forma de resolver los problemas,
+
+719
+00:59:45.516 --> 00:59:49.536
+cuando queremos manejar sobre todo listas, era manejarlo
+
+720
+00:59:51.456 --> 00:59:56.797
+en forma recursiva, operar sobre una lista, pero en algunas ocasiones hay que
+
+721
+00:59:56.826 --> 01:00:00.966
+decidir si es que estamos en el último caso, accediendo al último elemento de la
+
+722
+01:00:01.027 --> 01:00:04.236
+lista, y en ese caso tenemos que funcionar
+
+723
+01:00:05.466 --> 01:00:11.346
+de otra manera. Entonces, para decidir si queremos o no trabajar de una manera u
+
+724
+01:00:11.557 --> 01:00:14.677
+otra dentro de list tenemos dos opciones.
+
+725
+01:00:15.337 --> 01:00:21.126
+Podemos usar condicionales usando la forma de if, donde manejamos
+
+726
+01:00:21.636 --> 01:00:27.396
+exactamente una condición y tenemos solamente una cláusula verdadera y una cláusula
+
+727
+01:00:27.427 --> 01:00:31.837
+falsa. Aquí no utilizamos anidamiento o múltiples opciones.
+
+728
+01:00:32.677 --> 01:00:36.846
+Eso sí lo podemos utilizar dentro de la bifurcación con.
+
+729
+01:00:37.656 --> 01:00:43.596
+Esta bifurcación con de la guía nos va a permitir evaluar más ramas.
+
+730
+01:00:46.116 --> 01:00:48.906
+En el ejemplo de la guía, eso lo vemos
+
+731
+01:00:50.496 --> 01:00:54.756
+claramente. Ahí he colocado dos ejemplos.
+
+732
+01:00:55.206 --> 01:00:57.547
+Un primer ejemplo con la rama if.
+
+733
+01:01:01.027 --> 01:01:06.277
+Estamos viendo estas primeras partes básicas, porque si nos mandamos de frente o si
+
+734
+01:01:06.307 --> 01:01:11.256
+nos pasamos de frente a ver las soluciones usando los cinco pilares,
+
+735
+01:01:13.087 --> 01:01:15.636
+nos complicamos un poco cuando pasamos de un nuevo lenguaje.
+
+736
+01:01:15.996 --> 01:01:19.476
+Puede ser que mejor vamos a ver esta primera parte
+
+737
+01:01:21.096 --> 01:01:21.396
+aquí.
+
+738
+01:01:22.866 --> 01:01:26.677
+Entonces, tenemos dos opciones para manejar bifurcaciones o condicionales.
+
+739
+01:01:31.057 --> 01:01:34.896
+Ya sabemos cómo manejar determinados elementos.
+
+740
+01:01:35.916 --> 01:01:36.337
+Aquí,
+
+741
+01:01:37.686 --> 01:01:39.337
+no quería hacerlo, pero ya estamos haciendo.
+
+742
+01:01:39.576 --> 01:01:40.716
+Vamos a aprovechar para,
+
+743
+01:01:42.066 --> 01:01:45.756
+si tenemos la necesidad de definir una variable global,
+
+744
+01:01:47.406 --> 01:01:52.055
+pues acá hay un ejemplo. Podemos usar la palabra reservada def parameter.
+
+745
+01:01:52.715 --> 01:01:58.145
+Y como buena práctica, para diferenciar una variable global de una que no lo sea,
+
+746
+01:01:58.596 --> 01:01:59.136
+una local,
+
+747
+01:02:00.486 --> 01:02:04.656
+colocamos la variable entre dos asteriscos.
+
+748
+01:02:06.186 --> 01:02:09.126
+Entonces, esto como una buena práctica para
+
+749
+01:02:10.777 --> 01:02:15.427
+nombrar a esas variables. Acá estamos definiendo una variable edad cuyo valor es
+
+750
+01:02:15.606 --> 01:02:20.916
+20. Entonces, aquí también hubiéramos podido hacer que lo pedíamos por consola.
+
+751
+01:02:21.666 --> 01:02:24.337
+Voy a colocar otra guía con más información,
+
+752
+01:02:26.557 --> 01:02:30.696
+en este caso del lenguaje, de un docente que lo ha trabajado anteriormente,
+
+753
+01:02:31.896 --> 01:02:33.396
+en el material de la próxima semana.
+
+754
+01:02:35.196 --> 01:02:38.166
+Entonces, acá, ¿cómo hacemos la condicional?
+
+755
+01:02:38.256 --> 01:02:39.906
+Igual, definimos acá
+
+756
+01:02:41.166 --> 01:02:45.726
+el if, que va a estar limitado por estos paréntesis.
+
+757
+01:02:46.596 --> 01:02:51.936
+Luego, colocamos el if y la palabra entre paréntesis, otro operador, que sería la
+
+758
+01:02:51.966 --> 01:02:55.777
+condición. Usamos, igual, notación polaca.
+
+759
+01:02:55.986 --> 01:02:58.236
+Primero, el mayor igual, edad.
+
+760
+01:03:00.126 --> 01:03:04.716
+Si el contenido de la variable edad es mayor o igual que este operando, 18.
+
+761
+01:03:06.186 --> 01:03:11.976
+Si eso es verdadero, ejecutamos esta línea. Si es falso, utilizamos esta línea.
+
+762
+01:03:12.816 --> 01:03:18.096
+Aquí tener cuidado. No olviden que este punto y coma es comentario, no es como en
+
+763
+01:03:18.156 --> 01:03:21.066
+C, que tiene que haber un punto y coma para fin de sentencia.
+
+764
+01:03:23.286 --> 01:03:27.126
+Que podría confundirnos. Y acá en este ejemplo, en lugar de usar print, estamos
+
+765
+01:03:27.156 --> 01:03:32.047
+usando format. Otra forma de imprimir mensajes en la consola.
+
+766
+01:03:33.006 --> 01:03:37.746
+Esta T significa que lo que se va a imprimir, se va a imprimir por la consola o
+
+767
+01:03:37.777 --> 01:03:42.156
+terminal. ¿Qué se va a imprimir? Este mensaje.
+
+768
+01:03:43.896 --> 01:03:45.756
+O se va a imprimir este otro mensaje.
+
+769
+01:03:46.356 --> 01:03:51.096
+Cuando usamos format, todo eso sería el mensaje que se va a imprimir hasta este
+
+770
+01:03:51.156 --> 01:03:53.376
+punto. Y esto que está acá
+
+771
+01:03:54.756 --> 01:03:59.376
+significa salto de línea. Salto de línea, al igual que había de repente lenguajes
+
+772
+01:03:59.406 --> 01:04:05.047
+como C, que había que indicar acá estrictamente lo que se va a colocar, que en este
+
+773
+01:04:05.106 --> 01:04:08.916
+caso es un salto de línea, para poder tener una línea diferente a lo que sí.
+
+774
+01:04:09.786 --> 01:04:14.226
+Entonces, eso se va a ejecutar cuando sea verdadero, esto cuando sea falso.
+
+775
+01:04:15.366 --> 01:04:21.307
+Y acá tenemos otro ejemplo, igual, definimos una variable global con fines de
+
+776
+01:04:21.666 --> 01:04:22.686
+ejemplo, nada más,
+
+777
+01:04:24.576 --> 01:04:28.746
+llamada nota, y manejamos aquí condiciones.
+
+778
+01:04:29.256 --> 01:04:35.106
+Si es que esta nota, si el valor de la variable nota es mayor o igual que 19,
+
+779
+01:04:35.646 --> 01:04:41.076
+se imprimirá excelente; si es mayor o igual que 14, aprobado; si es mayor que 11
+
+780
+01:04:42.625 --> 01:04:43.375
+Suficiente.
+
+781
+01:04:49.644 --> 01:04:50.214
+Aquí
+
+782
+01:04:51.444 --> 01:04:56.094
+estas son las condiciones que se pueden dar y siempre hay una
+
+783
+01:04:58.974 --> 01:05:02.244
+opción por defecto, que sería el else, en
+
+784
+01:05:05.244 --> 01:05:10.194
+la cual ninguno de estos tres casos se da, aquí lo utilizamos con la T.
+
+785
+01:05:10.704 --> 01:05:12.535
+Entonces, aquí tener cuidado.
+
+786
+01:05:13.824 --> 01:05:14.875
+Cuando usamos forma,
+
+787
+01:05:16.194 --> 01:05:21.054
+esta T está indicando que el mensaje que está acá se va a imprimir en la consola.
+
+788
+01:05:21.744 --> 01:05:23.664
+En cambio, cuando usamos con,
+
+789
+01:05:25.224 --> 01:05:29.484
+si queremos colocar una última sentencia, que va a ser en este caso como si fuera
+
+790
+01:05:29.544 --> 01:05:30.444
+la rama else.
+
+791
+01:05:32.815 --> 01:05:35.934
+Esto sería como en otros lenguajes, la rama elif.
+
+792
+01:05:37.644 --> 01:05:42.204
+Si quisiéramos trabajar la rama elif else, aquí debemos colocar una T.
+
+793
+01:05:42.924 --> 01:05:45.894
+Y lo que está después se va a ejecutar
+
+794
+01:05:47.815 --> 01:05:51.174
+en ese caso, en el caso de else, que no sea ninguno de los anteriores.
+
+795
+01:05:52.464 --> 01:05:53.484
+Lo visitamos aquí.
+
+796
+01:05:54.714 --> 01:06:00.234
+Entonces, este primer caso que está acá, si tienes 20,
+
+797
+01:06:00.565 --> 01:06:06.294
+eres mayor de edad. Y en este caso de acá, si tienes 15, estás
+
+798
+01:06:06.354 --> 01:06:09.504
+aprobado. Si tienes nota 15, estás aprobado.
+
+799
+01:06:10.494 --> 01:06:15.625
+Esto de acá corresponde a este ejemplo que está acá. Entonces son dos ejercicios.
+
+800
+01:06:15.684 --> 01:06:20.785
+Y como les mencionaba, una práctica para definir un bloque, tres veces el
+
+801
+01:06:21.414 --> 01:06:26.304
+operador de comentario, igual acá. Estas son buenas prácticas.
+
+802
+01:06:27.444 --> 01:06:30.625
+Y ahora tenemos justamente esto de cómo definir
+
+803
+01:06:32.394 --> 01:06:35.934
+las condicionales o bifurcaciones dentro de este lenguaje.
+
+804
+01:06:37.554 --> 01:06:40.405
+Otro elemento importante dentro de este lenguaje
+
+805
+01:06:43.104 --> 01:06:45.924
+son las famosas formas lambda, que son
+
+806
+01:06:47.544 --> 01:06:53.004
+funciones anónimas. Son funciones anónimas que se pueden colocar
+
+807
+01:06:54.775 --> 01:06:59.035
+sin darle un nombre necesariamente. De ahí viene su nombre, función anónima.
+
+808
+01:07:01.044 --> 01:07:05.065
+Estos lambda son muy útiles dentro de listas.
+
+809
+01:07:07.014 --> 01:07:12.114
+Pero aquí en la guía comenzamos mostrando un ejemplito en el cual
+
+810
+01:07:12.174 --> 01:07:17.875
+no necesariamente está dentro de una lista.
+
+811
+01:07:18.114 --> 01:07:21.474
+Es por ejemplo acá. Queremos justamente
+
+812
+01:07:23.394 --> 01:07:28.434
+hacer uso de la función, en este caso, calcular el área.
+
+813
+01:07:29.304 --> 01:07:32.364
+Entonces, esa función nosotros la podemos definir, por ejemplo, aquí.
+
+814
+01:07:35.514 --> 01:07:36.444
+Este es un primer print.
+
+815
+01:07:38.065 --> 01:07:39.984
+Si queremos un poco disgregar el código,
+
+816
+01:07:42.714 --> 01:07:47.155
+este que está acá está dentro de esto.
+
+817
+01:07:48.204 --> 01:07:49.764
+A veces es mejor colocarlo así,
+
+818
+01:07:51.234 --> 01:07:56.573
+un poco para diferenciar. Entonces, dentro de esto colocamos el tema de
+
+819
+01:07:56.663 --> 01:07:57.234
+lambda.
+
+820
+01:07:59.815 --> 01:08:00.414
+Entonces,
+
+821
+01:08:03.114 --> 01:08:08.574
+básicamente, aquí con el uso de lambda estamos definiendo.
+
+822
+01:08:09.984 --> 01:08:12.535
+Vamos a colocarlo así. Este print
+
+823
+01:08:13.914 --> 01:08:19.074
+va a imprimir algo. ¿Qué cosa va a imprimir este print?
+
+824
+01:08:19.735 --> 01:08:20.785
+Este print va a imprimir
+
+825
+01:08:23.874 --> 01:08:24.504
+esta función,
+
+826
+01:08:27.144 --> 01:08:28.944
+el resultado de llamar a esta función.
+
+827
+01:08:29.454 --> 01:08:34.974
+Entonces, cuando llamamos a esta función, le pasamos los parámetros 10 y 5.
+
+828
+01:08:36.624 --> 01:08:41.184
+Y aquí mismo definimos la función. ¿Cómo lo hacemos? Utilizando la palabra lambda.
+
+829
+01:08:41.454 --> 01:08:44.214
+Entonces, dentro de lambda le decimos, el argumento
+
+830
+01:08:45.535 --> 01:08:48.204
+va a recibir base y altura, que son justamente estos dos.
+
+831
+01:08:48.834 --> 01:08:52.614
+Y lo que esté aquí a continuación de lambda es la ejecución
+
+832
+01:08:56.124 --> 01:08:57.444
+o la definición de la función.
+
+833
+01:08:58.884 --> 01:08:59.334
+Entonces,
+
+834
+01:09:00.624 --> 01:09:04.434
+esa es la utilidad, en este caso, de este lambda.
+
+835
+01:09:07.674 --> 01:09:08.485
+Y finalmente,
+
+836
+01:09:11.035 --> 01:09:16.405
+el punto dos de la guía hace referencia a justamente el manejo de
+
+837
+01:09:16.495 --> 01:09:17.094
+listas.
+
+838
+01:09:20.815 --> 01:09:26.754
+Aquí se muestran dos formas de poder construir listas.
+
+839
+01:09:39.594 --> 01:09:41.065
+Tenemos aquí dos casos.
+
+840
+01:09:42.834 --> 01:09:47.334
+Entonces, aquí con la palabra cons estamos
+
+841
+01:09:48.684 --> 01:09:50.035
+agregando, en este caso,
+
+842
+01:09:51.324 --> 01:09:56.364
+a esta lista cuyos valores son 10 y 20, le estamos agregando un elemento adicional,
+
+843
+01:09:56.574 --> 01:09:58.884
+que sería el elemento 5.
+
+844
+01:10:00.714 --> 01:10:04.285
+Entonces, cons agrega un elemento al inicio de una lista existente.
+
+845
+01:10:05.904 --> 01:10:10.824
+Y en cambio, list permite agrupar elementos
+
+846
+01:10:11.574 --> 01:10:16.495
+como una lista. Entonces, cuando ejecutamos, obtenemos esta parte de acá.
+
+847
+01:10:16.734 --> 01:10:22.164
+Aquí existía esta lista y le estamos agregando al inicio el valor de 5.
+
+848
+01:10:23.004 --> 01:10:28.495
+Y acá estos elementos estaban separados y los estamos enlistando, por así decir,
+
+849
+01:10:29.124 --> 01:10:30.864
+de esta manera, usando list.
+
+850
+01:10:32.574 --> 01:10:37.074
+Y finalmente, habíamos mencionado las palabras reservadas char
+
+851
+01:10:38.514 --> 01:10:44.184
+y la palabra reservada cdr. Char para crear una lista que ya existe, char para
+
+852
+01:10:45.114 --> 01:10:50.724
+extraer el primer elemento, la cabeza de la lista, y cdr para poder extraer
+
+853
+01:10:51.444 --> 01:10:51.954
+el resto,
+
+854
+01:10:53.394 --> 01:10:55.134
+el cuerpo o la cola de la lista.
+
+855
+01:10:56.694 --> 01:10:57.924
+Igual, aquí
+
+856
+01:10:59.124 --> 01:11:04.404
+podemos finalmente ver un par de ejemplos asociados
+
+857
+01:11:06.924 --> 01:11:12.654
+a este caso. Aquí recuerden que cuando le queremos
+
+858
+01:11:12.714 --> 01:11:13.883
+pasar la lista,
+
+859
+01:11:15.234 --> 01:11:19.644
+para que sea manipulada por la palabra reservada char, hay que colocar aquí un
+
+860
+01:11:19.734 --> 01:11:21.894
+apóstrofe. Entonces, cuando
+
+861
+01:11:23.245 --> 01:11:28.224
+aplicamos char a esta lista, vamos a obtener el primer elemento.
+
+862
+01:11:29.004 --> 01:11:33.654
+Cuando aplicamos cdr a esta lista, vamos a obtener el resto.
+
+863
+01:11:34.974 --> 01:11:39.924
+Y acá lo vemos. El primer elemento y en el segundo caso obtenemos
+
+864
+01:11:40.914 --> 01:11:46.464
+el resto. Finalmente, algunas cosas que hay que recordar ahí son
+
+865
+01:11:46.824 --> 01:11:47.814
+palabras reservadas,
+
+866
+01:11:50.184 --> 01:11:51.354
+como de repente null.
+
+867
+01:11:53.574 --> 01:11:58.285
+En este caso, cuando comparamos null con una lista,
+
+868
+01:12:00.384 --> 01:12:04.374
+esta palabra nos da true cuando la lista está vacía o es una lista que no tiene
+
+869
+01:12:04.374 --> 01:12:07.314
+elementos, o cuando la lista tiene elementos,
+
+870
+01:12:09.024 --> 01:12:13.944
+nos da un valor de nil. Eso lo podemos utilizar dentro de bifurcaciones, por
+
+871
+01:12:14.004 --> 01:12:14.484
+ejemplo.
+
+872
+01:12:15.745 --> 01:12:19.614
+También podemos usar palabras clave que nos permiten saber si un alimento de una
+
+873
+01:12:19.674 --> 01:12:22.464
+lista es un valor par o es un valor impar.
+
+874
+01:12:25.584 --> 01:12:30.204
+En la guía, ustedes ya pueden ahí revisar, está detallado.
+
+875
+01:12:32.274 --> 01:12:34.254
+Mucho de lo que está en la parte tres,
+
+876
+01:12:35.514 --> 01:12:38.514
+la parte uno y dos, ha servido para entender eso.
+
+877
+01:12:39.144 --> 01:12:41.664
+Y algunos códigos que son un poquito más complejos, en la parte
+
+878
+01:12:44.094 --> 01:12:49.674
+a continuación del código, tienen ahí paso a paso qué hace cada línea de
+
+879
+01:12:49.734 --> 01:12:50.094
+código.
+
+880
+01:12:51.535 --> 01:12:57.204
+Sino también pueden usar la misma guía con una guía y decirles,
+
+881
+01:12:57.654 --> 01:13:01.314
+a partir de toda la información que está ahí, que les describa qué hace cada cosa
+
+882
+01:13:01.464 --> 01:13:02.124
+paso a paso.
+
+883
+01:13:03.804 --> 01:13:08.964
+Revisen los ejemplos de los cinco pilares que están ahí en list.
+
+884
+01:13:11.094 --> 01:13:16.614
+Esos mismos ejemplos los vamos a comparar la próxima semana con otros lenguajes,
+
+885
+01:13:17.334 --> 01:13:23.004
+como el lenguaje Hop y el lenguaje Haskell, que son otras formas de poder
+
+886
+01:13:25.224 --> 01:13:30.174
+utilizar el lenguaje del paradigma, o este paradigma, el paradigma funcional.
+
+887
+01:13:31.524 --> 01:13:37.074
+Solamente que en el caso de Hop, nació para el paradigma funcional, pero
+
+888
+01:13:37.884 --> 01:13:40.344
+nació propuesto en un entorno académico.
+
+889
+01:13:41.154 --> 01:13:45.684
+En cambio, Haskell, que también nació para el paradigma funcional, sí es
+
+890
+01:13:46.254 --> 01:13:50.574
+uno que nació para ser utilizado fuera del ámbito académico.
+
+891
+01:13:53.394 --> 01:13:58.495
+Entonces, estos mismos ejercicios, vamos a ver cómo se resuelven con esos lenguajes
+
+892
+01:13:59.514 --> 01:14:00.504
+la próxima semana.
+
+893
+01:14:04.104 --> 01:14:09.594
+Bueno, he tratado de aprovechar el tiempo, no me he dado pausa para hacer algunas
+
+894
+01:14:09.654 --> 01:14:10.344
+preguntas.
+
+895
+01:14:12.954 --> 01:14:16.614
+Pero es cuestión de leer la guía. La guía está bien detallada para poder
+
+896
+01:14:16.614 --> 01:14:20.214
+entenderlo. Si hay algún problema por ahí, la próxima semana lo conversamos
+
+897
+01:14:20.844 --> 01:14:22.764
+aprovechando que vemos otros lenguajes.
+
+898
+01:14:24.745 --> 01:14:30.114
+Entonces, eso sería todo por hoy. Nos vemos la próxima sesión.
