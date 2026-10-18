@@ -26,6 +26,52 @@ const ICON = {
 };
 const LOGO = `<svg viewBox="0 0 42 42" aria-hidden="true"><rect x="1" y="1" width="40" height="40" rx="11" style="fill:var(--accent)"/><path d="M11 1v40M21 1v40M31 1v40M1 11h40M1 21h40M1 31h40" style="stroke:var(--accent-ink);stroke-opacity:.2;stroke-width:1"/><path d="M10 31L28 13" style="stroke:var(--accent-ink);stroke-width:3.4;stroke-linecap:round"/><path d="M19 12.5h9.5v9.5" style="fill:none;stroke:var(--accent-ink);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round"/><circle cx="10" cy="31" r="3" style="fill:var(--accent-ink)"/></svg>`;
 
+// ---------- sonidos (sintetizados con Web Audio: no hay archivos que cargar) ----------
+const REDUCED = (() => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } })();
+const SND = (() => {
+  let ctx = null, out = null;
+  function get() {
+    if (S.settings.sound === false) return null;
+    try {
+      if (!ctx) {
+        ctx = new (window.AudioContext || window.webkitAudioContext)();
+        out = ctx.createDynamicsCompressor(); out.connect(ctx.destination);
+      }
+      if (ctx.state === 'suspended') ctx.resume();
+      return ctx;
+    } catch (e) { return null; }
+  }
+  // Una nota: subida rápida y caída suave, como una campanita.
+  function note(t, f, dur, o = {}) {
+    const c = ctx, osc = c.createOscillator(), g = c.createGain();
+    osc.type = o.type || 'sine'; osc.frequency.setValueAtTime(f, t);
+    if (o.to) osc.frequency.exponentialRampToValueAtTime(o.to, t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(o.gain || 0.2, t + 0.012); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    let last = g;
+    if (o.lp) { const fl = c.createBiquadFilter(); fl.type = 'lowpass'; fl.frequency.value = o.lp; g.connect(fl); last = fl; }
+    osc.connect(g); last.connect(out); osc.start(t); osc.stop(t + dur + 0.03);
+  }
+  const play = fn => { const c = get(); if (c) try { fn(c.currentTime + 0.015); } catch (e) { /* sin sonido */ } };
+  return {
+    unlock: () => { if (S.settings.sound !== false && (!ctx || ctx.state !== 'running')) get(); },
+    ok: streak => play(t => {
+      note(t, 880, 0.14, { gain: 0.16 }); note(t, 1760, 0.1, { gain: 0.03 });
+      note(t + 0.085, 1318.5, 0.34, { gain: 0.18 }); note(t + 0.085, 2637, 0.18, { gain: 0.035 });
+      if (streak) note(t + 0.17, 1760, 0.4, { gain: 0.12 });
+    }),
+    bad: () => play(t => {
+      note(t, 330, 0.16, { type: 'triangle', gain: 0.2, lp: 1400 });
+      note(t + 0.12, 247, 0.32, { type: 'triangle', gain: 0.2, to: 220, lp: 1100 });
+    }),
+    done: perfect => play(t => {
+      [523.25, 659.25, 783.99, 1046.5].forEach((f, i) => note(t + i * 0.09, f, i === 3 ? 0.6 : 0.22, { gain: 0.15 }));
+      if (perfect) [1318.5, 1567.98].forEach((f, i) => note(t + 0.42 + i * 0.07, f, 0.5, { gain: 0.07 }));
+    }),
+  };
+})();
+// En el iPhone el audio solo se desbloquea al soltar el dedo (touchend o click), no al apoyarlo.
+['touchend', 'click'].forEach(ev => document.addEventListener(ev, () => SND.unlock(), { capture: true, passive: true }));
+
 // ---------- almacenamiento ----------
 const KEY = 'algebra-bolsillo-v1';
 const LS = {
@@ -35,7 +81,7 @@ const LS = {
 const DEV = (() => { let d = LS.get('algebra-bolsillo-dev'); if (!d) { d = 'd' + Math.random().toString(36).slice(2, 8); LS.set('algebra-bolsillo-dev', d); } return d; })();
 const isObj = x => !!x && typeof x === 'object' && !Array.isArray(x);
 const obj = x => (isObj(x) ? x : {});
-function blank() { return { v: 1, epoch: 0, days: {}, lessons: {}, srs: {}, sim: { best: 0, runs: 0, last: 0, lastScore: 0 }, settings: { goal: 60, examDate: '', theoryKnown: false, u: 0 } }; }
+function blank() { return { v: 1, epoch: 0, days: {}, lessons: {}, srs: {}, sim: { best: 0, runs: 0, last: 0, lastScore: 0 }, settings: { goal: 60, examDate: '', theoryKnown: false, theme: 'auto', sound: true, u: 0 } }; }
 function sanitize(s) {
   const b = blank(); if (!isObj(s)) return b;
   return { v: 1, epoch: +s.epoch || 0, days: obj(s.days), lessons: obj(s.lessons), srs: obj(s.srs), sim: Object.assign(b.sim, obj(s.sim)), settings: Object.assign(b.settings, obj(s.settings)) };
@@ -55,7 +101,7 @@ function mergeState(a, b) {
   if ((a.epoch || 0) !== (b.epoch || 0)) return (a.epoch || 0) > (b.epoch || 0) ? a : b;
   const o = blank(); o.epoch = a.epoch || 0;
   for (const d of keysOf(a.days, b.days)) { const x = obj(a.days[d]), y = obj(b.days[d]), m = {}; for (const k of keysOf(x, y)) m[k] = Math.max(+x[k] || 0, +y[k] || 0); o.days[d] = m; }
-  for (const k of keysOf(a.lessons, b.lessons)) { const x = obj(a.lessons[k]), y = obj(b.lessons[k]), m = {}; for (const f of ['stars', 'best', 'runs', 'last', 'ok', 'seen']) m[f] = Math.max(+x[f] || 0, +y[f] || 0); o.lessons[k] = m; }
+  for (const k of keysOf(a.lessons, b.lessons)) { const x = obj(a.lessons[k]), y = obj(b.lessons[k]), m = {}; for (const f of ['stars', 'best', 'runs', 'last', 'ok', 'seen']) m[f] = Math.max(+x[f] || 0, +y[f] || 0); m.pv = (+x.pv || 0) | (+y.pv || 0); o.lessons[k] = m; }
   for (const k of keysOf(a.srs, b.srs)) { const x = a.srs[k], y = b.srs[k]; o.srs[k] = !isObj(x) ? y : !isObj(y) ? x : (x.last !== y.last ? (x.last > y.last ? x : y) : (stable(x) >= stable(y) ? x : y)); }
   const sa = obj(a.sim), sb = obj(b.sim); const newer = (+sa.last || 0) >= (+sb.last || 0) ? sa : sb;
   o.sim = { best: Math.max(+sa.best || 0, +sb.best || 0), runs: Math.max(+sa.runs || 0, +sb.runs || 0), last: +newer.last || 0, lastScore: +newer.lastScore || 0 };
@@ -76,7 +122,7 @@ const xpOn = d => { const o = S.days[d]; return isObj(o) ? Object.values(o).redu
 const totalXP = () => Object.keys(S.days).reduce((s, d) => s + xpOn(d), 0);
 function addXP(n) { const d = today(), o = Object.assign({}, obj(S.days[d])); o[DEV] = (+o[DEV] || 0) + n; S.days[d] = o; }
 function streak() { let d = today(), n = 0; if (!xpOn(d)) d = addDays(d, -1); while (xpOn(d) > 0) { n++; d = addDays(d, -1); } return n; }
-const lp = id => Object.assign({ stars: 0, best: 0, runs: 0, last: 0, ok: 0, seen: 0 }, obj(S.lessons[id]));
+const lp = id => Object.assign({ stars: 0, best: 0, runs: 0, last: 0, ok: 0, seen: 0, pv: 0 }, obj(S.lessons[id]));
 const lpSet = (id, patch) => { S.lessons[id] = Object.assign(lp(id), patch); };
 const INTERVALS = [0, 1, 3, 7, 14, 30];
 function srsUpdate(gid, outcome) {
@@ -110,7 +156,7 @@ async function initRemote() {
     Remote.ref.onSnapshot(snap => {
       const remote = snap.exists ? sanitize(snap.data()) : null;
       Remote.lastRemote = remote ? stable(remote) : null;
-      if (remote) { const m = mergeState(S, remote); if (stable(m) !== stable(S)) { S = m; saveLocal(); if (!session) render(); } }
+      if (remote) { const m = mergeState(S, remote); if (stable(m) !== stable(S)) { S = m; saveLocal(); applyTheme(); if (!session) render(); } }
       setSync('ok');
       if (stable(S) !== Remote.lastRemote && hasData()) scheduleWrite(1200);
     }, () => { Remote.ref = null; setSync('local'); });
@@ -145,7 +191,7 @@ const weeksTxt = d => (d >= 14 ? `${Math.floor(d / 7)} semanas` : `${d} ${d === 
 const starsH = n => `<span class="stars" aria-label="${n} de 3 estrellas">${'★'.repeat(n)}<span class="off">${'★'.repeat(3 - n)}</span></span>`;
 function homeHTML() {
   const t = today(), xp = xpOn(t), goal = S.settings.goal, st = streak(), C = 2 * Math.PI * 19, pct = Math.min(1, xp / goal);
-  const ring = `<svg class="ring" viewBox="0 0 46 46" aria-hidden="true"><circle class="bg" cx="23" cy="23" r="19"/><circle class="fg" cx="23" cy="23" r="19" stroke-dasharray="${(C * pct).toFixed(1)} ${C.toFixed(1)}"/></svg>`;
+  const ring = `<svg class="ring" viewBox="0 0 46 46" aria-hidden="true"><circle class="bg" cx="23" cy="23" r="19"/>${pct > 0 ? `<circle class="fg" cx="23" cy="23" r="19" style="--c:${C.toFixed(1)}" stroke-dasharray="${C.toFixed(1)} ${C.toFixed(1)}" stroke-dashoffset="${(C * (1 - pct)).toFixed(1)}"/>` : ''}</svg>`;
   const ex = examInfo();
   const week = Array.from({ length: 7 }, (_, i) => addDays(t, i - 6)).map(d => {
     const x = xpOn(d), [y, m, dd] = d.split('-').map(Number);
@@ -165,7 +211,7 @@ function homeHTML() {
     <div class="stat"><span class="num">${ex.num}</span><span class="lab">${ex.lab}</span></div>
   </section>
   <section class="week" aria-label="Tu última semana">${week}</section>
-  <button class="cta" data-act="start" data-l="${nx.id}"><span class="cta-k">${lp(nx.id).runs ? 'Para repasar' : 'Siguiente lección'}</span><span class="cta-t">${nx.n} · ${nx.title}</span><span class="cta-s">Parte ${np.roman} · ${KNOWN(nx) ? 'ya lo controlas' : 'nuevo para ti'}</span></button>
+  <button class="cta" data-act="start" data-l="${nx.id}"><span class="cta-k">${lp(nx.id).runs ? 'Para repasar' : 'Siguiente lección'}</span><span class="cta-t">${nx.n} · ${nx.title}</span><span class="cta-s">Parte ${np.roman} · ${KNOWN(nx) ? 'ya lo controlas' : 'nuevo para ti'}</span><span class="cta-go">${ICON.chev}</span></button>
   <button class="row-btn" data-act="review"><span class="ic">${ICON.repeat}</span><span><b>Repaso del día</b><small>${due ? `${due} ejercicio${due === 1 ? '' : 's'} para hoy` : 'Lo que falles volverá aquí'}</small></span>${due ? `<span class="pill">${due}</span>` : ''}<span class="chev">${ICON.chev}</span></button>
   <button class="row-btn" data-act="mix"><span class="ic warm">${ICON.vec}</span><span><b>Repaso de lo que ya sabes</b><small>10 ejercicios mezclados de las lecciones 1 a ${START_N - 1}</small></span><span class="chev">${ICON.chev}</span></button>
   <button class="row-btn" data-act="sim"><span class="ic violet">${ICON.clock}</span><span><b>Simulacro de examen</b><small>${S.sim.runs ? 'Mejor nota: ' + dec(S.sim.best, 1) : '10 ejercicios de toda la UD1, sin ayudas'}</small></span><span class="chev">${ICON.chev}</span></button>
@@ -201,8 +247,17 @@ function formulasHTML() {
 }
 const VIEWS = { hoy: homeHTML, mapa: mapHTML, repaso: repasoHTML, formulas: formulasHTML };
 const TABS = [['hoy', 'home', 'Hoy'], ['mapa', 'path', 'Temario'], ['repaso', 'repeat', 'Repaso'], ['formulas', 'sigma', 'Fórmulas']];
+const THEMES = [['auto', 'Auto'], ['light', 'Claro'], ['dark', 'Oscuro']];
+function applyTheme() {
+  const t = S.settings.theme, el = document.documentElement;
+  if (t === 'light' || t === 'dark') el.dataset.appTheme = t; else delete el.dataset.appTheme;
+}
+let enterNext = true;
 function render() {
+  applyTheme();
   const v = $('#view'); if (!v) return;
+  const en = enterNext && !REDUCED; enterNext = false;
+  v.classList.toggle('enter', en); $('#tabs').classList.toggle('enter', en);
   v.innerHTML = `<div class="wrap">${(VIEWS[view] || homeHTML)()}</div>`;
   const due = dueIds().length;
   $('#tabs').innerHTML = `<div class="in">${TABS.map(([k, i, l]) => `<button class="tab ${view === k ? 'on' : ''}" data-act="tab" data-v="${k}" ${view === k ? 'aria-current="page"' : ''}>${ICON[i]}<span>${l}${k === 'repaso' && due ? ` <span class="pill">${due}</span>` : ''}</span></button>`).join('')}</div>`;
@@ -238,6 +293,8 @@ function lessonSheet(id) {
 function settingsBody() {
   const s = S.settings;
   return `<div class="set-row"><div class="lb">Objetivo diario<small>Puntos por día; una lección da unos 90</small></div><div class="seg" role="group" aria-label="Objetivo diario">${[30, 60, 100].map(v => `<button data-act="goal" data-v="${v}" class="${s.goal === v ? 'on' : ''}" aria-pressed="${s.goal === v}">${v}</button>`).join('')}</div></div>
+  <div class="set-row"><div class="lb">Tema<small>Auto sigue el modo claro u oscuro del móvil</small></div><div class="seg" role="group" aria-label="Tema">${THEMES.map(([v, l]) => `<button data-act="theme" data-v="${v}" class="${(s.theme || 'auto') === v ? 'on' : ''}" aria-pressed="${(s.theme || 'auto') === v}">${l}</button>`).join('')}</div></div>
+  <div class="set-row"><div class="lb">Sonidos<small>Al acertar, al fallar y al terminar</small></div><button class="switch" role="switch" aria-checked="${s.sound !== false}" data-act="snd" aria-label="Sonidos"></button></div>
   <div class="set-row"><label for="exam-d">Fecha del examen<small>${s.examDate ? 'La cuenta atrás de inicio usa esta fecha' : 'De momento cuento hasta enero de 2027'}</small></label><input type="date" id="exam-d" value="${esc(s.examDate)}" min="${today()}"></div>
   <div class="set-row"><div class="lb">Teoría al empezar en las lecciones 1 a ${START_N - 1}<small>Si está apagado, vas directo a los ejercicios</small></div><button class="switch" role="switch" aria-checked="${!!s.theoryKnown}" data-act="tk" aria-label="Mostrar la teoría al empezar"></button></div>
   <div class="set-row"><div class="lb">Tu progreso<small>${totalXP()} puntos en total</small></div>${syncHTML()}</div>
@@ -250,13 +307,19 @@ const newSeed = () => (Math.random() * 4294967296) >>> 0;
 const curSpec = () => (session.item.kind === 'chain' ? session.item.steps[session.step] : session.item);
 const freshAns = sp => ({ slots: Array(sp.nslots || 0).fill(''), focus: 0, pick: null });
 function beginSession(o) {
-  session = Object.assign({ idx: 0, results: [], xp: 0, started: Date.now(), phase: 'q', stepRes: [] }, o);
+  session = Object.assign({ idx: 0, results: [], xp: 0, started: Date.now(), phase: 'q', stepRes: [], combo: 0 }, o);
   closeSheet(); document.body.classList.add('in-ses'); $('#ses').hidden = false;
 }
+// Los ejercicios del profesor llevan números fijos: salen tal cual la primera vez y,
+// una vez hechos (bit n de lessons[L].pv), se cambian por su gemelo aleatorio.
+const profN = g => { const m = /^prof\.e(\d+)$/.exec(g); return m ? +m[1] : 0; };
+const profSeen = g => { const n = profN(g); return !!n && ((+lp(G[g].lesson).pv || 0) >> n & 1) === 1; };
+const twin = g => ({ g: G[g].sib, tag: `Como el ej. ${profN(g)} del profesor · otros números` });
+const entry = g => Object.assign({ g, seed: newSeed(), re: 0 }, profSeen(g) ? twin(g) : {});
 function startLesson(id) {
   const L = LESSON[id]; if (!L) return;
   const r = new Rng(newSeed()), known = KNOWN(L);
-  beginSession({ mode: 'lesson', lessonId: id, queue: L.plan.map(p => ({ g: Array.isArray(p) ? r.pick(p) : p, seed: newSeed(), re: 0 })) });
+  beginSession({ mode: 'lesson', lessonId: id, queue: L.plan.map(p => entry(Array.isArray(p) ? r.pick(p) : p)) });
   if ((!known && lp(id).runs === 0) || (known && S.settings.theoryKnown)) { session.phase = 'theory'; renderSession(true); } else loadItem();
 }
 function startReview() {
@@ -274,11 +337,19 @@ function startSim() {
   const r = new Rng(newSeed());
   beginSession({ mode: 'sim', queue: SIM_POOL.map(p => ({ g: Array.isArray(p) ? r.pick(p) : p, seed: newSeed(), re: 0 })) }); loadItem();
 }
+// Reintento de lo fallado: el mismo tipo de ejercicio con números nuevos, sin salir de la sesión.
+function startRetry() {
+  const s = session; if (!s) return;
+  const failed = s.results.filter(r => !r.ok); if (!failed.length) return;
+  beginSession({ mode: 'retry', from: s.mode === 'retry' ? s.from : s.mode, lessonId: s.lessonId || null, round: (s.round || 0) + 1,
+    queue: failed.map(r => Object.assign({ g: r.g, seed: newSeed(), re: 1 }, profN(r.g) ? twin(r.g) : r.tag ? { tag: r.tag } : {})) });
+  loadItem();
+}
 function loadItem() {
   const s = session, e = s.queue[s.idx];
-  try { s.item = buildItem(e.g, e.seed); }
+  try { s.item = buildItem(e.g, e.seed); if (e.tag) s.item.tag = e.tag; }
   catch (err) { console.error('Ejercicio con error', e, err); s.idx++; return s.idx < s.queue.length ? loadItem() : endSession(); }
-  s.step = 0; s.stepRes = []; s.ans = freshAns(curSpec()); s.phase = 'q'; s.fb = null; renderSession(true);
+  s.step = 0; s.stepRes = []; s.ans = freshAns(curSpec()); s.phase = 'q'; s.fb = null; s.anim = 'item'; renderSession(true);
 }
 function userText(sp, a) {
   if (sp.kind === 'slots') return sp.form.map(x => (typeof x === 'number' ? (a.slots[x] || '□') : txt(x))).join('').replace(/\s+/g, ' ').trim();
@@ -294,16 +365,29 @@ function doCheck() {
   if (res.invalid) { toast('No entiendo alguno de los números. Escribe, por ejemplo, 3/2, −1,5 o 2√3.'); return; }
   s.stepRes.push({ ok: res.ok, approx: !!res.approx, user: userText(sp, s.ans), ans: JSON.parse(JSON.stringify(s.ans)) });
   if (s.mode === 'sim') return advance();
-  s.phase = 'fb'; s.fb = { ok: res.ok, praise: PRAISE[Math.floor(Math.random() * PRAISE.length)] }; renderSession();
+  // Racha: cuenta ejercicios enteros bien a la primera; un fallo la corta.
+  const last = !midChain(s);
+  if (!res.ok) s.combo = 0; else if (last && s.stepRes.every(x => x.ok)) s.combo++;
+  const milestone = res.ok && last && s.combo >= 3 && (s.combo <= 5 || s.combo % 5 === 0);
+  s.fx = { combo: milestone };
+  if (res.ok) SND.ok(milestone); else SND.bad();
+  s.phase = 'fb'; s.anim = 'fb'; s.fb = { ok: res.ok, praise: PRAISE[Math.floor(Math.random() * PRAISE.length)] }; renderSession();
 }
 function dunno() {
   const s = session; if (!s || s.phase !== 'q' || s.mode === 'sim') return;
-  s.stepRes.push({ ok: false, user: '(no lo sé)', ans: s.ans, dunno: true }); s.phase = 'fb'; s.fb = { ok: false }; renderSession();
+  s.combo = 0; s.fx = null;
+  s.stepRes.push({ ok: false, user: '(no lo sé)', ans: s.ans, dunno: true }); s.phase = 'fb'; s.anim = 'fb'; s.fb = { ok: false }; renderSession();
 }
+const midChain = s => s.item.kind === 'chain' && s.step < s.item.steps.length - 1;
 function advance() {
   const s = session, it = s.item;
-  if (it.kind === 'chain' && s.step < it.steps.length - 1) { s.step++; s.ans = freshAns(curSpec()); s.phase = 'q'; s.fb = null; renderSession(); return; }
-  finishItem();
+  if (midChain(s)) { s.step++; s.ans = freshAns(curSpec()); s.phase = 'q'; s.fb = null; s.anim = 'step'; renderSession(); return; }
+  // El ejercicio sale hacia la izquierda antes de que entre el siguiente.
+  const w = document.querySelector('#sb > .wrap');
+  if (!w || REDUCED) return finishItem();
+  if (s.leaving) return;
+  s.leaving = true; w.classList.add('leave');
+  setTimeout(() => { s.leaving = false; if (session === s && s.item === it) finishItem(); }, 150);
 }
 function finishItem() {
   const s = session, it = s.item, e = s.queue[s.idx], ok = s.stepRes.every(x => x.ok), first = !e.re;
@@ -311,10 +395,10 @@ function finishItem() {
     const xp = ok ? (first ? (it.kind === 'chain' ? 15 : 10) : 5) : 0;
     if (xp) { addXP(xp); s.xp += xp; }
     srsUpdate(e.g, first ? (ok ? 'ok' : 'bad') : ok ? 'fixed' : 'bad');
-    if (!ok && (e.re || 0) < 2) s.queue.push({ g: e.g, seed: newSeed(), re: (e.re || 0) + 1 });
   }
+  if (profN(e.g)) { const p = lp(it.lesson); lpSet(it.lesson, { pv: (+p.pv || 0) | (1 << profN(e.g)) }); }
   if (first) { const p = lp(it.lesson); lpSet(it.lesson, { seen: p.seen + 1, ok: p.ok + (ok ? 1 : 0) }); }
-  s.results.push({ g: e.g, seed: e.seed, ok, first, steps: s.stepRes.map(x => ({ ok: x.ok, user: x.user })) });
+  s.results.push({ g: e.g, seed: e.seed, tag: e.tag, ok, first, steps: s.stepRes.map(x => ({ ok: x.ok, user: x.user })) });
   saveLocal();
   s.idx++;
   if (s.idx >= s.queue.length) endSession(); else loadItem();
@@ -332,11 +416,13 @@ function endSession() {
     S.sim = { best: Math.max(+S.sim.best || 0, score), runs: (+S.sim.runs || 0) + 1, last: Date.now(), lastScore: score };
     s.results.forEach(r => srsUpdate(r.g, r.ok ? 'ok' : 'bad'));
     if (okN) { addXP(okN * 10); s.xp += okN * 10; }
-  } else { addXP(10); s.xp += 10; }
-  s.phase = 'end'; commit(); renderSession(true);
+  } else if (s.mode !== 'retry') { addXP(10); s.xp += 10; }
+  s.okN = s.results.filter(r => r.ok).length;
+  SND.done(s.okN === s.results.length);
+  s.phase = 'end'; s.anim = 'end'; commit(); renderSession(true);
 }
 function exitSession() {
-  session = null; closeSheet(); $('#ses').hidden = true; $('#ses').innerHTML = ''; document.body.classList.remove('in-ses');
+  session = null; enterNext = true; closeSheet(); $('#ses').hidden = true; $('#ses').innerHTML = ''; document.body.classList.remove('in-ses');
   commit(); render(); window.scrollTo(0, 0);
 }
 const PAD = ['7', '8', '9', '⌫', '4', '5', '6', '√', '1', '2', '3', '/', '−', '0', ',', '→'];
@@ -377,49 +463,97 @@ function footHTML() {
   if (s.phase === 'q') {
     return (sp.kind === 'slots' ? padHTML() : '') + `<div class="foot-row">${s.mode !== 'sim' ? '<button class="btn ghost" data-act="dunno">No lo sé</button>' : ''}<button class="btn primary big" data-act="check" ${answerReady(sp, s.ans) ? '' : 'disabled'}>${s.mode === 'sim' ? 'Siguiente' : 'Comprobar'}</button></div>`;
   }
-  const last = s.stepRes[s.stepRes.length - 1], ok = last.ok, mid = s.item.kind === 'chain' && s.step < s.item.steps.length - 1;
-  const head = ok ? `${ICON.check} ${s.fb.praise || '¡Bien!'}` : `${ICON.cross} ${last.dunno ? 'Así se hace' : 'No es correcto'}`;
+  const last = s.stepRes[s.stepRes.length - 1], ok = last.ok, mid = midChain(s);
+  const head = `<span class="fb-ic">${ok ? ICON.check : ICON.cross}</span>${ok ? s.fb.praise || '¡Bien!' : last.dunno ? 'Así se hace' : 'No es correcto'}`;
   const ans = ok ? (last.approx ? `<div class="fb-a">Vale, aunque es aproximado. El valor exacto es ${sp.ansH}</div>` : sp.check ? `<div class="fb-a">Hay muchas respuestas correctas; una es ${sp.ansH}</div>` : '') : `<div class="fb-a">${sp.check ? 'Una respuesta correcta' : 'Respuesta correcta'}: ${sp.ansH}</div>`;
-  return `<div class="fb ${ok ? 'ok' : 'bad'}" role="status"><div class="fb-h">${head}</div>${ans}<div class="fb-row"><button class="btn small" data-act="sol">Paso a paso</button><button class="btn small ai-only" data-act="ai">${ICON.spark} Explícamelo</button></div><button class="btn ${ok ? 'okb' : 'primary'} big" data-act="next">${mid ? 'Siguiente paso' : 'Continuar'}</button></div>`;
+  return `<div class="fb ${ok ? 'ok' : 'bad'}" role="status"><div class="fb-h">${head}</div>${ans}<div class="fb-row"><button class="btn small" data-act="sol">Paso a paso</button><button class="btn small ai-only" data-act="ai">${ICON.spark} Explícamelo</button></div><button class="btn ${ok ? 'okb' : 'badb'} big" data-act="next">${mid ? 'Siguiente paso' : 'Continuar'}</button></div>`;
 }
+const durTxt = ms => { const sec = Math.max(1, Math.round(ms / 1000)); return sec < 60 ? `${sec} s` : `${Math.round(sec / 60)} min`; };
+function resRow(r, i) {
+  let q = ''; try { q = txt(buildItem(r.g, r.seed).q); } catch (e) { /* sin enunciado */ }
+  const L = LESSON[G[r.g].lesson];
+  return `<button class="res ${r.ok ? 'ok' : 'bad'}" data-act="simsol" data-i="${i}"><span class="mk">${r.ok ? ICON.check : ICON.cross}</span><span><span class="qt">${esc(q)}</span><small>${L.n} · ${L.title} · ${r.ok ? 'bien' : 'ver la solución'}</small></span></button>`;
+}
+// Resumen final: cómo ha ido, qué has fallado y la opción de reintentarlo ahí mismo.
 function endHTML() {
-  const s = session, st = streak();
+  const s = session, n = s.results.length, okN = s.okN, bad = n - okN;
   let h = '<div class="end">';
   if (s.mode === 'sim') {
-    h += `<p class="sn">Simulacro de examen</p><div class="grade">${dec(s.score, 1)}</div><h2>${s.score >= 8 ? 'Estás preparado' : s.score >= 5 ? 'Vas bien, pero repasa' : 'Toca repasar'}</h2>
-      <p class="note">${s.score >= 8 ? 'Con un 8 o más, esta parte del examen la tienes.' : s.score >= 5 ? 'Repite las lecciones de los ejercicios que fallaste y vuelve a intentarlo en unos días.' : 'Vuelve a las lecciones de los ejercicios fallados antes de repetir el simulacro.'} Los fallos ya están en tu repaso.</p>
-      <div class="res-list">${s.results.map((r, i) => `<button class="res ${r.ok ? 'ok' : 'bad'}" data-act="simsol" data-i="${i}"><span class="mk">${r.ok ? '✓' : '✗'}</span><span><b>${i + 1}. ${LESSON[G[r.g].lesson].title}</b><small>${r.ok ? 'Bien · ver la solución' : 'Ver la solución'}</small></span></button>`).join('')}</div>`;
-  } else {
+    h += `<p class="sn">Simulacro de examen</p><div class="grade" data-count="${s.score}" data-dec="1">${dec(s.score, 1)}</div><h2>${s.score >= 8 ? 'Estás preparado' : s.score >= 5 ? 'Vas bien, pero repasa' : 'Toca repasar'}</h2>
+      <p class="note">${s.score >= 8 ? 'Con un 8 o más, esta parte del examen la tienes.' : s.score >= 5 ? 'Repasa los ejercicios que has fallado y vuelve a intentarlo en unos días.' : 'Vuelve a las lecciones de los ejercicios fallados antes de repetir el simulacro.'} Los fallos ya están en tu repaso.</p>`;
+  } else if (s.mode === 'lesson') {
     const L = LESSON[s.lessonId];
-    h += (s.mode === 'lesson' ? `<div class="big-stars" aria-label="${s.stars} de 3 estrellas">${'★'.repeat(s.stars)}<span class="off">${'★'.repeat(3 - s.stars)}</span></div>` : '') +
-      `<h2>${s.mode === 'lesson' ? 'Lección completada' : 'Repaso hecho'}</h2><p class="note">${s.mode === 'lesson' ? `${L.n} · ${L.title}` : 'Lo que has fallado volverá mañana.'}</p>`;
-  }
-  h += `<div class="end-stats"><div><b>+${s.xp}</b><span>puntos</span></div><div><b>${Math.round(s.acc * 100)} %</b><span>a la primera</span></div><div><b>${st}</b><span>${st === 1 ? 'día' : 'días'} de racha</span></div></div>`;
-  if (xpOn(today()) >= S.settings.goal) h += '<p class="note">Objetivo diario conseguido.</p>';
+    h += `<div class="big-stars" aria-label="${s.stars} de 3 estrellas">${[0, 1, 2].map(i => `<span class="${i < s.stars ? 'on' : ''}" style="--i:${i}">★</span>`).join('')}</div><h2>Lección completada</h2><p class="note">${L.n} · ${L.title}</p>`;
+  } else if (s.mode === 'retry') {
+    h += `<p class="sn">Repaso de fallos</p><h2>${bad ? `Has corregido ${okN} de ${n}` : n === 1 ? 'Corregido' : 'Todo corregido'}</h2><p class="note">${bad ? 'Lo que sigas fallando volverá en el repaso del día.' : 'Lo que habías fallado ya te sale.'}</p>`;
+  } else h += `<h2>Repaso hecho</h2><p class="note">${bad ? 'Lo que has fallado volverá mañana.' : 'Todo bien a la primera.'}</p>`;
+  h += `<div class="marks" aria-hidden="true">${s.results.map((r, i) => `<i class="${r.ok ? 'ok' : 'bad'}" style="--i:${i}"></i>`).join('')}</div>`;
+  h += `<div class="end-stats"><div><b><span data-count="${okN}">${okN}</span>/${n}</b><span>aciertos</span></div><div><b>+<span data-count="${s.xp}">${s.xp}</span></b><span>puntos</span></div><div><b>${durTxt(Date.now() - s.started)}</b><span>tiempo</span></div></div>`;
+  if (bad) h += `<div class="retry-q"><b>¿Reintentas ${bad === 1 ? 'la que has fallado' : `las ${bad} que has fallado`}?</b><span>El mismo tipo de ejercicio, con otros números, aquí mismo.</span></div>`;
+  else if (xpOn(today()) >= S.settings.goal) h += '<p class="note">Objetivo diario conseguido.</p>';
+  h += `<p class="res-h">Tus respuestas</p><div class="res-list">${s.results.map(resRow).join('')}</div>`;
   return h + '</div>';
 }
 function endButtons() {
-  const s = session;
+  const s = session, bad = s.results.length - s.okN;
+  if (bad) return `<div class="end-btns"><button class="btn primary big" data-act="retry">${bad === 1 ? 'Reintentar la fallada' : `Reintentar las ${bad} falladas`}</button><button class="btn big" data-act="ses-exit">Terminar</button></div>`;
   const again = s.mode === 'lesson' ? `<button class="btn big" data-act="start" data-l="${s.lessonId}">Repetir la lección</button>` : s.mode === 'sim' ? '<button class="btn big" data-act="sim">Otro simulacro</button>' : '';
   return `<div class="end-btns"><button class="btn primary big" data-act="ses-exit">Continuar</button>${again}</div>`;
+}
+// La barra avanza al comprobar el último paso de cada ejercicio.
+function progressOf(s) {
+  if (s.phase === 'end') return 1;
+  if (!s.queue.length) return 0;
+  return (s.idx + (s.phase === 'fb' && !midChain(s) ? 1 : 0)) / s.queue.length;
+}
+const pctW = x => (x * 100).toFixed(1) + '%';
+// Destello al avanzar: la barra rebota y suelta unas chispas desde su extremo.
+function boost(bw, done) {
+  bw.querySelector('.bar').classList.add('boost');
+  const x = bw.clientWidth * done;
+  for (let i = 0; i < 8; i++) {
+    const k = document.createElement('i'), a = (Math.PI * 2 * i) / 8 + Math.random() * 0.6, r = 14 + Math.random() * 12;
+    k.className = 'spk'; k.style.left = x.toFixed(1) + 'px'; k.style.animationDelay = '0.26s';
+    k.style.setProperty('--dx', (Math.cos(a) * r).toFixed(1) + 'px'); k.style.setProperty('--dy', (Math.sin(a) * r * 0.7).toFixed(1) + 'px');
+    bw.appendChild(k);
+  }
+}
+function countUp(root) {
+  if (REDUCED) return;
+  root.querySelectorAll('[data-count]').forEach(el => {
+    const to = +el.dataset.count, d = +el.dataset.dec || 0, t0 = performance.now(), dur = 900;
+    const f = now => { const k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3); el.textContent = d ? dec(to * e, d) : String(Math.round(to * e)); if (k < 1 && el.isConnected) requestAnimationFrame(f); };
+    el.textContent = d ? dec(0, d) : '0'; requestAnimationFrame(f);
+  });
 }
 function renderSession(top) {
   const s = session; if (!s) return;
   const root = $('#ses'), old = root.querySelector('#sb'), keep = !top && old ? old.scrollTop : 0;
-  const done = s.phase === 'end' ? 1 : s.idx / s.queue.length;
+  const done = progressOf(s), from = s.barW == null ? done : s.barW, anim = s.anim; s.anim = null; s.barW = done;
+  const hot = s.combo >= 3 && s.phase !== 'end' && s.phase !== 'theory';
+  const pill = anim === 'fb' && s.fx && s.fx.combo ? `<span class="combo" aria-hidden="true">${s.combo} seguidas</span>` : '';
   const thL = s.mode === 'lesson' ? s.lessonId : s.item ? s.item.lesson : null;
   const showTh = thL && s.phase !== 'theory' && s.phase !== 'end' && s.mode !== 'sim';
   const head = `<header class="ses-top gut"><div class="wrap"><button class="icon-btn" data-act="${s.phase === 'end' ? 'ses-exit' : 'ses-close'}" aria-label="Salir">${ICON.x}</button>
-    <div class="bar" role="progressbar" aria-label="Progreso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(done * 100)}"><span style="width:${(done * 100).toFixed(1)}%"></span></div>
+    <div class="bar-w"><div class="bar ${hot ? 'hot' : ''}" role="progressbar" aria-label="Progreso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="${Math.round(done * 100)}"><span style="width:${pctW(from)}"></span></div>${pill}</div>
     ${showTh ? `<button class="icon-btn" data-act="theory" data-l="${thL}" aria-label="Ver la teoría">${ICON.book}</button>` : '<span style="width:44px;flex:none"></span>'}</div></header>`;
   let body, foot;
   if (s.phase === 'theory') { body = theoryHTML(LESSON[s.lessonId]); foot = '<button class="btn primary big" data-act="ses-start">Empezar los ejercicios</button>'; }
   else if (s.phase === 'end') { body = endHTML(); foot = endButtons(); }
   else { body = itemHTML(); foot = footHTML(); }
-  root.innerHTML = head + `<div class="ses-body gut" id="sb"><div class="wrap">${body}</div></div><footer class="ses-foot gut"><div class="wrap">${foot}</div></footer>`;
+  const fbCls = s.phase === 'fb' ? (s.stepRes[s.stepRes.length - 1].ok ? 'fb-ok' : 'fb-bad') : '';
+  root.innerHTML = head + `<div class="ses-body gut" id="sb"><div class="wrap">${body}</div></div><footer class="ses-foot gut ${fbCls}"><div class="wrap">${foot}</div></footer>`;
+  if (anim && !REDUCED) root.dataset.anim = anim; else delete root.dataset.anim;
+  // La barra parte del ancho anterior y se estira con muelle hasta el nuevo.
+  if (from !== done) {
+    const span = root.querySelector('.bar span');
+    span.getBoundingClientRect(); span.style.width = pctW(done);
+    if (done > from && anim === 'fb' && s.fb && s.fb.ok && !REDUCED) boost(root.querySelector('.bar-w'), done);
+  }
   const sb = root.querySelector('#sb'); sb.scrollTop = top ? 0 : keep;
   const cur = sb.querySelector('.chain li.cur');
   if (cur && s.step > 0 && s.phase === 'q') { const r = cur.getBoundingClientRect(), b = sb.getBoundingClientRect(); if (r.bottom > b.bottom || r.top < b.top) sb.scrollTop += r.top - b.top - 8; }
+  if (anim === 'end') countUp(root);
 }
 function refreshInputs() {
   const a = session.ans;
@@ -532,7 +666,7 @@ function sendDoubt() {
 
 // ---------- acciones ----------
 const ACT = {
-  tab: b => { view = b.dataset.v; render(); window.scrollTo(0, 0); },
+  tab: b => { enterNext = view !== b.dataset.v; view = b.dataset.v; render(); window.scrollTo(0, 0); },
   settings: () => openSheet('Ajustes', settingsBody()),
   lesson: b => lessonSheet(b.dataset.l),
   start: b => startLesson(b.dataset.l),
@@ -551,8 +685,11 @@ const ACT = {
   sol: () => openSheet('Paso a paso', solBody(curSpec())),
   ai: () => explain(), ask: b => askSheet(b.dataset.l), 'ai-stop': () => { if (aiCtl) aiCtl.abort(); },
   simsol: b => simSolSheet(+b.dataset.i),
+  retry: () => startRetry(),
   'sheet-x': () => closeSheet(),
   goal: b => { S.settings.goal = +b.dataset.v; S.settings.u = Date.now(); commit(); refreshSettings(); render(); },
+  theme: b => { S.settings.theme = b.dataset.v; S.settings.u = Date.now(); commit(); applyTheme(); refreshSettings(); },
+  snd: () => { S.settings.sound = S.settings.sound === false; S.settings.u = Date.now(); commit(); refreshSettings(); if (S.settings.sound) SND.ok(); },
   tk: () => { S.settings.theoryKnown = !S.settings.theoryKnown; S.settings.u = Date.now(); commit(); refreshSettings(); },
   reset: b => { b.textContent = 'Sí, borrar todo'; b.dataset.act = 'reset2'; b.classList.add('primary'); },
   reset2: () => { const ep = Date.now(); S = blank(); S.epoch = ep; commit(); closeSheet(); render(); toast('Progreso borrado'); },

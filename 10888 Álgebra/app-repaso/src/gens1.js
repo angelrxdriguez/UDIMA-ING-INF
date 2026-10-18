@@ -84,15 +84,19 @@ gen('l1.fracdiv', 'L1', r => {
 });
 
 gen('l1.raiz', 'L1', r => {
-  const k = r.pick([2, 3, 4, 5, 6]), m = r.pick([2, 3, 5, 6, 7].filter(x => x !== k)), n = k * k * m;
+  let k, m; do { k = r.int(2, 9); m = r.pick([2, 3, 5, 6, 7, 10, 11, 13, 14, 15]); } while (k * k * m > 700);
+  const n = k * k * m, c = r.pick([1, 1, 1, 2, 3]);
   const o = (a, b) => M((a === 1 ? '' : a) + Sq(b));
-  return { type: 'mc', q: `Simplifica ${M(Sq(n))}.`, opts: [o(k, m), o(m, k), o(k * k, m), o(k, k * m)], correct: 0,
-    sol: [[M(`${n} = ${k * k}·${m}`), `${k * k} es un cuadrado (${k}²) que divide a ${n}.`],
-      [M(`${Sq(n)} = ${Sq(k * k)}·${Sq(m)} = ${k}${Sq(m)}`), `La raíz de ${k * k} es ${k} y sale fuera. El ${m} no tiene raíz exacta y se queda dentro.`]] };
+  const opts = [o(c * k, m)], seen = new Set(opts);
+  for (const x of [o(c * m, k), o(c * k * k, m), o(c * k, k * m), o(k, m), o(c + k, m), o(c * k, m * k * k)]) if (opts.length < 4 && !seen.has(x)) { seen.add(x); opts.push(x); }
+  const sol = [[M(`${n} = ${k * k}·${m}`), `${k * k} es un cuadrado (${k}²) que divide a ${n}.`],
+    [M(`${Sq(n)} = ${Sq(k * k)}·${Sq(m)} = ${k}${Sq(m)}`), `La raíz de ${k * k} es ${k} y sale fuera. El ${m} no tiene raíz exacta y se queda dentro.`]];
+  if (c > 1) sol.push([M(`${c}·${k}${Sq(m)} = ${c * k}${Sq(m)}`), `Y el ${c} que ya estaba fuera multiplica al ${k}.`]);
+  return { type: 'mc', q: `Simplifica ${M((c === 1 ? '' : c) + Sq(n))}.`, opts, correct: 0, sol };
 });
 
 gen('l1.racio', 'L1', r => {
-  const m = r.pick([2, 3, 5, 6, 7]), b = r.int(1, 4), a = r.int(1, 9);
+  const m = r.pick([2, 3, 5, 6, 7, 10, 11]), b = r.int(1, 5), a = r.int(1, 12);
   const bS = (b === 1 ? '' : b) + Sq(m);
   const correct = new Surd(new Fr(a, b * m), m);
   const opts = [correct, new Surd(new Fr(a, b), m), new Fr(a, b * m), new Surd(new Fr(a, b * m * m), m)].map(x => M(N(x)));
@@ -102,18 +106,27 @@ gen('l1.racio', 'L1', r => {
   return { type: 'mc', q: `Racionaliza ${M(Fh(a, bS))}.`, opts, correct: 0, sol };
 });
 
+// Cada plantilla elige números nuevos y decide al azar si la afirmación es verdadera o falsa.
+const SQS = [4, 9, 16, 25, 36, 49, 64, 81, 100];
 const TF_L1 = [
-  [M(Sq('9 + 16', true) + ' = ' + Sq(9) + ADD + Sq(16)), false, 'Primero se hace lo de dentro: √25 = 5. En cambio √9 + √16 = 3 + 4 = 7. La raíz de una suma no se separa nunca.'],
-  [M(`(${MINUS}3)² = 9`), true, 'Menos por menos es más: (−3)·(−3) = 9.'],
-  [M(`5${Sq(2)} = ${Sq(50)}`), true, 'Si elevas 5√2 al cuadrado sale 25·2 = 50: 5√2 es el número que al cuadrado da 50.'],
-  [M(`${Fh(1, Sq(2))} = ${Fh(Sq(2), 2)}`), true, 'Es el mismo número (unos 0,707), sin racionalizar y racionalizado. El material usa las dos formas.'],
-  [M(`${MINUS}(${iv('b')}${SUB}${iv('a')}) = ${MINUS}${iv('b')}${SUB}${iv('a')}`), false, 'El menos cambia el signo de todo lo de dentro: −(b − a) = −b + a.'],
-  [M(`2${SUB}(${MINUS}1) = 1`), false, 'Restar −1 es sumar 1: 2 − (−1) = 3.'],
-  [M(`${Sq(iv('a') + '·' + iv('b'), true)} = ${Sq(iv('a'))}·${Sq(iv('b'))}`) + ' (con a, b ≥ 0)', true, 'Es la propiedad que permite simplificar raíces: √50 = √25·√2 = 5√2.'],
-  [M(`${MINUS}2(4${SUB}7) = ${MINUS}8${SUB}14`), false, 'El −2 multiplica a cada cosa con su signo: (−2)·4 = −8 y (−2)·(−7) = +14. Sale −8 + 14 = 6.'],
+  r => { const [p, q] = r.shuffle(SQS).slice(0, 2), sp = Math.sqrt(p), sq = Math.sqrt(q), s = Math.sqrt(p + q), sum = r.chance(0.6);
+    if (sum) return [M(Sq(p + ' + ' + q, true) + ' = ' + Sq(p) + ADD + Sq(q)), false, `Primero se hace lo de dentro: √${p + q}${Number.isInteger(s) ? ' = ' + s : ''}. En cambio √${p} + √${q} = ${sp} + ${sq} = ${sp + sq}. La raíz de una suma no se separa nunca.`];
+    return [M(Sq(p + '·' + q, true) + ' = ' + Sq(p) + '·' + Sq(q)), true, `Con un producto sí se puede separar: √${p * q} = ${Math.sqrt(p * q)} y ${sp}·${sq} = ${sp * sq}.`]; },
+  r => { const k = r.int(2, 12), ok = r.chance(0.5);
+    return [M(`(${MINUS}${k})² = ${ok ? k * k : MINUS + k * k}`), ok, `Menos por menos es más: (−${k})·(−${k}) = ${k * k}. Al cuadrado siempre sale positivo.`]; },
+  r => { const c = r.int(2, 7), m = r.pick([2, 3, 5, 6, 7]), ok = r.chance(0.5), inn = ok ? c * c * m : c * m;
+    return [M(`${c}${Sq(m)} = ${Sq(inn)}`), ok, `Si elevas ${c}√${m} al cuadrado sale ${c * c}·${m} = ${c * c * m}: ${c}√${m} es √${c * c * m}.${ok ? '' : ' Al meter el ' + c + ' dentro de la raíz entra al cuadrado.'}`]; },
+  r => { const a = r.int(1, 6), m = r.pick([2, 3, 5, 6, 7]), ok = r.chance(0.5), right = ok ? Fh((a === 1 ? '' : a) + Sq(m), m) : (a === 1 ? '' : a) + Sq(m);
+    return [M(`${Fh(a, Sq(m))} = ${right}`), ok, `Al racionalizar se multiplica arriba y abajo por √${m}: ${a}/√${m} = ${a === 1 ? '' : a}√${m}/${m}.${ok ? ' Es el mismo número escrito de otra forma.' : ' Se te ha olvidado el ' + m + ' de abajo.'}`]; },
+  r => { const [x, y] = r.pick([['a', 'b'], ['x', 'y'], ['p', 'q'], ['m', 'n']]), ok = r.chance(0.5);
+    return [M(`${MINUS}(${iv(y)}${SUB}${iv(x)}) = ${MINUS}${iv(y)}${ok ? ADD : SUB}${iv(x)}`), ok, `El menos cambia el signo de todo lo de dentro: −(${y} − ${x}) = −${y} + ${x}.`]; },
+  r => { const p = r.int(1, 9), q = r.int(1, 9), ok = r.chance(0.5);
+    return [M(`${p}${SUB}(${MINUS}${q}) = ${N(ok ? p + q : p - q)}`), ok, `Restar −${q} es sumar ${q}: ${p} − (−${q}) = ${p} + ${q} = ${p + q}.`]; },
+  r => { const k = r.int(2, 6), a = r.int(1, 9); let b; do b = r.int(1, 9); while (b === a); const ok = r.chance(0.5);
+    return [M(`${MINUS}${k}(${a}${SUB}${b}) = ${N(-k * a)}${ok ? ADD : SUB}${k * b}`), ok, `El −${k} multiplica a cada cosa con su signo: (−${k})·${a} = ${N(-k * a)} y (−${k})·(−${b}) = +${k * b}. Sale ${N(-k * a)} + ${k * b} = ${N(k * b - k * a)}.`]; },
 ];
 gen('l1.tf', 'L1', r => {
-  const [s, c, why] = r.pick(TF_L1);
+  const [s, c, why] = r.pick(TF_L1)(r);
   return { type: 'tf', q: s, correct: c, sol: [[c ? 'Verdadero' : 'Falso', why]] };
 });
 
@@ -157,18 +170,19 @@ gen('l2.cosang', 'L2', r => {
 });
 
 gen('l2.signo', 'L2', r => {
-  const c = r.pick([-0.9, -0.6, -0.25, -0.1, 0, 0, 0.15, 0.4, 0.8, 0.95]);
+  const c = r.chance(0.15) ? 0 : r.sign() * r.int(1, 99) / 100;
   const k = c > 0 ? 0 : c === 0 ? 1 : 2;
   return { type: 'mc', keep: true, q: `Si ${M('cos ' + iv('φ') + ' = ' + dec(c))}, ¿cómo es el ángulo?`, opts: ['Agudo (menos de 90°)', 'Recto (90°)', 'Obtuso (más de 90°)'], correct: k,
     sol: [[M('cos ' + iv('φ') + ' = ' + dec(c)), 'El coseno es la sombra horizontal de una flecha de longitud 1: positivo, agudo; cero, recto; negativo, obtuso.']] };
 });
 
-const RADS = [[45, Fh('π', 4)], [90, Fh('π', 2)], [60, Fh('π', 3)], [30, Fh('π', 6)], [180, 'π'], [120, Fh('2π', 3)], [135, Fh('3π', 4)]];
+const RADS = [[45, Fh('π', 4)], [90, Fh('π', 2)], [60, Fh('π', 3)], [30, Fh('π', 6)], [180, 'π'], [120, Fh('2π', 3)], [135, Fh('3π', 4)], [150, Fh('5π', 6)]];
 gen('l2.rad', 'L2', r => {
-  const [deg, h] = r.pick(RADS);
-  const opts = [deg, ...r.shuffle([30, 45, 60, 90, 120, 135, 180].filter(x => x !== deg)).slice(0, 3)];
-  return { type: 'mc', q: `¿Cuántos grados son ${M(h + ' rad')}?`, opts: opts.map(a => M(a + '°')), correct: 0,
-    sol: [[M('π rad = 180°'), `Es la equivalencia clave. Así que ${h.replace(/<[^>]+>/g, '')} rad son ${deg}°.`]] };
+  const [deg, h] = r.pick(RADS), toRad = r.chance(0.5);
+  const others = r.shuffle(RADS.filter(x => x[0] !== deg)).slice(0, 3), plain = h.replace(/<[^>]+>/g, '');
+  const sol = [[M('π rad = 180°'), `Es la equivalencia clave. Así que ${plain} rad son ${deg}°.`]];
+  if (toRad) return { type: 'mc', q: `¿Cuántos radianes son ${M(deg + '°')}?`, opts: [h, ...others.map(x => x[1])].map(x => M(x + ' rad')), correct: 0, sol };
+  return { type: 'mc', q: `¿Cuántos grados son ${M(h + ' rad')}?`, opts: [deg, ...others.map(x => x[0])].map(a => M(a + '°')), correct: 0, sol };
 });
 
 // ===== L3 · Qué es un vector =====
@@ -262,26 +276,33 @@ gen('l4.spot', 'L4', r => {
 
 // ===== L5 · Vectores en función de otros (hexágono) =====
 const HEX = { O: [0, 0], A: [1, 0], B: [0, 1], C: [-1, 1], D: [-1, 0], E: [0, -1], F: [1, -1] };
+const HEXV = ['A', 'B', 'C', 'D', 'E', 'F'];
+// Base girada: a = O→(vértice k), b = O→(vértice k+1). Las coordenadas de un vértice se leen girando la tabla HEX.
+const hexBase = k => [HEXV[k], HEXV[(k + 1) % 6]];
+const hexC = (k, V) => (V === 'O' ? [0, 0] : HEX[HEXV[(HEXV.indexOf(V) - k + 6) % 6]]);
 function hexPair(r) { const ks = Object.keys(HEX); let X, Y; do { X = r.pick(ks); Y = r.pick(ks); } while (X === Y); return [X, Y]; }
-function hexSol(X, Y) {
-  const c = vsub(HEX[Y], HEX[X]), ab = [Ba, Bb];
-  if (X === 'O') return [[M(`${ar('O' + Y)} = ${CombH(c, ab)}`), 'Desde el centro conoces la flecha a cada vértice: OC = b − a, OD = −a, OE = −b, OF = a − b.']];
+function hexSol(X, Y, k = 0) {
+  const c = vsub(hexC(k, Y), hexC(k, X)), ab = [Ba, Bb], [A0, B0] = hexBase(k);
+  const rest = HEXV.filter(V => V !== A0 && V !== B0).map(V => `O${V} = ${CombH(hexC(k, V), ['a', 'b'])}`).join(', ');
+  const know = `Desde el centro conoces la flecha a cada vértice: ${rest}.`;
+  if (X === 'O') return [[M(`${ar('O' + Y)} = ${CombH(c, ab)}`), know]];
   if (Y === 'O') return [[M(`${ar(X + 'O')} = ${MINUS}${ar('O' + X)} = ${CombH(c, ab)}`), 'Recorrer una flecha al revés es ponerle un signo menos.']];
-  return [[M(`${ar('O' + X)} = ${CombH(HEX[X], ab)},  ${ar('O' + Y)} = ${CombH(HEX[Y], ab)}`), 'Desde el centro conoces la flecha a cada vértice: OC = b − a, OD = −a, OE = −b, OF = a − b.'],
+  return [[M(`${ar('O' + X)} = ${CombH(hexC(k, X), ab)},  ${ar('O' + Y)} = ${CombH(hexC(k, Y), ab)}`), know],
     [M(`${ar(X + Y)} = ${ar('O' + Y)}${SUB}${ar('O' + X)} = ${CombH(c, ab)}`), 'Camino por el centro: final menos inicial, escrito con vectores.']];
 }
-const hexQ = (X, Y) => `En el hexágono regular de centro O, con ${M(Ba + ' = ' + ar('OA'))} y ${M(Bb + ' = ' + ar('OB'))}, expresa ${M(ar(X + Y))} en función de ${M(Ba)} y ${M(Bb)}.`;
+const hexQ = (X, Y, k = 0) => { const [A0, B0] = hexBase(k); return `En el hexágono regular de centro O, con ${M(Ba + ' = ' + ar('O' + A0))} y ${M(Bb + ' = ' + ar('O' + B0))}, expresa ${M(ar(X + Y))} en función de ${M(Ba)} y ${M(Bb)}.`; };
+const hexK = r => (r.chance(0.4) ? 0 : r.int(1, 5));
 gen('l5.hex', 'L5', r => {
-  const [X, Y] = hexPair(r), c = vsub(HEX[Y], HEX[X]);
-  return { type: 'vec', fig: { k: 'hex', X, Y }, q: hexQ(X, Y) + ' Escribe 0 si no aparece y −1 si va con signo menos.',
-    form: [M(ar(X + Y) + ' = '), 0, M(' ' + Ba + ADD), 1, M(' ' + Bb)], expect: c, ansH: M(ar(X + Y) + ' = ' + CombH(c, [Ba, Bb])), sol: hexSol(X, Y) };
+  const [X, Y] = hexPair(r), k = hexK(r), c = vsub(hexC(k, Y), hexC(k, X));
+  return { type: 'vec', fig: { k: 'hex', X, Y, base: k }, q: hexQ(X, Y, k) + ' Escribe 0 si no aparece y −1 si va con signo menos.',
+    form: [M(ar(X + Y) + ' = '), 0, M(' ' + Ba + ADD), 1, M(' ' + Bb)], expect: c, ansH: M(ar(X + Y) + ' = ' + CombH(c, [Ba, Bb])), sol: hexSol(X, Y, k) };
 });
 gen('l5.hexmc', 'L5', r => {
-  const [X, Y] = hexPair(r), c = vsub(HEX[Y], HEX[X]);
+  const [X, Y] = hexPair(r), k = hexK(r), c = vsub(hexC(k, Y), hexC(k, X));
   const cands = [[-c[0], -c[1]], [c[1], c[0]], [c[0], -c[1]], [-c[0], c[1]], [c[0] + 1, c[1]], [c[0], c[1] - 1]];
   const seen = new Set([c.join()]), opts = [c];
   for (const x of r.shuffle(cands)) { if (opts.length >= 4) break; if (!seen.has(x.join()) && !vzero(x)) { seen.add(x.join()); opts.push(x); } }
-  return { type: 'mc', fig: { k: 'hex', X, Y }, q: hexQ(X, Y), opts: opts.map(x => M(ar(X + Y) + ' = ' + CombH(x, [Ba, Bb]))), correct: 0, sol: hexSol(X, Y) };
+  return { type: 'mc', fig: { k: 'hex', X, Y, base: k }, q: hexQ(X, Y, k), opts: opts.map(x => M(ar(X + Y) + ' = ' + CombH(x, [Ba, Bb]))), correct: 0, sol: hexSol(X, Y, k) };
 });
 const MC_L5 = [
   ['Si para ir de A a C pasas por B, entonces…', [M(ar('AC') + ' = ' + ar('AB') + ADD + ar('BC')), M(ar('AC') + ' = ' + ar('AB') + SUB + ar('BC')), M(ar('AC') + ' = ' + ar('BC') + SUB + ar('AB')), M(ar('AC') + ' = ' + ar('AB') + '·' + ar('BC'))], 'Una flecha es igual a cualquier camino que vaya del mismo inicio al mismo final.'],
@@ -354,9 +375,10 @@ const MC_L7 = [
   ['¿Qué tipo de resultado da el producto escalar u·v?', ['Un número', 'Un vector', 'Un vector perpendicular a los dos', 'Una matriz'], 'Se multiplican por parejas y se suman: sale un número.'],
   ['¿Y qué da k·v (un número por un vector)?', ['Un vector', 'Un número', 'Cero', 'Un ángulo'], '2·[1, 3] = [2, 6]. Son operaciones distintas aunque las dos se llamen “producto”.'],
   ['Si u·v = 0, los vectores son…', ['Perpendiculares', 'Paralelos', 'Iguales', 'Opuestos'], 'El producto escalar cero es justo la condición de ortogonalidad.'],
-  ['¿Se puede calcular [1, 2]·[3, 4, 5]?', ['No: tienen distinto número de componentes', 'Sí, da 11', 'Sí, da 26', 'Sí, se rellena con ceros'], 'Los dos vectores tienen que tener el mismo número de componentes.'],
+  r => { const u = rvAllNz(r, 2, -5, 5), v = rvAllNz(r, 3, -5, 5), a = u[0] * v[0] + u[1] * v[1]; let b = a + u[1] * v[2]; if (b === a) b = a + r.pick([-3, 3]);
+    return [`¿Se puede calcular ${M(Vh(u) + '·' + Vh(v))}?`, ['No: tienen distinto número de componentes', 'Sí, da ' + N(a), 'Sí, da ' + N(b), 'Sí, se rellena con ceros'], 'Los dos vectores tienen que tener el mismo número de componentes.']; },
 ];
-gen('l7.tipo', 'L7', r => { const [q, opts, why] = r.pick(MC_L7); return { type: 'mc', q, opts, correct: 0, sol: [[opts[0], why]] }; });
+gen('l7.tipo', 'L7', r => { const e = r.pick(MC_L7), [q, opts, why] = typeof e === 'function' ? e(r) : e; return { type: 'mc', q, opts, correct: 0, sol: [[opts[0], why]] }; });
 gen('l7.spot', 'L7', r => {
   let u, v, i;
   do { u = rvnz(r, 3, -4, 4); v = rvnz(r, 3, -4, 4); i = [0, 1, 2].find(k => u[k] < 0 && v[k] < 0); } while (i === undefined);
@@ -383,27 +405,33 @@ function unitItem(v, extra = {}) {
       [M(`${Bq} = ${Fh(1, lenH)}${Vh(v)} = ${Vh(q)}`), 'Divido cada componente entre el módulo' + (len.r === 1 ? '.' : ' y racionalizo.')],
       [M(q.map(x => '(' + N(x) + ')²').join(ADD) + ' = 1 ✓'), 'Comprobación: un vector normalizado mide 1, la suma de los cuadrados de sus componentes da 1.']] }, extra);
 }
-gen('l8.unit', 'L8', r => { if (r.chance(0.8)) return unitItem(niceVec(r, r.pick([2, 3])).v); return unitItem(r.pick([[1, 1], [1, -1], [2, 2], [1, 1, 1], [-1, 1]])); });
+gen('l8.unit', 'L8', r => { if (r.chance(0.8)) return unitItem(niceVec(r, r.pick([2, 3])).v); let v; do v = rvnz(r, r.pick([2, 3]), -3, 3); while (Number.isInteger(Math.sqrt(vn2(v)))); return unitItem(v); });
 gen('prof.e4', 'L8', () => unitItem([1, 1], { tag: 'Ejercicio 4 del profesor' }), { sib: 'l8.unit' });
 gen('prof.e5', 'L8', () => unitItem([4, 3], { tag: 'Ejercicio 5 del profesor' }), { sib: 'l8.unit' });
 gen('l8.err', 'L8', r => {
-  const t = r.pick(TRIPS), [a, b] = t, opts = [t[2], a + b, a * a + b * b, Math.abs(b - a) || 1];
-  return { type: 'mc', q: `¿Cuánto mide ${M(Vh([a, b]))}?`, opts: opts.map(x => M(String(x))), correct: 0,
-    sol: [[M(`${Sq(a + '²' + ADD + b + '²', true)} = ${Sq(a * a + b * b)} = ${t[2]}`), `Los errores típicos: sumar las componentes (${a + b}), olvidar la raíz (${a * a + b * b}) o hacer la raíz de cada una y sumar.`]] };
+  const n = r.pick([2, 2, 3]), { v, len } = niceVec(r, n), k = n === 2 && len <= 10 ? r.pick([1, 1, 2, 3]) : 1, w = v.map(x => x * k), L = len * k;
+  const n2 = vn2(w), sAbs = w.reduce((s, x) => s + Math.abs(x), 0), opts = [L], seen = new Set([L]);
+  for (const x of [sAbs, n2, Math.abs(w.reduce((s, x) => s + x, 0)), L + 1, 2 * L]) if (opts.length < 4 && x > 0 && !seen.has(x)) { seen.add(x); opts.push(x); }
+  return { type: 'mc', q: `¿Cuánto mide ${M(Vh(w))}?`, opts: opts.map(x => M(String(x))), correct: 0,
+    sol: [[M(`${Sq(sqSum(w), true)} = ${Sq(sqVals(w), true)} = ${Sq(n2)} = ${L}`), `Cada componente al cuadrado (con su signo desaparece), se suma y se hace la raíz. Los errores típicos: sumar las componentes (${sAbs}) u olvidar la raíz (${n2}).`]] };
 });
-const UNITS = [
-  [[new Fr(4, 5), new Fr(3, 5)], true], [[new Fr(1, 2), new Fr(1, 2)], false], [[divSqrt(1, 2), divSqrt(1, 2)], true],
-  [[new Fr(2, 3), new Fr(-1, 3), new Fr(2, 3)], true], [[new Fr(1, 3), new Fr(1, 3), new Fr(1, 3)], false], [[new Fr(3, 5), new Fr(4, 5), new Fr(0)], true],
-  [[new Fr(1, 2), new Fr(-1, 2), new Fr(1, 2)], false], [[new Fr(5, 13), new Fr(-12, 13)], true]];
+// Cuadrado exacto de una componente (fracción o c·√r).
+const sqX = x => (x instanceof Surd ? x.c.mul(x.c).mul(x.r) : F(x).mul(F(x)));
 gen('l8.tfunit', 'L8', r => {
-  const [q, ok] = r.pick(UNITS), s = q.reduce((acc, x) => acc + val(x) ** 2, 0);
-  return { type: 'tf', q: `${M(Vh(q))} es un vector unitario.`, correct: ok,
-    sol: [[M(q.map(x => '(' + N(x) + ')²').join(ADD) + ' = ' + N(new Fr(Math.round(s * 36), 36))), ok ? 'La suma de los cuadrados da 1: mide 1.' : 'La suma de los cuadrados no da 1, así que no mide 1.']] };
+  const ok = r.chance(0.5), n = r.pick([2, 3]);
+  let q;
+  if (r.chance(0.25)) { const sg = Array.from({ length: n }, () => r.sign()); q = sg.map(x => (ok ? divSqrt(x, n) : new Fr(x, n))); }
+  else { const { v, len } = niceVec(r, n), den = ok ? len : r.chance(0.5) ? v.reduce((s, x) => s + Math.abs(x), 0) : len + r.pick([-1, 1]); q = v.map(x => new Fr(x, den)); }
+  const s = q.reduce((acc, x) => acc.add(sqX(x)), new Fr(0)), good = s.n === 1 && s.d === 1;
+  return { type: 'tf', q: `${M(Vh(q))} es un vector unitario.`, correct: good,
+    sol: [[M(q.map(x => '(' + N(x) + ')²').join(ADD) + ' = ' + N(s)), good ? 'La suma de los cuadrados da 1: mide 1.' : 'La suma de los cuadrados no da 1, así que no mide 1.']] };
 });
 gen('l8.k', 'L8', r => {
-  const L = r.pick([2, 3, 5, 7]), c = r.pick([-3, -2, 2, 3, -4, 4]);
-  return { type: 'num', q: `Si ${M('‖' + Bv + '‖ = ' + L)}, ¿cuánto mide ${M(coefName(c, Bv))}?`, pre: M('‖' + coefName(c, Bv) + '‖ ='), ans: Math.abs(c) * L,
-    sol: [[M(`‖${coefName(c, Bv)}‖ = |${sInt(c)}|·‖${Bv}‖ = ${Math.abs(c)}·${L} = ${Math.abs(c) * L}`), 'Multiplicar por c multiplica la longitud por c sin el signo: un módulo nunca es negativo.']] };
+  const L = r.chance(0.7) ? new Surd(1, r.int(2, 12) ** 2) : new Surd(r.int(1, 3), r.pick([2, 3, 5, 6, 7]));
+  const c = r.chance(0.75) ? new Fr(r.sign() * r.int(2, 9)) : new Fr(r.sign(), r.int(2, 4)), ac = c.abs(), res = new Surd(ac.mul(L.c), L.r);
+  const cv = (c.n < 0 ? MINUS : '') + (c.d === 1 ? N(ac) : '(' + N(ac) + ')') + Bv;
+  return { type: 'num', q: `Si ${M('‖' + Bv + '‖ = ' + N(L))}, ¿cuánto mide ${M(cv)}?`, pre: M('‖' + cv + '‖ ='), ans: res,
+    sol: [[M(`‖${cv}‖ = |${N(c)}|·‖${Bv}‖ = ${N(ac)}·${N(L)} = ${N(res)}`), 'Multiplicar por c multiplica la longitud por c sin el signo: un módulo nunca es negativo.']] };
 });
 
 // ===== L9 · Distancia =====
@@ -468,12 +496,13 @@ gen('l10.calc', 'L10', r => {
   return angDirect(u, v);
 });
 const TF_L10 = [
-  ['Si al calcular te sale cos φ = 1,4, hay un error.', true, 'El coseno siempre está entre −1 y 1. Si sale 1,4, revisa algún módulo.'],
+  r => { const c = r.sign() * r.int(101, 190) / 100; return [`Si al calcular te sale ${M('cos ' + iv('φ') + ' = ' + dec(c))}, hay un error.`, true, `El coseno siempre está entre −1 y 1. Si sale ${dec(c)}, revisa algún módulo.`]; },
+  r => { const [ang, f] = r.pick(COS_TAB.filter(x => x[0] !== 90)), base = ang > 90 ? 180 - ang : ang, claim = r.pick([ang, ang, base === ang ? 180 - ang : base]), ok = claim === ang;
+    return [`${M('cos ' + iv('φ') + ' = ' + N(f()))} corresponde a ${M(claim + '°')}.`, ok, ang > 90 ? `Sin el signo sería ${base}°, pero como es negativo el ángulo es 180° − ${base}° = ${ang}°.` : `Es positivo, así que el ángulo es agudo: ${ang}°, el de la tabla.`]; },
   ['El ángulo entre dos vectores puede ser de 200°.', false, 'Con la fórmula del coseno el ángulo siempre está entre 0° y 180°.'],
   ['Si u·v < 0, el ángulo que forman es obtuso.', true, 'El signo del producto escalar ya te dice si el ángulo es agudo (+), recto (0) u obtuso (−).'],
-  ['cos φ = −1/2 corresponde a 60°.', false, 'Sin el signo sería 60°, pero como es negativo el ángulo es 180° − 60° = 120°.'],
 ];
-gen('l10.tf', 'L10', r => { const [s, c, why] = r.pick(TF_L10); return { type: 'tf', q: s, correct: c, sol: [[c ? 'Verdadero' : 'Falso', why]] }; });
+gen('l10.tf', 'L10', r => { const e = r.pick(TF_L10), [s, c, why] = typeof e === 'function' ? e(r) : e; return { type: 'tf', q: s, correct: c, sol: [[c ? 'Verdadero' : 'Falso', why]] }; });
 
 // ===== L11 · Vectores ortogonales =====
 gen('l11.tf', 'L11', r => {

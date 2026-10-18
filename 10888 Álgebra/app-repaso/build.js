@@ -10,7 +10,7 @@ const html = `<title>Álgebra de bolsillo</title>
 <meta name="description" content="Repaso tipo Duolingo de Álgebra (UDIMA), UD1: vectores, rectas y planos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,200..800;1,200..800&family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400&display=swap">
 <style>
 ${src('style.css')}
 </style>

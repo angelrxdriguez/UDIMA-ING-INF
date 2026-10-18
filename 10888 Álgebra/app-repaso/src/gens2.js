@@ -83,7 +83,20 @@ gen('prof.e11', 'L14', () => {
     { type: 'vec', q: 'Forma vectorial: punto más t por director.', form: fLine(2), check: x => ok(x) && near(-2 * x[2] + x[3], 0) && (Math.abs(x[2]) + Math.abs(x[3]) > 1e-9), sample: [1, 5, 1, 2], ansH: M(`[${iv('x')}, ${iv('y')}] = [1, 5] + ${iv('t')}[1, 2]`),
       sol: [[M(`${iv('x')} = ${iv('t')}  ⟹  ${iv('y')} = 3${ADD}2${iv('t')}`), 'Para el director, llamo t a la x y despejo la y: d = [1, 2].'],
         [M(`[${iv('x')}, ${iv('y')}] = [1, 5] + ${iv('t')}[1, 2]  ⟹  ${iv('x')} = 1${ADD}${iv('t')},  ${iv('y')} = 5${ADD}2${iv('t')}`), 'Vectorial y, fila a fila, paramétricas. [0, 3] + t[1, 2] también es correcta.']] }] };
-}, { sib: 'l14.vect' });
+}, { sib: 'l14.chain' });
+gen('l14.chain', 'L14', r => {
+  const L = line2(r), n = [L.a, L.b], p = L.p, d = vred([-L.b, L.a]), ok = x => near(L.a * x[0] + L.b * x[1], L.c);
+  return { type: 'chain', q: `Calcula la forma normal, vectorial y paramétrica de la recta ${eq2(L)}.`, steps: [
+    { type: 'vec', q: 'Un vector normal.', form: fV(2), check: x => isParallel(x, n), sample: n, ansH: M(Bn + ' = ' + Vh(n)), sol: [[M(Bn + ' = ' + Vh(n)), 'Los coeficientes de x e y.']] },
+    { type: 'vec', q: 'Un punto de la recta.', form: fP(2), check: ok, sample: p, ansH: M(Ph(p)),
+      sol: [[M(`${iv('x')} = ${N(p[0])}  ⟹  ${Lin([L.b], L.c - L.a * p[0], ['y'])}  ⟹  ${iv('y')} = ${N(p[1])}`), 'Doy a x un valor cómodo y despejo y. Vale cualquier punto que cumpla la ecuación.']] },
+    { type: 'num', q: `Forma normal: ${M(Vh(n) + '·[' + iv('x') + ', ' + iv('y') + '] = ' + Vh(n) + '·' + Vh(p))}. ¿Cuánto vale el lado derecho?`, pre: M(Bn + '·' + Bp + ' ='), ans: L.c,
+      sol: [[M(`${Vh(n)}·${Vh(p)} = ${dotExpand(n, p)} = ${N(L.c)}`), 'Es la general escrita con productos escalares: n·x = n·p.']] },
+    { type: 'vec', q: 'Forma vectorial: punto más t por director.', form: fLine(2), check: x => ok(x) && near(L.a * x[2] + L.b * x[3], 0) && (Math.abs(x[2]) + Math.abs(x[3]) > 1e-9), sample: [...p, ...d],
+      ansH: M(`[${iv('x')}, ${iv('y')}] = ${Vh(p)} + ${iv('t')}${Vh(d)}`),
+      sol: [[M(`${Bn} = ${Vh(n)}  ⟹  ${Bd} = ${Vh(d)}`), 'El director es perpendicular al normal: intercambio las componentes y cambio un signo.'],
+        [M(`[${iv('x')}, ${iv('y')}] = ${Vh(p)} + ${iv('t')}${Vh(d)}  ⟹  ${iv('x')} = ${Aff(p[0], [[d[0], 't']])},  ${iv('y')} = ${Aff(p[1], [[d[1], 't']])}`), 'Vectorial y, fila a fila, paramétricas. Con otro punto o un múltiplo del director también es correcta.']] }] };
+});
 
 // ===== L15 · Rectas en el espacio =====
 function line3(r) { const p = rv(r, 3, -4, 4); let d; do d = rvnz(r, 3, -3, 3); while (vgcd(d) !== 1); return { p, d }; }
@@ -134,7 +147,13 @@ gen('l15.tpt', 'L15', r => {
 });
 gen('prof.e12', 'L15', () => vectLine3([1, -5, 1], [-3, 2, -1], `Calcula la forma vectorial de la recta en ℝ³ que contiene al punto ${M('P = (1, ' + MINUS + '5, 1)')} y es paralela a ${M(Bd + ' = [' + MINUS + '3, 2, ' + MINUS + '1]')}.`, [
   [vecForm3([1, -5, 1], [-3, 2, -1]), 'Forma vectorial: punto más t por director. Cualquier múltiplo de d también vale.'],
-  [par3([1, -5, 1], [-3, 2, -1]), 'Paramétricas: cada fila es coordenada del punto + t por componente del director.']], { tag: 'Ejercicio 12 del profesor' }), { sib: 'l15.vect2p' });
+  [par3([1, -5, 1], [-3, 2, -1]), 'Paramétricas: cada fila es coordenada del punto + t por componente del director.']], { tag: 'Ejercicio 12 del profesor' }), { sib: 'l15.vectpd' });
+gen('l15.vectpd', 'L15', r => {
+  const { p, d } = line3(r);
+  return vectLine3(p, d, `Calcula la forma vectorial de la recta en ℝ³ que contiene al punto ${M('P = ' + Ph(p))} y es paralela a ${M(Bd + ' = ' + Vh(d))}.`, [
+    [vecForm3(p, d), 'Forma vectorial: punto más t por director. Cualquier múltiplo de d también vale.'],
+    [par3(p, d), 'Paramétricas: cada fila es coordenada del punto + t por componente del director.']]);
+});
 gen('prof.e20', 'L15', () => vectLine3([-1, 2, 1], [3, 1, 0], `Calcula la forma vectorial de la recta en ℝ³ que pasa por ${M('P = (' + MINUS + '1, 2, 1)')} y ${M('Q = (2, 3, 1)')}.`, [
   [M(`${Bd} = ${ar('PQ')} = [2${SUB}(${MINUS}1), 3${SUB}2, 1${SUB}1] = [3, 1, 0]`), 'Con dos puntos, el director es la flecha que va de uno a otro.'],
   [vecForm3([-1, 2, 1], [3, 1, 0]), 'Uso P como punto (también valdría Q).'],
@@ -448,7 +467,22 @@ gen('prof.e22', 'L20', () => {
     { type: 'vec', q: 'Un vector director de la recta.', form: fV(3), check: x => isParallel(x, [0, -1, 2]), sample: [0, -1, 2], ansH: M(Bd + ' = [0, ' + MINUS + '1, 2]'),
       sol: [[lineXYZ(2, 0, h, new Fr(-1, 2)), 'Haciendo la eliminación como en la lección 18 sale x = 2, y = −1/2 − t/2, z = t. El director, multiplicado por 2: [0, −1, 2]. (También sirve n₁ × n₂.)']] },
     ...steps] };
-}, { sib: 'l20.chain' });
+}, { sib: 'l20.chainint' });
+gen('l20.chainint', 'L20', r => {
+  for (;;) {
+    const o = intParams(r), B = intBuild(o), P0 = [o.x0, o.y0, 0], d = [o.p, o.q, 1];
+    let w = vcross(d, rvnz(r, 3, -2, 2)); if (vzero(w)) continue; w = vred(w); if (vn2(w) > 40) continue;
+    const Q = vadd(vadd(P0, vsc(r.int(-2, 2), d)), w); if (Q.some(x => Math.abs(x) > 9)) continue;
+    const { steps } = dprSteps(P0, d, Q);
+    steps[1].q = `Usa ${M(Bd + ' = ' + Vh(d))}. Las dos piezas de la sombra.`;
+    return { type: 'chain', fig: { k: 'dline' }, q: `Calcula la distancia desde ${M('Q = ' + Ph(Q))} a la recta intersección de ${sysH([B.E1, B.E2])}`, steps: [
+      { type: 'vec', q: `Primero la recta: un punto P con ${M(iv('z') + ' = 0')}.`, form: fP(3), expect: P0, ansH: M('P = ' + Ph(P0)),
+        sol: [[sysH([[B.E1[0], B.E1[1], B.E1[3]], [B.E2[0], B.E2[1], B.E2[3]]]), 'Con z = 0 quedan dos ecuaciones en x e y.'], [M(`${iv('x')} = ${N(o.x0)},  ${iv('y')} = ${N(o.y0)}`), 'Resolviendo ese sistema de dos ecuaciones.']] },
+      { type: 'vec', q: 'Un vector director de la recta.', form: fV(3), check: x => isParallel(x, d), sample: d, ansH: M(Bd + ' = ' + Vh(d)),
+        sol: [[lineXYZ(o.x0, o.p, o.y0, o.q), 'Haciendo la eliminación como en la lección 18 y llamando t a la z salen las paramétricas. El director son los números que multiplican a t. (También sirve n₁ × n₂.)']] },
+      ...steps] };
+  }
+});
 bankMC('l20.concept', 'L20', [
   ['¿Por qué puedes coger cualquier punto P de la recta?', ['Porque la parte perpendicular es siempre el mismo segmento; solo cambia la sombra', 'Porque la distancia siempre es 0', 'No se puede: hay que coger el más cercano', 'Porque todos los puntos están a la misma distancia del origen'], 'Elijas el que elijas, el camino perpendicular hasta Q es el mismo.'],
   ['La distancia de un punto a una recta es…', ['El camino más corto, que es el perpendicular', 'La distancia al punto P de la recta', 'El módulo del director', 'La sombra de PQ sobre la recta'], 'Por eso se usa la parte perpendicular de la proyección.'],

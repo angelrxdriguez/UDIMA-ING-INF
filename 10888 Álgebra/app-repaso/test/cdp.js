@@ -14,9 +14,20 @@ const SC = {
   chain: ['light', `(async()=>{act('start',{l:'L18'}); for(let i=0;i<30;i++){ await sleep(5); if(q('#ses [data-act="ses-start"]')){q('#ses [data-act="ses-start"]').click();continue;} if(q('#ses .chain li.done') && !q('#ses .fb')) break; const n=q('#ses [data-act="next"]'); if(n){n.click();continue;} q('#ses [data-act="dunno"]').click(); } })()`],
   map: ['dark', `(async()=>{await seedProgress(); act('tab',{v:'mapa'});})()`],
   formulas: ['light', `(async()=>{act('tab',{v:'formulas'});})()`],
+  // Ajustes › Tema manda sobre el modo del sistema
+  themedark: ['light', `(async()=>{await seedProgress(); act('settings'); await sleep(20); q('#sheet [data-act="theme"][data-v="dark"]').click();})()`],
+  themelight: ['dark', `(async()=>{await seedProgress(); act('settings'); await sleep(20); q('#sheet [data-act="theme"][data-v="light"]').click();})()`],
+  // Resumen final con fallos y el botón para reintentarlos
+  end: ['light', `(async()=>{await playTo('L9', ()=>q('#ses .end'));})()`, 4200],
+  enddark: ['dark', `(async()=>{await playTo('L9', ()=>q('#ses .end'));})()`, 4200],
+  // Corrección: acierto (panel verde) y fallo (panel rojo)
+  fbok: ['light', `(async()=>{await playTo('L11', ()=>q('#ses .fb.ok'));})()`],
+  fbbad: ['dark', `(async()=>{await playTo('L11', ()=>q('#ses .fb.bad'));})()`],
   hex: ['dark', `(async()=>{await toKind('L5',()=>q('#ses .fig') && document.querySelectorAll('#ses .slot').length===2 && !q('#ses .fb'));})()`],
 };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Responde lo primero que encuentra hasta que se cumple la condición.
+const PLAY = `async function playTo(l, stop){ act('start',{l}); for(let i=0;i<800;i++){ await sleep(5); if(stop()) return true; if(q('#ses .end')) return false; if(q('#sb > .wrap.leave')) continue; if(q('#ses [data-act="ses-start"]')){q('#ses [data-act="ses-start"]').click();continue;} const n=q('#ses [data-act="next"]'); if(n){n.click();continue;} const o=document.querySelectorAll('#ses .opt, #ses .line'); if(o.length){o[Math.floor(Math.random()*o.length)].click();} else { document.querySelectorAll('#ses .slot').forEach(s=>{s.click();act('key',{k:String(1+Math.floor(Math.random()*3))});}); } const c=q('#ses [data-act="check"]'); if(c) c.click(); } return false; }`;
 (async () => {
   const userDir = path.join(out, 'prof'); fs.mkdirSync(userDir, { recursive: true });
   const ch = spawn(CHROME, ['--headless=new', '--disable-gpu', '--hide-scrollbars', '--remote-debugging-port=9233', '--user-data-dir=' + userDir, 'about:blank'], { stdio: 'ignore' });
@@ -30,13 +41,13 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 2, mobile: true });
   const names = process.argv.slice(2).length ? process.argv.slice(2) : Object.keys(SC);
   for (const k of names) {
-    const [theme, js] = SC[k];
+    const [theme, js, wait] = SC[k];
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: theme }] });
     const file = path.join(out, 'cdp-' + k + '.html');
-    fs.writeFileSync(file, `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body>${dist}<script>try{localStorage.clear()}catch(e){};${H}${js}</script></body></html>`);
+    fs.writeFileSync(file, `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><script>try{localStorage.clear()}catch(e){}</script>${dist}<script>${H}${PLAY}${js}</script></body></html>`);
     await send('Page.navigate', { url: 'file:///' + file.split(path.sep).join('/') });
-    await sleep(2500);
-    const ov = await send('Runtime.evaluate', { expression: 'JSON.stringify({sw:document.documentElement.scrollWidth, cw:document.documentElement.clientWidth, ses:(document.querySelector("#ses .ses-body")||{}).scrollWidth||0})', returnByValue: true });
+    await sleep(wait || 2500);
+    const ov = await send('Runtime.evaluate', { expression: 'JSON.stringify({dark:matchMedia("(prefers-color-scheme: dark)").matches, bg:getComputedStyle(document.body).backgroundColor, boost:!!document.querySelector(".bar.boost"), spk:document.querySelectorAll(".spk").length, hot:!!document.querySelector(".bar.hot"), sw:document.documentElement.scrollWidth, cw:document.documentElement.clientWidth, ses:(document.querySelector("#ses .ses-body")||{}).scrollWidth||0})', returnByValue: true });
     const shot = await send('Page.captureScreenshot', { format: 'png' });
     fs.writeFileSync(path.join(out, 'm-' + k + '.png'), Buffer.from(shot.result.data, 'base64'));
     console.log(k, theme, ov.result.result.value);

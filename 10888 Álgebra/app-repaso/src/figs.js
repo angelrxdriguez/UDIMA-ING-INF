@@ -11,12 +11,15 @@ const dot = (x, y, cls = 'ink') => `<circle cx="${f1(x)}" cy="${f1(y)}" r="3.6" 
 const seg = (x1, y1, x2, y2, cls, extra = '') => `<line x1="${f1(x1)}" y1="${f1(y1)}" x2="${f1(x2)}" y2="${f1(y2)}" class="${cls}" ${extra}/>`;
 const poly = (pts, cls) => `<polygon points="${pts.map(p => p.map(f1).join(',')).join(' ')}" class="${cls}"/>`;
 
-function hexFig(X, Y) {
-  const cx = 130, cy = 100, R = 72, ang = { A: 0, B: 60, C: 120, D: 180, E: 240, F: 300 };
+function hexFig(X, Y, base = 0) {
+  const cx = 130, cy = 100, R = 72, ang = { A: 0, B: 60, C: 120, D: 180, E: 240, F: 300 }, ks = Object.keys(ang);
   const pos = k => (k === 'O' ? [cx, cy] : [cx + R * Math.cos(ang[k] * Math.PI / 180), cy - R * Math.sin(ang[k] * Math.PI / 180)]);
-  let b = poly(Object.keys(ang).map(pos), 'mut fillno');
-  b += arw(cx, cy, ...pos('A'), 'dir') + arw(cx, cy, ...pos('B'), 'turn');
-  b += tx(cx + R / 2, cy + 18, 'a', 'lab bold dirt') + tx(cx + R * 0.18, cy - R * 0.5, 'b', 'lab bold turnt');
+  const A0 = ks[base % 6], B0 = ks[(base + 1) % 6];
+  // etiqueta junto a la mitad de la flecha: a por el lado de las agujas del reloj, b por el contrario
+  const lab = (k, side, d) => { const t = ang[k] * Math.PI / 180, ux = Math.cos(t), uy = -Math.sin(t); return [cx + ux * R * 0.32 - side * uy * d - 4, cy + uy * R * 0.32 + side * ux * d + 5]; };
+  let b = poly(ks.map(pos), 'mut fillno');
+  b += arw(cx, cy, ...pos(A0), 'dir') + arw(cx, cy, ...pos(B0), 'turn');
+  b += tx(...lab(A0, 1, 13), 'a', 'lab bold dirt') + tx(...lab(B0, -1, 13), 'b', 'lab bold turnt');
   for (const k of Object.keys(ang)) { const [x, y] = pos(k), dx = (x - cx) * 0.22, dy = (y - cy) * 0.22; b += dot(x, y) + tx(x + dx - 5, y + dy + 5, k, 'lab'); }
   b += dot(cx, cy) + tx(cx - 16, cy + 5, 'O', 'lab');
   if (X && Y) { const p = pos(X), q = pos(Y); b += arw(p[0], p[1], q[0], q[1], 'acc', 3.4); }
@@ -80,6 +83,6 @@ function dplaneFig() {
 function figHTML(f) {
   if (!f) return '';
   const k = f.k;
-  const s = k === 'hex' ? hexFig(f.X, f.Y) : k === 'proj' ? projFig() : k === 'line' ? lineFig() : k === 'plane' ? planeFig() : k === 'three' ? threeFig() : k === 'dline' ? dlineFig() : k === 'dplane' ? dplaneFig() : '';
+  const s = k === 'hex' ? hexFig(f.X, f.Y, f.base) : k === 'proj' ? projFig() : k === 'line' ? lineFig() : k === 'plane' ? planeFig() : k === 'three' ? threeFig() : k === 'dline' ? dlineFig() : k === 'dplane' ? dplaneFig() : '';
   return s ? `<figure class="fig">${s}</figure>` : '';
 }
