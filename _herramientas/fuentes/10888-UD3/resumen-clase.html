@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Resumen de la clase · Álgebra Tema 3</title>
+<style>
+  @page :first { margin: 0; }
+  body { line-height: 13.2pt; }
+  .cadena + p, .cadena + ul { margin-top: 2pt; }
+  h2 { margin-top: 12pt; }
+  h2 .min { font-size: 7.5pt; vertical-align: 2pt; margin-left: 4pt; }
+  .donde { font: 8.5pt Arial, sans-serif; color: #5f6b73; margin: -4pt 0 5pt; break-after: avoid; }
+  .cadena { break-inside: avoid; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4pt 6pt; margin: 6pt 0 8pt; }
+  .indice td { padding-top: 1.1pt; padding-bottom: 1.1pt; }
+  .parte { font: bold 9pt Arial, sans-serif; color: #fff; background: var(--azul); padding: 2.5pt 8pt; margin: 4pt 0 8pt; letter-spacing: .3pt; }
+  .tipos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4pt 8pt; text-align: center; margin: 4pt 0 8pt; }
+  .tipos .gris { font-size: 8.5pt; line-height: 10pt; margin: 1pt 0 0; }
+  .nota .lead, .caja .lead { font-family: Arial, Helvetica, sans-serif; }
+  td.c { text-align: center; }
+  .peq { font-size: 9.5pt; line-height: 12pt; }
+  .cadena > span { white-space: nowrap; }
+  .cadena > span.gris { white-space: normal; }
+  .cadena .katex { font-size: .93em; }
+  .parte { break-after: avoid; }
+  .indice { font-size: 9pt; line-height: 11pt; margin: 2pt 0 0; }
+  .indice td { padding: .8pt 4pt; }
+  .indice th { font-size: 8.5pt; padding: 2pt 4pt; }
+  .derecha { color: #2e75b6; }
+</style>
+</head>
+<body>
+
+<div class="primera">
+<div class="portada">
+  <div class="sup">ÁLGEBRA · TEMA 3 · CLASE EN DIRECTO DEL 19 DE OCTUBRE DE 2026</div>
+  <div class="titulo">Resumen de la clase:<br>matrices, inversa y determinantes</div>
+  <div class="sub">Profesor J. J. Moreno · 1 h 14 min · diapositivas «Álgebra de matrices y sistemas» y comienzo del tema de determinantes</div>
+</div>
+
+<div class="caja clase">
+  <div class="tit">La clase en un minuto</div>
+  <div class="cue">
+    <p>La clase tuvo dos partes. Hasta el minuto 34 el profesor terminó el tema de <b>matrices</b> con sus diapositivas: operaciones,
+    producto, potencias y, sobre todo, la <b>matriz inversa</b>. Después empezó el tema siguiente, <b>determinantes y sistemas</b>, y llegó
+    hasta la factorización LU. Lo esencial:</p>
+    <ul style="margin-bottom:2pt">
+      <li>El producto de matrices es «fila por columna». Solo existe si cuadran los tamaños, y $AB\neq BA$: <b>el orden importa siempre</b>.</li>
+      <li>La inversa sirve para resolver sistemas: $\mathbf{x}=A^{-1}\mathbf{b}$. Se calcula por Gauss-Jordan sobre $(A|I)$ y es única.</li>
+      <li>$\det A\neq0$ $\iff$ $A$ tiene inversa $\iff$ el sistema tiene una única solución.</li>
+      <li>Los determinantes 2 × 2 y 3 × 3 se hacen con fórmula. Los más grandes, por Gauss o desarrollando por la fila (o columna) con más ceros.</li>
+      <li>Lo que más repitió: si piden un método, se usa ese método; hay que escribir los pasos intermedios y comprobar el resultado.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="gris">Las marcas <span class="min">▶ 25:24</span> son el minuto de la grabación (la transcripción literal está en
+<i>Clase UD3 - transcripcion.txt</i>). Las notas azules «En sencillo» explican la idea con otras palabras; las verdes, lo que recalcó
+el profesor. Las diapositivas de la segunda parte son las de la Unidad 4 del aula («Determinantes y sistemas de ecuaciones»,
+<i>UD4 - Determinantes/algebra_ejercicios-4-paginado.pdf</i>); al citarlas se indica «UD4». Todos los resultados se han comprobado a mano.</p>
+
+<h2 style="margin-top:6pt">Índice de la clase</h2>
+<div class="dos">
+<table class="indice">
+  <tr><th>Min.</th><th>Primera parte: matrices</th><th>Diap.</th></tr>
+  <tr><td class="n">01:03</td><td>1. Qué es una matriz; tipos</td><td>2–3</td></tr>
+  <tr><td class="n">03:07</td><td>2. Suma y producto por un número</td><td>4–8</td></tr>
+  <tr><td class="n">07:22</td><td>3. Traspuesta y simétricas</td><td>9–10</td></tr>
+  <tr><td class="n">09:27</td><td>4. Producto de matrices</td><td>11–13</td></tr>
+  <tr><td class="n">12:53</td><td>5. Potencias</td><td>14–17</td></tr>
+  <tr><td class="n">16:32</td><td>6. $A\mathbf{x}=\mathbf{b}$: la idea de la inversa</td><td>18</td></tr>
+  <tr><td class="n">19:22</td><td>7. La inversa y sus propiedades</td><td>19–21</td></tr>
+  <tr><td class="n">22:54</td><td>8. La inversa de una 2 × 2</td><td>22</td></tr>
+  <tr><td class="n">25:24</td><td>9. La inversa por Gauss-Jordan</td><td>23–26</td></tr>
+  <tr><td class="n">30:44</td><td>10. Para qué sirve la inversa</td><td>27–28</td></tr>
+</table>
+<table class="indice">
+  <tr><th>Min.</th><th>Segunda parte: determinantes</th><th>UD4</th></tr>
+  <tr><td class="n">34:09</td><td>11. El determinante 2 × 2 y 3 × 3</td><td>2–4</td></tr>
+  <tr><td class="n">38:31</td><td>12. La regla de Cramer</td><td>5–7</td></tr>
+  <tr><td class="n">41:31</td><td>13. Propiedades del determinante</td><td>8–9</td></tr>
+  <tr><td class="n">45:09</td><td>14. Desarrollar por una fila</td><td>10</td></tr>
+  <tr><td class="n">47:50</td><td>15. El determinante por Gauss</td><td>11–14</td></tr>
+  <tr><td class="n">53:25</td><td>16. Discutir un sistema con parámetro</td><td>15–17</td></tr>
+  <tr><td class="n">55:19</td><td>17. Adelanto: $\det(A-\lambda I)$ y Ruffini</td><td>18–19</td></tr>
+  <tr><td class="n">57:03</td><td>18. Producto vectorial con determinante</td><td>20–22</td></tr>
+  <tr><td class="n">59:41</td><td>19. La factorización LU</td><td>23–31</td></tr>
+  <tr><td class="n">1:09:22</td><td>20. Preguntas finales y consejos</td><td></td></tr>
+</table>
+</div>
+</div>
+
+<div class="parte">PRIMERA PARTE · ÁLGEBRA DE MATRICES</div>
+
+<!-- 1 -->
+<h2 style="margin-top:0">1. Qué es una matriz y tipos de matrices <span class="min">▶ 01:03</span></h2>
+<p class="donde">Diapositivas 2 y 3</p>
+<p>El profesor empezó avisando de que este tema lo terminaba ese día y el siguiente quizá no: «los festivos se han cebado con los
+lunes», y lo que no dé en clase lo grabará y lo subirá al aula.</p>
+<p>Una <b>matriz</b> es una tabla de números ordenados en filas y columnas. Cada número es una <b>entrada</b> y se nombra con dos
+subíndices, <b>primero la fila y luego la columna</b>: $a_{23}$ es la entrada de la fila 2 y la columna 3. Una matriz $m\times n$ tiene
+$m$ filas y $n$ columnas. Las matrices son «un objeto matemático» y, como con los números, se puede operar con ellas.
+<span class="min">▶ 02:07</span></p>
+<div class="tipos">
+  <div>$\M{rrr}{1&0&-3\\0&3&-6\\0&0&-3}$<p class="gris"><b>Triangular superior</b>: ceros debajo de la diagonal</p></div>
+  <div>$\M{rrr}{1&0&0\\2&3&0\\4&6&9}$<p class="gris"><b>Triangular inferior</b>: ceros encima</p></div>
+  <div>$\M{rrr}{1&0&0\\0&-2&0\\0&0&2}$<p class="gris"><b>Diagonal</b>: solo la diagonal</p></div>
+  <div>$I_3=\M{rrr}{1&0&0\\0&1&0\\0&0&1}$<p class="gris"><b>Identidad</b> (las diapositivas la llaman «unitaria»)</p></div>
+</div>
+<p>Además: <b>cuadrada</b> (tantas filas como columnas), <b>rectangular</b> (por ejemplo 3 × 4), <b>dispersa</b> (casi todo ceros) y la
+<b>matriz cero</b> $O$. La <b>diagonal</b> es la que va de arriba a la izquierda a abajo a la derecha: $a_{11}, a_{22}, a_{33},\dots$
+<span class="min">▶ 03:07</span> <span class="min">▶ 04:55</span></p>
+<div class="nota idea"><span class="lead">En sencillo.</span> Una triangular superior es justo lo que deja el método de Gauss en una
+matriz cuadrada. Por eso las triangulares saldrán otra vez en los determinantes (apartado 15) y en la LU (apartado 19).</div>
+
+<!-- 2 -->
+<h2>2. Suma y producto por un número <span class="min">▶ 03:07</span></h2>
+<p class="donde">Diapositivas 4 a 8</p>
+<p><b>Sumar</b>: entrada a entrada, y solo si las dos matrices tienen el mismo tamaño («si no, mal asunto»). <b>Multiplicar por un número</b>
+$c$ (un <i>escalar</i>): se multiplica cada una de las entradas. «Así que sumar, trivial». <span class="min">▶ 04:01</span></p>
+<div class="caja ejemplo"><div class="tit">Ejercicios 1 y 2 · Sumar dos matrices y multiplicar por 3</div><div class="cue">
+  <div class="cadena" style="margin:2pt 0 3pt; justify-content:space-around">
+    <span>$\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1}+\M{rrr}{1&-1&-3\\-1&2&-6\\5&6&-1}=\M{rrr}{2&-1&-6\\1&5&-12\\9&12&-2}$</span>
+    <span>$3\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1}=\M{rrr}{3&0&-9\\6&9&-18\\12&18&-3}$</span>
+  </div></div></div>
+<p>Con estas dos operaciones las matrices se comportan como los números: $A+B=B+A$; $(A+B)+C=A+(B+C)$; $A+O=A$; $A+(-A)=O$;
+$c(A+B)=cA+cB$; $(c+d)A=cA+dA$; $c(dA)=(cd)A$; $1A=A$. En la última, el 1 es un número: «no confundir con la matriz identidad».
+<span class="min">▶ 05:44</span> <span class="min">▶ 06:33</span></p>
+
+<!-- 3 -->
+<h2>3. Traspuesta y matrices simétricas <span class="min">▶ 07:22</span></h2>
+<p class="donde">Diapositivas 9 y 10</p>
+<p>La <b>traspuesta</b> $A^T$ se obtiene <b>cambiando filas por columnas</b>: la fila 1 pasa a ser la columna 1, y así con todas
+($a_{ij}$ pasa a la posición $ji$). No hace falta que la matriz sea cuadrada: una 3 × 2 se convierte en una 2 × 3.</p>
+<div class="cadena" style="justify-content:space-around">
+  <span>$A=\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1}\ \Rightarrow\ A^T=\M{rrr}{1&2&4\\0&3&6\\-3&-6&-1}$</span>
+  <span>$B=\M{rr}{1&-1\\-1&2\\5&6}\ \Rightarrow\ B^T=\M{rrr}{1&-1&5\\-1&2&6}$</span>
+</div>
+<div class="fila" style="flex-wrap:nowrap; gap:12pt">
+  <p style="margin:0">Una matriz es <b>simétrica</b> si $A=A^T$. Para reconocerla, «las entradas de aquí [la diagonal] no nos importan»: hay que
+  mirar que cada número coincida con su reflejo al otro lado de la diagonal, $a_{12}=a_{21}$, $a_{13}=a_{31}$, $a_{23}=a_{32}$, como en la $S$ de la
+  derecha. <span class="min">▶ 07:22</span> <span class="min">▶ 08:28</span></p>
+  <span style="flex:none">$S=\M{rrr}{3&\textcolor{2e75b6}{2}&\textcolor{b8620b}{1}\\\textcolor{2e75b6}{2}&9&7\\\textcolor{b8620b}{1}&7&2}$</span>
+</div>
+
+<!-- 4 -->
+<h2>4. Producto de matrices <span class="min">▶ 09:27</span></h2>
+<p class="donde">Diapositivas 11 a 13 · es el producto escalar del Tema 1, fila por columna</p>
+<div class="caja metodo">
+  <div class="tit">Cómo se multiplica: fila por columna</div>
+  <div class="cue">
+    <p><b>Tamaños.</b> $A_{m\times n}\cdot B_{n\times r}=C_{m\times r}$: el número de columnas de $A$ tiene que ser igual al número de filas de $B$
+    (los dos números «de dentro» coinciden) y el resultado tiene los «de fuera». Si no coinciden, el producto <b>no existe</b>.</p>
+    <p style="margin-bottom:2pt"><b>Cada entrada.</b> $c_{ij}$ = fila $i$ de $A$ por columna $j$ de $B$: primero por primero, segundo por segundo…
+    y se suma todo. «Voy fila por fila y voy columna por columna»: la fila 1 de $A$ con cada columna de $B$ da la fila 1 del resultado;
+    luego la fila 2, etc. <span class="min">▶ 10:20</span> <span class="min">▶ 11:07</span></p>
+  </div>
+</div>
+<div class="cadena">
+  <span>$AB=\M{rrr}{\textcolor{2e75b6}{1}&\textcolor{2e75b6}{2}&\textcolor{2e75b6}{-1}\\0&1&2\\3&0&1}
+  \M{rrr}{\textcolor{b8620b}{2}&-1&1\\\textcolor{b8620b}{0}&0&1\\\textcolor{b8620b}{1}&1&1}
+  =\M{rrr}{\piv{1}&-2&2\\2&2&3\\7&-2&4}$</span>
+  <span class="gris" style="white-space:normal; max-width:150pt; margin-left:6pt">Fila 1 (azul) por columna 1 (naranja):
+  $c_{11}=\textcolor{2e75b6}{1}\cdot\textcolor{b8620b}{2}+\textcolor{2e75b6}{2}\cdot\textcolor{b8620b}{0}+(\textcolor{2e75b6}{-1})\cdot\textcolor{b8620b}{1}=1$.
+  Igual con las otras ocho entradas.</span>
+</div>
+<ul>
+  <li><b>No conmuta</b>: «A por B no es lo mismo que B por A». Con estas mismas matrices, $BA$ tiene como primera fila $(5,\ 3,\ -3)$, no
+    $(1,\ -2,\ 2)$. Por eso en todo lo que sigue hay que respetar el orden. <span class="min">▶ 10:20</span></li>
+  <li><b>La identidad</b> hace de «1»: $IA=A$.</li>
+  <li><b>No siempre existe</b>: una 3 × 3 por una 2 × 3 no se puede multiplicar (3 columnas frente a 2 filas). <span class="min">▶ 11:59</span></li>
+  <li><b>El tamaño puede cambiar</b>: con $D_{3\times2}$ y $F_{2\times3}$ de la diapositiva 13, $DF$ es 3 × 3 y $FD$ es 2 × 2. Con matrices
+    cuadradas, el resultado tiene el mismo tamaño. <span class="min">▶ 12:53</span></li>
+</ul>
+<div class="nota clase"><span class="lead">Lo que remarcó el profesor.</span> «La multiplicación es demandante en cuanto a número de
+operación» y, por tanto, «si uno no tiene cuidado, se puede equivocar». Antes de empezar, escribe los tamaños y comprueba que el producto
+existe y qué tamaño tendrá el resultado. <span class="min">▶ 11:59</span></div>
+
+<!-- 5 -->
+<h2>5. Potencias <span class="min">▶ 12:53</span></h2>
+<p class="donde">Diapositivas 14 a 17</p>
+<p>Solo para matrices cuadradas: $A^k=A\cdot A\cdots A$ ($k$ veces). Cumplen las reglas de siempre: $A^rA^s=A^{r+s}$ y
+$(A^r)^s=A^{rs}$. Para $A^3$ se calcula $A^2=A\cdot A$ y luego $A^2\cdot A$:</p>
+<div class="cadena" style="gap:4pt 14pt">
+  <span>$A=\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1}$</span>
+  <span>$A^2=\M{rrr}{-11&-18&0\\-16&-27&-18\\12&12&-47}$</span>
+  <span>$A^3=A^2A=\M{rrr}{-47&-54&141\\-142&-189&228\\-152&-246&-61}$</span>
+</div>
+<p>Si un producto ya cuesta, una potencia es «espantosamente costoso», y más con $k$ grande. Más adelante, con la <b>diagonalización</b>,
+verán un camino más corto. <span class="min">▶ 14:41</span></p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 5 · $A^n$ para todo $n$ natural</div>
+  <div class="cue">
+    <div class="cadena" style="margin:2pt 0 4pt">
+      <span>$A=\M{ccc}{1/3&0&0\\0&0&1/3\\0&1/3&0}=\tfrac13\M{ccc}{1&0&0\\0&0&1\\0&1&0}=\tfrac13B,$</span>
+      <span>$\quad B^2=I_3$</span>
+    </div>
+    <p style="margin-bottom:2pt">Se saca el $\frac13$ como factor común. $B$ intercambia las filas 2 y 3, y hacerlo dos veces lo deja todo como estaba: $B^2=I$.
+    Así que las potencias pares de $B$ son $I$ y las impares son $B$:
+    $\ A^{2n}=\frac{1}{3^{2n}}I_3,\ \ A^{2n+1}=\frac{1}{3^{2n+1}}B$. Son «casos especiales», preparados para que se pueda; en general es
+    difícil. <span class="min">▶ 15:36</span> <span class="min">▶ 16:32</span></p>
+  </div>
+</div>
+<p class="gris" style="margin-top:-4pt">Errata: en la diapositiva 16, la $B$ aparece con la fila 2 igual a $(0\ 1\ 0)$; debe ser $(0\ 0\ 1)$, como arriba.</p>
+
+<!-- 6 -->
+<h2>6. $A\mathbf{x}=\mathbf{b}$: la idea de la inversa <span class="min">▶ 16:32</span></h2>
+<p class="donde">Diapositiva 18</p>
+<p>Un ejemplo tan sencillo que al profesor «me daba vergüenza»: para resolver $2x=4$ se multiplican los dos lados por el inverso de 2:
+$\frac12\cdot2x=\frac12\cdot4$, así que $x=2$. Con matrices es exactamente la misma idea, multiplicando <b>por la izquierda</b> en los dos
+lados, porque el orden importa:</p>
+<div class="cadena">$A\mathbf{x}=\mathbf{b}\ \Longrightarrow\ A^{-1}A\mathbf{x}=A^{-1}\mathbf{b}\ \Longrightarrow\ I\mathbf{x}=A^{-1}\mathbf{b}\ \Longrightarrow\ \mathbf{x}=A^{-1}\mathbf{b}$</div>
+<p><b>Ventaja</b>: si hay muchos sistemas con la misma $A$ y distintos $\mathbf{b}$, la inversa se calcula una vez y luego cada solución es
+solo multiplicar $A^{-1}\mathbf{b}_j$, «que eso es muy rápido». <span class="min">▶ 17:24</span> <span class="min">▶ 18:21</span></p>
+
+<!-- 7 -->
+<h2>7. La matriz inversa y sus propiedades <span class="min">▶ 19:22</span></h2>
+<p class="donde">Diapositivas 19 a 21</p>
+<p>Si $A$ es $n\times n$, su <b>inversa</b> $A^{-1}$ es la matriz $n\times n$ que cumple $AA^{-1}=I$ y $A^{-1}A=I$. Si existe, $A$ es
+<b>invertible</b>, y entonces $A\mathbf{x}=\mathbf{b}$ tiene una única solución, $\mathbf{x}=A^{-1}\mathbf{b}$, sea cual sea $\mathbf{b}$.
+«No toda matriz cuadrada tiene inversa. Eso es lo que tenéis que tener en la cabeza».</p>
+<div class="nota clase"><span class="lead">La inversa es única.</span> «No existe una inversa alternativa»: si la tuya no coincide con
+la del profesor, que está bien, es que te has equivocado. <span class="min">▶ 19:22</span> <span class="min">▶ 20:16</span></div>
+<table>
+  <tr><th style="width:36%">Propiedad</th><th>Cómo leerla</th></tr>
+  <tr><td>$(A^{-1})^{-1}=A$</td><td>Deshacer lo deshecho deja la original.</td></tr>
+  <tr><td>$(cA)^{-1}=\frac1c A^{-1}$ ($c\neq0$)</td><td>Como con números: el 3 se invierte a $\frac13$.</td></tr>
+  <tr><td>$(AB)^{-1}=B^{-1}A^{-1}$</td><td><b>Se cambia el orden</b>. «Cuidado, no es inversa de A por inversa de B». Como calcetines y zapatos:
+    para deshacerlo te quitas primero lo último que te pusiste.</td></tr>
+  <tr><td>$(A^T)^{-1}=(A^{-1})^T$</td><td>Da igual qué se hace primero, trasponer o invertir.</td></tr>
+  <tr><td>$(A^n)^{-1}=(A^{-1})^n$</td><td>Y se <b>define</b> $A^{-n}=(A^{-1})^n$: «no es un teorema, es una cosa que se define así».</td></tr>
+</table>
+
+<!-- 8 -->
+<h2>8. La inversa de una 2 × 2 <span class="min">▶ 22:54</span></h2>
+<p class="donde">Diapositiva 22</p>
+<div class="cadena">
+  <span>$A=\M{cc}{a&b\\c&d}\quad\Longrightarrow\quad A^{-1}=\dfrac{1}{ad-bc}\M{rr}{d&-b\\-c&a}$</span>
+  <span class="gris" style="max-width:190pt;margin-left:10pt">Regla para recordarla: <b>intercambia</b> $a$ y $d$, <b>cambia de signo</b> $b$ y $c$, y
+  divide entre «este por este menos este por este».</span>
+</div>
+<p>«Si es una matriz dos por dos, calcular su inversa es trivial». Pero si $ad-bc=0$ habría que dividir entre cero: «mal asunto», $A$ <b>no
+tiene inversa</b>. Ese número $ad-bc$ es el <b>determinante</b>, que se ve en la segunda parte. <span class="min">▶ 23:43</span>
+<span class="min">▶ 24:34</span></p>
+<div class="dos">
+  <div class="caja ejemplo"><div class="tit">Ejemplo para practicar (no es de clase)</div><div class="cue">
+    <div class="cadena" style="margin:0 0 3pt"><span>$A=\M{cc}{2&1\\5&3}\ \Rightarrow\ A^{-1}=\M{rr}{3&-1\\-5&2}$</span></div>
+    <p style="margin-bottom:2pt">porque $ad-bc=6-5=1$. Comprobación:</p>
+    <div class="cadena" style="margin:0"><span>$AA^{-1}=\M{cc}{6-5&-2+2\\15-15&-5+6}=I\ \ok$</span></div></div></div>
+  <div class="caja faq"><div class="tit">Pregunta en clase</div><div class="cue">
+    «¿Siempre el b y el c serán negativos?». No: «es la definición». Se les <b>cambia el signo</b>, valgan lo que valgan: si $b=-4$, en la
+    inversa va $+4$. <span class="min">▶ 22:54</span></div></div>
+</div>
+
+<!-- 9 -->
+<h2>9. La inversa por Gauss-Jordan <span class="min">▶ 25:24</span></h2>
+<p class="donde">Diapositivas 23 a 26 · las operaciones por filas son las del Tema 2</p>
+<div class="caja metodo">
+  <div class="tit">Método: matriz «superaumentada» $(A\,|\,I)$</div>
+  <div class="cue">
+    <ol style="margin-bottom:2pt">
+      <li>Se pega a la derecha de $A$ la identidad del mismo tamaño.</li>
+      <li>Se hacen operaciones por filas (siempre <b>en la fila entera</b>, las dos mitades) hasta que a la izquierda quede $I$: primero los
+        ceros de abajo, luego pivotes iguales a 1, luego los ceros de arriba desde el último pivote.</li>
+      <li>Lo que queda a la derecha es $A^{-1}$.</li>
+    </ol>
+  </div>
+</div>
+<div class="nota idea"><span class="lead">En sencillo.</span> La mitad derecha va «apuntando» todas las operaciones que conviertan $A$ en
+$I$, y el conjunto de esas operaciones es precisamente $A^{-1}$. Por eso «aquí se va simplificando […] pero al otro lado se me va
+complicando»: «vamos cambiando la complejidad del lado izquierdo al lado derecho». Si a la izquierda sale una fila de ceros, $A$ no tiene
+inversa. <span class="min">▶ 27:20</span> <span class="min">▶ 28:11</span></div>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 6 · Inversa de $A$ por Gauss-Jordan (a la izquierda de la raya está $A$)</div>
+  <div class="cue">
+    <div class="cadena" style="justify-content:flex-start">
+      <span>$\M{rrr|rrr}{\piv{1}&2&1&1&0&0\\3&8&6&0&1&0\\1&3&3&0&0&1}$</span>
+      <span>$\xrightarrow{\substack{F_2-3F_1\\F_3-F_1}}\M{rrr|rrr}{1&2&1&1&0&0\\0&2&3&-3&1&0\\0&1&2&-1&0&1}$</span>
+      <span>$\xrightarrow{F_2\leftrightarrow F_3}\M{rrr|rrr}{1&2&1&1&0&0\\0&\piv{1}&2&-1&0&1\\0&2&3&-3&1&0}$</span>
+      <span>$\xrightarrow{F_3-2F_2}\M{rrr|rrr}{1&2&1&1&0&0\\0&1&2&-1&0&1\\0&0&-1&-1&1&-2}$</span>
+      <span>$\xrightarrow{-F_3}\M{rrr|rrr}{1&2&1&1&0&0\\0&1&2&-1&0&1\\0&0&\piv{1}&1&-1&2}$</span>
+      <span>$\xrightarrow{\substack{F_2-2F_3\\F_1-F_3}}\M{rrr|rrr}{1&2&0&0&1&-2\\0&1&0&-3&2&-3\\0&0&1&1&-1&2}$</span>
+      <span>$\xrightarrow{F_1-2F_2}\M{rrr|rrr}{1&0&0&\textcolor{2e75b6}{6}&\textcolor{2e75b6}{-3}&\textcolor{2e75b6}{4}\\0&1&0&\textcolor{2e75b6}{-3}&\textcolor{2e75b6}{2}&\textcolor{2e75b6}{-3}\\0&0&1&\textcolor{2e75b6}{1}&\textcolor{2e75b6}{-1}&\textcolor{2e75b6}{2}}$</span>
+    </div>
+    <p>A la izquierda ya está $I$, así que la mitad derecha (en azul) es $A^{-1}=\M{rrr}{6&-3&4\\-3&2&-3\\1&-1&2}$.</p>
+    <p style="margin-bottom:2pt">El intercambio $F_2\leftrightarrow F_3$ es para tener un 1 de pivote, «más fácil operar con eso». Y ojo: «intercambia toda la fila. No
+    solamente lo de ahí, porque si no, no estamos haciendo nada». <span class="min">▶ 26:30</span> <span class="min">▶ 27:20</span> <span class="min">▶ 29:03</span></p>
+  </div>
+</div>
+<p class="gris" style="margin-top:-4pt">Erratas: en la diapositiva 24, la matriz superextendida tiene la fila 3 como $(1\ 3\ 2)$; es $(1\ 3\ 3)$, como en el enunciado. En
+la diapositiva 25, las dos primeras matrices llevan $(-1\ 1\ 0)$ a la derecha de la fila $(0\ 1\ 2)$; lo correcto es $(-1\ 0\ 1)$, que es lo que
+usa en el paso siguiente. El resultado final es correcto: $AA^{-1}=I$.</p>
+<div class="nota clase"><span class="lead">Criterio de corrección: si se pide por Gauss, se hace por Gauss.</span> «Cuando yo os pida una inversa
+por Gauss, me tenéis que hacer esto». Si no se pide método, vale cualquiera; pero «si me calculáis bien la inversa, pero yo la he pedido
+por Gauss, me lo calculáis por otro, es un cero». <span class="min">▶ 29:03</span></div>
+<div class="caja faq">
+  <div class="tit">Pregunta en clase · ¿Gauss y Gauss-Jordan son diferentes?</div>
+  <div class="cue">
+    En un sistema, sí: «Gauss» es llegar a la triangular superior (escalonada), y «Gauss-Jordan» exige además los ceros por arriba. Pero
+    en una inversa «se sobreentiende que es Gauss-Jordan, porque si yo paro aquí, esto no es la inversa»: inversa por Gauss significa
+    llegar hasta $(I\,|\,A^{-1})$. <span class="min">▶ 29:51</span> <span class="min">▶ 30:44</span>
+  </div>
+</div>
+
+<!-- 10 -->
+<h2>10. Teorema fundamental: para qué sirve la inversa <span class="min">▶ 30:44</span></h2>
+<p class="donde">Diapositivas 27 y 28</p>
+<p>Si $A$ es $n\times n$, estas cuatro frases dicen lo mismo: $A$ es invertible; $A\mathbf{x}=\mathbf{b}$ tiene una única solución para
+todo $\mathbf{b}$; $A\mathbf{x}=\mathbf{0}$ solo tiene la solución trivial $\mathbf{x}=\mathbf{0}$; la forma escalonada reducida (FERF) de $A$ es
+$I_n$. <b>En sencillo</b>: al hacer Gauss sale un pivote en cada columna, sin filas de ceros. <span class="min">▶ 31:36</span></p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 7 · Resolver un sistema cuando ya tienes la inversa</div>
+  <div class="cue">
+    <p>Matriz ampliada $\M{rrr|r}{1&2&1&1\\3&8&6&1\\1&3&3&-1}$: la del sistema es la del ejercicio 6, cuya inversa ya está calculada. Basta multiplicar:</p>
+    <div class="cadena" style="margin:2pt 0 4pt">$\mathbf{x}=A^{-1}\mathbf{b}=\M{rrr}{6&-3&4\\-3&2&-3\\1&-1&2}\M{r}{1\\1\\-1}=\M{c}{6-3-4\\-3+2+3\\1-1-2}=\M{r}{-1\\2\\-2}$</div>
+    <p style="margin-bottom:2pt">$x=-1,\ y=2,\ z=-2$. Comprobación en la primera ecuación: $-1+4-2=1$ $\ok$ <span class="min">▶ 32:25</span> <span class="min">▶ 33:19</span></p>
+  </div>
+</div>
+<div class="nota clase"><span class="lead">Lo que «me parece alucinante».</span> Hay alumnos que calculan la inversa y después vuelven a
+hacer Gauss con la matriz ampliada. «Si teniendo la inversa ya tienes la solución». Hacerlo así «significa que no habéis entendido para qué
+sirve la inversa»: es la forma más sencilla de resolver, multiplicar la inversa por el vector de la derecha. <span class="min">▶ 33:19</span>
+<span class="min">▶ 34:09</span></div>
+
+<div class="parte">SEGUNDA PARTE · DETERMINANTES Y SISTEMAS (UNIDAD 4 DEL AULA)</div>
+
+<!-- 11 -->
+<h2 style="margin-top:0">11. El determinante 2 × 2 y 3 × 3 <span class="min">▶ 35:05</span></h2>
+<p class="donde">Diapositivas 2 a 4 (UD4)</p>
+<p>El determinante es un número que se saca de una matriz cuadrada. Se escribe $|A|$ o $\det(A)$. En 2 × 2 ya salió con la inversa:</p>
+<div class="cadena">
+  <span>$\begin{vmatrix}a&b\\c&d\end{vmatrix}=ad-bc$</span>
+  <span class="gris" style="max-width:250pt;margin-left:12pt">Si $(a,b)$ y $(c,d)$ son dos vectores, $|ad-bc|$ es el <b>área del paralelogramo</b>
+  que forman. «Un determinante puede ser negativo, pero su valor absoluto va a ser el área». En 3 × 3 es un <b>volumen</b>.</span>
+</div>
+<div class="nota idea"><span class="lead">En sencillo: por qué det = 0 significa «sin inversa».</span> Si el área es 0, los dos vectores
+están en la misma recta: una fila es múltiplo de la otra. La matriz «aplasta» el plano en una recta, y eso ya no se puede deshacer: no hay
+inversa y el sistema no tiene una única solución.</div>
+<p><b>Regla para el 3 × 3</b>. Tres productos en el sentido de la diagonal principal, con signo +, y tres en el otro sentido, con signo −.
+<span class="min">▶ 35:57</span> <span class="min">▶ 36:49</span></p>
+<div class="cadena">
+  <svg width="200" height="80" viewBox="0 0 200 80" style="flex:none">
+    <line x1="120" y1="4" x2="120" y2="76" stroke="#bfc4c7" stroke-width=".8"/>
+    <g stroke-width="1.3" fill="none" stroke-linecap="round">
+      <line x1="20" y1="12" x2="100" y2="68" stroke="#2e7d32"/><line x1="60" y1="12" x2="140" y2="68" stroke="#2e7d32"/><line x1="100" y1="12" x2="180" y2="68" stroke="#2e7d32"/>
+      <line x1="20" y1="68" x2="100" y2="12" stroke="#c62828" stroke-dasharray="3 2.5"/><line x1="60" y1="68" x2="140" y2="12" stroke="#c62828" stroke-dasharray="3 2.5"/><line x1="100" y1="68" x2="180" y2="12" stroke="#c62828" stroke-dasharray="3 2.5"/>
+    </g>
+    <g font-family="CMU Serif, serif" font-style="italic" font-size="15" text-anchor="middle" dominant-baseline="central" stroke="#fff" stroke-width="5" paint-order="stroke" stroke-linejoin="round">
+      <text x="20" y="12">a</text><text x="60" y="12">b</text><text x="100" y="12">c</text><text x="140" y="12" fill="#8f979d">a</text><text x="180" y="12" fill="#8f979d">b</text>
+      <text x="20" y="40">d</text><text x="60" y="40">e</text><text x="100" y="40">f</text><text x="140" y="40" fill="#8f979d">d</text><text x="180" y="40" fill="#8f979d">e</text>
+      <text x="20" y="68">g</text><text x="60" y="68">h</text><text x="100" y="68">i</text><text x="140" y="68" fill="#8f979d">g</text><text x="180" y="68" fill="#8f979d">h</text>
+    </g>
+  </svg>
+  <span>$\begin{vmatrix}a&b&c\\d&e&f\\g&h&i\end{vmatrix}=\textcolor{2e7d32}{aei+bfg+cdh}\textcolor{c62828}{-ceg-afh-bdi}$</span>
+</div>
+<p class="gris" style="margin-top:-4pt">Truco del dibujo: copiar las dos primeras columnas a la derecha. Las verdes (↘) suman, las rojas (↗) restan.
+El profesor lo dibujó con las diagonales y los triángulos. La diapositiva 3 lo presenta como la fórmula de Leibniz (la general, con
+permutaciones, que en 3 × 3 da estos seis productos), y el ejercicio 1 lo llama «regla de Leibniz o <b>Sarrus</b>».</p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 1 (UD4) · Calcula el determinante</div>
+  <div class="cue">
+    <div class="fila" style="flex-wrap:nowrap; gap:14pt; margin:0">
+      <span style="flex:none">$\begin{vmatrix}1&3&0\\-1&2&-4\\1&1&2\end{vmatrix}$</span>
+      <div>
+        <p style="margin:0">Con signo $+$: $\ 1\cdot2\cdot2+3\cdot(-4)\cdot1+0\cdot(-1)\cdot1=4-12+0=-8$</p>
+        <p style="margin:0">Con signo $-$: $\ 0\cdot2\cdot1+1\cdot(-4)\cdot1+3\cdot(-1)\cdot2=-10$, y al restarlo: $+10$</p>
+        <p style="margin:0">Total: $-8+10=\mathbf{2}$.</p>
+      </div>
+    </div>
+    <p style="margin:3pt 0 2pt">Cuidado con los productos que ya son negativos: «menos seis con un signo menos, más seis».
+    <span class="min">▶ 37:41</span> <span class="min">▶ 38:31</span></p>
+  </div>
+</div>
+<div class="nota clase"><span class="lead">Hasta 3 × 3, nada más.</span> La regla «se utiliza hasta tres por tres. Más allá de ahí, es
+el infierno y nadie lo hace», porque el número de operaciones se dispara. <span class="min">▶ 37:41</span></div>
+
+<!-- 12 -->
+<h2>12. La regla de Cramer <span class="min">▶ 38:31</span></h2>
+<p class="donde">Diapositivas 5 a 7 (UD4)</p>
+<p>Si $\det A\neq0$, cada incógnita es un cociente de dos determinantes. Abajo, siempre $|A|$. Arriba, $|A|$ con la columna de esa incógnita
+<b>cambiada por</b> $\mathbf{b}$: para $x$ la primera, para $y$ la segunda, para $z$ la tercera. <span class="min">▶ 39:26</span></p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 2 (UD4) · $2x+y-z=-3,\quad x-2y+2z=1,\quad 2x+y+z=5$ <span style="font-weight:normal">(el ejercicio 3 del Tema 2)</span></div>
+  <div class="cue">
+    <div class="cadena" style="margin:2pt 0 4pt; gap:6pt 16pt">
+      <span>$|A|=\begin{vmatrix}2&1&-1\\1&-2&2\\2&1&1\end{vmatrix}=-10$</span>
+      <span>$x=\dfrac{\begin{vmatrix}\textcolor{b8620b}{-3}&1&-1\\\textcolor{b8620b}{1}&-2&2\\\textcolor{b8620b}{5}&1&1\end{vmatrix}}{-10}=\dfrac{10}{-10}=-1$</span>
+      <span>$y=\dfrac{\begin{vmatrix}2&\textcolor{b8620b}{-3}&-1\\1&\textcolor{b8620b}{1}&2\\2&\textcolor{b8620b}{5}&1\end{vmatrix}}{-10}=\dfrac{-30}{-10}=3$</span>
+      <span>$z=\dfrac{\begin{vmatrix}2&1&\textcolor{b8620b}{-3}\\1&-2&\textcolor{b8620b}{1}\\2&1&\textcolor{b8620b}{5}\end{vmatrix}}{-10}=\dfrac{-40}{-10}=4$</span>
+    </div>
+    <p style="margin-bottom:2pt">«Cramer funciona»: la misma solución que salía por Gauss en el Tema 2. Pero han hecho falta <b>cuatro</b> determinantes para
+    un sistema 3 × 3. <span class="min">▶ 40:17</span> <span class="min">▶ 41:31</span></p>
+  </div>
+</div>
+<div class="nota clase"><span class="lead">Cuándo usarla.</span> Solo con 3 × 3 o menos («más allá de ahí, olvida esto») y cuando te la
+pidan: «normalmente Cramer no es útil, es mejor Gauss, porque el número de operaciones se dispara». <span class="min">▶ 39:26</span> <span class="min">▶ 41:31</span></div>
+
+<!-- 13 -->
+<h2>13. Propiedades del determinante <span class="min">▶ 41:31</span></h2>
+<p class="donde">Diapositivas 8 y 9 (UD4)</p>
+<table>
+  <tr><th style="width:42%">Propiedad ($A$, $B$ de orden $n$)</th><th>Para qué sirve</th></tr>
+  <tr><td>$A$ invertible $\iff\det A\neq0$</td><td>Saber si hay inversa (y solución única) sin calcularla.</td></tr>
+  <tr><td>Una fila de ceros, dos filas iguales o una múltiplo de otra $\Rightarrow\det=0$</td><td>Se ve a simple vista: son filas dependientes y
+    el sistema no tendría solución única.</td></tr>
+  <tr><td><b>Triangular</b> (superior o inferior): $\det$ = producto de la diagonal</td><td>La clave del método de Gauss (apartado 15).</td></tr>
+  <tr><td>$\det(A^{-1})=\dfrac{1}{\det A}$</td><td>No hace falta calcular la inversa para saber su determinante.</td></tr>
+  <tr><td>$\det(A^T)=\det A$</td><td>Todo lo que vale para filas vale también para columnas.</td></tr>
+  <tr><td>$\det(AB)=\det A\cdot\det B$</td><td>El de un producto es el producto de los determinantes.</td></tr>
+  <tr><td>$\det(kA)=k^n\det A$</td><td><b>Trampa típica</b>: no es $k\det A$. Cada una de las $n$ filas sale multiplicada por $k$. En 2 × 2, $\det(3A)=9\det A$.</td></tr>
+  <tr><td>$\det(UA)=\det A$ si $\det U=1$</td><td>Es la regla del producto con $\det U=1$.</td></tr>
+</table>
+
+<!-- 14 -->
+<h2>14. Desarrollar por una fila: un 4 × 4 <span class="min">▶ 45:09</span></h2>
+<p class="donde">Diapositiva 10 (UD4), que también se titula «Ejercicio 2»: hay dos con ese número</p>
+<div class="fila" style="flex-wrap:nowrap; gap:14pt; margin:0">
+  <p style="margin:0">Se elige una fila (o columna). Cada entrada se multiplica por su <b>menor</b> (el determinante que queda al tachar su
+  fila y su columna) y por un signo que sigue un <b>damero</b>, empezando por + arriba a la izquierda. Luego se suma todo.</p>
+  <span style="flex:none; font-size:.9em">$\M{cccc}{+&-&+&-\\-&+&-&+\\+&-&+&-\\-&+&-&+}$</span>
+</div>
+<div class="cadena" style="gap:4pt 3pt; font-size:.95em">
+  <span>$\begin{vmatrix}\textcolor{2e75b6}{1}&\textcolor{2e75b6}{1}&\textcolor{2e75b6}{-2}&\textcolor{2e75b6}{1}\\2&0&1&3\\-1&1&2&1\\3&2&1&2\end{vmatrix}=$</span>
+  <span>$\textcolor{2e75b6}{1}\begin{vmatrix}0&1&3\\1&2&1\\2&1&2\end{vmatrix}$</span>
+  <span>$-\textcolor{2e75b6}{1}\begin{vmatrix}2&1&3\\-1&2&1\\3&1&2\end{vmatrix}$</span>
+  <span>$+(\textcolor{2e75b6}{-2})\begin{vmatrix}2&0&3\\-1&1&1\\3&2&2\end{vmatrix}$</span>
+  <span>$-\textcolor{2e75b6}{1}\begin{vmatrix}2&0&1\\-1&1&2\\3&2&1\end{vmatrix}$</span>
+</div>
+<p>Es la matriz del ejercicio 2 del Tema 2. Los cuatro menores valen $-9$, $-10$, $-15$ y $-11$, así que
+$\det=-9+10+30+11=\mathbf{42}$. Cuatro determinantes 3 × 3 para un 4 × 4: «menudo horror». <span class="min">▶ 46:04</span> <span class="min">▶ 46:56</span></p>
+<div class="nota clase"><span class="lead">Elige la fila o columna con más ceros.</span> La fila 1 la escogió «para que sea didáctico», pero
+es mala porque no tiene ceros. Lo lógico era la <b>columna 2</b>, que tiene un 0: ese sumando se multiplica por cero y te ahorras un
+determinante. Por la columna 2 (signos $-,+,-,+$): $-1(-10)+0-1(-12)+2(10)=42$. «Calcular determinantes más allá del tres por tres es una
+pesadilla». <span class="min">▶ 46:56</span> <span class="min">▶ 47:50</span></div>
+
+<!-- 15 -->
+<h2>15. El determinante por Gauss <span class="min">▶ 47:50</span></h2>
+<p class="donde">Diapositivas 11 a 14 (UD4)</p>
+<p>«Hay un método humano de cálculo de determinantes». ¿Cuál? «Por, adivinen qué, por Gauss». Se hace Gauss hasta una triangular, se
+multiplica la diagonal y se corrige según las operaciones que se han hecho:</p>
+<table>
+  <tr><th style="width:44%">Operación por filas</th><th>Efecto en el determinante</th></tr>
+  <tr><td>1. Sumar a una fila un múltiplo de otra ($F_2-2F_1$…)</td><td><b>No cambia.</b> «La operación típica que hacemos no cambia el valor».</td></tr>
+  <tr><td>2. Intercambiar dos filas</td><td><b>Cambia de signo.</b> «Así que cuidado con eso».</td></tr>
+  <tr><td>3. Multiplicar una fila por $k$</td><td>El determinante queda <b>multiplicado por $k$</b>. Para recuperar el original, al final se divide entre $k$.</td></tr>
+</table>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 3 (UD4) · el mismo 4 × 4, ahora por Gauss</div>
+  <div class="cue">
+    <div class="cadena">
+      <span>$\M{rrrr}{\piv{1}&1&-2&1\\2&0&1&3\\-1&1&2&1\\3&2&1&2}$</span>
+      <span>$\xrightarrow[\text{no cambia}]{\substack{F_2-2F_1\\F_3+F_1\\F_4-3F_1}}\M{rrrr}{1&1&-2&1\\0&-2&5&1\\0&2&0&2\\0&-1&7&-1}$</span>
+      <span>$\xrightarrow[\times(-1)]{F_2\leftrightarrow F_4}\M{rrrr}{1&1&-2&1\\0&\piv{-1}&7&-1\\0&2&0&2\\0&-2&5&1}$</span>
+      <span>$\xrightarrow[\text{no cambia}]{\substack{F_3+2F_2\\F_4-2F_2}}\M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&14&0\\0&0&-9&3}$</span>
+      <span>$\xrightarrow[\text{al final}\ \times14]{\frac{1}{14}F_3}\M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&1&0\\0&0&-9&3}$</span>
+      <span>$\xrightarrow[\text{no cambia}]{F_4+9F_3}\M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&1&0\\0&0&0&3}$</span>
+    </div>
+    <p style="margin-bottom:2pt">Diagonal: $1\cdot(-1)\cdot1\cdot3=-3$. Se deshacen los cambios: el intercambio da un factor $-1$ y dividir la fila
+    entre 14 da un factor 14. $\det=(-1)\cdot14\cdot(-3)=\mathbf{42}$, como antes. «Me tiene que dar lo mismo. Si me da distinto, mal vamos».
+    <span class="min">▶ 50:32</span> <span class="min">▶ 51:39</span> <span class="min">▶ 52:31</span></p>
+  </div>
+</div>
+<div class="fila" style="flex-wrap:nowrap; gap:14pt">
+  <p style="margin:0"><b>Tercera forma, mezclando</b> (ejercicio 4): después del primer paso, la columna 1 ya tiene tres ceros. Se desarrolla por
+  ella y solo queda un 3 × 3 (con signo +). También se pueden hacer operaciones por columnas, con las mismas reglas.
+  <span class="min">▶ 52:31</span> <span class="min">▶ 53:25</span></p>
+  <span style="flex:none">$1\cdot\begin{vmatrix}-2&5&1\\2&0&2\\-1&7&-1\end{vmatrix}=42$</span>
+</div>
+<p class="gris">Errata: en la diapositiva 14, el paso intermedio escribe $(14-10)+(-28-10)$; debe ser $(14-10)-(-28-10)=4+38$. El 42 final es correcto.</p>
+<div class="nota idea"><span class="lead">Consejo para no liarte con los factores.</span> Para un determinante no hace falta poner los pivotes a 1.
+Si solo usas operaciones del tipo 1 y algún intercambio, lo único que hay que vigilar son los cambios de signo. Aquí, sin dividir entre 14:
+$F_4+\frac{9}{14}F_3$ deja $(0\ 0\ 0\ 3)$ y la diagonal es $1\cdot(-1)\cdot14\cdot3=-42$; con el intercambio, $42$.</div>
+
+<!-- 16 -->
+<h2>16. Discutir un sistema con el determinante <span class="min">▶ 53:25</span></h2>
+<p class="donde">Diapositivas 15 a 17 (UD4)</p>
+<p>En un sistema cuadrado, $\det A\neq0$ significa rango máximo y, por tanto, <b>compatible determinado</b>. Así que el determinante dice
+de golpe qué valores del parámetro son «especiales». <b>Método</b>: ① calcula $\det A$ en función del parámetro y busca sus raíces (con
+Ruffini si hace falta); ② si el parámetro no es una raíz, $r(A)=r(A|\mathbf{b})=n$: <b>compatible determinado</b>; ③ cada raíz, por separado: se
+sustituye y se hace Gauss en la <b>ampliada</b> para comparar rangos (Rouché-Frobenius, Tema 2).</p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 5 (UD4) · $ax+y+z=1,\quad x+ay+z=a,\quad x+y+az=a^2$</div>
+  <div class="cue">
+    <div class="fila" style="flex-wrap:nowrap; gap:14pt; margin:0 0 4pt">
+      <span style="flex:none">$M=\M{ccc|c}{a&1&1&1\\1&a&1&a\\1&1&a&a^2}$</span>
+      <p style="margin:0">$\det A=a^3-3a+2=(a-1)^2(a+2)$, que se anula para $a=1$ y $a=-2$. Ruffini con $a=1$ sobre $1,\ 0,\ -3,\ 2$ da
+      $1,\ 1,\ -2\ |\ 0$, es decir $a^2+a-2=(a-1)(a+2)$.</p>
+    </div>
+    <ul style="margin-bottom:2pt">
+      <li>$a\neq1$ y $a\neq-2$: rango 3, <b>compatible determinado</b>.</li>
+      <li>$a=1$: las tres filas son $(1\ 1\ 1\mid1)$, rango 1 = rango 1 &lt; 3: <b>compatible indeterminado</b>.</li>
+      <li>$a=-2$: $M=\left[\begin{smallmatrix}-2&1&1&1\\1&-2&1&-2\\1&1&-2&4\end{smallmatrix}\right]$ y su FERF tiene la fila $(0\ 0\ 0\mid1)$:
+        $r(A)=2$, $r(M)=3$, <b>incompatible</b>. <span class="min">▶ 54:19</span> <span class="min">▶ 55:19</span></li>
+    </ul>
+  </div>
+</div>
+<p class="gris" style="margin-top:-4pt">Fíjate: en el ejercicio 9 del Tema 2 la matriz $A$ era la misma, pero con otro $\mathbf{b}$, y para $k=1$ salía incompatible.
+<b>El determinante solo dice qué valores mirar; lo que pasa en ellos depende de $\mathbf{b}$.</b></p>
+
+<!-- 17 -->
+<h2>17. Un adelanto: $\det(A-\lambda I)$ y Ruffini <span class="min">▶ 55:19</span></h2>
+<p class="donde">Diapositivas 18 y 19 (UD4), ejercicio 6</p>
+<p>«Un problema típico que va a aparecer en la diagonalización»: restar $\lambda$ en la diagonal, calcular el determinante (sale un
+polinomio en $\lambda$) y buscar sus raíces. Aquí hay tantos ceros que, de los seis productos de la regla del 3 × 3, solo dos no se anulan:</p>
+<div class="cadena">
+  <span>$\begin{vmatrix}-6-\lambda&-4&0\\8&6-\lambda&0\\-8&-4&2-\lambda\end{vmatrix}=(-6-\lambda)(6-\lambda)(2-\lambda)-\big[8\cdot(-4)(2-\lambda)\big]=-\lambda^3+2\lambda^2+4\lambda-8$</span>
+</div>
+<div class="fila" style="flex-wrap:nowrap; gap:16pt">
+  <span style="flex:none">$\begin{array}{r|rrrr} & -1 & 2 & 4 & -8\\ 2 & & -2 & 0 & 8\\ \hline & -1 & 0 & 4 & \mathbf{0}\\ -2 & & 2 & -4 & \\ \hline & -1 & 2 & \mathbf{0} & \end{array}$</span>
+  <p style="margin:0">Las raíces enteras dividen al término independiente (8): se prueban 1, −1, 2, −2…, «si son enteras, el profe ha sido
+  bueno». Con $\lambda=2$ el resto es 0; con lo que queda se prueba $\lambda=-2$, y sale otra vez resto 0. Queda $-\lambda+2$, que da
+  $\lambda=2$ otra vez. Raíces: <b>$-2$ y $2$ (doble)</b>. <span class="min">▶ 56:12</span> <span class="min">▶ 57:03</span></p>
+</div>
+
+<!-- 18 -->
+<h2>18. El producto vectorial con un determinante <span class="min">▶ 57:03</span></h2>
+<p class="donde">Diapositivas 20 a 22 (UD4), ejercicio 7</p>
+<p>La fórmula del producto vectorial del Tema 1, que según el profesor memorizar «es un lío», sale sola con un determinante. En la primera fila
+van los vectores $\mathbf{i}=(1,0,0)$, $\mathbf{j}=(0,1,0)$, $\mathbf{k}=(0,0,1)$; en la segunda, $\mathbf{u}$; en la tercera, $\mathbf{v}$. Se hace la
+regla del 3 × 3 y se agrupa lo que va con $\mathbf{i}$, con $\mathbf{j}$ y con $\mathbf{k}$. <span class="min">▶ 58:00</span> <span class="min">▶ 58:50</span></p>
+<div class="cadena">
+  $\mathbf{u}\times\mathbf{v}=\begin{vmatrix}\mathbf{i}&\mathbf{j}&\mathbf{k}\\1&2&1\\3&0&1\end{vmatrix}
+  =(2\cdot1-1\cdot0)\,\mathbf{i}+(1\cdot3-1\cdot1)\,\mathbf{j}+(1\cdot0-2\cdot3)\,\mathbf{k}=(2,\ 2,\ -6)$
+</div>
+<p class="gris" style="margin-top:-4pt">Comprobación: el resultado es perpendicular a los dos, $(1,2,1)\cdot(2,2,-6)=0$ y $(3,0,1)\cdot(2,2,-6)=0$ $\ok$ <span class="min">▶ 59:41</span></p>
+
+<!-- 19 -->
+<h2>19. La factorización LU <span class="min">▶ 59:41</span></h2>
+<p class="donde">Diapositivas 23 a 31 (UD4) · en el aula hay además un PDF complementario de Poole sobre LU (Unidad 3)</p>
+<p>Otra forma de resolver $A\mathbf{x}=\mathbf{b}$: escribir $A=LU$, con $L$ <b>triangular inferior</b> (<i>lower</i>, con unos en la diagonal)
+y $U$ <b>triangular superior</b> (<i>upper</i>). Llamando $\mathbf{y}=U\mathbf{x}$, el sistema se parte en dos sistemas triangulares, que son
+muy fáciles: <span class="min">▶ 1:00:47</span> <span class="min">▶ 1:01:39</span></p>
+<div class="fila" style="flex-wrap:nowrap; gap:16pt; justify-content:center">
+  <span style="flex:none">$A\mathbf{x}=\mathbf{b}\ \Rightarrow\ L\underbrace{U\mathbf{x}}_{\mathbf{y}}=\mathbf{b}\ \Rightarrow$</span>
+  <div>
+    <p style="margin:0">① $L\mathbf{y}=\mathbf{b}$: se despeja <b>hacia delante</b>, de arriba abajo.</p>
+    <p style="margin:0">② $U\mathbf{x}=\mathbf{y}$: <b>hacia atrás</b>, de abajo arriba, como en Gauss.</p>
+  </div>
+</div>
+<div class="caja metodo">
+  <div class="tit">Cómo se calculan L y U: Gauss sin intercambiar filas</div>
+  <div class="cue">
+    <ol style="margin-bottom:2pt">
+      <li>Se hace Gauss <b>sin intercambiar filas</b> («no se puede intercambiar filas»). La triangular que sale es $U$.</li>
+      <li>$L$ lleva unos en la diagonal y, debajo, cada <b>multiplicador cambiado de signo</b>, en el sitio del cero que consiguió. Si hiciste
+        $F_2-3F_1$ (multiplicador $-3$), en $L$ va un $3$ en la posición $(2,1)$.</li>
+      <li>Comprueba que $L\cdot U=A$.</li>
+    </ol>
+    <p style="margin:2pt 0 2pt">Existe si $A$ se escalona sin intercambios (y si $A$ es invertible, es única). Si hacen falta, se reordenan las
+    ecuaciones al principio: «la solución va a ser la misma». <span class="min">▶ 1:02:50</span></p>
+  </div>
+</div>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 8 (UD4) · LU de una 4 × 4, guardando los multiplicadores en la propia matriz</div>
+  <div class="cue">
+    <div class="cadena">
+      <span>$\M{rrrr}{\piv{1}&1&-2&1\\3&2&1&2\\2&0&9&3\\-1&1&2&1}$</span>
+      <span>$\xrightarrow{\substack{F_2-3F_1\\F_3-2F_1\\F_4+F_1}}\M{rrrr}{1&1&-2&1\\\textcolor{2e75b6}{3}&\piv{-1}&7&-1\\\textcolor{2e75b6}{2}&-2&13&1\\\textcolor{2e75b6}{-1}&2&0&2}$</span>
+      <span>$\xrightarrow{\substack{F_3-2F_2,\ F_4+2F_2\\\text{luego }F_4+14F_3}}\M{rrrr}{1&1&-2&1\\\textcolor{2e75b6}{3}&-1&7&-1\\\textcolor{2e75b6}{2}&\textcolor{2e75b6}{2}&-1&3\\\textcolor{2e75b6}{-1}&\textcolor{2e75b6}{-2}&\textcolor{2e75b6}{-14}&42}$</span>
+    </div>
+    <div class="cadena" style="margin-top:0">
+      <span>$L=\M{rrrr}{1&0&0&0\\3&1&0&0\\2&2&1&0\\-1&-2&-14&1},\quad U=\M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&-1&3\\0&0&0&42}$</span>
+    </div>
+    <p style="margin-bottom:2pt">El truco del profesor: cada multiplicador, ya cambiado de signo, se apunta <b>en el hueco del cero que crea</b> (en azul;
+    en la diapositiva, en circulitos). Al final, debajo de la diagonal está $L$ y en el resto, $U$, sin gastar memoria en otra matriz.
+    <span class="min">▶ 1:04:40</span> <span class="min">▶ 1:05:41</span></p>
+  </div>
+</div>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 9 (UD4) · $x-y+z=1,\quad x+y-5z=5,\quad x-2y+3z=0$ con LU</div>
+  <div class="cue">
+    <div class="cadena">
+      <span>$A=\M{rrr}{\piv{1}&-1&1\\1&1&-5\\1&-2&3}$</span>
+      <span>$\xrightarrow{\substack{F_2-F_1\\F_3-F_1}}\M{rrr}{1&-1&1\\\textcolor{2e75b6}{1}&\piv{2}&-6\\\textcolor{2e75b6}{1}&-1&2}$</span>
+      <span>$\xrightarrow{F_3+\frac12F_2}\M{rrr}{1&-1&1\\\textcolor{2e75b6}{1}&2&-6\\\textcolor{2e75b6}{1}&\textcolor{2e75b6}{-\frac12}&-1}$</span>
+      <span>$\Rightarrow\ L=\M{rrr}{1&0&0\\1&1&0\\1&-\frac12&1},\ \ U=\M{rrr}{1&-1&1\\0&2&-6\\0&0&-1}$</span>
+    </div>
+    <p><b>① $L\mathbf{y}=\mathbf{b}$, hacia delante:</b> $y_1=1$; $\ y_1+y_2=5\Rightarrow y_2=4$; $\ y_1-\frac12y_2+y_3=0\Rightarrow y_3=1$. Así que $\mathbf{y}=(1,4,1)$.<br>
+    <b>② $U\mathbf{x}=\mathbf{y}$, hacia atrás:</b> $-z=1\Rightarrow z=-1$; $\ 2y-6z=4\Rightarrow y=-1$; $\ x-y+z=1\Rightarrow x=1$.
+    Solución: $(1,-1,-1)$. <span class="min">▶ 1:07:27</span> <span class="min">▶ 1:08:21</span> <span class="min">▶ 1:09:22</span></p>
+    <p class="gris" style="margin-bottom:1pt">El propuesto 15 es esta misma $A$ con otro $\mathbf{b}$: con $L$ y $U$ ya hechas, solo hay que repetir ① y ②.
+    Para eso sirve la LU.</p>
+  </div>
+</div>
+<div class="nota clase"><span class="lead">«Comprobadlo».</span> Si te piden comprobar que $LU=A$, «es para que lo comprobéis, no para que me
+lo pongáis así y decir: “Sí, funciona”». Comprobar de verdad sirve para encontrar el error: «si sale mal podéis ir hacia atrás, ver dónde me he
+equivocado y arreglarlo». La LU compensa cuando hay muchos $\mathbf{b}$ con la misma $A$. <span class="min">▶ 1:03:52</span> <span class="min">▶ 1:06:36</span></div>
+
+<!-- 20 -->
+<h2>20. Preguntas finales y consejos para la AEC <span class="min">▶ 1:09:22</span></h2>
+<p>A la pregunta de si con esto ya se puede hacer la AEC (en los subtítulos, «la EC»): «Sí, exacto». Prometió colgar los ejercicios propuestos
+al día siguiente. Sus consejos: <span class="min">▶ 1:10:17</span></p>
+<ul>
+  <li><b>Comprobar sustituyendo.</b> Si la solución es $(1,-1,-1)$, se sustituye en el sistema original; si en la segunda ecuación «te da aquí siete en
+    lugar de cinco», hay un error. En la AEC hay una semana: «tenéis de sobra tiempo para comprobar». «Siempre es mejor poner una solución bien
+    hecha que no la primera cosa que haya parecido». <span class="min">▶ 1:10:17</span> <span class="min">▶ 1:11:15</span></li>
+  <li><b>Operaciones por filas.</b> «Si no controláis las operaciones elementales por filas, lo que dice la estadística es que se acabó». La buena
+    noticia es que la mayoría hace bien esta actividad, «porque es fácil, son metodologías». <span class="min">▶ 1:11:15</span></li>
+  <li><b>Pasos intermedios obligatorios.</b> «Si me ponéis la solución final, os pongo un cero»: significa que lo has hecho con Matlab (en los
+    subtítulos, «MalLab»). Pero no hace falta copiar cada cero por separado: con cada pivote, todos los ceros de su columna en un paso; las
+    matrices intermedias de las diapositivas están «por labores educativas». <span class="min">▶ 1:12:19</span> <span class="min">▶ 1:13:11</span></li>
+</ul>
+<p>La despedida: «trabajad un poquito y vais a ver cómo esto se saca». <span class="min">▶ 1:14:10</span></p>
+
+<div class="caja resumen">
+  <div class="tit">Para el examen: lo que me llevo de la clase</div>
+  <div class="cue">
+    <ol style="margin-bottom:2pt">
+      <li>Producto: escribe los tamaños $(m\times n)(n\times r)$; fila por columna; $AB\neq BA$, así que respeta el orden.</li>
+      <li>$(AB)^{-1}=B^{-1}A^{-1}$ (el orden se invierte). En 2 × 2: intercambia $a$ y $d$, cambia el signo de $b$ y $c$, divide entre $ad-bc$.</li>
+      <li>Inversa «por Gauss» = Gauss-Jordan completo sobre $(A|I)$, intercambiando filas enteras. Por otro método: un cero.</li>
+      <li>Con $A^{-1}$ ya tienes la solución: $\mathbf{x}=A^{-1}\mathbf{b}$. No repitas Gauss.</li>
+      <li>Determinante: fórmula hasta 3 × 3. Más grande: Gauss (intercambio → cambia el signo; fila por $k$ → divide entre $k$) o la fila/columna con más ceros.</li>
+      <li>$\det(kA)=k^n\det A$, $\ \det(AB)=\det A\det B$, $\ \det(A^{-1})=1/\det A$, $\ \det A^T=\det A$.</li>
+      <li>Cramer: solo si $\det A\neq0$ y 3 × 3 o menos. Con parámetro: $\det A=0$ da los valores especiales, y cada uno se estudia con la ampliada.</li>
+      <li>LU: Gauss sin intercambios (si hacen falta, reordena antes las ecuaciones); $L$ = multiplicadores con el signo cambiado;
+        $L\mathbf{y}=\mathbf{b}$ hacia delante, $U\mathbf{x}=\mathbf{y}$ hacia atrás.</li>
+      <li>Escribe siempre los pasos y comprueba: $AA^{-1}=I$, $LU=A$, sustituir la solución.</li>
+    </ol>
+  </div>
+</div>
+<div class="caja turno">
+  <div class="tit">Ejercicios propuestos de matrices (diapositivas 30 a 32): hazlos tú y comprueba</div>
+  <div class="cue">
+    <div class="cadena" style="justify-content:space-between; margin:2pt 0 5pt">
+      <span><b>8.</b> $A^{-1}=\dfrac12\M{rrr}{1&0&0\\-1&2&0\\2&-2&2}$</span>
+      <span><b>9.</b> $A^{-1}=\dfrac13\M{rrr}{1&1&-3\\-2&1&0\\0&0&3}$</span>
+      <span><b>10.</b> $A^{-1}=\dfrac14\M{rrrr}{1&-2&1&-2\\-2&0&2&0\\0&4&0&0\\0&0&0&4}$</span>
+    </div>
+    <p class="peq" style="margin-bottom:2pt">En el 8 piden también el rango: $A$ es triangular, así que $\det A=2\cdot1\cdot1=2\neq0$, rango 3 e invertible.
+    En el 9, $\det A=3$; en el 10, $\det A=-4$ y, después de $F_3-F_1$, hay que intercambiar las filas 2 y 3 para tener pivote en la columna 2. Las
+    inversas van sacando factor común, como en el ejercicio 5: el número de fuera multiplica cada entrada. Compruébalas con $AA^{-1}=I$.</p>
+  </div>
+</div>
+<div class="caja turno">
+  <div class="tit">Ejercicios propuestos de determinantes (diapositivas 33 a 38 de la UD4): resultados</div>
+  <div class="cue">
+    <ul class="peq" style="margin-bottom:2pt">
+      <li><b>10.</b> $-13$. &nbsp; <b>11.</b> $D=4$ (resta filas parecidas para crear ceros). &nbsp; <b>12.</b> $k^3-k^2-4k$.</li>
+      <li><b>13.</b> No existen: la fila 1 es $\frac{\beta}{\alpha}$ veces la fila 2 (o hay una fila de ceros), así que el determinante es siempre 0.</li>
+      <li><b>14.</b> Trampa: la 1.ª ecuación no tiene $x_1$ y sin intercambios no hay LU. Reordenando (2.ª, 3.ª, 1.ª), $U$ tiene filas
+        $(1,2,-3)$, $(0,1,-2)$, $(0,0,4)$; $\mathbf{y}=(4,2,4)$ y la solución es $(-1,4,1)$.</li>
+      <li><b>15.</b> Es la $A$ del ejercicio 9 con $\mathbf{b}=(1,0,\frac12)$: $\mathbf{y}=(1,-1,-1)$ y $(x,y,z)=(\frac52,\frac52,1)$.</li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>
