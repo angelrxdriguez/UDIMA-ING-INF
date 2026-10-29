@@ -1,3 +1,5 @@
+# PRIORIDAD NUMERO 1
+El alumno debe aprobar. Quizás hay conceptos y cosas que no son necesarias para que apruebe.
 # Apuntes de UDIMA
 
 Repositorio de estudio del grado: una carpeta por asignatura (`10888 Álgebra`, `10892 Tecnología de Computadores`,
