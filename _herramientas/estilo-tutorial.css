@@ -1,0 +1,82 @@
+/* Aspecto de los tutoriales de Álgebra (hechos en LaTeX): Computer Modern para el texto,
+   Helvetica/Arial para títulos y cajas de colores. Medidas en pt, como en el original. */
+@page { size: A4; margin: 68pt 68pt 56pt 68pt; }
+
+:root {
+  --azul: #1f4e79; --gris-texto: #556068; --naranja-op: #b8620b;
+  --ejemplo: #225e26; --ejemplo-f: #f9fbf9;
+  --faq: #d9730d; --faq-f: #fcf5ee;
+  --turno: #6a4c93; --turno-f: #f8f6fa;
+  --resumen: #8f979d; --resumen-f: #f5f6f7;
+  --metodo: #1f4e79; --metodo-f: #f6f8fa;
+  --clase: #00796b; --clase-f: #f1f8f7;
+  --error: #c62828; --error-f: #fdf6f6;
+  --comprueba: #2e7d32; --comprueba-f: #f5f8f5;
+  --idea: #2e75b6; --idea-f: #f2f6fa;
+}
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { margin: 0; font-family: 'CMU Serif', 'Latin Modern Roman', serif; font-size: 10.9pt; line-height: 13.6pt; color: #000; }
+.sans, h1, h2, h3, .etq, .tit, .lead, th { font-family: Arial, Helvetica, sans-serif; }
+p { margin: 0 0 6pt; }
+ul, ol { margin: 0 0 6pt; padding-left: 16pt; }
+li { margin-bottom: 2.5pt; }
+b, strong { font-weight: bold; }
+.nueva { break-before: page; }
+.junto { break-inside: avoid; }
+
+/* Portada en banda azul. Chrome recorta lo que se sale del margen, así que la primera página
+   va sin márgenes (@page :first { margin: 0 } en el documento) y su contenido dentro de .primera */
+.primera { padding: 0 68pt; break-after: page; }
+.portada { background: var(--azul); color: #fff; margin: 0 -68pt 22pt; padding: 52pt 68pt 30pt; }
+.portada .sup { font: bold 9pt Arial, sans-serif; letter-spacing: .3pt; margin-bottom: 8pt; }
+.portada .titulo { font: bold 25pt/29pt Arial, sans-serif; margin-bottom: 12pt; }
+.portada .sub { font: 12pt Arial, sans-serif; color: #dfe8f1; }
+
+.etq { font-weight: bold; font-size: 10.9pt; color: var(--azul); text-transform: uppercase; margin: 0 0 3pt; }
+h1 { font-size: 17.2pt; line-height: 21pt; color: var(--azul); margin: 0 0 12pt; padding-bottom: 5pt; border-bottom: 1.2pt solid var(--azul); }
+h2 { font-size: 12pt; line-height: 15pt; color: var(--azul); margin: 14pt 0 6pt; break-after: avoid; }
+h3 { font-size: 10.9pt; color: var(--azul); margin: 8pt 0 4pt; break-after: avoid; }
+.intro { background: #f6f8fa; padding: 7pt 11.5pt; margin: 0 0 10pt; }
+.intro .lead { color: var(--azul); }
+
+/* Cajas con barra de título */
+.caja { border: .8pt solid var(--c); border-radius: 2.5pt; background: var(--f); margin: 8pt 0 10pt; overflow: hidden; break-inside: avoid; }
+.caja > .tit { background: var(--c); color: #fff; font-weight: bold; font-size: 10pt; line-height: 12pt; padding: 3pt 11.5pt 3.5pt; }
+.caja > .cue { padding: 6pt 11.5pt 5pt; }
+.caja.ejemplo { --c: var(--ejemplo); --f: var(--ejemplo-f); }
+.caja.faq { --c: var(--faq); --f: var(--faq-f); }
+.caja.turno { --c: var(--turno); --f: var(--turno-f); }
+.caja.resumen { --c: var(--resumen); --f: var(--resumen-f); }
+.caja.metodo { --c: var(--metodo); --f: var(--metodo-f); }
+.caja.clase { --c: var(--clase); --f: var(--clase-f); }
+
+/* Notas con barra lateral */
+.nota { border-left: 3pt solid var(--c); background: var(--f); padding: 6pt 11pt 5pt; margin: 8pt 0 10pt; break-inside: avoid; }
+.nota .lead { color: var(--c); font-weight: bold; }
+.nota.error { --c: var(--error); --f: var(--error-f); }
+.nota.comprueba { --c: var(--comprueba); --f: var(--comprueba-f); }
+.nota.idea { --c: var(--idea); --f: var(--idea-f); }
+.nota.clase { --c: var(--clase); --f: var(--clase-f); }
+
+/* Marca de minuto de la grabación */
+.min { font: bold 7.5pt Arial, sans-serif; color: var(--clase); background: #dcefec; border-radius: 2pt; padding: .5pt 3pt; white-space: nowrap; vertical-align: 1pt; }
+.cita { font-style: italic; }
+.gris { color: var(--gris-texto); font-size: 10pt; line-height: 12.5pt; }
+
+/* Pasos: matriz a la izquierda, explicación en gris a la derecha */
+.pasos { display: grid; grid-template-columns: 54% 46%; column-gap: 10pt; row-gap: 5pt; align-items: center; margin: 4pt 0 6pt; }
+.pasos > .gris { margin: 0; }
+.fila { display: flex; align-items: center; gap: 6pt; flex-wrap: wrap; margin: 4pt 0 6pt; }
+.centro { text-align: center; }
+.dos { display: grid; grid-template-columns: 1fr 1fr; column-gap: 14pt; }
+
+/* Tablas como las del tutorial: filetes arriba, bajo la cabecera y abajo */
+table { border-collapse: collapse; width: 100%; margin: 6pt 0 10pt; font-size: 10pt; line-height: 12.5pt; break-inside: avoid; }
+th { text-align: left; font-size: 9.5pt; color: #000; font-weight: bold; padding: 3pt 5pt; border-top: .8pt solid #000; border-bottom: .5pt solid #000; vertical-align: bottom; }
+td { padding: 2.6pt 5pt; vertical-align: top; }
+tr:last-child td { border-bottom: .8pt solid #000; }
+td.n { white-space: nowrap; }
+
+.katex { font-size: 1em; }
+.katex-display { margin: 4pt 0; }

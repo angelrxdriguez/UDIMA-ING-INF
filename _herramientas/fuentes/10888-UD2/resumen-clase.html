@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Resumen de la clase · Álgebra Tema 2</title>
+<style>
+  @page :first { margin: 0; }
+  .cadena + p, .cadena + ul { margin-top: 2pt; }
+  h2 { margin-top: 12pt; }
+  h2 .min { font-size: 7.5pt; vertical-align: 2pt; margin-left: 4pt; }
+  .donde { font: 8.5pt Arial, sans-serif; color: #5f6b73; margin: -4pt 0 5pt; break-after: avoid; }
+  .cadena { break-inside: avoid; }
+  .cadena { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4pt 6pt; margin: 6pt 0 8pt; }
+  .indice td { padding-top: 1.2pt; padding-bottom: 1.2pt; }
+</style>
+</head>
+<body>
+
+<div class="primera">
+<div class="portada">
+  <div class="sup">ÁLGEBRA · TEMA 2 · CLASE EN DIRECTO DEL 5 DE OCTUBRE DE 2026</div>
+  <div class="titulo">Resumen de la clase:<br>sistemas y método de Gauss</div>
+  <div class="sub">Profesor J. J. Moreno · 1 h 19 min · diapositivas «Sistemas y reducción de matrices por Gauss»</div>
+</div>
+
+<div class="caja clase">
+  <div class="tit">La clase en un minuto</div>
+  <div class="cue">
+    <p>El profesor presentó el método de Gauss como la herramienta sobre la que descansa toda la asignatura y resolvió en
+    directo los ejercicios 1 a 12 de las diapositivas: los nueve primeros explicados por él y los tres últimos dictados por
+    los alumnos. Lo esencial:</p>
+    <ul style="margin-bottom:2pt">
+      <li>Un sistema se escribe $A\mathbf{x}=\mathbf{b}$ y se trabaja solo con los números: la <b>matriz ampliada</b> $(A|\mathbf{b})$.</li>
+      <li>Hay <b>tres operaciones por filas</b> y con ellas se hacen ceros «hacia abajo y hacia la izquierda» (<b>Gauss</b>) o, además,
+        hacia arriba con pivotes iguales a 1 (<b>Gauss-Jordan</b>).</li>
+      <li>El <b>rango</b> (filas no nulas) y el <b>teorema de Rouché-Frobenius</b> dicen si hay una solución, infinitas o ninguna.</li>
+      <li>Formas escalonadas hay infinitas; la <b>FERF es única</b> y se corrige comparándola con la del profesor.</li>
+      <li>Casi todos los errores son de cuentas: si salen números feos, algo ha fallado antes.</li>
+    </ul>
+  </div>
+</div>
+
+<p class="gris">Las marcas <span class="min">▶ 21:09</span> son el minuto de la grabación. Al lado de cada apartado se indica qué
+diapositivas y qué lección del <i>Tutorial del Tema 2</i> lo desarrollan con más calma. La transcripción literal está en
+<i>Clase UD2 - transcripcion.txt</i>.</p>
+
+<h2 style="margin-top:6pt">Índice de la clase</h2>
+<table class="indice">
+  <tr><th>Minuto</th><th>Apartado</th><th>Diapositivas</th></tr>
+  <tr><td class="n">00:00</td><td>1. Por qué este tema es la base</td><td></td></tr>
+  <tr><td class="n">02:41</td><td>2. Del sistema a la matriz ampliada</td><td>2</td></tr>
+  <tr><td class="n">05:35</td><td>3. Tres operaciones y un objetivo: la forma escalonada</td><td>3 y 4</td></tr>
+  <tr><td class="n">10:22</td><td>4. Gauss-Jordan y la forma escalonada reducida (FERF)</td><td>5 y 6</td></tr>
+  <tr><td class="n">15:45</td><td>5. Combinación lineal e independencia: ejercicio 1</td><td>7 y 8</td></tr>
+  <tr><td class="n">19:29</td><td>6. Ejercicio 2: una matriz 4 × 4 hasta la forma escalonada</td><td>9 y 10</td></tr>
+  <tr><td class="n">23:55</td><td>7. Rango y teorema de Rouché-Frobenius</td><td>11 a 14</td></tr>
+  <tr><td class="n">28:39</td><td>8. Ejercicios 3 y 4: Gauss con sustitución hacia atrás, y una FERF</td><td>15 a 18</td></tr>
+  <tr><td class="n">33:13</td><td>9. Ejercicio 5: cuando sobra una ecuación</td><td>19</td></tr>
+  <tr><td class="n">37:45</td><td>10. Ejercicio 6: Gauss-Jordan con cuatro incógnitas</td><td>20 a 22</td></tr>
+  <tr><td class="n">43:00</td><td>11. Ejercicio 7: el mismo sistema por los dos métodos</td><td>23 a 25</td></tr>
+  <tr><td class="n">46:34</td><td>12. Sistemas homogéneos: ejercicio 8</td><td>26 a 29</td></tr>
+  <tr><td class="n">53:23</td><td>13. Ejercicio 9: discutir según el valor de $k$</td><td>30 y 31</td></tr>
+  <tr><td class="n">56:54</td><td>14. Ejercicios 10, 11 y 12, dictados por los alumnos</td><td>32 a 37</td></tr>
+  <tr><td class="n">1:14:11</td><td>15. Preguntas finales y consejos para el examen</td><td></td></tr>
+</table>
+</div>
+
+<!-- 1 -->
+<h2 style="margin-top:0">1. Por qué este tema es la base <span class="min">▶ 00:00</span></h2>
+<p>La sesión empezó con un aviso: Gauss y Gauss-Jordan, «todos los sistemas de reducción de matrices», son fundamentales porque
+prácticamente toda la asignatura está basada en esto. El profesor lo comparó con una bola que se va haciendo grande: de nada
+sirve saber hacer cosas más avanzadas si te equivocas en las operaciones por filas, porque todo lo demás se apoya en ellas.
+<span class="min">▶ 01:03</span></p>
+<p>También explicó cómo prepara los ejercicios: elige los números para que las cuentas salgan «bonitas». Puede aparecer alguna
+fracción, pero si te sale algo como $\frac{117}{81}$, «el profe no es masoca»: significa que en algún momento te has equivocado.
+Es una regla general que conviene recordar en el examen. <span class="min">▶ 01:54</span></p>
+
+<!-- 2 -->
+<h2>2. Del sistema a la matriz ampliada <span class="min">▶ 02:41</span></h2>
+<p class="donde">Diapositiva 2 · Tutorial, lección 1</p>
+<p>El problema típico del álgebra lineal es resolver un sistema de ecuaciones lineales, que se escribe de forma compacta como
+$A\mathbf{x}=\mathbf{b}$: $A$ es la <b>matriz del sistema</b>, $\mathbf{x}$ el vector de incógnitas y $\mathbf{b}$ el vector del lado derecho
+(en negrita porque son vectores). En lugar de $x, y, z, w$ se pueden usar $x_1, x_2, x_3,\dots$: «puedo tener mil millones de variables
+y no necesito un nombre para cada una de ellas».</p>
+<div class="cadena">
+  <span>$\begin{aligned} x_2-3x_3&=-5\\ 2x_1+3x_2-x_3&=7\\ 4x_1+5x_2-2x_3&=10\end{aligned}$</span>
+  <span>$\;\Longrightarrow\;$</span>
+  <span>$\M{rrr}{0&1&-3\\2&3&-1\\4&5&-2}\begin{bmatrix}x_1\\x_2\\x_3\end{bmatrix}=\begin{bmatrix}-5\\7\\10\end{bmatrix}$</span>
+  <span>$\;\Longrightarrow\;(A|\mathbf{b})=\M{rrr|r}{0&1&-3&-5\\2&3&-1&7\\4&5&-2&10}$</span>
+</div>
+<p>Donde falta una incógnita se pone un 0. Como «acarrear todo esto es un lío», se trabaja solo con la <b>matriz ampliada</b>: la del
+sistema con la columna $\mathbf{b}$ añadida. La línea vertical ayuda al principio; «una vez que me acostumbre, podré incluso ignorar
+eso». <span class="min">▶ 04:41</span></p>
+
+<!-- 3 -->
+<h2>3. Tres operaciones y un objetivo: la forma escalonada <span class="min">▶ 05:35</span></h2>
+<p class="donde">Diapositivas 3 y 4 · Tutorial, lecciones 2, 3 y 4</p>
+<div class="caja metodo">
+  <div class="tit">Operaciones elementales por filas: «solamente tres, nada más»</div>
+  <div class="cue">
+    <ol style="margin-bottom:2pt">
+      <li>Multiplicar una fila por una constante <b>no nula</b>.</li>
+      <li>Intercambiar dos filas: «si yo tengo tres ecuaciones, ¿qué más me da el orden en el cual yo las escriba?».</li>
+      <li>Multiplicar una fila por un número y sumar el resultado a otra fila.</li>
+    </ol>
+  </div>
+</div>
+<p>Ninguna cambia las soluciones, y «toda esta asignatura está basada en estas tres operaciones». El objetivo es usarlas para
+conseguir ceros «hacia abajo y hacia la izquierda»: la <b>forma escalonada</b>. En el mejor caso, con tres ecuaciones y tres incógnitas:
+<span class="min">▶ 06:38</span></p>
+<div class="cadena">
+  <span>$\M{ccc|c}{a&b&c&d\\0&e&f&g\\0&0&h&j}$</span>
+  <span class="gris" style="max-width:250pt">La última fila dice $hz=j$: despejo $z$. Subo un escalón, sustituyo $z$ y despejo $y$. Subo otra vez y
+  saco $x$. Esto es la <b>sustitución hacia atrás</b>.</span>
+</div>
+<p>No siempre sale así. El profesor fue enumerando los casos posibles: <span class="min">▶ 07:39</span> <span class="min">▶ 10:22</span></p>
+<table>
+  <tr><th style="width:42%">Lo que queda tras el Gauss</th><th>Qué significa</th></tr>
+  <tr><td>Un pivote por incógnita (3 ecuaciones, 3 incógnitas)</td><td>Una única solución: se despeja de abajo arriba.</td></tr>
+  <tr><td>Una fila de ceros</td><td>No hay ecuaciones suficientes: una variable se pone en función de las otras.</td></tr>
+  <tr><td>Dos filas de ceros</td><td>Solo queda una relación entre las variables: dos de ellas quedan libres.</td></tr>
+  <tr><td>Más incógnitas que ecuaciones (3 × 4)</td><td>Nunca hay una solución numérica única, «porque tengo otra variable $w$».</td></tr>
+</table>
+
+<!-- 4 -->
+<h2>4. Gauss-Jordan y la forma escalonada reducida (FERF) <span class="min">▶ 10:22</span></h2>
+<p class="donde">Diapositivas 5 y 6 · Tutorial, lecciones 3 y 5</p>
+<p><b>Gauss-Jordan</b> sigue donde se queda Gauss: «no solamente voy a poner ceros por debajo, voy a poner ceros por arriba», y además los
+pivotes tienen que valer 1. El resultado es la <b>forma escalonada reducida por filas</b> (FERF), y en el mejor caso la solución
+«es una lectura»:</p>
+<div class="cadena">
+  <span>$\M{ccc|c}{1&0&0&a\\0&1&0&b\\0&0&1&c}\Rightarrow x=a,\ y=b,\ z=c$</span>
+  <span style="width:28pt"></span>
+  <span>$\M{cccc|c}{1&0&0&a&d\\0&1&0&b&e\\0&0&1&c&f}$</span>
+</div>
+<p>A la derecha, con 4 incógnitas: aunque sea el mejor caso, una variable queda libre. La diferencia clave para el examen: <b>formas escalonadas hay muchas</b>, todas las que quieras; <b>la FERF es única</b>. «Si yo os pido
+la forma escalonada reducida por filas, me la tenéis que dar y tiene que concordar con lo que yo tengo. Si no concuerda con lo que yo tengo, está mal».
+Para reconocerla: pivotes iguales a 1 y, por encima y por debajo de cada pivote, solo ceros. <span class="min">▶ 12:10</span> <span class="min">▶ 14:03</span></p>
+
+<!-- 5 -->
+<h2>5. Combinación lineal e independencia: ejercicio 1 <span class="min">▶ 15:45</span></h2>
+<p class="donde">Diapositivas 7 y 8 · Tutorial, lección 10</p>
+<p>Una <b>combinación lineal</b> de vectores es multiplicar cada uno por un número y sumarlos. Unas filas son <b>linealmente
+independientes</b> si ninguna es combinación lineal de las otras. La idea nueva de la clase: al hacer operaciones por filas «lo que
+estoy haciendo es descubrir esas combinaciones lineales». Si aparece una fila de ceros, esa fila era combinación de las demás; el
+número de filas que no se anulan es el número de filas independientes. Y «cuidado con la doble negación»: dependiente significa
+no independiente. <span class="min">▶ 16:46</span> <span class="min">▶ 17:38</span></p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 1 · ¿Son independientes $\mathbf{u}=(1,1,2)$, $\mathbf{v}=(0,1,1)$ y $\mathbf{w}=(2,0,2)$?</div>
+  <div class="cue">
+    <div class="cadena">
+      $\M{rrr}{1&1&2\\0&1&1\\2&0&2}\xrightarrow{F_3-2F_1}\M{rrr}{1&1&2\\0&\piv{1}&1\\0&-2&-2}\xrightarrow{F_3+2F_2}\M{rrr}{1&1&2\\0&1&1\\0&0&0}$
+    </div>
+    <p style="margin-bottom:1pt">Sale una fila de ceros: son <b>dependientes</b>. De hecho, $\mathbf{w}=2\mathbf{u}-2\mathbf{v}$:
+      $2(1,1,2)-2(0,1,1)=(2,0,2)$ $\ok$ <span class="min">▶ 18:29</span></p>
+  </div>
+</div>
+
+<!-- 6 -->
+<h2>6. Ejercicio 2: una matriz 4 × 4 hasta la forma escalonada <span class="min">▶ 19:29</span></h2>
+<p class="donde">Diapositivas 9 y 10 (es el mismo que el ejercicio 12) · Tutorial, lección 6</p>
+<div class="cadena">
+  $\M{rrrr}{1&1&-2&1\\2&0&1&3\\-1&1&2&1\\3&2&1&2}
+  \xrightarrow{\substack{F_2-2F_1\\F_3+F_1\\F_4-3F_1}}
+  \M{rrrr}{1&1&-2&1\\0&-2&5&1\\0&2&0&2\\0&-1&7&-1}
+  \xrightarrow{F_2\leftrightarrow F_4}
+  \M{rrrr}{1&1&-2&1\\0&\piv{-1}&7&-1\\0&2&0&2\\0&-2&5&1}$
+</div>
+<div class="cadena">
+  $\xrightarrow{\substack{F_3+2F_2\\F_4-2F_2}}
+  \M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&14&0\\0&0&-9&3}
+  \xrightarrow{\frac{1}{14}F_3}
+  \M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&1&0\\0&0&-9&3}
+  \xrightarrow{F_4+9F_3}
+  \M{rrrr}{1&1&-2&1\\0&-1&7&-1\\0&0&1&0\\0&0&0&3}$
+</div>
+<ul>
+  <li><b>«Voy a ser astuto».</b> En la columna 2 había un −2 y un −1; «el −2 no me gusta», así que intercambió las filas 2 y 4 para trabajar
+    con el −1. Con un ±1 de pivote, el multiplicador es el propio número que quieres anular. <span class="min">▶ 21:09</span></li>
+  <li><b>Dividir entre 14.</b> Dijo «multiplico esta fila por 14» y alguien preguntó cómo salía el 1: era multiplicar por
+    $\frac{1}{14}$, una de las operaciones permitidas. «Mucho mejor tratar con un uno». <span class="min">▶ 23:02</span> <span class="min">▶ 23:55</span></li>
+  <li><b>Lo que no cambia.</b> Al hacer $F_4+9F_3$, el 3 final se queda igual porque $9\cdot0+3=3$. <span class="min">▶ 23:55</span></li>
+  <li><b>Dónde parar.</b> «Nos han pedido un Gauss»: con el triángulo de ceros ya está. Las cuatro filas son no nulas, así que el rango es 4.</li>
+</ul>
+
+<!-- 7 -->
+<h2>7. Rango y teorema de Rouché-Frobenius <span class="min">▶ 23:55</span></h2>
+<p class="donde">Diapositivas 11 a 14 · Tutorial, lecciones 6 y 7</p>
+<p>El <b>rango</b> de una matriz es el número de filas que no son enteramente de ceros después de hacer el Gauss (es decir, el número
+de filas linealmente independientes). Con él se clasifica cualquier sistema: se llama $r$ al rango de $A$, $r'$ al de $(A|\mathbf{b})$ y
+$n$ al número de incógnitas. <span class="min">▶ 24:49</span></p>
+<table>
+  <tr><th>Rangos</th><th>Tipo de sistema</th><th>Soluciones</th></tr>
+  <tr><td>$r=r'=n$</td><td>Compatible determinado</td><td>Una única: «$x=1,\ y=7,\ z=0$»</td></tr>
+  <tr><td>$r=r'&lt;n$</td><td>Compatible indeterminado</td><td>Infinitas, con $n-r$ parámetros</td></tr>
+  <tr><td>$r&lt;r'$</td><td>Incompatible</td><td>Ninguna</td></tr>
+</table>
+<p>En la grabación se le escapa «Rouché-Laplace», pero el teorema es el de Rouché-Frobenius. Con los ejemplos de $n=4$ de las
+diapositivas 13 y 14 insistió en <b>leer la última fila</b>: si queda $[\,0\ 0\ 0\ 0\mid g\,]$ con $g\neq0$, esa ecuación dice $0=g$,
+«eso es una barbaridad», y con una sola fila así el sistema ya es incompatible («ya la he liado»). <span class="min">▶ 26:41</span> <span class="min">▶ 27:42</span></p>
+
+<!-- 8 -->
+<h2 class="nueva">8. Ejercicios 3 y 4: Gauss con sustitución hacia atrás, y una FERF <span class="min">▶ 28:39</span></h2>
+<p class="donde">Diapositivas 15 a 18 · Tutorial, lecciones 4 y 5</p>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 3 · $2x+y-z=-3,\quad x-2y+2z=1,\quad 2x+y+z=5$</div>
+  <div class="cue">
+    <div class="cadena">
+      $\M{rrr|r}{2&1&-1&-3\\1&-2&2&1\\2&1&1&5}
+      \xrightarrow{F_1\leftrightarrow F_2}
+      \M{rrr|r}{\piv{1}&-2&2&1\\2&1&-1&-3\\2&1&1&5}
+      \xrightarrow{\substack{F_2-2F_1\\F_3-2F_1}}
+      \M{rrr|r}{1&-2&2&1\\0&5&-5&-5\\0&5&-3&3}$
+    </div>
+    <div class="cadena">
+      $\xrightarrow{\frac15F_2}
+      \M{rrr|r}{1&-2&2&1\\0&\piv{1}&-1&-1\\0&5&-3&3}
+      \xrightarrow{F_3-5F_2}
+      \M{rrr|r}{1&-2&2&1\\0&1&-1&-1\\0&0&2&8}
+      \xrightarrow{\frac12F_3}
+      \M{rrr|r}{1&-2&2&1\\0&1&-1&-1\\0&0&1&4}$
+    </div>
+    <p style="margin-bottom:2pt">Primero intercambia filas para tener un 1 de pivote: «se puede [con el 2], pero soy vago y cómodo igual que vosotros, así que
+    hay que ser astuto». Después, <b>sustitución hacia atrás</b>: $z=4$; $y-z=-1\Rightarrow y=3$; $x-2y+2z=1\Rightarrow x=-1$.
+    Como piden Gauss y no Gauss-Jordan, se deja en la escalonada. <span class="min">▶ 29:28</span> <span class="min">▶ 31:11</span></p>
+  </div>
+</div>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 4 · Forma escalonada reducida (o canónica) de una matriz</div>
+  <div class="cue">
+    <div class="cadena">
+      $\M{rrr}{1&0&-3\\2&3&-6\\4&6&-11}
+      \xrightarrow{\substack{F_2-2F_1\\F_3-4F_1}}
+      \M{rrr}{1&0&-3\\0&3&0\\0&6&1}
+      \xrightarrow{F_3-2F_2}
+      \M{rrr}{1&0&-3\\0&3&0\\0&0&1}
+      \xrightarrow{\substack{\frac13F_2\\F_1+3F_3}}
+      \M{rrr}{1&0&0\\0&1&0\\0&0&1}$
+    </div>
+    <p style="margin-bottom:2pt">El cero de encima del segundo pivote «ya venía de fábrica»; faltaban el 1 del segundo pivote y el cero encima del tercero.
+    La FERF es la identidad, lo que dice que las tres filas son independientes. <span class="min">▶ 32:02</span> <span class="min">▶ 33:13</span></p>
+  </div>
+</div>
+
+<!-- 9 -->
+<h2>9. Ejercicio 5: cuando sobra una ecuación <span class="min">▶ 33:13</span></h2>
+<p class="donde">Diapositiva 19 · Tutorial, lección 8</p>
+<div class="cadena">
+  <span>$\begin{aligned}x+y+2z&=2\\ y+z&=1\\ 2x+2z&=2\end{aligned}$</span>
+  <span style="margin-left:14pt">$\M{rrr|r}{1&1&2&2\\0&1&1&1\\2&0&2&2}
+  \xrightarrow{F_3-2F_1}
+  \M{rrr|r}{1&1&2&2\\0&1&1&1\\0&-2&-2&-2}$</span>
+</div>
+<div class="cadena">
+  <span>$\xrightarrow{F_3+2F_2}
+  \M{rrr|r}{1&1&2&2\\0&1&1&1\\0&0&0&0}
+  \xrightarrow{F_1-F_2}
+  \M{rrr|r}{1&0&1&1\\0&1&1&1\\0&0&0&0}$</span>
+</div>
+<p>«Ya se veía venir»: sale una fila de ceros. $r=r'=2&lt;3$, así que es <b>compatible indeterminado</b>. Las columnas con pivote dan las
+variables principales ($x$, $y$); la que no tiene pivote, $z$, es la <b>variable libre</b> y se llama $t$. Leyendo la FERF:
+$x+t=1$ y $y+t=1$, es decir, $x=1-t,\ y=1-t,\ z=t$. <span class="min">▶ 34:57</span> <span class="min">▶ 36:38</span></p>
+<div class="caja faq">
+  <div class="tit">Pregunta en clase · Si ya se ve que es indeterminado, ¿hay que seguir haciendo ceros?</div>
+  <div class="cue">
+    Si el enunciado pide la FERF, sí: «si tú llegas hasta aquí, no me das la forma escalonada reducida por filas. Por lo tanto,
+    no me das la solución a lo que se está pidiendo. Y por lo tanto, fallas el ejercicio». Si solo piden la solución, es decisión
+    tuya parar cuando ya la ves. <span class="min">▶ 35:49</span>
+  </div>
+</div>
+<p>Geométricamente son tres planos que no se cortan en un punto, pero «los tres pasan por la misma recta», que es la solución.
+Es lo mismo que se hacía en el Tema 1. <span class="min">▶ 36:38</span></p>
+
+<!-- 10 -->
+<h2>10. Ejercicio 6: Gauss-Jordan con cuatro incógnitas <span class="min">▶ 37:45</span></h2>
+<p class="donde">Diapositivas 20 a 22 · Tutorial, lección 8</p>
+<p>$x+2y-3z-16w=4,\quad y+2z-3w=6,\quad -x-y+z+9w=-2$. Antes de empezar ya se sabe algo: con tres ecuaciones y cuatro incógnitas,
+«el mejor caso va a ser compatible indeterminado».</p>
+<div class="cadena">
+  $\M{rrrr|r}{1&2&-3&-16&4\\0&1&2&-3&6\\-1&-1&1&9&-2}
+  \xrightarrow{F_3+F_1}
+  \M{rrrr|r}{1&2&-3&-16&4\\0&1&2&-3&6\\0&1&-2&-7&2}$
+</div>
+<div class="cadena">
+  $\xrightarrow{F_3-F_2}
+  \M{rrrr|r}{1&2&-3&-16&4\\0&1&2&-3&6\\0&0&-4&-4&-4}
+  \xrightarrow{-\frac14F_3}
+  \M{rrrr|r}{1&2&-3&-16&4\\0&1&2&-3&6\\0&0&1&1&1}$
+</div>
+<div class="cadena">
+  $\xrightarrow{\substack{F_2-2F_3\\F_1+3F_3}}
+  \M{rrrr|r}{1&2&0&-13&7\\0&1&0&-5&4\\0&0&1&1&1}
+  \xrightarrow{F_1-2F_2}
+  \M{rrrr|r}{1&0&0&-3&-1\\0&1&0&-5&4\\0&0&1&1&1}$
+</div>
+<p>Aquí enunció <b>la regla fundamental</b>: «primero se consiguen los ceros por debajo y, una vez que están todos los ceros que están
+abajo, conseguimos los ceros que están por arriba». Mezclar, «mal asunto». Los de arriba, desde el último pivote hacia arriba.
+<span class="min">▶ 38:44</span> <span class="min">▶ 39:37</span></p>
+<p>La variable libre es $w=t$ y, pasando $t$ al otro lado en cada fila, sale la solución. Colocada en columnas (lo que no lleva $t$ a un
+lado, lo que lleva $t$ al otro) son las <b>ecuaciones paramétricas</b> de una recta en $\mathbb{R}^4$: un solo parámetro, un grado de libertad.
+«Por primera vez estáis trabajando en cuatro dimensiones… y es fascinante». <span class="min">▶ 42:08</span> <span class="min">▶ 43:00</span></p>
+<div class="cadena">
+  <span>$x=-1+3t,\quad y=4+5t,\quad z=1-t,\quad w=t$</span>
+  <span>$\;\Longleftrightarrow\;$</span>
+  <span>$(x,y,z,w)=(-1,4,1,0)+t\,(3,5,-1,1)$</span>
+</div>
+
+<!-- 11 -->
+<h2>11. Ejercicio 7: el mismo sistema por los dos métodos <span class="min">▶ 43:00</span></h2>
+<p class="donde">Diapositivas 23 a 25 · Tutorial, lección 5</p>
+<p>$x+2y+6z=-13,\quad -2x+4y+8z=-18,\quad -4x+y+2z=-8$, «mediante reducción gaussiana y por Gauss-Jordan». «Cuidado, dos
+metodologías»: como Gauss-Jordan es la continuación de Gauss, se hace primero el Gauss, se resuelve, y después se sigue con la misma
+matriz.</p>
+<div class="cadena">
+  $\M{rrr|r}{1&2&6&-13\\-2&4&8&-18\\-4&1&2&-8}
+  \xrightarrow{\substack{F_2+2F_1\\F_3+4F_1\\\frac14F_2}}
+  \M{rrr|r}{1&2&6&-13\\0&2&5&-11\\0&9&26&-60}
+  \xrightarrow{\substack{\frac12F_2\,,\ F_3-9F_2\\\text{y luego }\times 2}}
+  \M{rrr|r}{1&2&6&-13\\0&2&5&-11\\0&0&7&-21}$
+</div>
+<p>Al dividir entre 2 aparecen mitades ($\frac52$, $-\frac{11}{2}$, $\frac72$, $-\frac{21}{2}$). El profesor las arrastró y al final multiplicó las
+filas por 2: «las fracciones han desaparecido, mira qué bien». Por <b>sustitución hacia atrás</b>: $7z=-21\Rightarrow z=-3$, luego $y=2$ y $x=1$.
+<span class="min">▶ 43:50</span> <span class="min">▶ 44:44</span></p>
+<div class="cadena">
+  $\xrightarrow{\frac17F_3}
+  \M{rrr|r}{1&2&6&-13\\0&2&5&-11\\0&0&1&-3}
+  \xrightarrow{\substack{F_1-6F_3\\F_2-5F_3}}
+  \M{rrr|r}{1&2&0&5\\0&2&0&4\\0&0&1&-3}
+  \xrightarrow{\substack{\frac12F_2\\F_1-2F_2}}
+  \M{rrr|r}{1&0&0&1\\0&1&0&2\\0&0&1&-3}$
+</div>
+<p>Por Gauss-Jordan se lee $x=1,\ y=2,\ z=-3$. «Tenía que dar lo mismo. Si no da lo mismo, mal asunto»: pedir los dos métodos
+te regala una comprobación. (La diapositiva 24 escribe $6(3)$ donde debe ser $6(-3)$; el resultado, $x=1$, es correcto.)
+<span class="min">▶ 45:35</span></p>
+
+<!-- 12 -->
+<h2>12. Sistemas homogéneos: ejercicio 8 <span class="min">▶ 46:34</span></h2>
+<p class="donde">Diapositivas 26 a 29 · Tutorial, lección 9</p>
+<p>Un sistema es <b>homogéneo</b> si $\mathbf{b}=\mathbf{0}$. Entonces la columna de la derecha son ceros y las operaciones por filas «nunca
+le van a afectar», así que nunca puede ser incompatible («esto no se da»). Si $r=n$ la única solución es la nula, que no tiene interés;
+lo normal es que sea compatible indeterminado. Por eso la columna de ceros se puede ni escribir y añadirla al final.
+<span class="min">▶ 46:34</span> <span class="min">▶ 48:40</span></p>
+<div class="cadena">
+  $\M{rrrr}{1&2&3&4\\2&3&4&5\\3&4&5&6\\4&5&6&7}
+  \xrightarrow{\substack{F_2-F_1\\F_3-2F_1\\F_4-3F_1}}
+  \M{rrrr}{1&2&3&4\\0&-1&-2&-3\\0&-2&-4&-6\\0&-3&-6&-9}
+  \xrightarrow{\substack{F_3-2F_2\\F_4-3F_2}}
+  \M{rrrr}{1&2&3&4\\0&-1&-2&-3\\0&0&0&0\\0&0&0&0}$
+</div>
+<div class="cadena">
+  $\xrightarrow{\substack{F_1+2F_2\\-F_2}}
+  \M{rrrr}{1&0&-1&-2\\0&1&2&3\\0&0&0&0\\0&0&0&0}$
+</div>
+<p>Variables principales $x$ e $y$; libres $z=s$ y $w=t$. De $x-z-2w=0$ e $y+2z+3w=0$: $\ x=s+2t,\ \ y=-2s-3t,\ \ z=s,\ \ w=t$.
+Dos parámetros, dos grados de libertad: «un grado de libertad es una recta, dos grados de libertad es un plano». Es un plano en
+$\mathbb{R}^4$: «no lo podemos visualizar, pero podemos pensar sobre ello». <span class="min">▶ 51:24</span> <span class="min">▶ 52:25</span></p>
+<div class="nota clase">
+  <span class="lead sans">La moraleja de este ejercicio.</span> En las diapositivas las operaciones van una a una «por razones pedagógicas».
+  En el examen, con cada pivote haz todos los ceros de su columna en el mismo paso, sin copiar la matriz entera después de cada
+  operación. <span class="min">▶ 48:40</span> <span class="min">▶ 49:33</span>
+</div>
+
+<!-- 13 -->
+<h2>13. Ejercicio 9: discutir según el valor de $k$ <span class="min">▶ 53:23</span></h2>
+<p class="donde">Diapositivas 30 y 31 · Tutorial, lecciones 11 y 12</p>
+<p>«Este es un problema típico que se suele pedir»: la matriz trae una letra y hay que decir para qué valores el sistema es compatible
+determinado, indeterminado o incompatible. El método es el mismo Gauss, con dos trucos del profesor: <b>intercambiar filas para dejar la
+$k$ «abajo del todo»</b> y tener un 1 de pivote, y <b>no asustarse si las $k$ se complican</b>: «me aguanto y la voy cargando».
+<span class="min">▶ 54:17</span> <span class="min">▶ 55:08</span></p>
+<div class="cadena">
+  $\M{ccc|c}{k&1&1&k\\1&k&1&2\\1&1&k&1}
+  \xrightarrow{F_1\leftrightarrow F_3}
+  \M{ccc|c}{1&1&k&1\\1&k&1&2\\k&1&1&k}
+  \xrightarrow{\substack{F_2-F_1\\F_3-kF_1}}
+  \M{ccc|c}{1&1&k&1\\0&k-1&1-k&1\\0&1-k&1-k^2&0}$
+</div>
+<div class="cadena">
+  $\xrightarrow{F_3+F_2}
+  \M{ccc|c}{1&1&k&1\\0&k-1&1-k&1\\0&0&-k^2-k+2&1}$
+</div>
+<p>Los rangos solo pueden separarse cuando la entrada $(3,3)$ vale 0, porque la $(3,4)$ es 1 y no se anula nunca:
+$-k^2-k+2=0 \iff k=1$ o $k=-2$. <span class="min">▶ 55:08</span> <span class="min">▶ 56:05</span></p>
+<table>
+  <tr><th>Valor de $k$</th><th>Rangos</th><th>Sistema</th></tr>
+  <tr><td>$k=1$</td><td>$r=1,\ r'=2$ (las filas 2 y 3 quedan $[\,0\ 0\ 0\mid1\,]$)</td><td>Incompatible</td></tr>
+  <tr><td>$k=-2$</td><td>$r=2,\ r'=3$</td><td>Incompatible</td></tr>
+  <tr><td>Cualquier otro</td><td>$r=r'=3$</td><td>Compatible determinado</td></tr>
+</table>
+<p class="gris" style="margin-top:-4pt">En clase no se comentó el caso indeterminado: aquí no existe. La diapositiva 31 dice $r(A|\mathbf{b})=3$ también para $k=1$,
+pero es 2 (la conclusión, incompatible, es correcta).</p>
+
+<!-- 14 -->
+<h2>14. Ejercicios 10, 11 y 12, dictados por los alumnos <span class="min">▶ 56:54</span></h2>
+<p class="donde">Diapositivas 32 a 37 · Tutorial, lecciones 4, 8 y 6</p>
+<p>En la última parte el profesor hizo las operaciones y pidió a los alumnos que le dictaran los números: «Venga, participación.
+Buscadme una hoja de papel si es necesario».</p>
+<div class="dos">
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 10 · $y-3z=-5,\ 2x+3y-z=7,\ 4x+5y-2z=10$</div>
+  <div class="cue">
+    La fila 1 empieza por 0: «con el cero no puedo hacer nada», así que intercambia $F_1\leftrightarrow F_2$ y usa el 2 de pivote.
+    Con $F_3-2F_1$ y $F_3+F_2$ queda
+    $$\M{rrr|r}{2&3&-1&7\\0&1&-3&-5\\0&0&-3&-9}$$
+    $z=3$, $y=4$ y $x=-1$, sustituyendo hacia atrás. <span class="min">▶ 56:54</span> <span class="min">▶ 1:00:17</span>
+  </div>
+</div>
+<div class="caja ejemplo">
+  <div class="tit">Ejercicio 11 · $y+z=1,\ 2x+2y=2,\ x+2y+z=2$</div>
+  <div class="cue">
+    Intercambia para tener un 1 arriba; con $F_2-2F_1$, $-\frac12F_2$, $F_3-F_2$ y $F_1-2F_2$ llega a
+    $$\M{rrr|r}{1&0&-1&0\\0&1&1&1\\0&0&0&0}$$
+    $r=r'=2&lt;3$: compatible indeterminado, $x=t,\ y=1-t,\ z=t$. <span class="min">▶ 1:01:15</span> <span class="min">▶ 1:06:16</span>
+  </div>
+</div>
+</div>
+<p style="margin-top:-2pt"><b>Ejercicio 12</b> es la misma matriz que el ejercicio 2 y llega a la misma escalonada (apartado 6). Como solo pedían un Gauss,
+«se puede parar aquí perfectamente», y «eso sería una respuesta posible de las muchas». <span class="min">▶ 1:07:15</span> <span class="min">▶ 1:13:14</span></p>
+<div class="nota error">
+  <span class="lead sans">Lo que falló al dictar.</span> Sobre todo signos y cuentas sencillas: dudas con $-2\cdot3+5=-1$ en el ejercicio 10,
+  varios valores mal en el 11 y un 9 que era −9 en el 12. El profesor corrigió con dos comprobaciones rápidas: si la fila de
+  herramienta tiene un 0, el número de abajo no cambia; y si sumas algo distinto de 0 a un 0, el resultado no puede ser 0
+  («te está dando algo»). Su conclusión: «es fácil, pero si no se les dicta, se pueden equivocar».
+  <span class="min">▶ 57:43</span> <span class="min">▶ 1:03:49</span> <span class="min">▶ 1:10:41</span> <span class="min">▶ 1:11:31</span>
+</div>
+
+<!-- 15 -->
+<h2>15. Preguntas finales y consejos para el examen <span class="min">▶ 1:14:11</span></h2>
+<p>El profesor dejó los ejercicios 13 a 17 para casa y anunció que subiría la presentación (es el archivo <i>algebra_ejercicios-2-paginado.pdf</i>). Su
+mensaje sobre la evaluación: quien haga bien todo lo de esta clase tiene «ganada» la AEC 1 (en los subtítulos sale «ECE 1»), y además
+tendrá las herramientas para el resto de la asignatura, porque todo es «Gauss, Gauss-Jordan, formas escalonadas reducidas por
+filas» y sistemas compatibles determinados, indeterminados o incompatibles. <span class="min">▶ 1:13:14</span> <span class="min">▶ 1:14:11</span></p>
+<div class="caja faq">
+  <div class="tit">Pregunta en clase · ¿Un camino más largo puede dar el mismo resultado?</div>
+  <div class="cue">
+    Sí. Si piden una forma escalonada, «puedo parar donde yo quiera, siempre y cuando tenga mi triángulo de ceros». Dividir una fila,
+    cambiarle el signo o incluso multiplicarla por 2 «porque me da la gana» sigue siendo válido: «hay infinitas formas escalonadas,
+    pero tienes una única forma escalonada reducida por filas». Una FERF distinta de la buena «te lo tengo que dar como mal».
+    <span class="min">▶ 1:15:13</span> <span class="min">▶ 1:16:08</span> <span class="min">▶ 1:17:07</span>
+  </div>
+</div>
+<p>Y el cierre, sobre el examen: los fallos suelen estar en las operaciones. Si en lugar de números redondos llegas a $\frac{11}{3}$ o
+$\frac{17}{91}$, las cuentas a mano se vuelven horribles «y son horribles porque están mal»: pierdes «tiempo precioso» y el ejercicio
+acaba mal igualmente. «Entrenad este tipo de operaciones». <span class="min">▶ 1:18:01</span> <span class="min">▶ 1:18:57</span></p>
+
+<div class="caja resumen">
+  <div class="tit">Para el examen: lo que me llevo de la clase</div>
+  <div class="cue">
+    <ol style="margin-bottom:2pt">
+      <li>Lee qué piden: «Gauss» → basta una escalonada; «FERF», «canónica» o «Gauss-Jordan» → la FERF entera, que es única.</li>
+      <li>Busca un pivote 1 o −1 intercambiando filas antes de hacer ceros.</li>
+      <li>Primero todos los ceros de abajo; luego los de arriba, desde el último pivote.</li>
+      <li>Con cada pivote, todos los ceros de su columna en un solo paso.</li>
+      <li>Lee la última fila: $[\,0\cdots0\mid g\neq0\,]$ es incompatible; si no, cuenta pivotes: $r=n$ o $r&lt;n$.</li>
+      <li>Variables sin pivote = parámetros. Uno: recta; dos: plano.</li>
+      <li>Con parámetro: deja la $k$ abajo, no dividas entre expresiones con $k$ y estudia aparte los valores que anulan pivotes.</li>
+      <li>Números feos = error anterior. Si piden dos métodos, las soluciones deben coincidir.</li>
+      <li>Practica los ejercicios 13 a 17 (en el tutorial, páginas 39 a 41) y el simulacro.</li>
+    </ol>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,4101 @@
+WEBVTT
+
+1
+00:00:04.470 --> 00:00:05.370
+Hola, buenas tardes.
+
+2
+00:00:08.190 --> 00:00:09.390
+Hola, buenas tardes.
+
+3
+00:00:14.101 --> 00:00:14.820
+Buenas.
+
+4
+00:00:15.601 --> 00:00:16.081
+Hola.
+
+5
+00:00:24.631 --> 00:00:28.920
+Vamos a hacer falta un mutear, nada más. Vamos a ver la diferencia.
+
+6
+00:00:29.131 --> 00:00:32.010
+Le doy ese mute a los que puedan venir ahora
+
+7
+00:00:33.960 --> 00:00:34.710
+antes de empezar.
+
+8
+00:00:34.860 --> 00:00:41.911
+¿Qué
+
+9
+00:00:41.970 --> 00:00:46.830
+tal el tema uno? ¿Qué tal os ha parecido? ¿Difícil, fácil?
+
+10
+00:00:52.950 --> 00:00:55.200
+No es que sea algo difícil, pero todavía
+
+11
+00:00:57.990 --> 00:01:02.821
+hay que aclarar por dónde andas: puntos, distancias o planos.
+
+12
+00:01:03.990 --> 00:01:04.621
+En mi opinión.
+
+13
+00:01:07.170 --> 00:01:11.610
+En el fondo es práctica y ya está, que tampoco es tan complicado.
+
+14
+00:01:13.711 --> 00:01:17.520
+Buenas tardes, bienvenidos a todos a esta nueva sesión de álgebra lineal.
+
+15
+00:01:18.660 --> 00:01:20.100
+Hoy vamos a ver este
+
+16
+00:01:21.510 --> 00:01:21.780
+tema,
+
+17
+00:01:23.010 --> 00:01:27.630
+que es todo lo que es Gauss y Gauss-Jordan, todos los sistemas de reducción de
+
+18
+00:01:27.690 --> 00:01:28.410
+matrices.
+
+19
+00:01:29.940 --> 00:01:35.850
+Es fundamental, porque resulta que toda la asignatura prácticamente toda está
+
+20
+00:01:35.910 --> 00:01:36.569
+basada en esto.
+
+21
+00:01:37.859 --> 00:01:42.630
+Si uno no controla esta parte, no controlará nada.
+
+22
+00:01:43.230 --> 00:01:48.060
+Esto es como una bola. De nada te sirve saber cómo se hace cierto tipo de cosas si
+
+23
+00:01:48.090 --> 00:01:52.380
+en las operaciones elementales por filas, que es en lo que está basado esto, uno se
+
+24
+00:01:52.410 --> 00:01:53.101
+equivoca.
+
+25
+00:01:54.840 --> 00:01:59.461
+Porque además, si uno se equivoca, lo que suele ocurrir es que los números los
+
+26
+00:01:59.490 --> 00:02:01.680
+pongo bonitos, para que quede bonito generalmente.
+
+27
+00:02:01.830 --> 00:02:07.650
+Puede aparecer una fracción, pero si os aparece 117/81, el profe no es masoca, lo
+
+28
+00:02:07.650 --> 00:02:09.870
+ha tenido que hacer antes y eso no lo va a hacer.
+
+29
+00:02:10.290 --> 00:02:15.960
+Eso significa que en algún momento os habéis equivocado. Es como regla general.
+
+30
+00:02:15.960 --> 00:02:21.690
+¿En qué se basa esta asignatura?
+
+31
+00:02:22.260 --> 00:02:27.570
+Básicamente, se basa en resolver un problema típico, y el problema típico
+
+32
+00:02:28.110 --> 00:02:32.520
+es un sistema de ecuaciones. ¿Cómo es el sistema típico?
+
+33
+00:02:33.750 --> 00:02:34.500
+De esta manera.
+
+34
+00:02:36.601 --> 00:02:37.650
+Yo tengo una matriz
+
+35
+00:02:39.150 --> 00:02:41.010
+A, que va a ser la matriz del sistema.
+
+36
+00:02:41.370 --> 00:02:43.290
+Voy a tener un vector
+
+37
+00:02:45.540 --> 00:02:50.520
+X, y ese vector va a estar compuesto por las variables x, y, z, etcétera.
+
+38
+00:02:51.601 --> 00:02:56.160
+Y un vector del lado derecho. Observen que está en negrita, porque
+
+39
+00:02:57.780 --> 00:03:00.000
+este y esto son vectores, aunque no se lo ponga.
+
+40
+00:03:02.790 --> 00:03:07.050
+Esta es la manera compacta de escribir cualquier sistema de ecuaciones, como por
+
+41
+00:03:07.080 --> 00:03:08.070
+ejemplo este de aquí.
+
+42
+00:03:09.690 --> 00:03:15.389
+Naturalmente, en lugar de llamarlos x, y, z, w, etcétera, yo puedo llamarlo x1,
+
+43
+00:03:15.601 --> 00:03:20.760
+x2, x3, x4. La gran ventaja de un sistema así es que puedo tener
+
+44
+00:03:21.690 --> 00:03:25.710
+mil millones de variables y no necesito un nombre para cada una de ellas.
+
+45
+00:03:29.340 --> 00:03:35.190
+Si yo escribo un sistema de ecuaciones, por ejemplo, este de acá, que es lo que
+
+46
+00:03:35.220 --> 00:03:37.531
+hemos visto hasta ahora. Este es mi sistema de ecuaciones
+
+47
+00:03:38.940 --> 00:03:44.340
+lineales. ¿Cómo puedo escribirlo de esta manera, una manera más
+
+48
+00:03:44.400 --> 00:03:50.041
+compacta? Acarrear todo esto es un lío. ¿Para qué voy a estar aquí haciendo esto?
+
+49
+00:03:50.101 --> 00:03:52.860
+Es mucho mejor escribirlo de esta manera.
+
+50
+00:03:55.500 --> 00:03:58.140
+Si aquí en x1 tengo un cero multiplicando,
+
+51
+00:03:59.430 --> 00:04:00.150
+pongo aquí el cero.
+
+52
+00:04:01.470 --> 00:04:03.330
+Si en x1 tengo aquí un dos, pongo aquí un dos.
+
+53
+00:04:03.630 --> 00:04:09.031
+Si tengo un cuatro, pongo aquí un cuatro. Aquí ¿qué pongo? 1, 3, 5; 1, 3, 5.
+
+54
+00:04:09.031 --> 00:04:14.851
+-3, -1, -2.
+
+55
+00:04:14.970 --> 00:04:16.560
+Esta es la matriz del sistema.
+
+56
+00:04:19.981 --> 00:04:25.230
+Este es el vector de las variables y el vector del lado derecho, que es -5, 7, 10.
+
+57
+00:04:27.270 --> 00:04:30.570
+Yo te hago que si yo multiplico esta matriz por este vector, me da eso.
+
+58
+00:04:31.770 --> 00:04:32.820
+Es la manera compacta.
+
+59
+00:04:35.160 --> 00:04:39.060
+Dices: "¿Qué más da? Esto me lo puedo cargar de alguna manera".
+
+60
+00:04:41.400 --> 00:04:42.300
+Lo puedo hacer así.
+
+61
+00:04:43.980 --> 00:04:48.990
+Cojo la matriz del sistema y la aumento. Esta es la matriz aumentada.
+
+62
+00:04:50.250 --> 00:04:52.380
+De momento, a una línea de separación.
+
+63
+00:04:53.701 --> 00:04:58.320
+Simplemente, esto de acá le pongo una columna con -5, 7, 10, que es el vector del
+
+64
+00:04:58.350 --> 00:04:59.130
+lado derecho.
+
+65
+00:05:01.591 --> 00:05:02.760
+Una vez que me acostumbre,
+
+66
+00:05:04.890 --> 00:05:06.570
+podré incluso ignorar eso.
+
+67
+00:05:09.510 --> 00:05:11.701
+Esa es la matriz ampliada del sistema.
+
+68
+00:05:12.210 --> 00:05:16.020
+La he aumentado colocando el vector del lado derecho.
+
+69
+00:05:18.180 --> 00:05:19.890
+Manejar esto de aquí
+
+70
+00:05:21.270 --> 00:05:22.410
+es mejor que manejar
+
+71
+00:05:23.610 --> 00:05:24.330
+esto de aquí.
+
+72
+00:05:26.310 --> 00:05:32.070
+Es menos farragoso. ¿Qué
+
+73
+00:05:32.130 --> 00:05:32.760
+vamos a hacer?
+
+74
+00:05:35.341 --> 00:05:40.920
+A partir de esto, vamos a hacer operaciones sobre esa matriz aumentada o ampliada.
+
+75
+00:05:40.920 --> 00:05:46.260
+¿Y qué tipo de operaciones? Van a ser operaciones elementales por filas.
+
+76
+00:05:47.970 --> 00:05:49.830
+Ahí están las filas que me he inventado.
+
+77
+00:05:51.240 --> 00:05:52.650
+Solamente tres, nada más.
+
+78
+00:05:53.910 --> 00:05:57.120
+Multiplicar una fila de una matriz por una constante no nula.
+
+79
+00:05:59.520 --> 00:06:01.380
+Nuestra matriz va a ser la matriz ampliada.
+
+80
+00:06:01.410 --> 00:06:03.270
+Vamos a hacer esas operaciones sobre esta.
+
+81
+00:06:06.690 --> 00:06:11.970
+Intercambiar dos filas. ¿Qué es lo que estamos haciendo ahí?
+
+82
+00:06:12.600 --> 00:06:16.800
+Si yo tengo tres ecuaciones, ¿qué más me da el orden en el cual yo las escriba?
+
+83
+00:06:17.880 --> 00:06:20.220
+Yo puedo cambiar esta por esta y hacerlo al revés.
+
+84
+00:06:22.170 --> 00:06:25.201
+Podría hacerlo perfectamente y sería el mismo sistema de ecuaciones, la misma
+
+85
+00:06:25.259 --> 00:06:28.740
+solución. Así que efectivamente, yo puedo intercambiar dos
+
+86
+00:06:28.770 --> 00:06:34.320
+filas. Luego, lo que puedo hacer es multiplicar una fila por una constante, un
+
+87
+00:06:34.350 --> 00:06:36.331
+número, y sumar el resultado a otra.
+
+88
+00:06:38.701 --> 00:06:43.201
+No hay más, solamente estas tres operaciones elementales por filas.
+
+89
+00:06:43.710 --> 00:06:47.581
+Toda esta asignatura está basada en estas tres operaciones elementales por filas.
+
+90
+00:06:49.500 --> 00:06:50.520
+¿Cuál es el objetivo?
+
+91
+00:06:52.770 --> 00:06:57.270
+El objetivo es utilizar esas operaciones elementales por filas para conseguir
+
+92
+00:06:58.530 --> 00:06:59.100
+ceros
+
+93
+00:07:00.451 --> 00:07:04.320
+que me simplifiquen el resultado. ¿Cómo?
+
+94
+00:07:05.760 --> 00:07:10.230
+Van a estar situados hacia abajo y hacia la izquierda.
+
+95
+00:07:13.081 --> 00:07:17.130
+La idea es conseguir una forma escalonada.
+
+96
+00:07:20.730 --> 00:07:22.980
+En el mejor de los casos, vamos a tener algo de este estilo.
+
+97
+00:07:23.190 --> 00:07:24.210
+Imaginamos que tenemos
+
+98
+00:07:26.430 --> 00:07:31.710
+un sistema de ecuaciones con tres incógnitas y yo, utilizando esas
+
+99
+00:07:33.091 --> 00:07:35.790
+operaciones elementales por filas, consigo tres ceros aquí.
+
+100
+00:07:39.210 --> 00:07:42.660
+Si yo leo eso, ¿qué me dice? hZ igual a J.
+
+101
+00:07:42.990 --> 00:07:48.540
+Ahí va, despejo y ya consigo cuánto vale Z.
+
+102
+00:07:49.831 --> 00:07:55.110
+Es más, ya sé cuánto vale Z, voy al siguiente escalón, meto aquí lo que vale Z y ya
+
+103
+00:07:55.170 --> 00:07:55.680
+sé lo que vale Y.
+
+104
+00:07:57.120 --> 00:08:02.820
+Despejo y ya está. Y luego cojo, pongo aquí lo que vale Z y aquí lo que vale Y y ya
+
+105
+00:08:02.850 --> 00:08:03.870
+tengo lo que vale X.
+
+106
+00:08:05.701 --> 00:08:11.670
+Esa es la idea. La idea es conseguir una forma escalonada, que en el
+
+107
+00:08:11.701 --> 00:08:15.750
+mejor de los casos para un sistema de tres ecuaciones con tres incógnitas es esto
+
+108
+00:08:15.780 --> 00:08:15.990
+de acá.
+
+109
+00:08:18.540 --> 00:08:19.920
+No es el único posible.
+
+110
+00:08:21.690 --> 00:08:26.670
+Puede ocurrir que después de hacer mi Gauss, mis operaciones elementales por filas,
+
+111
+00:08:26.910 --> 00:08:28.350
+tenga una fila de ceros.
+
+112
+00:08:30.091 --> 00:08:33.720
+Y como tengo tres filas, ceros hacia abajo y hacia la izquierda, también necesito
+
+113
+00:08:33.720 --> 00:08:34.500
+otro cero aquí.
+
+114
+00:08:37.831 --> 00:08:43.651
+Claro, esto te va a ocurrir que no tengo suficientes ecuaciones para calcular
+
+115
+00:08:43.740 --> 00:08:48.630
+las soluciones. Tendré que poner unas variables en función de las otras.
+
+116
+00:08:51.811 --> 00:08:55.920
+También puede ocurrir que yo, en mi afán de poner ceros, consigo nada menos que
+
+117
+00:08:55.950 --> 00:08:58.110
+poner esto de aquí. Esto también es posible.
+
+118
+00:08:58.620 --> 00:09:00.181
+Estoy enumerando todos los casos posibles.
+
+119
+00:09:03.570 --> 00:09:05.250
+Ceros hacia abajo y hacia la izquierda
+
+120
+00:09:09.066 --> 00:09:10.746
+Además, hay otro caso que dice:
+
+121
+00:09:13.086 --> 00:09:18.876
+dos filas de ceros. ¿Tendrá solución
+
+122
+00:09:18.936 --> 00:09:23.796
+ese sistema? Una solución numérica compatible determinada no.
+
+123
+00:09:24.936 --> 00:09:26.346
+Esta sí, esa no.
+
+124
+00:09:28.027 --> 00:09:32.257
+Pero podré poner una solución, una variable en función de las demás.
+
+125
+00:09:33.876 --> 00:09:34.866
+También puede ocurrir
+
+126
+00:09:36.876 --> 00:09:40.596
+que tenga un sistema de este estilo, que yo tenga varias variables, cuatro en este
+
+127
+00:09:40.656 --> 00:09:42.277
+caso, porque son cuatro columnas aquí,
+
+128
+00:09:45.426 --> 00:09:49.266
+y yo haga mis operaciones por filas y consiga mis ceros hacia abajo y hacia la
+
+129
+00:09:49.326 --> 00:09:49.777
+izquierda.
+
+130
+00:09:52.416 --> 00:09:56.616
+Este es el mejor caso, pero me da igual, porque yo no voy a poder dar una solución
+
+131
+00:09:56.646 --> 00:10:01.596
+numérica X igual a uno, Y igual a tres y Z igual a siete, por ejemplo,
+
+132
+00:10:03.007 --> 00:10:08.856
+porque tengo otra variable W, o como la queramos llamar. Una, dos, tres y cuatro.
+
+133
+00:10:10.326 --> 00:10:15.036
+También puede ocurrir algo equivalente a esto y que yo tenga aquí una fila de
+
+134
+00:10:15.096 --> 00:10:15.396
+ceros,
+
+135
+00:10:16.806 --> 00:10:20.826
+o incluso más ceros por aquí y otra fila de ceros, o incluso dos filas de ceros.
+
+136
+00:10:22.266 --> 00:10:24.066
+Esta situación es muy chunga. ¿Por qué?
+
+137
+00:10:24.786 --> 00:10:26.226
+Porque tengo cuatro variables
+
+138
+00:10:27.516 --> 00:10:29.466
+y solamente tengo esta relación entre ellas.
+
+139
+00:10:29.527 --> 00:10:30.726
+Así que tendré que poner
+
+140
+00:10:31.986 --> 00:10:37.056
+una variable en función de las otras. Eso puede ocurrir.
+
+141
+00:10:37.356 --> 00:10:43.086
+Pero casi para el sistema de tres ecuaciones con tres
+
+142
+00:10:43.146 --> 00:10:48.126
+incógnitas o el caso de tres ecuaciones con cuatro incógnitas, son esos los casos.
+
+143
+00:10:49.777 --> 00:10:52.056
+Es lo que llamamos Gauss conseguir esto.
+
+144
+00:10:54.126 --> 00:10:57.606
+Y lo que os he dicho antes de la sustitución hacia atrás es cómo consigo la
+
+145
+00:10:57.666 --> 00:10:58.266
+solución.
+
+146
+00:11:00.186 --> 00:11:05.466
+Pero puedo hacer algo más y puedo utilizar un sistema que voy a llamar
+
+147
+00:11:05.496 --> 00:11:10.176
+Gauss-Jordan, que no solamente voy a poner ceros por debajo,
+
+148
+00:11:12.066 --> 00:11:13.746
+voy a poner ceros por arriba.
+
+149
+00:11:16.956 --> 00:11:21.846
+A veces son valores, lo que sea. La mejor situación es esta de acá.
+
+150
+00:11:21.846 --> 00:11:26.527
+¿Por qué? Porque si lo leo, ¿qué pone?
+
+151
+00:11:27.726 --> 00:11:32.136
+X igual a A, Y igual a B, Z igual a C. Ya está.
+
+152
+00:11:32.676 --> 00:11:35.316
+Directamente, esto es la solución, es leerlo.
+
+153
+00:11:36.816 --> 00:11:42.726
+Sin más. Es una lectura. ¿Qué otras situaciones podemos tener
+
+154
+00:11:42.757 --> 00:11:47.796
+en este caso? La que hemos visto antes, tenemos un cero aquí y además una fila de
+
+155
+00:11:47.826 --> 00:11:48.757
+ceros aquí abajo.
+
+156
+00:11:51.456 --> 00:11:55.507
+Y otro cerito por aquí arriba. A todas estas formas
+
+157
+00:11:56.886 --> 00:12:02.286
+vamos a llamar la forma escalonada reducida por filas para un sistema determinado.
+
+158
+00:12:02.826 --> 00:12:08.736
+Obsérvese, la forma es única. Solamente hay una y nada más tiene una.
+
+159
+00:12:10.386 --> 00:12:13.236
+Una forma escalonada hay muchas, todas las que quiera.
+
+160
+00:12:14.496 --> 00:12:15.246
+La forma.
+
+161
+00:12:16.446 --> 00:12:22.175
+Es decir, que si yo os pido la forma escalonada reducida por filas, me la
+
+162
+00:12:22.206 --> 00:12:24.936
+tenéis que dar y tiene que concordar con lo que yo tengo.
+
+163
+00:12:25.507 --> 00:12:27.456
+Si no concuerda con lo que yo tengo, está mal.
+
+164
+00:12:30.066 --> 00:12:31.446
+Otras situaciones. Cero
+
+165
+00:12:33.666 --> 00:12:38.376
+aquí y una fila de ceros. Y además, mi cerito.
+
+166
+00:12:41.826 --> 00:12:47.376
+Obsérvese. ¿Qué tienen en común? ¿Cómo debe de ser la forma escalonada
+
+167
+00:12:47.796 --> 00:12:50.166
+reducida por filas?
+
+168
+00:12:51.576 --> 00:12:55.926
+Los pivotes, vamos a llamar pivotes a estos elementos, que son con los que voy a
+
+169
+00:12:55.956 --> 00:12:57.186
+conseguir ceros,
+
+170
+00:12:58.507 --> 00:13:03.546
+tienen que ser unos. Y por debajo y por encima de los unos, ceros.
+
+171
+00:13:07.716 --> 00:13:08.706
+Pivote, este.
+
+172
+00:13:10.176 --> 00:13:15.816
+Ceros por abajo. Pivote, uno. Pivote, este. Tiene ceros por arriba y por abajo.
+
+173
+00:13:16.056 --> 00:13:16.626
+pivotes no.
+
+174
+00:13:18.786 --> 00:13:21.276
+Aquí tengo este pivote, ceros por abajo.
+
+175
+00:13:22.657 --> 00:13:24.876
+Este otro pivote, ceros por arriba y por abajo.
+
+176
+00:13:28.296 --> 00:13:29.646
+Este caso de aquí, cero.
+
+177
+00:13:31.326 --> 00:13:34.836
+Pivote, solamente uno. Por debajo de él, cero.
+
+178
+00:13:41.706 --> 00:13:45.007
+Todos estos casos son bonitos porque son compatibles.
+
+179
+00:13:45.666 --> 00:13:51.576
+No se lleva ninguna cosa nada. Más adelante veremos cuándo sucede eso de
+
+180
+00:13:51.606 --> 00:13:57.546
+esa manera. ¿Qué es lo que ocurre si tengo cuatro variables y solamente tengo tres
+
+181
+00:13:57.606 --> 00:14:00.576
+ecuaciones? La mejor situación será esta.
+
+182
+00:14:03.066 --> 00:14:07.477
+Cero por abajo, cero por arriba, los pivotes, todos iguales a uno, que vamos a
+
+183
+00:14:07.536 --> 00:14:09.876
+conseguir con las operaciones elementales por filas.
+
+184
+00:14:12.096 --> 00:14:16.866
+Pero claro, no tiene una solución de X igual a dos, de Y igual a tanto, porque
+
+185
+00:14:16.926 --> 00:14:22.776
+tengo una variable más. Entonces, tendré que poner alguna de esas soluciones en
+
+186
+00:14:22.836 --> 00:14:26.856
+función de otra de las variables o en función de un parámetro, que vamos a llamar.
+
+187
+00:14:27.396 --> 00:14:29.286
+En el fondo es igual a una de las variables.
+
+188
+00:14:31.236 --> 00:14:35.646
+Recuerda que son equivalentes a lo de antes con cero abajo, cero, y este es pivote,
+
+189
+00:14:35.947 --> 00:14:36.486
+cero arriba.
+
+190
+00:14:38.736 --> 00:14:43.507
+O ceros abajo, pivote, cero arriba. Pivote, ceros abajo.
+
+191
+00:14:46.386 --> 00:14:47.197
+O esta de aquí.
+
+192
+00:14:48.426 --> 00:14:51.546
+Pivote, cero arriba, cero abajo. Pivote, cero abajo.
+
+193
+00:14:54.336 --> 00:14:56.977
+O esto de aquí. Solamente tengo un pivote, cero por abajo.
+
+194
+00:15:03.697 --> 00:15:08.346
+Si tenemos un sistema de cuatro ecuaciones con cuatro incógnitas, la mejor solución
+
+195
+00:15:08.407 --> 00:15:11.977
+va a ser esta de aquí, y esta va a ser la forma escalonada reducida por filas y me
+
+196
+00:15:12.007 --> 00:15:17.796
+va a dar exactamente la solución. X igual a A, Y igual a B, Z igual a
+
+197
+00:15:17.886 --> 00:15:19.716
+C, W igual a D. Perfecto.
+
+198
+00:15:22.926 --> 00:15:27.276
+Otros casos, estos de aquí. Pivotes, ceros arriba y abajo.
+
+199
+00:15:28.206 --> 00:15:34.026
+Pivote. Todos estos casos ya no tienen una solución
+
+200
+00:15:34.055 --> 00:15:39.066
+determinada perfecta, sino ya son compatibles e indeterminados.
+
+201
+00:15:39.125 --> 00:15:44.136
+Veremos más adelante en qué consiste eso. Pivote, pivote, cero abajo, cero arriba.
+
+202
+00:15:45.486 --> 00:15:49.356
+Pivote, pivote.
+
+203
+00:15:51.216 --> 00:15:53.197
+Pivote. Cero por abajo.
+
+204
+00:15:55.356 --> 00:16:01.026
+Prácticamente todos los casos compatibles son estos, de cuatro
+
+205
+00:16:02.706 --> 00:16:04.956
+ecuaciones o tres ecuaciones, etcétera.
+
+206
+00:16:08.466 --> 00:16:11.646
+Ya vimos el último día lo que era una combinación lineal,
+
+207
+00:16:14.676 --> 00:16:17.376
+pero lo vemos de nuevo. ¿En qué consiste una combinación lineal?
+
+208
+00:16:18.727 --> 00:16:23.856
+Una combinación lineal de uno o más vectores simplemente es multiplicar cada uno de
+
+209
+00:16:23.886 --> 00:16:27.157
+esos vectores por un escalar determinado y sumarlo para obtener un nuevo
+
+210
+00:16:27.157 --> 00:16:32.796
+vector. En el fondo, lo que estamos haciendo con las operaciones
+
+211
+00:16:32.856 --> 00:16:34.447
+elementales con filas
+
+212
+00:16:36.396 --> 00:16:42.157
+es intentar ver, efectivamente, si hay alguno que es combinación lineal de
+
+213
+00:16:42.216 --> 00:16:42.576
+otros.
+
+214
+00:16:46.626 --> 00:16:51.336
+Este, por ejemplo. ¿Esto qué me está diciendo?
+
+215
+00:16:52.507 --> 00:16:52.776
+Que
+
+216
+00:16:54.186 --> 00:16:58.447
+el vector filas de ahí es combinación lineal de los otros.
+
+217
+00:17:03.666 --> 00:17:06.697
+Porque lo que estoy haciendo con estas operaciones elementales por fila es
+
+218
+00:17:06.757 --> 00:17:09.846
+descubrir esas combinaciones lineales.
+
+219
+00:17:12.486 --> 00:17:15.816
+Entonces, habrá filas que sean linealmente independientes.
+
+220
+00:17:18.666 --> 00:17:21.816
+En este caso tienes cuatro linealmente independientes.
+
+221
+00:17:22.386 --> 00:17:26.616
+Aquí solamente hay dos, aquí solamente hay una, y por lo demás once.
+
+222
+00:17:28.447 --> 00:17:29.826
+Eso es lo que estoy haciendo con eso.
+
+223
+00:17:33.036 --> 00:17:37.416
+Claro, si es linealmente dependiente, no es linealmente independiente.
+
+224
+00:17:38.437 --> 00:17:41.226
+Ten cuidado con la doble negación y este tipo de cosas.
+
+225
+00:17:43.476 --> 00:17:44.016
+Ejemplo.
+
+226
+00:17:45.786 --> 00:17:47.286
+Tengo tres vectores: V y W.
+
+227
+00:17:52.896 --> 00:17:58.596
+Copio. Uno, dos, tres. Uno, dos. Perdón. Cero, uno, uno.
+
+228
+00:17:58.656 --> 00:18:00.456
+Cero, dos, cero, dos.
+
+229
+00:18:03.276 --> 00:18:06.546
+Entonces dices: "Voy a hacer operaciones elementales por filas".
+
+230
+00:18:07.056 --> 00:18:12.786
+Voy a multiplicar esta fila por -2 y lo voy a sumar a la tercera
+
+231
+00:18:12.906 --> 00:18:14.016
+para conseguir un cero aquí
+
+232
+00:18:17.640 --> 00:18:23.190
+-2 por -1, -2. Aquí dice -2 por 1,
+
+233
+00:18:23.640 --> 00:18:26.160
+-2 + 0, -2.
+
+234
+00:18:29.340 --> 00:18:31.080
+2 por -2, -4. -4
+
+235
+00:18:32.340 --> 00:18:38.310
++ 2, -2. Este es mi pivote y
+
+236
+00:18:38.340 --> 00:18:42.210
+he conseguido cero debajo. Este ya estaba, así que me quedo con él.
+
+237
+00:18:46.350 --> 00:18:48.600
+Ahora digo: "Mira, necesito un cero aquí".
+
+238
+00:18:49.830 --> 00:18:55.530
+Voy a utilizar este como pivote. Voy a multiplicar esta fila por dos y lo voy a
+
+239
+00:18:55.590 --> 00:18:58.020
+sumar aquí para que me quede un cero.
+
+240
+00:19:01.320 --> 00:19:04.200
+Pero 2 por 1 es 2, aquí también me da 0.
+
+241
+00:19:07.380 --> 00:19:12.930
+Vemos que estos tres vectores son linealmente dependientes.
+
+242
+00:19:12.930 --> 00:19:18.570
+¿Por qué? Porque hemos descubierto que hay una combinación lineal que me da el
+
+243
+00:19:18.600 --> 00:19:19.410
+tercero. De hecho,
+
+244
+00:19:21.510 --> 00:19:26.790
+w, que es el tercero, es dos veces u menos dos veces v.
+
+245
+00:19:29.400 --> 00:19:31.530
+Y por eso nos ha salido esta fila.
+
+246
+00:19:34.950 --> 00:19:36.600
+Lo que hemos hecho aquí es un Gauss.
+
+247
+00:19:38.040 --> 00:19:42.361
+Esta es una forma escalonada. ¿Por qué?
+
+248
+00:19:42.600 --> 00:19:48.030
+Porque este es pivote, pero no tiene el cero hacia arriba. Podríamos seguir.
+
+249
+00:19:51.630 --> 00:19:55.801
+Ahora ya me piden cosas. Dices: "Usar eliminación de Gauss para transformar esa
+
+250
+00:19:55.830 --> 00:19:58.950
+matriz en una reducida por filas".
+
+251
+00:20:01.260 --> 00:20:04.320
+Me están pidiendo que consiga ceros por aquí.
+
+252
+00:20:13.080 --> 00:20:15.330
+Voy a utilizar este como pivote.
+
+253
+00:20:16.740 --> 00:20:19.680
+Necesito cero aquí, cero aquí y cero aquí.
+
+254
+00:20:19.680 --> 00:20:24.030
+¿De acuerdo?
+
+255
+00:20:24.030 --> 00:20:29.250
+¿Cómo van a ser las operaciones? ¿Cómo las voy a
+
+256
+00:20:31.560 --> 00:20:35.880
+representar? Esto me dice que multiplico la primera fila por uno y lo sumo a la
+
+257
+00:20:35.910 --> 00:20:36.361
+tercera.
+
+258
+00:20:39.750 --> 00:20:44.130
+Multiplico la primera fila por 1 y lo sumo a la tercera para conseguir aquí mi
+
+259
+00:20:44.190 --> 00:20:46.230
+cero. Esa es directa.
+
+260
+00:20:50.640 --> 00:20:53.850
+Multiplico la primera fila por -2 para conseguir aquí mi cero
+
+261
+00:20:55.200 --> 00:20:59.970
+y multiplico la primera fila por -3 para conseguir aquí mi cero. Pivote.
+
+262
+00:21:00.510 --> 00:21:01.320
+Si son los ceros.
+
+263
+00:21:05.790 --> 00:21:08.310
+Si hago eso, aquí lo tengo.
+
+264
+00:21:09.871 --> 00:21:14.520
+Es la primera fila por -2 y consigo aquí mi cero, la primera fila por
+
+265
+00:21:15.780 --> 00:21:15.780
+1
+
+266
+00:21:17.490 --> 00:21:18.450
+y consigo aquí mi cero.
+
+267
+00:21:20.070 --> 00:21:25.621
+Me falta la otra. La primera fila por -3 para conseguir aquí mi cero y lo que me dé
+
+268
+00:21:25.680 --> 00:21:26.130
+al otro lado.
+
+269
+00:21:30.029 --> 00:21:30.689
+Sería esto de acá.
+
+270
+00:21:33.090 --> 00:21:33.810
+Mi pivote,
+
+271
+00:21:36.301 --> 00:21:37.350
+mis ceros por debajo.
+
+272
+00:21:39.240 --> 00:21:40.140
+Nos han pedido un Gauss.
+
+273
+00:21:43.530 --> 00:21:47.190
+Dices: "Vale, voy a ser astuto".
+
+274
+00:21:49.560 --> 00:21:54.090
+Necesito aquí un pivote para colocar ceros por debajo. Me han dicho un Gauss.
+
+275
+00:21:55.890 --> 00:22:01.801
+Pero el -2 no me gusta. Lo que puedo hacer es intercambiar este por este.
+
+276
+00:22:03.930 --> 00:22:06.270
+Si lo intercambio, me queda este -1
+
+277
+00:22:07.590 --> 00:22:09.720
+y tratar con uno es mucho más cómodo.
+
+278
+00:22:11.551 --> 00:22:16.170
+Puedo utilizar este ya como pivote y multiplicar este por dos y sumarlo a esta
+
+279
+00:22:16.230 --> 00:22:18.210
+fila. Toda esta fila
+
+280
+00:22:19.470 --> 00:22:24.210
+por dos y sumarla a esta. ¿Qué me da?
+
+281
+00:22:24.840 --> 00:22:27.150
+Lo que yo voy buscando, no es un número al azar.
+
+282
+00:22:27.960 --> 00:22:31.680
+Si yo necesito un cero aquí, ¿por qué tengo que multiplicar esta fila para que me
+
+283
+00:22:31.710 --> 00:22:33.121
+dé cero aquí? Por dos.
+
+284
+00:22:34.530 --> 00:22:36.690
+Y como además tengo un -1, es muy fácil calcular.
+
+285
+00:22:38.070 --> 00:22:40.770
+Aquí lo tengo. Y aquí tengo 14 y aquí tengo cero.
+
+286
+00:22:45.121 --> 00:22:46.380
+Necesito otro cero aquí abajo.
+
+287
+00:22:48.121 --> 00:22:53.670
+Si yo multiplico por -2, -2 por -1 es 2,
+
+288
+00:22:54.121 --> 00:22:55.080
+y aquí me va a dar cero.
+
+289
+00:23:02.070 --> 00:23:02.880
+Más cosas.
+
+290
+00:23:04.080 --> 00:23:08.190
+Yo puedo multiplicar esta fila por un 14. ¡Pin! Y me queda un uno.
+
+291
+00:23:08.580 --> 00:23:11.520
+Mucho mejor tratar con un uno que no con un 14.
+
+292
+00:23:11.520 --> 00:23:17.070
+¿Y esto qué es? Esto es un pivote
+
+293
+00:23:18.480 --> 00:23:23.460
+y necesito un cero aquí abajo. Multiplico por nueve y consigo aquí mi cero.
+
+294
+00:23:34.380 --> 00:23:35.040
+Ahí hay un
+
+295
+00:23:36.960 --> 00:23:37.680
+número que no ha variado.
+
+296
+00:23:39.361 --> 00:23:44.340
+Esta es la idea. Lo que me han dicho es que consiga mi Gauss.
+
+297
+00:23:45.060 --> 00:23:47.520
+Lo que he conseguido es los ceros por abajo.
+
+298
+00:23:50.790 --> 00:23:54.121
+Perdón, ahí, ¿cómo has pasado de el 14 al 1?
+
+299
+00:23:55.740 --> 00:23:57.960
+Multiplico esta fila por 14.
+
+300
+00:23:59.611 --> 00:24:04.290
+Es una de las operaciones legítimas.
+
+301
+00:24:10.051 --> 00:24:10.500
+Entendido.
+
+302
+00:24:13.650 --> 00:24:14.551
+Continuamos.
+
+303
+00:24:17.220 --> 00:24:22.111
+Es correcto, porque este es cero, no ha variado ningún número, porque esto sería 9
+
+304
+00:24:22.140 --> 00:24:28.080
+por 0, 0 + 3. Ya hemos conseguido aquí una forma
+
+305
+00:24:28.111 --> 00:24:28.920
+escalonada.
+
+306
+00:24:32.190 --> 00:24:35.580
+Lo hemos conseguido, lo que nos pedía. Rango.
+
+307
+00:24:36.930 --> 00:24:37.560
+Esto es fácil.
+
+308
+00:24:40.500 --> 00:24:46.230
+El rango de una matriz será el número de vectores de fila que sean
+
+309
+00:24:46.259 --> 00:24:49.200
+linealmente independientes. ¿Cuáles serán?
+
+310
+00:24:49.980 --> 00:24:53.400
+Una vez hechos ceros, los que no son ceros enteros.
+
+311
+00:24:53.910 --> 00:24:55.801
+Los que la fila que no son ceros enteros,
+
+312
+00:24:57.780 --> 00:25:03.570
+eso es lo que nos están diciendo. Si el rango de una matriz, aplico Gauss, ¿cuántas
+
+313
+00:25:03.600 --> 00:25:06.630
+filas no nulas hay? Tres, cuatro, dos. Ese es el rango.
+
+314
+00:25:09.270 --> 00:25:13.500
+Luego tengo el teorema de
+
+315
+00:25:13.530 --> 00:25:17.160
+Rouché-Laplace. Posiblemente ya lo conozcáis.
+
+316
+00:25:18.930 --> 00:25:24.900
+Y esto me permite saber si un sistema de ecuaciones tiene solución y de
+
+317
+00:25:24.930 --> 00:25:25.440
+qué tipo.
+
+318
+00:25:27.330 --> 00:25:29.700
+Vamos a tener A, será la matriz del sistema.
+
+319
+00:25:31.530 --> 00:25:33.780
+Y tenemos la matriz ampliada del sistema.
+
+320
+00:25:35.820 --> 00:25:38.220
+El rango de esta matriz lo vamos a llamar R.
+
+321
+00:25:40.080 --> 00:25:41.520
+El rango de esta lo vamos a llamar R'.
+
+322
+00:25:47.520 --> 00:25:51.870
+El sistema es compatible si los rangos coinciden.
+
+323
+00:25:52.890 --> 00:25:57.120
+Además, si son exactamente igual al número de incógnitas,
+
+324
+00:25:58.920 --> 00:26:02.040
+es compatible determinado, es decir, tiene solución única.
+
+325
+00:26:02.611 --> 00:26:06.241
+X igual a 1, Y igual a 7, Z igual a 0.
+
+326
+00:26:10.650 --> 00:26:15.450
+Ahora imaginamos que es compatible, efectivamente, coinciden los rangos, pero el
+
+327
+00:26:15.510 --> 00:26:17.640
+rango es menor que el número de incógnitas.
+
+328
+00:26:18.840 --> 00:26:22.200
+Eso es un caso de compatible indeterminado.
+
+329
+00:26:23.730 --> 00:26:26.160
+Es decir, tiene infinitas soluciones numéricas.
+
+330
+00:26:28.020 --> 00:26:33.480
+Cuando no coincidan R y R', diremos que no tiene
+
+331
+00:26:33.540 --> 00:26:36.361
+solución. Es un sistema incompatible.
+
+332
+00:26:41.010 --> 00:26:43.770
+Ejemplos para N igual a 4.
+
+333
+00:26:45.270 --> 00:26:46.410
+Hago mi Gauss-Jordan,
+
+334
+00:26:47.730 --> 00:26:50.760
+ceros por arriba, ceros por abajo, los pivotes.
+
+335
+00:26:53.370 --> 00:26:55.080
+A ver cuántas filas de cero hay ahí.
+
+336
+00:26:56.760 --> 00:27:01.980
+Una. ¿Cuál es el rango de esta?
+
+337
+00:27:02.611 --> 00:27:04.980
+Cuatro. ¿Cuál es el rango de la ampliada? Cuatro.
+
+338
+00:27:06.991 --> 00:27:10.290
+Y además, el número de incógnitas es cuatro, así que perfecto.
+
+339
+00:27:11.101 --> 00:27:12.361
+Compatible determinado.
+
+340
+00:27:13.741 --> 00:27:14.400
+Esta de acá.
+
+341
+00:27:15.870 --> 00:27:17.970
+Mira, aquí ya tenemos una fila de ceros.
+
+342
+00:27:19.410 --> 00:27:21.870
+Es compatible indeterminado.
+
+343
+00:27:24.330 --> 00:27:26.730
+Igual, compatible indeterminado
+
+344
+00:27:30.450 --> 00:27:33.270
+Y esta de acá es compatible e indeterminado.
+
+345
+00:27:42.510 --> 00:27:45.361
+Otros ejemplos. Imaginad esto de acá.
+
+346
+00:27:48.060 --> 00:27:52.020
+Esto de aquí tiene tres filas, esta es nula.
+
+347
+00:27:52.920 --> 00:27:54.090
+Rango igual a tres.
+
+348
+00:27:57.630 --> 00:28:02.340
+La ampliada. ¿Cuántas filas de ceros hay? Ninguna.
+
+349
+00:28:02.880 --> 00:28:07.801
+Rango igual a cuatro. Tres es distinto de cuatro, no es compatible.
+
+350
+00:28:08.101 --> 00:28:13.710
+El sistema es incompatible. Fijaos. ¿Qué estoy diciendo aquí?
+
+351
+00:28:14.220 --> 00:28:15.060
+0 = G.
+
+352
+00:28:16.410 --> 00:28:21.991
+Eso es una barbaridad. ¿Cómo voy a poner 0 = G? Eso lo he leído.
+
+353
+00:28:22.950 --> 00:28:25.950
+La última ecuación es 0 = G. No tiene sentido.
+
+354
+00:28:30.120 --> 00:28:35.730
+Otros casos. Con que tenga uno de estos, ya la he liado. Esta de acá.
+
+355
+00:28:39.030 --> 00:28:44.551
+Fijaos. Rango igual a dos, el de esta, porque tiene dos filas distintas de cero.
+
+356
+00:28:45.780 --> 00:28:50.101
+La ampliada es tres. Dos es distinto de tres, incompatible.
+
+357
+00:28:53.551 --> 00:28:58.470
+Estos son otros casos todavía más patológicos y más horrorosos, y que todos son
+
+358
+00:28:58.530 --> 00:28:59.130
+incompatibles.
+
+359
+00:29:03.571 --> 00:29:06.780
+Me piden aplicar la solución de Gauss usando sustitución hacia atrás para obtener
+
+360
+00:29:06.810 --> 00:29:08.491
+la solución del siguiente sistema.
+
+361
+00:29:12.660 --> 00:29:15.090
+Monto la matriz ampliada.
+
+362
+00:29:16.650 --> 00:29:21.330
+Es eso. He leído 2, 1, -1, 2, 1, -1, -3, -3, 1, -2, 2, 1, 2, 1, 1, 5, 2,
+
+363
+00:29:22.650 --> 00:29:22.680
+1,
+
+364
+00:29:26.551 --> 00:29:26.640
+1.
+
+365
+00:29:28.770 --> 00:29:30.991
+Vamos a usar operaciones elementales por filas.
+
+366
+00:29:31.230 --> 00:29:33.601
+Las he puesto aquí todas, pero ya se ven.
+
+367
+00:29:34.861 --> 00:29:37.920
+Primera, esta de aquí. Intercambio la primera por la segunda.
+
+368
+00:29:38.851 --> 00:29:41.730
+Es mucho mejor operar con un uno como pivote que operar con un dos.
+
+369
+00:29:41.821 --> 00:29:42.301
+Se puede,
+
+370
+00:29:43.741 --> 00:29:48.720
+pero soy vago y cómodo igual que vosotros, así que hay que ser astuto y hacer este
+
+371
+00:29:48.750 --> 00:29:54.150
+tipo de operación. Ahora, multiplico esta fila por -2 para conseguir aquí un cero
+
+372
+00:29:56.280 --> 00:29:57.180
+y lo sumo a la segunda.
+
+373
+00:29:59.611 --> 00:30:00.750
+Esta fila por -2.
+
+374
+00:30:07.170 --> 00:30:12.060
+Aquí tengo 5 - 5 = 5. Multiplico esta fila por un quinto y me queda mucho más
+
+375
+00:30:12.090 --> 00:30:12.571
+sencillo.
+
+376
+00:30:14.220 --> 00:30:15.390
+Utilizo esta como pivote.
+
+377
+00:30:17.250 --> 00:30:21.241
+Multiplico esta fila por -5 y lo sumo a la tercera para conseguir aquí un cero.
+
+378
+00:30:24.150 --> 00:30:26.160
+Y esto de aquí lo multiplico por un medio.
+
+379
+00:30:27.660 --> 00:30:31.680
+Me queda mucho más sencillo. ¿Qué dice aquí?
+
+380
+00:30:33.330 --> 00:30:38.851
+Zeta igual a cuatro. ¿Se ve? ¿Qué pone aquí?
+
+381
+00:30:39.601 --> 00:30:40.351
+Aquí pone
+
+382
+00:30:41.670 --> 00:30:45.420
+Y - zeta = -1. Y además hemos
+
+383
+00:30:45.480 --> 00:30:49.051
+visto que zeta vale cuatro.
+
+384
+00:30:52.801 --> 00:30:55.230
+Y ese menos cuatro pasa al otro lado positivo.
+
+385
+00:30:56.730 --> 00:31:01.830
+Así que Y = 3. ¿Qué pone aquí?
+
+386
+00:31:02.460 --> 00:31:06.390
+Aquí pone X - 2Y + 2Z = 1.
+
+387
+00:31:11.280 --> 00:31:15.301
+Sé lo que vale zeta y sé lo que vale Y porque lo he hecho ahora mismo.
+
+388
+00:31:15.870 --> 00:31:21.840
+Lo he calculado. Sustituyo y ¿qué obtengo? X = -1.
+
+389
+00:31:22.710 --> 00:31:24.870
+Es lo que se llama sustitución hacia atrás.
+
+390
+00:31:24.900 --> 00:31:29.400
+Si hago un Gauss para saber su solución, es sustitución hacia atrás.
+
+391
+00:31:31.051 --> 00:31:34.440
+Como dicen, Gauss, no Gauss Jordan, se deja.
+
+392
+00:31:38.851 --> 00:31:39.150
+Más.
+
+393
+00:31:42.540 --> 00:31:47.340
+Me piden obtener la forma escalonada reducida por filas o canónica de esa matriz.
+
+394
+00:31:53.430 --> 00:31:57.690
+Así que lo mismo. Operaciones elementales por filas, a ver qué pasa.
+
+395
+00:31:59.460 --> 00:32:01.890
+Pero nos dicen forma escalonada reducida por filas.
+
+396
+00:32:02.580 --> 00:32:04.351
+Ceros por abajo, ceros por arriba.
+
+397
+00:32:08.970 --> 00:32:10.470
+A ver, que no tengo problema.
+
+398
+00:32:18.420 --> 00:32:23.130
+Puedo utilizar esto como pivote. Voy a conseguir ceros aquí y aquí. ¿Cómo?
+
+399
+00:32:23.611 --> 00:32:27.900
+Esta fila por -2 para conseguir un cero aquí. Bueno, sumo todo esto.
+
+400
+00:32:28.290 --> 00:32:30.450
+Esta fila por -4 y lo sumo todo a esta.
+
+401
+00:32:33.180 --> 00:32:35.340
+De hecho, aquí tengo explícitas todas las operaciones.
+
+402
+00:32:35.340 --> 00:32:41.280
+-4 por la primera fila y
+
+403
+00:32:41.310 --> 00:32:42.690
+suma la tercera. -2
+
+404
+00:32:44.940 --> 00:32:46.590
+por la primera fila y suma la segunda.
+
+405
+00:32:49.290 --> 00:32:49.830
+Si lo hago,
+
+406
+00:32:51.900 --> 00:32:53.040
+obtengo esto. Pero
+
+407
+00:32:54.840 --> 00:32:56.101
+una vez que he tenido mi Gauss,
+
+408
+00:32:57.450 --> 00:33:03.420
+ya tengo uno. Me ha salido un cero para
+
+409
+00:33:03.450 --> 00:33:09.270
+arriba. Aquí ya venía de fábrica. ¿Qué es lo que me falta
+
+410
+00:33:09.390 --> 00:33:12.060
+para la forma escalonada reducida por filas?
+
+411
+00:33:13.590 --> 00:33:18.750
+Me falta cero aquí. Y me falta que esto sea un uno.
+
+412
+00:33:19.200 --> 00:33:20.970
+Así que multiplico esta fila por un tercio.
+
+413
+00:33:24.060 --> 00:33:28.111
+Y luego este lo utilizo como pivote, lo multiplico por tres y lo sumo aquí.
+
+414
+00:33:29.520 --> 00:33:34.440
+Ya está, ya lo tengo. Más eso. Me están diciendo que esos tres vectores filas son
+
+415
+00:33:34.530 --> 00:33:35.910
+linealmente independientes.
+
+416
+00:33:37.801 --> 00:33:43.111
+Estas. Obtener la forma escalonada reducida por filas de este sistema, no ya de una
+
+417
+00:33:43.170 --> 00:33:43.500
+matriz,
+
+418
+00:33:44.970 --> 00:33:46.051
+de este sistema.
+
+419
+00:33:55.170 --> 00:33:55.650
+Vale.
+
+420
+00:33:57.390 --> 00:33:59.999
+Ya tengo aquí un cerito. Es este de aquí.
+
+421
+00:34:01.499 --> 00:34:07.170
+1, 1, 2, 2, 1, 1, 2, 2. 0, 1, 1, 1, 1, 1, 1.
+
+422
+00:34:07.170 --> 00:34:09.270
+2, 0, 2, 2.
+
+423
+00:34:13.200 --> 00:34:18.091
+Necesito mi cero aquí. Multiplico la primera fila por -2 y lo sumo a la tercera.
+
+424
+00:34:22.710 --> 00:34:25.770
+Ahora, necesito un cero aquí, porque este es el pivote.
+
+425
+00:34:26.160 --> 00:34:27.540
+Necesito cero por arriba y por abajo.
+
+426
+00:34:28.080 --> 00:34:32.940
+Multiplico esto por dos y lo sumo a la tercera fila para conseguir mi cero aquí.
+
+427
+00:34:32.940 --> 00:34:36.960
+¿Qué ha pasado? Ya se veía venir.
+
+428
+00:34:38.280 --> 00:34:39.930
+¿Qué ha pasado? Una fila de ceros.
+
+429
+00:34:44.040 --> 00:34:46.591
+Determinado no va a ser. Va a ser
+
+430
+00:34:48.301 --> 00:34:48.930
+compatible,
+
+431
+00:34:51.270 --> 00:34:52.650
+pero indeterminado.
+
+432
+00:34:54.000 --> 00:34:54.571
+Pivote.
+
+433
+00:34:57.960 --> 00:34:58.950
+No hay más pivotes.
+
+434
+00:35:00.960 --> 00:35:04.741
+Tengo variables principales, van a ser X e Y.
+
+435
+00:35:06.540 --> 00:35:10.710
+Variable libre, la que me falta del pivote, zeta.
+
+436
+00:35:10.770 --> 00:35:11.400
+Eso lo voy a llamar
+
+437
+00:35:12.991 --> 00:35:13.770
+un parámetro T.
+
+438
+00:35:16.950 --> 00:35:17.760
+Rango dos.
+
+439
+00:35:19.351 --> 00:35:22.830
+Aquí no he puesto la línea. Pero ya he dicho que esto no hacía falta.
+
+440
+00:35:25.860 --> 00:35:30.180
+De la matriz del sistema y la matriz ampliada, rango dos. Coinciden, compatible.
+
+441
+00:35:31.351 --> 00:35:32.971
+Indeterminado porque no es tres.
+
+442
+00:35:34.200 --> 00:35:34.800
+Disculpa.
+
+443
+00:35:35.610 --> 00:35:35.730
+Di.
+
+444
+00:35:36.960 --> 00:35:37.410
+Cuando
+
+445
+00:35:38.880 --> 00:35:43.590
+se da cuenta uno que ya es compatible indeterminado, como en la tercera matriz,
+
+446
+00:35:44.190 --> 00:35:48.690
+¿tengo que continuar convirtiendo lo demás en cero, como lo de encima del segundo
+
+447
+00:35:48.750 --> 00:35:49.200
+pivote?
+
+448
+00:35:49.800 --> 00:35:50.640
+Si te paras aquí,
+
+449
+00:35:52.050 --> 00:35:53.400
+se debe venir. Pero
+
+450
+00:35:54.840 --> 00:35:57.840
+te están pidiendo hasta obtener la forma escalonada reducida por filas.
+
+451
+00:35:57.870 --> 00:36:00.991
+Si tú llegas hasta aquí, no me das la forma escalonada reducida por filas.
+
+452
+00:36:01.020 --> 00:36:04.500
+Por lo tanto, no me das la solución a lo que se está pidiendo.
+
+453
+00:36:04.710 --> 00:36:09.721
+Y por lo tanto, fallas el ejercicio, porque se te pide una cosa.
+
+454
+00:36:10.800 --> 00:36:15.601
+Si te piden la solución a este sistema y no te piden esto,
+
+455
+00:36:16.830 --> 00:36:19.741
+allá te las veas tú. Si tú aquí ya ves la solución,
+
+456
+00:36:21.960 --> 00:36:23.370
+siempre y cuando me des esto.
+
+457
+00:36:25.530 --> 00:36:28.440
+Aquí te están pidiendo la forma escalonada reducida por filas y la forma escalonada
+
+458
+00:36:28.471 --> 00:36:29.700
+reducida por filas es esta.
+
+459
+00:36:31.200 --> 00:36:34.950
+Pivotes, cero por arriba, este y este, y cero por arriba y por abajo
+
+460
+00:36:36.516 --> 00:36:37.416
+No hay más pivotes.
+
+461
+00:36:38.677 --> 00:36:41.586
+La variable libre es theta. Va a ser igual a t.
+
+462
+00:36:42.696 --> 00:36:45.576
+Así que tengo que poner theta igual a t.
+
+463
+00:36:48.275 --> 00:36:52.416
+La tengo. ¿Y esto qué es? Si leo esto, es x
+
+464
+00:36:53.766 --> 00:36:59.436
++ t igual a 1. Cambio esta al otro lado, es x igual a 1 - t.
+
+465
+00:37:03.456 --> 00:37:05.346
+Leo esta. Esta es y +
+
+466
+00:37:06.696 --> 00:37:12.306
+t igual a 1. Cambio el t al otro lado y me queda 1 - t.
+
+467
+00:37:13.177 --> 00:37:15.006
+Así que esta es la solución
+
+468
+00:37:16.776 --> 00:37:18.786
+compatible indeterminada.
+
+469
+00:37:21.606 --> 00:37:24.427
+Fijaos, esto es lo que hacíamos el último día.
+
+470
+00:37:25.927 --> 00:37:28.116
+Si lo queremos ver desde un punto de vista geométrico,
+
+471
+00:37:29.616 --> 00:37:31.056
+yo tengo tres planos
+
+472
+00:37:33.427 --> 00:37:37.836
+aquí y no me coinciden en un punto, pero sí que los tres
+
+473
+00:37:39.547 --> 00:37:42.067
+pasan por la misma recta, que es esta de acá.
+
+474
+00:37:45.636 --> 00:37:49.356
+Así que lo puedo visualizar desde un punto de vista geométrico.
+
+475
+00:37:51.096 --> 00:37:54.516
+Aquí me dicen Gauss-Jordan. ¿Esto significa qué si me dicen esto?
+
+476
+00:37:56.256 --> 00:37:59.406
+Necesito obtener la forma escalonada reducida por filas.
+
+477
+00:38:00.906 --> 00:38:06.876
+Y me están dando este sistema. Ya de entrada tengo tres ecuaciones, una,
+
+478
+00:38:06.966 --> 00:38:12.785
+dos, tres, cuatro incógnitas. El mejor caso va a ser compatible indeterminado.
+
+479
+00:38:13.716 --> 00:38:18.276
+Indeterminado, en el mejor caso. Puede ser que fuese compatible.
+
+480
+00:38:19.806 --> 00:38:21.817
+El caso es que si yo monto la
+
+481
+00:38:23.436 --> 00:38:27.216
+matriz ampliada, es esa de ahí. Aquí estoy poniendo las
+
+482
+00:38:28.596 --> 00:38:29.496
+operaciones.
+
+483
+00:38:32.226 --> 00:38:36.817
+Ya tengo un cero. Lo único que tengo que hacer es multiplicar esta fila por uno y
+
+484
+00:38:36.876 --> 00:38:41.256
+sumarla a esta de acá para conseguir aquí un cero. Este es mi pivote.
+
+485
+00:38:44.226 --> 00:38:44.916
+Es esto de acá.
+
+486
+00:38:49.266 --> 00:38:49.866
+Pivote.
+
+487
+00:38:52.896 --> 00:38:56.556
+Cero por debajo. Primero se consiguen los ceros por debajo y una vez que están
+
+488
+00:38:56.616 --> 00:38:59.856
+todos los ceros que están abajo, conseguimos los ceros que están por arriba.
+
+489
+00:39:00.366 --> 00:39:03.516
+La regla fundamental. Sigo mezclando mal asunto.
+
+490
+00:39:04.806 --> 00:39:08.317
+Yo puedo multiplicar esta fila por -1 y sumarla a esta para conseguir aquí un 0.
+
+491
+00:39:10.056 --> 00:39:10.716
+Y lo tengo ahí.
+
+492
+00:39:15.966 --> 00:39:20.406
+Los pivotes tienen que ser unos, así que yo puedo multiplicar toda esta fila
+
+493
+00:39:21.906 --> 00:39:24.876
+por -1/4 y me quedaría unos.
+
+494
+00:39:28.836 --> 00:39:29.496
+Pivote.
+
+495
+00:39:31.146 --> 00:39:33.906
+Necesito ceros aquí, aquí y aquí.
+
+496
+00:39:37.116 --> 00:39:38.317
+No va a haber más pivotes.
+
+497
+00:39:41.346 --> 00:39:47.106
+Tenemos cuatro variables. En el mejor de los casos, que es lo que pasa,
+
+498
+00:39:47.226 --> 00:39:51.396
+tenemos tres variables principales y una variable libre, que es la w de antes.
+
+499
+00:39:53.586 --> 00:39:54.786
+Busco mi cero aquí arriba.
+
+500
+00:39:57.336 --> 00:40:00.036
+Multiplicando esta fila por -2 se suma a la segunda.
+
+501
+00:40:03.696 --> 00:40:06.817
+Sigo por orden. Encima de ella va este tres.
+
+502
+00:40:08.766 --> 00:40:11.706
+Multiplico esta por tres y lo sumo aquí para conseguir aquí un cero.
+
+503
+00:40:11.797 --> 00:40:15.846
+¿Cuál me queda? Me queda esta de acá.
+
+504
+00:40:16.927 --> 00:40:19.927
+Esta fila, la dos, por -2 sumada a la primera.
+
+505
+00:40:23.797 --> 00:40:27.456
+Ya lo tengo. Tres pivotes, los tres son uno.
+
+506
+00:40:29.016 --> 00:40:30.906
+Ceros por arriba, ceros por abajo.
+
+507
+00:40:32.047 --> 00:40:35.346
+Esta es la forma escalonada reducida por filas.
+
+508
+00:40:35.916 --> 00:40:40.686
+Este es un caso de los que hemos visto antes. Hay muchos casos, casi todos.
+
+509
+00:40:43.506 --> 00:40:44.586
+Ya hemos terminado.
+
+510
+00:40:46.356 --> 00:40:50.136
+Variable libre w, así que w igual a t.
+
+511
+00:40:51.726 --> 00:40:53.946
+Variables principales x, y, theta.
+
+512
+00:40:54.726 --> 00:40:55.056
+Leo
+
+513
+00:40:56.736 --> 00:41:02.556
+x - theta t igual a -1. -t al otro lado es
+
+514
+00:41:02.586 --> 00:41:02.976
+más t.
+
+515
+00:41:08.346 --> 00:41:11.406
+Leo la segunda, esta de acá. Y -
+
+516
+00:41:14.047 --> 00:41:18.696
+5t igual a 4. El -5t lo paso al otro lado de la igualdad.
+
+517
+00:41:18.966 --> 00:41:21.636
+Fijaos, la línea es el otro lado de la igualdad.
+
+518
+00:41:22.776 --> 00:41:28.686
+Y me da 5t aquí, así que theta más t igual a
+
+519
+00:41:28.896 --> 00:41:32.526
+1. Así que ese t pasa con signo menos.
+
+520
+00:41:33.756 --> 00:41:38.946
+Theta igual a -t +1. Y la que tenía de entrada. W igual a t.
+
+521
+00:41:39.306 --> 00:41:45.126
+Esa es la solución. Es compatible indeterminado, que ya lo sabíamos
+
+522
+00:41:45.186 --> 00:41:48.396
+porque no teníamos suficientes ecuaciones.
+
+523
+00:42:00.936 --> 00:42:02.106
+Esto, recolocándolo.
+
+524
+00:42:06.216 --> 00:42:06.936
+Fijaos.
+
+525
+00:42:08.677 --> 00:42:10.596
+Esta de aquí, pongo x, y,
+
+526
+00:42:13.806 --> 00:42:18.966
+una debajo de otra. Y agrupo las que van con t a este lado y las que van sin t a
+
+527
+00:42:18.966 --> 00:42:19.626
+este lado.
+
+528
+00:42:26.526 --> 00:42:32.166
+Pues ya lo tengo. Esto son las ecuaciones paramétricas de ese espacio en R4, que es
+
+529
+00:42:32.226 --> 00:42:33.606
+el espacio de soluciones.
+
+530
+00:42:35.886 --> 00:42:41.466
+Y que se podría interpretar como una recta, porque tenemos un grado de libertad,
+
+531
+00:42:42.276 --> 00:42:43.236
+un solo parámetro.
+
+532
+00:42:48.336 --> 00:42:50.766
+Serían hiperplanos que se cortan todos ellos.
+
+533
+00:42:51.276 --> 00:42:57.067
+No se puede visualizar, pero una manera de ver qué está pasando aquí
+
+534
+00:42:57.096 --> 00:42:58.386
+geométricamente sería esa.
+
+535
+00:43:00.547 --> 00:43:04.956
+Por primera vez estáis trabajando en cuatro dimensiones y no se ve de plano.
+
+536
+00:43:04.986 --> 00:43:08.135
+Son cuatro dimensiones que se están cruzando en una línea recta que vive en ese
+
+537
+00:43:08.166 --> 00:43:09.306
+espacio de cuatro dimensiones.
+
+538
+00:43:10.656 --> 00:43:11.496
+Y es fascinante.
+
+539
+00:43:15.966 --> 00:43:19.206
+Aquí nos dicen: "Hallar la solución del siguiente sistema de ecuaciones lineales
+
+540
+00:43:19.297 --> 00:43:21.696
+mediante reducción gaussiana y por Gauss-Jordan".
+
+541
+00:43:22.297 --> 00:43:22.596
+Cuidado,
+
+542
+00:43:23.886 --> 00:43:25.416
+dos metodologías.
+
+543
+00:43:28.116 --> 00:43:33.186
+Como Gauss-Jordan es la continuación de la reducción gaussiana, vamos hacia allá y
+
+544
+00:43:33.246 --> 00:43:36.096
+luego continuamos con la reducción de Gauss-Jordan.
+
+545
+00:43:37.386 --> 00:43:38.106
+Y esta sería.
+
+546
+00:43:39.576 --> 00:43:45.306
+Mi matriz ampliada es: 1, 2, 6, -13, -2, 4, 8, 10,
+
+547
+00:43:45.306 --> 00:43:47.586
+-18, -4, 1, 2, -8.
+
+548
+00:43:50.376 --> 00:43:54.366
+Pivoteen. Este. 2 por esta se suma a esta.
+
+549
+00:43:57.427 --> 00:44:00.246
+Cuatro por esta se suma a esta y consigo mis ceros aquí.
+
+550
+00:44:04.356 --> 00:44:06.486
+Necesito aquí un 1, tengo un 2.
+
+551
+00:44:07.956 --> 00:44:10.056
+Multiplico toda esta fila por un medio,
+
+552
+00:44:11.586 --> 00:44:14.106
+que me da esta m****a que no sé qué va a hacer.
+
+553
+00:44:15.036 --> 00:44:19.177
+Pero yo tengo mi pivotito bueno ahí, que me permite conseguir mi cero aquí abajo
+
+554
+00:44:19.236 --> 00:44:23.136
+multiplicándolo por nueve. Acarreo. Bueno, no pasa nada.
+
+555
+00:44:23.496 --> 00:44:25.716
+Pero luego cuando llego aquí me doy cuenta de una cosa.
+
+556
+00:44:27.427 --> 00:44:30.396
+Puedo multiplicar todo esto por dos y todo esto por dos.
+
+557
+00:44:31.626 --> 00:44:34.716
+Y las fracciones han desaparecido. Mira qué bien.
+
+558
+00:44:36.306 --> 00:44:42.216
+Además, ya he terminado el Gauss. Leo 7 theta igual a -21.
+
+559
+00:44:44.196 --> 00:44:49.086
+Theta igual a 3. Sustituyo hacia atrás lo que vale theta aquí y ya despejo y.
+
+560
+00:44:49.956 --> 00:44:55.686
+Vale 2. Sustituyo aquí lo que vale theta, lo que vale y, y
+
+561
+00:44:55.716 --> 00:44:58.056
+despejo lo que vale x. X igual a 1.
+
+562
+00:44:59.946 --> 00:45:00.427
+Recordad,
+
+563
+00:45:01.836 --> 00:45:03.486
+1, 2, -3.
+
+564
+00:45:05.286 --> 00:45:07.356
+Pero también me lo pedían por Gauss-Jordan.
+
+565
+00:45:09.336 --> 00:45:12.427
+Y ya tenemos el Gauss con el triángulo de ceros aquí.
+
+566
+00:45:12.936 --> 00:45:17.496
+Además, es un sistema compatible determinado, etcétera. Por supuesto, va muy bien.
+
+567
+00:45:22.146 --> 00:45:26.047
+Multiplico por 1/7 y consigo aquí un 1.
+
+568
+00:45:26.826 --> 00:45:28.866
+Es más fácil trabajar así.
+
+569
+00:45:32.286 --> 00:45:34.776
+Este todavía no es un 1, pero lo vamos a dejar así.
+
+570
+00:45:35.616 --> 00:45:37.927
+Voy a conseguir con este pivote ceros arriba
+
+571
+00:45:39.529 --> 00:45:42.768
+Mi primer cero. Esta multiplicada por -5 me va a dar
+
+572
+00:45:44.358 --> 00:45:47.088
+aquí. Esta multiplicada por -6 me va a dar aquí, con un cero allá.
+
+573
+00:45:48.498 --> 00:45:49.098
+Y esta otra,
+
+574
+00:45:50.328 --> 00:45:55.398
+esto se puede multiplicar por un medio, toda la fila, para que quede uno y dos.
+
+575
+00:45:57.199 --> 00:46:02.298
+Y ya este como pivote. Esto lo multiplico por -2 y lo sumo aquí para que me dé
+
+576
+00:46:02.328 --> 00:46:02.508
+cero.
+
+577
+00:46:03.978 --> 00:46:04.638
+Y ya lo tenemos.
+
+578
+00:46:06.408 --> 00:46:11.058
+Os dije: "Recordad, X = 1, Y = 2, Z = 3".
+
+579
+00:46:13.458 --> 00:46:17.058
+X = 1, Y = 2, Z = -3.
+
+580
+00:46:18.318 --> 00:46:21.108
+Tenía que dar lo mismo. Si no da lo mismo, mal asunto.
+
+581
+00:46:21.108 --> 00:46:26.628
+¿Y qué pasa si son
+
+582
+00:46:26.658 --> 00:46:31.638
+homogéneos? Imaginemos que tenemos un vector del lado derecho, que es el
+
+583
+00:46:31.668 --> 00:46:34.818
+[0, 0, 0, 0, 0] . Mi sistema es este.
+
+584
+00:46:34.908 --> 00:46:39.168
+¿Qué es lo que pasa con el teorema de Luche-Frobenius? ¿Qué pasa ahora?
+
+585
+00:46:39.168 --> 00:46:40.638
+¿Qué voy a hacer con él?
+
+586
+00:46:43.878 --> 00:46:45.978
+Este teorema nos dice lo siguiente.
+
+587
+00:46:50.538 --> 00:46:51.888
+Tengo una matriz
+
+588
+00:46:53.568 --> 00:46:57.978
+del sistema, una matriz ampliada, y la ampliada es una columna de ceros.
+
+589
+00:47:01.038 --> 00:47:01.908
+Si coinciden
+
+590
+00:47:03.768 --> 00:47:06.828
+el rango y es igual al número de
+
+591
+00:47:08.449 --> 00:47:10.908
+incógnitas, la solución va a ser la nula.
+
+592
+00:47:11.868 --> 00:47:14.418
+X = 0, Y = 0, Z = 0, en el caso de que sean tres.
+
+593
+00:47:17.418 --> 00:47:18.918
+Si su rango es menor,
+
+594
+00:47:20.358 --> 00:47:26.268
+o son iguales la ampliada y la otra, vamos a tener un sistema que
+
+595
+00:47:26.328 --> 00:47:31.998
+sea compatible indeterminado. Nunca vamos a tener un sistema compatible determinado
+
+596
+00:47:32.029 --> 00:47:36.558
+que sea interesante, porque en ese caso lo que me da es [0, 0, 0] .
+
+597
+00:47:37.608 --> 00:47:38.508
+En general, vamos a tener
+
+598
+00:47:40.908 --> 00:47:46.818
+una infinidad de soluciones, porque el rango va a ser menor que coincide con el
+
+599
+00:47:46.878 --> 00:47:48.768
+otro. Si no coincide, es incompatible.
+
+600
+00:47:50.118 --> 00:47:52.608
+En ese caso, ¿cuánto será aquí?
+
+601
+00:47:55.699 --> 00:47:57.768
+Nunca. Esto no se da.
+
+602
+00:48:02.658 --> 00:48:03.199
+Ejemplo.
+
+603
+00:48:04.938 --> 00:48:07.878
+Es homogéneo, porque tengo aquí mis
+
+604
+00:48:10.788 --> 00:48:13.848
+ceros. Vector del lado derecho, todos ceros.
+
+605
+00:48:15.678 --> 00:48:16.699
+Ahora ha salido para allá.
+
+606
+00:48:25.308 --> 00:48:31.068
+Matriz ampliada: 1, 2, 3, 4, 0; 2,
+
+607
+00:48:31.279 --> 00:48:35.418
+3, 4, 5, 0; 3, 4, 5, 6, 0; 4, 5, 6, 7, 0.
+
+608
+00:48:40.128 --> 00:48:41.988
+Dibujo la línea, pero podría no dibujarla.
+
+609
+00:48:42.258 --> 00:48:48.108
+Incluso podría no dibujar el número de ceros y los agrego al final, porque las
+
+610
+00:48:48.168 --> 00:48:51.887
+operaciones elementales por fila nunca le van a afectar a estos de aquí.
+
+611
+00:48:54.137 --> 00:48:56.388
+Aquí están explícitas todas las operaciones.
+
+612
+00:48:58.218 --> 00:49:02.298
+Y lo vemos aquí. Esta fila por -2 para conseguir el cero aquí.
+
+613
+00:49:02.568 --> 00:49:04.818
+Esta fila por -3 para conseguir el cero aquí.
+
+614
+00:49:04.908 --> 00:49:07.008
+Esta fila por -4 para conseguir el cero aquí.
+
+615
+00:49:10.878 --> 00:49:11.568
+Moraleja.
+
+616
+00:49:13.308 --> 00:49:19.279
+Por razones pedagógicas, hasta ahora he separado bastante
+
+617
+00:49:19.338 --> 00:49:21.288
+las operaciones elementales por filas.
+
+618
+00:49:23.658 --> 00:49:28.968
+Pero cuando a vosotros se os pide una solución de este estilo
+
+619
+00:49:29.748 --> 00:49:33.468
+y tenéis que, por ejemplo, utilizar un proceso de , es un lío.
+
+620
+00:49:33.828 --> 00:49:37.518
+Yo lo que os aconsejo es que cuando tenéis un pivote, esto de aquí,
+
+621
+00:49:38.988 --> 00:49:41.898
+me hacéis las operaciones para conseguir ceros por debajo.
+
+622
+00:49:43.668 --> 00:49:45.678
+Y me hacéis, en este caso, las tres de golpe.
+
+623
+00:49:47.898 --> 00:49:49.938
+Y aquí no tengo que escribir todo esto otra vez.
+
+624
+00:49:52.128 --> 00:49:57.918
+Porque aquí yo estoy conservando toda la información de lo que ha
+
+625
+00:49:57.949 --> 00:49:58.398
+pasado.
+
+626
+00:50:00.558 --> 00:50:00.828
+Más.
+
+627
+00:50:03.258 --> 00:50:04.938
+Este es el siguiente pivote.
+
+628
+00:50:07.398 --> 00:50:10.488
+Consigo, en teoría, mis ceros aquí y aquí.
+
+629
+00:50:12.258 --> 00:50:17.508
+Multiplicando por -2 y sumando la segunda por -3. ¿Y qué es lo que ocurre?
+
+630
+00:50:17.538 --> 00:50:22.938
+Que no solamente consigo ceros, sino que ahí va. Tengo [0, 0, 0, 0, 0] ahí.
+
+631
+00:50:22.968 --> 00:50:24.648
+¿Hemos terminado? No.
+
+632
+00:50:27.018 --> 00:50:32.208
+Pivote, pivote, ceros por abajo, me falta por arriba.
+
+633
+00:50:32.388 --> 00:50:33.258
+No hay más pivotes.
+
+634
+00:50:35.658 --> 00:50:41.508
+Multiplico eso por -2 y lo sumo aquí para conseguir aquí mi
+
+635
+00:50:41.538 --> 00:50:41.779
+cero.
+
+636
+00:50:44.238 --> 00:50:47.029
+No, por dos, perdón. Por dos y lo sumo aquí.
+
+637
+00:50:50.358 --> 00:50:52.128
+Y ya tengo esto de aquí. ¿He terminado?
+
+638
+00:50:52.308 --> 00:50:52.488
+No,
+
+639
+00:50:53.748 --> 00:50:57.048
+porque los pivotes tienen que ser unos, así que tengo que multiplicar toda esta
+
+640
+00:50:57.108 --> 00:50:59.748
+fila por -1. Ahora sí.
+
+641
+00:51:03.648 --> 00:51:05.508
+Pivote, pivote.
+
+642
+00:51:06.978 --> 00:51:09.888
+Valor principal X, valor principal Y.
+
+643
+00:51:11.538 --> 00:51:15.739
+Pivote por debajo, cero. Pivote por arriba, cero.
+
+644
+00:51:16.938 --> 00:51:20.058
+Valores libres Z y W serán.
+
+645
+00:51:24.348 --> 00:51:24.888
+Así que
+
+646
+00:51:28.338 --> 00:51:33.679
+tengo que llamar a una. No sé si P = A P, por ejemplo, y W
+
+647
+00:51:33.709 --> 00:51:39.618
+igual a S. O viceversa. Da igual cómo lo llamemos realmente, pero hay dos variables
+
+648
+00:51:39.679 --> 00:51:43.308
+libres. Tengo dos grados de libertad, tengo que utilizar dos parámetros.
+
+649
+00:51:45.558 --> 00:51:47.418
+Las variables principales son X e Y.
+
+650
+00:51:48.018 --> 00:51:52.998
+Así que X e Y las tendré que expresar en función de estos dos parámetros,
+
+651
+00:51:54.588 --> 00:51:57.348
+utilizando esta información que hay aquí.
+
+652
+00:51:57.378 --> 00:52:02.808
+¿Qué pone aquí? Pone X -
+
+653
+00:52:05.388 --> 00:52:11.177
+C - 2S = 0. ¿Qué pone aquí? Aquí
+
+654
+00:52:11.209 --> 00:52:11.568
+pone Y
+
+655
+00:52:13.188 --> 00:52:14.298
++ 2T
+
+656
+00:52:15.829 --> 00:52:19.728
++ 3S = 0. No hay más información. Y tengo estas dos.
+
+657
+00:52:25.008 --> 00:52:28.579
+Da igual.
+
+658
+00:52:31.968 --> 00:52:34.548
+Entonces, Z = S, W = C.
+
+659
+00:52:37.308 --> 00:52:42.438
+Aquí pongo S, aquí pongo S, aquí pongo T, aquí pongo T. Lo mismo que he hecho aquí.
+
+660
+00:52:42.768 --> 00:52:44.239
+Y lo mando todo al otro lado.
+
+661
+00:52:46.008 --> 00:52:46.638
+Y agrupo
+
+662
+00:52:47.898 --> 00:52:50.778
+en una columna las que vayan con S y en otra columna las que vayan con T.
+
+663
+00:52:54.558 --> 00:52:58.398
+Dos grados de libertad. Si son dos grados de libertad, es un plano.
+
+664
+00:52:59.778 --> 00:53:02.628
+Un grado de libertad es una recta, dos grados de libertad es un plano.
+
+665
+00:53:03.348 --> 00:53:05.778
+¿Cómo podríamos interpretar geométricamente esto?
+
+666
+00:53:06.949 --> 00:53:09.408
+Como un plano en cuatro dimensiones.
+
+667
+00:53:12.648 --> 00:53:17.418
+No lo podemos visualizar, pero podemos pensar sobre ello. Y eso es fantástico.
+
+668
+00:53:23.118 --> 00:53:29.028
+Este es un problema típico que se suele pedir y es que te dan una matriz ampliada
+
+669
+00:53:29.058 --> 00:53:34.188
+de un sistema o un sistema y en lugar de darte todo números, te dan, a veces,
+
+670
+00:53:34.489 --> 00:53:37.098
+un K, por ejemplo, un A.
+
+671
+00:53:39.228 --> 00:53:42.168
+Un algo que simboliza un número y te están pidiendo
+
+672
+00:53:43.878 --> 00:53:44.929
+para qué valores de K
+
+673
+00:53:46.158 --> 00:53:50.058
+es compatible, es compatible e indeterminado, es compatible e indeterminado y
+
+674
+00:53:50.118 --> 00:53:51.079
+cuándo indeterminado.
+
+675
+00:53:57.679 --> 00:54:00.648
+Hagamos lo mismo, hagamos el Gauss a ver qué pasa.
+
+676
+00:54:01.489 --> 00:54:04.699
+Si yo opero nada más que con este como pivote, va a ser un lío.
+
+677
+00:54:05.148 --> 00:54:09.739
+Las operaciones se me van a complicar mucho. Así que intercambio, ¿para qué?
+
+678
+00:54:09.798 --> 00:54:10.728
+Para conseguir
+
+679
+00:54:12.528 --> 00:54:13.638
+un uno aquí arriba.
+
+680
+00:54:17.088 --> 00:54:18.709
+Y la K la dejo abajo del todo.
+
+681
+00:54:23.598 --> 00:54:24.018
+Y así
+
+682
+00:54:25.608 --> 00:54:27.768
+es más fácil, simplemente, las operaciones.
+
+683
+00:54:27.978 --> 00:54:32.959
+Nos debería de dar lo mismo, pero siempre va a ser más fácil ir aprovechándose, ser
+
+684
+00:54:33.018 --> 00:54:38.989
+astuto y no hacer todo. Yo puedo multiplicar esta fila, ¿por qué?
+
+685
+00:54:39.018 --> 00:54:42.949
+Por -K y sumarla a toda esta fila para conseguir aquí un cero
+
+686
+00:54:47.334 --> 00:54:48.324
+Es lo que aquí he puesto.
+
+687
+00:54:50.304 --> 00:54:53.364
+Y además para esta otra, por -1, consigo aquí un cero.
+
+688
+00:54:53.544 --> 00:54:56.604
+¿Qué pasa? Que
+
+689
+00:54:58.104 --> 00:55:02.905
+me van a ir apareciendo más k por aquí. ¿Qué se le va a hacer?
+
+690
+00:55:03.684 --> 00:55:05.664
+Me aguanto y la voy a cargando.
+
+691
+00:55:08.364 --> 00:55:12.324
+Fijaos, esta y esta, en la misma he cambiado de signo.
+
+692
+00:55:12.504 --> 00:55:12.894
+Así que
+
+693
+00:55:14.155 --> 00:55:15.924
+esta fila por -1
+
+694
+00:55:18.114 --> 00:55:18.834
+sumada a esta,
+
+695
+00:55:20.694 --> 00:55:22.254
+me va a conseguir aquí un cero.
+
+696
+00:55:22.254 --> 00:55:28.104
+¿Qué es lo que ocurre? Que
+
+697
+00:55:28.224 --> 00:55:33.144
+esa simplicidad que estoy consiguiendo aquí con el k, se me va complicando aquí en
+
+698
+00:55:33.234 --> 00:55:36.384
+otro lado. ¿Qué se le va a hacer? Me aguanto.
+
+699
+00:55:38.754 --> 00:55:39.114
+Pero
+
+700
+00:55:40.644 --> 00:55:41.905
+ya puedo decir cosas.
+
+701
+00:55:44.934 --> 00:55:46.434
+Dices: ¿cuándo voy a tener
+
+702
+00:55:48.025 --> 00:55:49.884
+un rango distinto aquí que aquí?
+
+703
+00:55:51.384 --> 00:55:57.174
+Cuando esto sea igual a cero. Y cuando sea eso igual a cero y tenga
+
+704
+00:55:57.474 --> 00:56:02.364
+un rango igual a dos aquí, igual a tres no ampliada, va a ser
+
+705
+00:56:02.514 --> 00:56:03.744
+incompatible.
+
+706
+00:56:05.304 --> 00:56:06.504
+Así que tengo esto de aquí.
+
+707
+00:56:08.454 --> 00:56:12.054
+Y como sé resolver ecuaciones de segundo grado, ¿qué es lo que ocurre?
+
+708
+00:56:12.084 --> 00:56:14.604
+Que para uno y para -2, mal asunto.
+
+709
+00:56:19.044 --> 00:56:20.094
+Ahí tengo un cero.
+
+710
+00:56:26.664 --> 00:56:29.694
+Es incompatible. Así que para esos valores de k es incompatible.
+
+711
+00:56:31.794 --> 00:56:35.544
+Y para los demás valores va a ser compatible determinado.
+
+712
+00:56:47.125 --> 00:56:48.714
+Tengo mi sistema de ecuaciones.
+
+713
+00:56:52.315 --> 00:56:53.065
+Aquí tengo un cero.
+
+714
+00:56:54.775 --> 00:56:57.864
+Lo primero que hago es intercambiar, porque con el cero no puedo hacer nada.
+
+715
+00:56:57.984 --> 00:56:59.484
+Utilizo el dos como pivote.
+
+716
+00:57:01.134 --> 00:57:06.834
+Cero, uno, -3,
+
+717
+00:57:06.924 --> 00:57:11.184
+-5. Este cero ya lo tengo. El dos, tres, -1, siete.
+
+718
+00:57:12.204 --> 00:57:13.644
+Quiero que os dediquéis aquí.
+
+719
+00:57:14.964 --> 00:57:16.134
+Aquí consigo mi cero.
+
+720
+00:57:17.544 --> 00:57:21.655
+Si multiplico esta fila por -2 y la sumo aquí.
+
+721
+00:57:21.655 --> 00:57:26.754
+¿Cuáles son estos dos números? Decídmelo. ¿Me lo tenéis que decir?
+
+722
+00:57:36.084 --> 00:57:37.164
+Venga, participación.
+
+723
+00:57:38.694 --> 00:57:42.444
+Buscadme una hoja de papel si es necesario. Define qué tengo que hacer.
+
+724
+00:57:42.474 --> 00:57:43.134
+¿-1?
+
+725
+00:57:43.134 --> 00:57:44.634
+¿-1?
+
+726
+00:57:45.684 --> 00:57:47.724
+No. ¿Sí o no?
+
+727
+00:57:49.074 --> 00:57:54.864
+Es -2 por 3 más la fila tres.
+
+728
+00:57:55.644 --> 00:57:57.294
+En este caso, 5. -1.
+
+729
+00:57:57.594 --> 00:57:59.754
+¿Cinco, me dices?
+
+730
+00:57:59.963 --> 00:58:02.664
+No. Hablaba del anterior, del -1.
+
+731
+00:58:02.664 --> 00:58:08.484
+¿Aquí qué
+
+732
+00:58:08.514 --> 00:58:08.964
+coloco?
+
+733
+00:58:11.964 --> 00:58:13.494
+Aquí, en este sitio.
+
+734
+00:58:17.155 --> 00:58:18.204
+No puede ser tan difícil.
+
+735
+00:58:18.204 --> 00:58:21.025
+-1.
+
+736
+00:58:21.354 --> 00:58:25.164
+-1. ¿Aquí qué coloco?
+
+737
+00:58:30.354 --> 00:58:31.794
+A los demás la podéis ayudar.
+
+738
+00:58:34.134 --> 00:58:34.884
+En algún momento.
+
+739
+00:58:35.484 --> 00:58:35.875
+¿Cero?
+
+740
+00:58:35.875 --> 00:58:37.644
+¿Y aquí?
+
+741
+00:58:37.644 --> 00:58:47.544
+¿Qué
+
+742
+00:58:47.574 --> 00:58:47.934
+pongo ahí?
+
+743
+00:58:47.934 --> 00:58:49.344
+¿-4?
+
+744
+00:58:49.344 --> 00:58:50.964
+-4.
+
+745
+00:58:51.444 --> 00:58:51.894
+No sé.
+
+746
+00:58:54.984 --> 00:58:56.484
+Estás en lo cierto.
+
+747
+00:58:58.734 --> 00:59:01.734
+No es tan complicado.
+
+748
+00:59:05.424 --> 00:59:06.294
+Ahora, ¿aquí
+
+749
+00:59:07.674 --> 00:59:12.804
+qué me va a salir? Esto es trivial. Esto ya se sobreentiende que pongo aquí cero,
+
+750
+00:59:12.954 --> 00:59:15.834
+aquí pasa un cero. ¿Aquí qué pongo?
+
+751
+00:59:20.664 --> 00:59:21.655
+Aquí, el siguiente.
+
+752
+00:59:25.224 --> 00:59:25.584
+Cero.
+
+753
+00:59:26.724 --> 00:59:28.554
+Cero. ¿Y esta otra?
+
+754
+00:59:28.554 --> 00:59:37.974
+¿Estás
+
+755
+00:59:38.035 --> 00:59:39.444
+segura de este cero?
+
+756
+00:59:40.375 --> 00:59:41.244
+No. Yo no.
+
+757
+00:59:44.394 --> 00:59:50.334
+Estamos haciendo con el segundo pivote convertir en cero el -1, ¿verdad?
+
+758
+00:59:51.054 --> 00:59:51.594
+Vamos a ver.
+
+759
+00:59:52.164 --> 00:59:54.264
+Sumar la fila dos por la fila tres.
+
+760
+00:59:54.324 --> 00:59:56.094
+Multiplicar esta fila por uno.
+
+761
+00:59:57.714 --> 00:59:59.155
+Voy a conseguir aquí cero. Ya lo tengo ahí.
+
+762
+01:00:00.594 --> 01:00:01.944
+El siguiente, ¿qué es lo que le ocurre?
+
+763
+01:00:01.944 --> 01:00:03.025
+-3.
+
+764
+01:00:03.025 --> 01:00:06.864
+¿Y el siguiente?
+
+765
+01:00:06.864 --> 01:00:07.944
+-9.
+
+766
+01:00:12.054 --> 01:00:17.694
+Efectivamente, ¿veis? No es tan complicado. ¿Qué es lo que tengo ya?
+
+767
+01:00:17.724 --> 01:00:23.454
+¿Qué es lo que tengo? 3 -3z = -9.
+
+768
+01:00:26.364 --> 01:00:29.304
+Despejo z, paso este -3 dividiendo.
+
+769
+01:00:31.884 --> 01:00:37.164
+Así que z = 3. ¿Esto qué leo aquí? Leo
+
+770
+01:00:38.394 --> 01:00:43.584
+y - z = -5. Y z acaba de dar igual que 3.
+
+771
+01:00:45.984 --> 01:00:48.834
+Despejo y obtengo y = 4.
+
+772
+01:00:50.484 --> 01:00:50.514
+X.
+
+773
+01:00:51.744 --> 01:00:54.864
+Esta es la ecuación. Si leo, pone 2x + 3y - z
+
+774
+01:00:56.815 --> 01:00:57.174
+= 7.
+
+775
+01:00:58.764 --> 01:01:04.074
+Sustituyo. Sustitución algebraica se llama, lo que vale z, que vale 3 y lo que vale
+
+776
+01:01:04.134 --> 01:01:09.954
+y, que vale 4. Aquí un 3 y aquí un 4. Despejo y queda x =
+
+777
+01:01:10.104 --> 01:01:12.565
+-1. Ya tengo la solución.
+
+778
+01:01:15.623 --> 01:01:16.224
+Esta otra.
+
+779
+01:01:17.783 --> 01:01:20.304
+Transformar el siguiente sistema de ecuaciones
+
+780
+01:01:22.464 --> 01:01:25.914
+en escalonado, discutirlo y resolverlo si quiere suceder.
+
+781
+01:01:25.914 --> 01:01:30.114
+¿Qué es lo que hago aquí?
+
+782
+01:01:32.514 --> 01:01:34.794
+De entrada, ahí tendría que intercambiar.
+
+783
+01:01:36.444 --> 01:01:38.694
+Lo intercambio, porque eso está bien.
+
+784
+01:01:39.894 --> 01:01:41.484
+Porque este cero como pivote me vale.
+
+785
+01:01:44.664 --> 01:01:47.394
+Yo necesito aquí un cero.
+
+786
+01:01:48.894 --> 01:01:52.014
+Este ya estaba aquí antes, así que no lo necesito más.
+
+787
+01:01:52.074 --> 01:01:55.104
+Pero este de aquí, necesito un cero. ¿Cómo lo consigo?
+
+788
+01:01:57.984 --> 01:01:59.304
+Multiplicar por -2.
+
+789
+01:02:00.174 --> 01:02:04.884
+Por -2 y lo sumo ahí. Entonces tengo uno, dos, uno, dos.
+
+790
+01:02:06.294 --> 01:02:10.734
+Pero este se me queda tal cual. ¿Qué pongo aquí?
+
+791
+01:02:10.734 --> 01:02:13.734
+¿Qué me da aquí?
+
+792
+01:02:13.764 --> 01:02:16.704
+-2.
+
+793
+01:02:16.704 --> 01:02:18.744
+-3, me dicen.
+
+794
+01:02:19.974 --> 01:02:20.634
+Lo siguiente.
+
+795
+01:02:20.634 --> 01:02:22.644
+-2.
+
+796
+01:02:24.264 --> 01:02:26.514
+-2. ¿Y lo siguiente?
+
+797
+01:02:26.844 --> 01:02:28.554
+No, digo el anterior.
+
+798
+01:02:28.554 --> 01:02:36.775
+-2,
+
+799
+01:02:36.834 --> 01:02:38.604
+me dices. ¿Y el siguiente?
+
+800
+01:02:38.604 --> 01:02:44.155
+-2
+
+801
+01:02:44.815 --> 01:02:45.114
+también.
+
+802
+01:02:45.924 --> 01:02:47.934
+Eso es. ¿Y el siguiente?
+
+803
+01:02:47.934 --> 01:02:51.864
+-2 también.
+
+804
+01:02:54.174 --> 01:02:54.864
+Creo, o sí.
+
+805
+01:02:58.794 --> 01:03:00.354
+Sí, que es cierto. Y aquí ya se
+
+806
+01:03:01.644 --> 01:03:03.744
+ve lo que está pasando. Si
+
+807
+01:03:07.734 --> 01:03:12.565
+yo multiplico esta fila, por ejemplo, por -1/2, queda todo 1 igual a la otra.
+
+808
+01:03:16.464 --> 01:03:20.334
+Y ya si sumo a esta multiplicada por -1 aquí, ya me dan los ceros.
+
+809
+01:03:22.285 --> 01:03:23.004
+Ya lo tengo aquí.
+
+810
+01:03:26.754 --> 01:03:27.535
+A ver, ¿qué me da aquí?
+
+811
+01:03:30.054 --> 01:03:30.924
+Siguiente caso.
+
+812
+01:03:42.894 --> 01:03:46.254
+Dos por la fila de dos más la primera fila.
+
+813
+01:03:46.254 --> 01:03:49.315
+¿Dos? ¿Y aquí qué?
+
+814
+01:03:49.554 --> 01:03:50.214
+Más uno.
+
+815
+01:03:51.565 --> 01:03:55.104
+Dos por -2 más. No, tres en
+
+816
+01:03:57.084 --> 01:03:57.864
+el dos va el tres
+
+817
+01:04:01.590 --> 01:04:02.610
+Y luego cuatro.
+
+818
+01:04:03.360 --> 01:04:04.110
+Y aquí cuatro.
+
+819
+01:04:05.910 --> 01:04:06.601
+Vamos a ver.
+
+820
+01:04:08.430 --> 01:04:09.180
+Pues no.
+
+821
+01:04:09.391 --> 01:04:09.660
+No.
+
+822
+01:04:11.370 --> 01:04:11.910
+Como era.
+
+823
+01:04:13.530 --> 01:04:19.500
+Como veis, es fácil, pero si no se les dicta, se pueden
+
+824
+01:04:19.560 --> 01:04:20.070
+equivocar.
+
+825
+01:04:24.900 --> 01:04:25.891
+Tenemos pivote.
+
+826
+01:04:29.130 --> 01:04:30.210
+Porque era negativo.
+
+827
+01:04:31.050 --> 01:04:36.150
+Cero abajo de los pivotes, pero arriba del único pivote.
+
+828
+01:04:37.080 --> 01:04:42.420
+Variable libre Z. Así que Z es 4.
+
+829
+01:04:42.960 --> 01:04:43.201
+Ahora,
+
+830
+01:04:44.490 --> 01:04:49.830
+decidme cuánto vale Y y cuánto vale X en función del
+
+831
+01:04:50.790 --> 01:04:52.951
+parámetro T. Según eso.
+
+832
+01:05:04.560 --> 01:05:05.760
+A ver, coged un papelito.
+
+833
+01:05:08.040 --> 01:05:09.420
+Voy a dejar más bonito esto.
+
+834
+01:05:09.420 --> 01:05:16.740
+¿Cómo
+
+835
+01:05:16.800 --> 01:05:20.010
+se lee esto? X. ¿Qué pone aquí?
+
+836
+01:05:20.880 --> 01:05:23.731
+Menos uno. Menos C.
+
+837
+01:05:25.830 --> 01:05:25.920
+Y Z.
+
+838
+01:05:25.920 --> 01:05:28.500
+Y Z, ¿qué vale?
+
+839
+01:05:28.981 --> 01:05:29.910
+Tres.
+
+840
+01:05:30.870 --> 01:05:35.460
+X menos C igual a cero. Así que, ¿X es igual a qué?
+
+841
+01:05:39.510 --> 01:05:39.990
+Menos C.
+
+842
+01:05:39.990 --> 01:05:43.770
+¿Menos? No, si lo pasas para acá.
+
+843
+01:05:43.770 --> 01:05:44.400
+Para los dos.
+
+844
+01:05:52.770 --> 01:05:54.240
+Ahora, ¿qué vale Y?
+
+845
+01:05:58.110 --> 01:05:58.530
+Cero.
+
+846
+01:05:58.530 --> 01:06:01.740
+¿Por qué vale cero?
+
+847
+01:06:06.360 --> 01:06:08.550
+Lee, ¿qué pone aquí? Aquí pone Y.
+
+848
+01:06:08.610 --> 01:06:08.731
+Y.
+
+849
+01:06:10.471 --> 01:06:10.620
+2C.
+
+850
+01:06:12.451 --> 01:06:14.880
+Entonces, esta Z, ¿qué vale? T.
+
+851
+01:06:15.540 --> 01:06:15.900
+Menos T.
+
+852
+01:06:16.830 --> 01:06:18.721
+Y más T igual a uno.
+
+853
+01:06:19.891 --> 01:06:21.000
+Pasa al otro lado.
+
+854
+01:06:21.060 --> 01:06:23.910
+No, menos T. Signo menos. El otro lado.
+
+855
+01:06:29.130 --> 01:06:30.210
+Sería esta la solución.
+
+856
+01:06:31.650 --> 01:06:32.880
+Esta era la variable libre.
+
+857
+01:06:36.060 --> 01:06:37.891
+Por supuesto, es compatible e indeterminado.
+
+858
+01:06:37.920 --> 01:06:42.570
+Eso ya lo sabíamos en el momento en el que ocurre esto.
+
+859
+01:06:46.050 --> 01:06:48.360
+Rango de la matriz del sistema: dos.
+
+860
+01:06:49.110 --> 01:06:50.580
+Rango de la matriz ampliada:
+
+861
+01:06:53.221 --> 01:06:53.580
+dos.
+
+862
+01:06:55.351 --> 01:06:57.900
+Dos menor que tres, que es el número de variables.
+
+863
+01:06:58.471 --> 01:07:00.810
+Es compatible, pero indeterminado.
+
+864
+01:07:03.420 --> 01:07:08.010
+Y lo vamos a ir pensando así. Las variables principales en función de la variable
+
+865
+01:07:08.040 --> 01:07:09.810
+libre, y esa la vamos a llamar como T.
+
+866
+01:07:15.270 --> 01:07:15.601
+Esto otra.
+
+867
+01:07:18.330 --> 01:07:19.260
+Un cuatro por cuatro.
+
+868
+01:07:22.231 --> 01:07:25.110
+Aquí no nos están diciendo que sea una
+
+869
+01:07:29.130 --> 01:07:32.221
+matriz de un sistema, simplemente es una matriz cuatro por cuatro.
+
+870
+01:07:34.560 --> 01:07:36.900
+Y me dicen una matriz reducida por filas.
+
+871
+01:07:40.170 --> 01:07:41.760
+Este es un pivote estupendo.
+
+872
+01:07:49.050 --> 01:07:52.050
+Uno, uno, menos dos, uno.
+
+873
+01:07:53.880 --> 01:07:55.860
+Este ya es un cero, así que lo respeto.
+
+874
+01:07:57.360 --> 01:08:00.481
+Si ya me dan un cero, ¿para qué conseguir un cero donde está el cero?
+
+875
+01:08:00.540 --> 01:08:01.080
+No hace falta.
+
+876
+01:08:02.940 --> 01:08:08.880
+Yo necesito un cero aquí. ¿Cómo? Esta fila por uno sumada aquí me da un
+
+877
+01:08:08.910 --> 01:08:11.340
+cero. ¿Qué me dan estos otros? Decidme.
+
+878
+01:08:11.370 --> 01:08:17.790
+¿Qué
+
+879
+01:08:17.851 --> 01:08:18.630
+tengo que poner aquí?
+
+880
+01:08:20.971 --> 01:08:21.330
+Dos.
+
+881
+01:08:23.130 --> 01:08:24.630
+Dicen que dos. ¿Y aquí?
+
+882
+01:08:28.260 --> 01:08:28.620
+Cero.
+
+883
+01:08:28.740 --> 01:08:31.110
+¿Y aquí?
+
+884
+01:08:32.880 --> 01:08:33.210
+Dos.
+
+885
+01:08:37.141 --> 01:08:42.060
+Necesito un cero aquí. Esto lo puedo conseguir multiplicando esta fila por menos
+
+886
+01:08:42.120 --> 01:08:46.710
+tres y sumándola a esta. El cero está garantizado porque lo he buscado así.
+
+887
+01:08:47.280 --> 01:08:48.030
+Aquí, ¿qué pongo?
+
+888
+01:08:56.310 --> 01:08:56.910
+Menos uno.
+
+889
+01:09:00.780 --> 01:09:01.290
+Siguiente.
+
+890
+01:09:03.451 --> 01:09:04.590
+Ocho. No.
+
+891
+01:09:07.110 --> 01:09:07.981
+Menos tres.
+
+892
+01:09:10.110 --> 01:09:10.770
+Menos cuatro.
+
+893
+01:09:12.451 --> 01:09:14.851
+Dicen que menos cuatro. ¿Y aquí el último?
+
+894
+01:09:19.530 --> 01:09:20.130
+Menos uno.
+
+895
+01:09:23.101 --> 01:09:23.790
+Vamos a ver.
+
+896
+01:09:26.580 --> 01:09:27.570
+Ese es el primer paso.
+
+897
+01:09:31.231 --> 01:09:32.280
+Y este sería el siguiente.
+
+898
+01:09:33.780 --> 01:09:34.920
+Hay un pequeño fallo.
+
+899
+01:09:36.300 --> 01:09:41.370
+Moraleja. Veis que es fácil, pero a veces uno se puede equivocar.
+
+900
+01:09:43.681 --> 01:09:48.960
+De nuevo, el sistema siempre es el mismo. Es pivote, pero para abajo.
+
+901
+01:09:49.201 --> 01:09:53.010
+Una vez que hemos terminado, siguiente pivote, pero para abajo.
+
+902
+01:09:55.320 --> 01:09:59.760
+Yo puedo intercambiar esta fila, por ejemplo, con esta y aprovecharme de este
+
+903
+01:09:59.820 --> 01:10:01.740
+pivote, que va a ser mucho más fácil operar con él.
+
+904
+01:10:05.941 --> 01:10:08.220
+Uno, uno, menos dos, uno.
+
+905
+01:10:10.201 --> 01:10:13.290
+Cero, menos uno, siete, menos uno.
+
+906
+01:10:15.570 --> 01:10:18.270
+Cero, cero. ¿Qué pongo aquí?
+
+907
+01:10:31.680 --> 01:10:35.280
+Esto es esta fila por dos para conseguir aquí un cero.
+
+908
+01:10:35.310 --> 01:10:40.680
+¿Qué tengo que poner más aquí en esta fila?
+
+909
+01:10:41.520 --> 01:10:42.060
+Decid.
+
+910
+01:10:43.620 --> 01:10:43.920
+Cero.
+
+911
+01:10:45.660 --> 01:10:51.360
+Me dicen que cero. Seguro. ¿Y aquí?
+
+912
+01:10:56.280 --> 01:10:59.550
+Piensa este, que este no puede ser un cero. ¿Cómo va a ser un cero?
+
+913
+01:11:01.710 --> 01:11:05.250
+Si tú esta fila la multiplicas por dos y la sumas aquí,
+
+914
+01:11:07.080 --> 01:11:10.680
+la sumas a cero, no te puede dar cero, porque te está dando algo.
+
+915
+01:11:12.390 --> 01:11:17.220
+Repasa esa expresión. ¿Qué pongo ahí?
+
+916
+01:11:21.540 --> 01:11:22.080
+Catorce.
+
+917
+01:11:22.350 --> 01:11:22.890
+Catorce.
+
+918
+01:11:26.460 --> 01:11:29.370
+Y el siguiente cero, porque es igual que la de arriba.
+
+919
+01:11:31.170 --> 01:11:33.900
+Esta otra. No sé si lo tengo de una vez o
+
+920
+01:11:35.701 --> 01:11:38.610
+por pasos. Vamos a hacerlo aquí de una.
+
+921
+01:11:40.320 --> 01:11:41.370
+Esto va a ser un cero.
+
+922
+01:11:43.140 --> 01:11:47.550
+Si yo multiplico esta fila por menos dos y lo sumo aquí, menos dos por menos uno,
+
+923
+01:11:47.610 --> 01:11:52.890
+dos. ¿Y qué me queda aquí? ¿Qué tengo que poner aquí?
+
+924
+01:11:53.460 --> 01:11:53.970
+Nueve.
+
+925
+01:11:53.970 --> 01:12:01.441
+¿Aquí?
+
+926
+01:12:02.280 --> 01:12:02.701
+Nueve.
+
+927
+01:12:02.731 --> 01:12:06.510
+¿Nueve me dicen? ¿Y aquí?
+
+928
+01:12:09.900 --> 01:12:10.260
+Tres.
+
+929
+01:12:11.430 --> 01:12:11.820
+Tres.
+
+930
+01:12:19.860 --> 01:12:21.870
+Hay un problema de un signo que ha caído.
+
+931
+01:12:24.390 --> 01:12:30.270
+Pero por lo demás, no está mal. ¿Qué más cosas se puede hacer por
+
+932
+01:12:30.330 --> 01:12:31.860
+aquí? Yo
+
+933
+01:12:31.920 --> 01:12:38.490
+puedo
+
+934
+01:12:38.520 --> 01:12:40.860
+multiplicar todo esto por un catorceavo.
+
+935
+01:12:44.941 --> 01:12:46.410
+Me queda mucho más bonito.
+
+936
+01:12:52.441 --> 01:12:57.990
+Necesito un cero aquí. Si esto lo multiplico por nueve y lo sumo aquí, me da mi
+
+937
+01:12:58.050 --> 01:12:58.380
+cero.
+
+938
+01:12:59.640 --> 01:13:00.451
+Esta otra, ¿qué me da?
+
+939
+01:13:04.398 --> 01:13:04.848
+Venga.
+
+940
+01:13:06.648 --> 01:13:10.848
+Me queda tres. Esto es cero. Lo multiplico por lo que lo multiplique, va a ser
+
+941
+01:13:10.908 --> 01:13:12.618
+cero. Sumado a tres, me va a dar tres.
+
+942
+01:13:14.328 --> 01:13:15.288
+Y ya tengo eso ahí.
+
+943
+01:13:16.968 --> 01:13:22.758
+Además, esa fila la puedo multiplicar por un tercio si quiere conseguir aquí un
+
+944
+01:13:24.618 --> 01:13:28.338
+monosiguis. Pero me están pidiendo un Gauss, una forma escalonada.
+
+945
+01:13:28.668 --> 01:13:32.299
+No me están pidiendo la forma escalonada reducida por filas, que entonces habría
+
+946
+01:13:32.328 --> 01:13:34.068
+que colocar todos estos ceros por aquí arriba.
+
+947
+01:13:34.668 --> 01:13:34.998
+Así que
+
+948
+01:13:37.278 --> 01:13:40.158
+se puede parar aquí perfectamente.
+
+949
+01:13:41.898 --> 01:13:44.778
+Y eso sería una respuesta posible de las muchas.
+
+950
+01:13:50.478 --> 01:13:51.799
+Yo creo que estas ya
+
+951
+01:13:54.348 --> 01:13:58.428
+os las voy a dejar para ejercicios en casa.
+
+952
+01:13:59.178 --> 01:14:00.348
+Así que mañana por la mañana
+
+953
+01:14:01.908 --> 01:14:05.628
+colgaré la presentación donde he estado haciendo todo esto,
+
+954
+01:14:06.828 --> 01:14:10.998
+todos estos ejercicios y otros ejercicios para que practiquéis.
+
+955
+01:14:11.238 --> 01:14:14.209
+Como veis, aunque sea fácil y sea una tontería,
+
+956
+01:14:15.648 --> 01:14:20.988
+si uno lo practica se le van los ceros menos y ya os sale mal.
+
+957
+01:14:21.018 --> 01:14:22.668
+¿Preguntas?
+
+958
+01:14:22.668 --> 01:14:31.098
+¿No
+
+959
+01:14:31.128 --> 01:14:32.748
+hay ninguna pregunta? ¿Todo ha quedado claro?
+
+960
+01:14:35.268 --> 01:14:36.948
+Todo claro.
+
+961
+01:14:37.368 --> 01:14:39.348
+No, me parece bien.
+
+962
+01:14:40.998 --> 01:14:46.398
+Si entendéis esto, si hacéis bien todo lo que he hecho yo aquí, tenéis
+
+963
+01:14:46.459 --> 01:14:48.799
+ganado desde luego la ECE 1 seguro.
+
+964
+01:14:50.058 --> 01:14:52.698
+Porque no tiene nada más que hacer este tipo de operaciones una y otra vez.
+
+965
+01:14:53.868 --> 01:14:57.709
+Y luego, tenéis las herramientas necesarias para hacer el resto de la asignatura,
+
+966
+01:14:58.278 --> 01:15:03.438
+porque es esto, es Gauss, Gauss-Jordan, formas escalonadas reducidas por filas,
+
+967
+01:15:03.588 --> 01:15:05.988
+etcétera. Sistemas de ecuaciones
+
+968
+01:15:07.968 --> 01:15:10.938
+cuando sean compatibles determinados, compatibles indeterminados
+
+969
+01:15:12.768 --> 01:15:13.428
+o incompatibles.
+
+970
+01:15:13.428 --> 01:15:18.558
+¿Existe posibilidad de que de pronto alarguemos un poco más el proceso, sin
+
+971
+01:15:18.588 --> 01:15:22.998
+embargo, dé el mismo resultado? Es decir, no sé, dijeras:
+
+972
+01:15:24.498 --> 01:15:29.418
+ella no debió cambiar esta fila, pero al final da el mismo resultado, se lo pudo
+
+973
+01:15:29.478 --> 01:15:32.238
+ahorrar o cosas así.
+
+974
+01:15:32.328 --> 01:15:38.209
+Es la que me piden aquí. Entonces, ya
+
+975
+01:15:38.268 --> 01:15:40.578
+está escalonado aquí. Tiene que ser
+
+976
+01:15:43.728 --> 01:15:44.178
+un mix.
+
+977
+01:15:46.158 --> 01:15:50.718
+Como no me están pidiendo la forma escalonada reducida por filas, que eso sería 1,
+
+978
+01:15:50.959 --> 01:15:56.118
+1, 1, 1. Ya te la predigo. Es 1, 1, 1, 1, 0, 0, 0, 0, 0.
+
+979
+01:15:57.168 --> 01:16:02.209
+Ya predicha, porque como es un sistema, como todos son independiente,
+
+980
+01:16:02.268 --> 01:16:07.308
+necesariamente tiene que ser esa. ¿Dónde lo paras?
+
+981
+01:16:08.418 --> 01:16:13.908
+Lo he parado aquí. Si hubieras querido, lo divides por un tercio, aquí ya te queda
+
+982
+01:16:13.938 --> 01:16:16.337
+un uno. Y sería igualmente válido,
+
+983
+01:16:17.748 --> 01:16:21.618
+porque es una forma escalonada. Te quiero aquí un uno en lugar de un menos uno,
+
+984
+01:16:21.678 --> 01:16:23.568
+también multiplico por menos uno esta fila.
+
+985
+01:16:24.799 --> 01:16:27.709
+Y también sería válido. Es más,
+
+986
+01:16:29.028 --> 01:16:32.628
+soy bobo y multiplico toda esta fila por dos porque me da la gana.
+
+987
+01:16:35.898 --> 01:16:41.118
+Seguiría siendo válido, seguiría siendo una forma escalonada, porque hay infinitas
+
+988
+01:16:41.209 --> 01:16:47.028
+formas escalonadas, pero tienes una única forma escalonada reducida por filas, que
+
+989
+01:16:47.058 --> 01:16:50.478
+siempre está hecha con pivotes, unos,
+
+990
+01:16:52.938 --> 01:16:57.018
+ceros por encima y por debajo de esos pivotes. Ya está.
+
+991
+01:16:57.858 --> 01:17:01.518
+Cualquier otra forma que me des, una forma escalonada reducida por filas que no sea
+
+992
+01:17:01.578 --> 01:17:06.378
+así, no es una forma escalonada reducida por filas y te lo tengo que dar como mal.
+
+993
+01:17:07.338 --> 01:17:12.168
+Pero en este caso, como me está pidiendo una forma escalonada, me da igual.
+
+994
+01:17:12.318 --> 01:17:17.358
+Puedo parar donde yo quiera, siempre y cuando tenga mi triángulo de ceros en este
+
+995
+01:17:17.418 --> 01:17:21.978
+caso. Que también podría haber sido, que no es el caso, que aquí hubiera un cero.
+
+996
+01:17:23.508 --> 01:17:25.638
+Pones ceros ahí y ceros aquí.
+
+997
+01:17:29.058 --> 01:17:31.128
+Los otros puede ser lo que quieran.
+
+998
+01:17:31.818 --> 01:17:35.178
+No se exige que sea unos, los pivotes, ni nada.
+
+999
+01:17:35.928 --> 01:17:39.528
+Por eso es una forma escalonada y se consigue con Gauss.
+
+1000
+01:17:39.558 --> 01:17:43.518
+Lo que hemos hecho aquí es Gauss. Y Gauss-Jordan es la que te permite conseguir la
+
+1001
+01:17:43.578 --> 01:17:48.168
+forma escalonada reducida por filas y hay ceros por debajo de los pivotes, como en
+
+1002
+01:17:48.198 --> 01:17:50.448
+Gauss, y por encima de los pivotes.
+
+1003
+01:17:51.018 --> 01:17:55.518
+Y en este caso ya te digo que se ve que la forma escalonada reducida por filas para
+
+1004
+01:17:55.549 --> 01:18:00.978
+este caso es triángulo de ceros, diagonal de unos, triángulo de ceros.
+
+1005
+01:18:01.998 --> 01:18:06.558
+No hay otra posibilidad en este caso. ¿Más preguntas?
+
+1006
+01:18:06.558 --> 01:18:11.688
+¿No hay más preguntas?
+
+1007
+01:18:13.818 --> 01:18:15.678
+Por entonces, lo dejamos aquí.
+
+1008
+01:18:19.428 --> 01:18:20.358
+Vale, gracias.
+
+1009
+01:18:21.408 --> 01:18:24.828
+Muchas gracias por asistir. Siempre es interesante tener a alguien, que no hablar
+
+1010
+01:18:25.398 --> 01:18:29.898
+allá arriba. Espero que la sesión os haya sido de utilidad.
+
+1011
+01:18:30.108 --> 01:18:35.808
+Ya os comento que esto ha sido fundamental, porque yo lo que veo es que muchas
+
+1012
+01:18:35.838 --> 01:18:38.658
+veces falláis en estas cosas, en las
+
+1013
+01:18:41.388 --> 01:18:42.108
+operaciones.
+
+1014
+01:18:43.549 --> 01:18:47.898
+Y lo peor de todo es, imaginaos, estáis en un examen y falláis esas operaciones.
+
+1015
+01:18:48.288 --> 01:18:51.468
+Y en lugar de tener números redondos, que es lo que yo he buscado para que vean
+
+1016
+01:18:51.558 --> 01:18:57.168
+números redondos, bonitos, llegáis a 11 tercios, 17 noventaunavos.
+
+1017
+01:18:57.468 --> 01:19:02.328
+¿Qué es lo que ocurre? Que tenéis que hacer unas operaciones que a mano, aquí se
+
+1018
+01:19:02.388 --> 01:19:06.318
+pueden hacer bien, pero si os equivocáis, a mano, van a ser horribles.
+
+1019
+01:19:06.768 --> 01:19:11.868
+Y son horribles porque están mal. Y eso significa que vais a estar más tiempo y
+
+1020
+01:19:11.898 --> 01:19:15.768
+vais a perder tiempo precioso durante un examen para hacer un ejercicio y
+
+1021
+01:19:15.799 --> 01:19:17.268
+terminarlo y lo vais a hacer mal.
+
+1022
+01:19:18.558 --> 01:19:23.418
+Entonces, entrenad este tipo de operaciones. Y nada.
+
+1023
+01:19:24.378 --> 01:19:29.868
+Muchas gracias y hasta otra. Venga, un saludo. Adiós.
+
+1024
+01:19:30.738 --> 01:19:31.067
+Chao.
+
+1025
+01:19:31.817 --> 01:19:44.928
+Chao.
