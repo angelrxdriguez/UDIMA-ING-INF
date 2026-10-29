@@ -1,0 +1,61 @@
+AA1 · Del dato al resultado: analiza un computador
+Modalidad: individual. Dedicación estimada: 2-3 horas. Entrega: un PDF de 3-5 páginas, sin contar portada y referencias. Valoración: 10 puntos. La fecha y el peso en la asignatura serán los publicados por el profesor en Moodle.
+
+Qué vas a aprender
+Relacionar datos, instrucciones y unidades funcionales de un computador.
+Distinguir capacidad, ancho de palabra, ancho de banda y direccionamiento.
+Calcular tiempo de CPU, CPI y MIPS e interpretar una comparación de rendimiento.
+Ubicar componentes y programas en los niveles conceptuales de la unidad.
+Situación de partida
+Un laboratorio universitario prepara un puesto para procesar mediciones. Un lector introduce los datos; el programa, almacenado inicialmente en un SSD, se carga en memoria principal; la CPU calcula la media y compara el resultado con un umbral; finalmente se muestra un aviso en pantalla y se guarda un informe en el SSD.
+
+Se valoran dos procesadores para ejecutar la misma prueba con los mismos datos y obtener el mismo resultado:
+
+Datos didácticos del caso, no especificaciones de productos comerciales
+Parámetro	Procesador A	Procesador B
+Frecuencia de reloj	2,4 GHz	3,0 GHz
+Instrucciones ejecutadas en la prueba	1200000	1200000
+CPI medio	1,8	2,5
+El subsistema de memoria del ejercicio tiene 64 MiB, palabras de 32 bits y direccionamiento por palabras: cada dirección selecciona una palabra completa. El bus de datos es de 32 bits y realiza 100 millones de transferencias por segundo, con una palabra por transferencia.
+
+Convenciones y límites del modelo: 1 byte = 8 bits; 1 KiB = 210 bytes; 1 MiB = 220 bytes; 1 MB = 106 bytes; 1 GHz = 109 Hz. Para la prueba de CPU no se añaden esperas de E/S. Para el bus se ignoran latencias y sobrecargas. El ancho de palabra no determina por sí solo el direccionamiento.
+Trabajo que debes entregar
+1. Explica el recorrido de la información · 2 puntos
+Dibuja un esquema propio con entrada, salida, memoria principal, SSD y CPU. Dentro de la CPU diferencia unidad de control, ALU y registros. Etiqueta las conexiones principales.
+Describe, en 150-220 palabras, cómo se ejecuta el caso. Incluye al menos un ejemplo de dato y otro de instrucción y relaciona procesamiento, almacenamiento, transferencia y control con acciones concretas.
+Indica qué ocurre con un resultado que solo está en RAM convencional y con un informe ya guardado en SSD al cortar la alimentación.
+2. Calcula capacidad y direccionamiento · 2 puntos
+Convierte 64 MiB a bytes y a bits.
+Calcula el número de palabras que caben en la memoria.
+Determina el número mínimo de bits del bus de direcciones si cada dirección selecciona una palabra.
+Repite solo el cálculo del bus de direcciones suponiendo ahora direccionamiento por bytes. Explica por qué cambia.
+3. Analiza la transferencia de datos · 1,5 puntos
+Calcula el ancho de banda teórico en bytes/s y en MB/s decimales.
+Calcula el tiempo ideal para transferir un bloque de 8 MiB, en milisegundos.
+Explica por qué ese tiempo es un límite ideal y qué magnitud diferencia una tasa de transferencia de un tiempo de acceso.
+4. Compara los procesadores · 3 puntos
+Calcula para A y B: ciclos totales, tiempo de CPU en milisegundos y tasa en MIPS.
+Selecciona el procesador más rápido en esta prueba. Calcula la aceleración como tiempo del más lento / tiempo del más rápido y la reducción porcentual de tiempo respecto al más lento.
+En 80-120 palabras, explica por qué los GHz y los MIPS aislados no justifican una recomendación universal. Indica qué pruebas adicionales solicitarías.
+5. Relaciona los niveles conceptuales · 1 punto
+Asigna cada elemento a uno de los seis niveles de la unidad y justifica brevemente: transistor; circuito con puertas lógicas; microprogramación de la unidad de control; programa en ensamblador; sistema operativo; compilador.
+
+6. Reflexiona sobre tu aprendizaje · 0,5 puntos
+En 80-120 palabras, identifica un error que hayas detectado o evitado, muestra cómo lo comprobaste y señala qué concepto necesitas reforzar. Incluye referencias a los materiales usados.
+
+Presentación y criterios
+Entrega AA1_Apellidos_Nombre.pdf. Muestra fórmulas, sustituciones y unidades; redondea solo al final, a tres decimales cuando sea necesario. El esquema puede realizarse con un editor o a mano si es legible. Puedes usar calculadora u hoja de cálculo, pero debes explicar el procedimiento. Toda ayuda externa utilizada debe declararse; se valorará tu razonamiento propio.
+
+Criterio	Máximo	Evidencia esperada
+Organización funcional	2	Esquema coherente, recorrido explicado y persistencia diferenciada.
+Capacidad y direcciones	2	Conversiones y cálculos correctos en ambos modos de direccionamiento.
+Transferencia	1,5	Tasa, tiempo y límites del modelo explicados.
+Rendimiento	3	Cálculos trazables, comparación correcta y conclusión limitada a la prueba.
+Niveles	1	Seis asociaciones justificadas conforme a la unidad.
+Reflexión	0,5	Error o comprobación concreta, necesidad de mejora y fuentes.
+Antes de enviar
+Comprueba que no has confundido bits con bytes ni MB con MiB.
+Revisa qué selecciona cada dirección de memoria.
+Comprueba que no has confundido aumento de rendimiento con reducción de tiempo.
+Abre el PDF final y verifica que el esquema, las tablas y las fórmulas son legibles.
+Material de consulta: 1_unidad_tecomp_c.pdf (apartados 1-5), Resumen Unidad 1.pdf y Ejercicios unidad 1.pdf. En esta actividad prevalecen las convenciones explícitas del enunciado.
