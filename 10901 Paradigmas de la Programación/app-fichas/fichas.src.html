@@ -2,52 +2,66 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:ital,wght@0,400..800;1,400&family=Atkinson+Hyperlegible+Mono:wght@400..700&display=swap">
 <style>
-/* Layout: app de una pantalla; inicio desplazable con botón fijo abajo; estudio = ficha de cartulina rayada que se gira. */
+/* Layout: app de una pantalla; inicio desplazable con botón fijo abajo; estudio = ficha que se gira.
+   Diseño para sesiones largas de memoria: papel cálido (sin blanco puro) y tinta casi negra; de noche, carbón cálido
+   y tinta marfil (sin negro ni blanco puros). El color solo significa algo: gris = introducción, turquesa = funcional,
+   violeta = lógico (cada ficha lleva el de su paradigma) y verde/ámbar/rojo = cómo te la sabías. Una sola marca de
+   subrayador para los términos clave. */
 :root {
-  --bg: #EDF0F4;
-  --surface: #FFFFFF;
-  --ink: #17202B;
-  --muted: #5C6676;
-  --line: #D6DCE5;
-  --chip: #E2E7EE;
-  --accent: #2443B0;
-  --accent-ink: #FFFFFF;
-  --rule: #E07070;
-  --ruled: #E4EAF3;
-  --hi: #FFE26A;
-  --hi-ink: #17202B;
-  --ok: #1D8357;
-  --mid: #B27215;
-  --bad: #C43F38;
-  --shadow: 0 1px 2px rgba(23, 32, 43, .06), 0 10px 28px rgba(23, 32, 43, .08);
-  --rate-ink: #FFFFFF;
-  --f-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
-  --f-mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --bg: #F3EEE5;
+  --surface: #FCFAF6;
+  --ink: #211D18;
+  --muted: #675F54;
+  --line: #DFD7CA;
+  --chip: #EDE6DA;
+  --raised: #FCFAF6;
+  --primary: #211D18;
+  --primary-ink: #FCFAF6;
+  --accent: #2E4C8F;
+  --hi: #FFDF7A;
+  --hi-ink: #211D18;
+  --ok: #3F7F1F;
+  --mid: #9C5E0E;
+  --bad: #C0392B;
+  --on-status: #FFFFFF;
+  --p0: #6B6358; --p0-ink: #FFFFFF;
+  --p1: #0A7F8F; --p1-ink: #FFFFFF;
+  --p2: #7A4FC9; --p2-ink: #FFFFFF;
+  --u: var(--muted); --u-ink: var(--surface);
+  --shadow: 0 1px 2px rgba(60, 45, 25, .06), 0 8px 24px rgba(60, 45, 25, .07);
+  --f-body: "Atkinson Hyperlegible Next", "Atkinson Hyperlegible", -apple-system, system-ui, "Segoe UI", sans-serif;
+  --f-display: var(--f-body);
+  --f-mono: "Atkinson Hyperlegible Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --f-num: -apple-system, system-ui, "Segoe UI", sans-serif; /* cifras grandes: Atkinson tacha el cero y «0,0» parecía «Ø,Ø» */
   --r: 14px;
 }
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --bg: #0F141A; --surface: #19202A; --ink: #E5EAF1; --muted: #9AA4B4; --line: #2A3441; --chip: #222B37;
-    --accent: #8EA6FF; --accent-ink: #0F141A; --rule: #B95A5A; --ruled: #212A36; --hi: #6B5A12; --hi-ink: #FFF4C4;
-    --ok: #4CC089; --mid: #E2A746; --bad: #F06F68; --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 30px rgba(0, 0, 0, .35);
-    --rate-ink: #0F141A;
+    --bg: #151412; --surface: #1F1D1A; --ink: #E9E3D8; --muted: #A69E91; --line: #34312C; --chip: #2A2824; --raised: #3A3731;
+    --primary: #DDD5C6; --primary-ink: #151412; --accent: #A9BBF0; --hi: rgba(240, 196, 80, .2); --hi-ink: #F4D27E;
+    --ok: #82C45C; --mid: #E0A240; --bad: #F0735F; --on-status: #151412;
+    --p0: #A39A8E; --p0-ink: #151412; --p1: #3AA9B5; --p1-ink: #151412; --p2: #A48CF0; --p2-ink: #151412;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px rgba(0, 0, 0, .3);
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
-  --bg: #0F141A; --surface: #19202A; --ink: #E5EAF1; --muted: #9AA4B4; --line: #2A3441; --chip: #222B37;
-  --accent: #8EA6FF; --accent-ink: #0F141A; --rule: #B95A5A; --ruled: #212A36; --hi: #6B5A12; --hi-ink: #FFF4C4;
-  --ok: #4CC089; --mid: #E2A746; --bad: #F06F68; --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 12px 30px rgba(0, 0, 0, .35);
-  --rate-ink: #0F141A;
+  --bg: #151412; --surface: #1F1D1A; --ink: #E9E3D8; --muted: #A69E91; --line: #34312C; --chip: #2A2824; --raised: #3A3731;
+  --primary: #DDD5C6; --primary-ink: #151412; --accent: #A9BBF0; --hi: rgba(240, 196, 80, .2); --hi-ink: #F4D27E;
+  --ok: #82C45C; --mid: #E0A240; --bad: #F0735F; --on-status: #151412;
+  --p0: #A39A8E; --p0-ink: #151412; --p1: #3AA9B5; --p1-ink: #151412; --p2: #A48CF0; --p2-ink: #151412;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 28px rgba(0, 0, 0, .3);
   color-scheme: dark;
 }
+.u1 { --u: var(--p0); --u-ink: var(--p0-ink); }
+.u2, .u3 { --u: var(--p1); --u-ink: var(--p1-ink); }
+.u4, .u5 { --u: var(--p2); --u-ink: var(--p2-ink); }
 html, body { height: 100%; }
 body {
-  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 16px; line-height: 1.45;
-  -webkit-tap-highlight-color: transparent; overflow: hidden;
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.5;
+  -webkit-tap-highlight-color: transparent; overflow: hidden; -webkit-font-smoothing: antialiased;
 }
 button { font: inherit; color: inherit; }
 button:focus-visible, .card:focus-visible, .chip:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
@@ -60,101 +74,105 @@ button:focus-visible, .card:focus-visible, .chip:focus-visible { outline: 3px so
 .home { display: flex; flex-direction: column; gap: 22px; padding-block: 18px 24px; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-mark {
-  width: 44px; height: 44px; border-radius: 12px; background: var(--accent); color: var(--accent-ink);
-  display: grid; place-items: center; font-family: var(--f-mono); font-weight: 600; font-size: 18px; flex: none;
+  width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: var(--primary-ink);
+  display: grid; place-items: center; font-family: var(--f-mono); font-weight: 700; font-size: 19px; flex: none;
 }
-h1 { font-family: var(--f-display); font-weight: 800; font-size: 26px; line-height: 1.05; letter-spacing: -.02em; margin: 0; text-wrap: balance; }
-.sub { margin: 3px 0 0; color: var(--muted); font-size: 13.5px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
+h1 { font-family: var(--f-display); font-weight: 800; font-size: 26px; line-height: 1.1; letter-spacing: -.01em; margin: 0; text-wrap: balance; }
+.sub { margin: 3px 0 0; color: var(--muted); font-size: 14px; display: flex; flex-wrap: wrap; gap: 4px 10px; align-items: center; }
 .sync { display: inline-flex; align-items: center; gap: 6px; }
 .sync i { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); display: inline-block; }
 .sync.ok i { background: var(--ok); }
 .sync.err i { background: var(--bad); }
 h2 {
-  font-family: var(--f-body); font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
+  font-family: var(--f-body); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em;
   color: var(--muted); margin: 0;
 }
 .sec { display: flex; flex-direction: column; gap: 10px; }
 .sec-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
-.link { background: none; border: 0; padding: 4px 0; color: var(--accent); font-size: 14px; font-weight: 700; cursor: pointer; }
+.link { background: none; border: 0; padding: 4px 0; color: var(--accent); font-size: 15px; font-weight: 700; cursor: pointer; }
 
 .global { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 12px; }
 .big { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
-.big b { font-family: var(--f-display); font-size: 40px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; letter-spacing: -.02em; }
-.big span { color: var(--muted); font-size: 15px; }
+.big b { font-family: var(--f-num); font-size: 40px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.big span { color: var(--muted); font-size: 16px; }
 .stack { display: flex; height: 10px; border-radius: 6px; overflow: hidden; background: var(--chip); }
 .stack i { display: block; height: 100%; }
 .stack .s-ok { background: var(--ok); } .stack .s-mid { background: var(--mid); } .stack .s-bad { background: var(--bad); }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .legend span::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 3px; margin-right: 6px; background: var(--chip); vertical-align: -1px; }
 .legend .l-ok::before { background: var(--ok); } .legend .l-mid::before { background: var(--mid); } .legend .l-bad::before { background: var(--bad); }
 
 .uds { display: flex; flex-direction: column; gap: 8px; }
+.plegend { margin: -2px 0 2px; display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; color: var(--muted); }
+.plegend span { display: inline-flex; align-items: center; gap: 6px; }
+.plegend i { width: 10px; height: 10px; border-radius: 3px; background: var(--u); display: inline-block; }
 .ud {
   display: grid; grid-template-columns: 46px 1fr auto; align-items: center; gap: 12px; text-align: left;
   background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--r); padding: 11px 12px; cursor: pointer;
   transition: border-color .15s, background-color .15s;
 }
-.ud[aria-pressed="true"] { border-color: var(--accent); }
-.ud[aria-pressed="false"] { opacity: .62; }
+.ud[aria-pressed="true"] { border-color: color-mix(in srgb, var(--u) 60%, var(--line)); }
+.ud[aria-pressed="false"] { opacity: .6; }
 .ud-glyph {
   width: 46px; height: 46px; border-radius: 11px; display: grid; place-items: center; background: var(--chip);
-  font-family: var(--f-mono); font-weight: 600; font-size: 17px; color: var(--ink);
+  font-family: var(--f-mono); font-weight: 700; font-size: 17px; color: var(--ink);
 }
-.ud[aria-pressed="true"] .ud-glyph { background: var(--accent); color: var(--accent-ink); }
-.ud-txt { min-width: 0; display: flex; flex-direction: column; gap: 5px; }
-.ud-name { font-weight: 700; font-size: 15.5px; line-height: 1.25; }
-.ud-name small { font-family: var(--f-mono); font-weight: 600; font-size: 12px; color: var(--muted); margin-right: 6px; }
+.ud[aria-pressed="true"] .ud-glyph { background: var(--u); color: var(--u-ink); }
+.ud-txt { min-width: 0; display: flex; flex-direction: column; gap: 6px; }
+.ud-name { font-weight: 700; font-size: 16px; line-height: 1.25; }
+.ud-name small { font-family: var(--f-mono); font-weight: 700; font-size: 12.5px; color: var(--muted); margin-right: 6px; }
 .ud-bar { height: 5px; border-radius: 3px; background: var(--chip); overflow: hidden; display: flex; }
 .ud-bar i { display: block; height: 100%; }
-.ud-num { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+.ud-num { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
 .ud-check {
   width: 22px; height: 22px; border-radius: 7px; border: 1.5px solid var(--line); display: grid; place-items: center; margin-left: auto; margin-top: 4px;
 }
-.ud[aria-pressed="true"] .ud-check { background: var(--accent); border-color: var(--accent); }
-.ud-check svg { width: 13px; height: 13px; stroke: var(--accent-ink); opacity: 0; }
+.ud[aria-pressed="true"] .ud-check { background: var(--primary); border-color: var(--primary); }
+.ud-check svg { width: 13px; height: 13px; stroke: var(--primary-ink); opacity: 0; }
 .ud[aria-pressed="true"] .ud-check svg { opacity: 1; }
 
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chip {
-  border: 1.5px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 13px; font-size: 14px;
+  border: 1.5px solid var(--line); background: var(--surface); border-radius: 999px; padding: 7px 13px; font-size: 15px;
   cursor: pointer; line-height: 1.2; text-align: left;
 }
-.chip[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.chip[aria-pressed="true"] { background: var(--primary); border-color: var(--primary); color: var(--primary-ink); }
 .chip small { font-variant-numeric: tabular-nums; opacity: .7; margin-left: 4px; }
 .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--chip); border-radius: 12px; padding: 3px; gap: 3px; }
-.seg button { border: 0; background: none; border-radius: 9px; padding: 9px 6px; font-size: 14px; font-weight: 700; color: var(--muted); cursor: pointer; }
-.seg button[aria-pressed="true"] { background: var(--surface); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+.seg button { border: 0; background: none; border-radius: 9px; padding: 9px 6px; font-size: 15px; font-weight: 700; color: var(--muted); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--raised); color: var(--ink); box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
 .toggle {
   display: flex; align-items: center; justify-content: space-between; gap: 12px; background: var(--surface); border: 1.5px solid var(--line);
   border-radius: 12px; padding: 11px 14px; cursor: pointer; text-align: left; width: 100%;
 }
 .toggle span { display: flex; flex-direction: column; gap: 2px; }
-.toggle small { color: var(--muted); font-size: 13px; }
+.toggle small { color: var(--muted); font-size: 14px; }
 .sw { width: 44px; height: 26px; border-radius: 13px; background: var(--chip); position: relative; flex: none; transition: background-color .15s; }
 .sw::after { content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px; border-radius: 50%; background: var(--surface); box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .15s; }
-.toggle[aria-pressed="true"] .sw { background: var(--accent); }
+.toggle[aria-pressed="true"] .sw { background: var(--primary); }
 .toggle[aria-pressed="true"] .sw::after { transform: translateX(18px); }
 
-.howto { color: var(--muted); font-size: 13.5px; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid var(--line); padding-top: 16px; }
+.howto { color: var(--muted); font-size: 14.5px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--line); padding-top: 16px; }
 .howto p { margin: 0; }
-.reset { align-self: flex-start; background: none; border: 1.5px solid var(--line); border-radius: 10px; padding: 7px 12px; font-size: 13.5px; color: var(--muted); cursor: pointer; }
+.howto b { color: var(--ink); }
+.reset { align-self: flex-start; background: none; border: 1.5px solid var(--line); border-radius: 10px; padding: 7px 12px; font-size: 14px; color: var(--muted); cursor: pointer; }
 .reset.armed { border-color: var(--bad); color: var(--bad); font-weight: 700; }
 
 .dock { border-top: 1px solid var(--line); background: var(--bg); padding-block: 12px; display: grid; grid-template-columns: 1fr auto; gap: 10px; }
 .btn {
-  border: 0; border-radius: 14px; padding: 15px 18px; font-weight: 700; font-size: 16.5px; cursor: pointer;
-  background: var(--accent); color: var(--accent-ink); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  border: 0; border-radius: 14px; padding: 15px 18px; font-weight: 700; font-size: 17px; cursor: pointer;
+  background: var(--primary); color: var(--primary-ink); display: inline-flex; align-items: center; justify-content: center; gap: 8px;
 }
 .btn:disabled { opacity: .45; cursor: default; }
 .btn.ghost { background: var(--surface); color: var(--ink); border: 1.5px solid var(--line); }
-.empty-note { grid-column: 1 / -1; margin: 0; font-size: 13.5px; color: var(--bad); }
+.empty-note { grid-column: 1 / -1; margin: 0; font-size: 14px; color: var(--bad); }
 
 /* ---------- estudio ---------- */
 .studybar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding-block: 10px; }
 .icon-btn { width: 40px; height: 40px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--surface); display: grid; place-items: center; cursor: pointer; }
 .icon-btn svg { width: 18px; height: 18px; stroke: var(--ink); }
-.prog { height: 8px; border-radius: 5px; background: var(--chip); overflow: hidden; }
-.prog i { display: block; height: 100%; background: var(--accent); border-radius: 5px; transition: width .25s; }
+.prog { height: 6px; border-radius: 4px; background: var(--chip); overflow: hidden; }
+.prog i { display: block; height: 100%; background: var(--ink); opacity: .75; border-radius: 4px; transition: width .25s; }
 .count { font-variant-numeric: tabular-nums; font-size: 14px; color: var(--muted); font-weight: 700; min-width: 4.5em; text-align: right; }
 .stage { flex: 1; min-height: 0; overflow-y: auto; padding-block: 6px 14px; perspective: 1400px; }
 .card { position: relative; touch-action: pan-y; user-select: none; -webkit-user-select: none; outline: none; border-radius: 18px; cursor: pointer; }
@@ -162,81 +180,191 @@ h2 {
 .card.flipped .inner { transform: rotateY(180deg); }
 .face {
   grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; background: var(--surface);
-  border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); min-height: min(62vh, 520px);
-  display: flex; flex-direction: column; padding: 18px 18px 16px; gap: 14px;
+  border: 1px solid var(--line); border-top: 6px solid var(--u); border-radius: 18px; box-shadow: var(--shadow); min-height: min(62vh, 520px);
+  display: flex; flex-direction: column; padding: 16px 20px 16px; gap: 16px;
 }
 .back { transform: rotateY(180deg); }
-.front {
-  background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 33px, var(--ruled) 33px, var(--ruled) 34px);
-  background-position: 0 74px; background-origin: border-box;
-}
-.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 12.5px; color: var(--muted); padding-bottom: 12px; border-bottom: 2px solid var(--rule); }
-.eyebrow .udtag { font-family: var(--f-mono); font-weight: 600; color: var(--ink); }
-.eyebrow .star { color: var(--mid); font-weight: 700; margin-left: auto; }
-.serie { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 13px; font-weight: 700; color: var(--accent); }
+.eyebrow { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; font-size: 14px; color: var(--muted); padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.udtag { font-family: var(--f-mono); font-weight: 700; font-size: 12.5px; background: var(--u); color: var(--u-ink); padding: 2px 7px; border-radius: 6px; line-height: 1.4; white-space: nowrap; }
+.eyebrow .star { color: var(--ink); font-weight: 700; margin-left: auto; }
+.serie { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; font-weight: 700; color: var(--ink); }
 .serie .dots { display: inline-flex; gap: 4px; }
-.serie .dots i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--accent); display: block; }
-.serie .dots i.on { background: var(--accent); }
+.serie .dots i { width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid var(--u); display: block; }
+.serie .dots i.on { background: var(--u); }
 .serie .dots i.cur { transform: scale(1.3); }
 .serie .nt { font-family: var(--f-mono); font-size: 12.5px; background: var(--chip); color: var(--ink); padding: 2px 7px; border-radius: 6px; }
-.q { font-family: var(--f-display); font-weight: 700; font-size: clamp(22px, 6.2vw, 28px); line-height: 1.2; letter-spacing: -.01em; margin: 0; text-wrap: balance; flex: 1; display: flex; align-items: center; }
-.tap { font-size: 13px; color: var(--muted); text-align: center; margin: 0; }
-.q-small { font-weight: 700; font-size: 15px; color: var(--muted); margin: 0; line-height: 1.3; }
-.ans { font-size: 18px; line-height: 1.5; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.q { font-family: var(--f-display); font-weight: 700; font-size: clamp(24px, 6.7vw, 29px); line-height: 1.25; margin: 0; text-wrap: pretty; flex: 1; display: flex; align-items: center; }
+.tap { font-size: 14px; color: var(--muted); text-align: center; margin: 0; }
+.q-small { font-weight: 700; font-size: 16px; color: var(--muted); margin: 0; line-height: 1.35; }
+.ans { font-size: 20px; line-height: 1.5; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .ans p { margin: 0; }
-.ans ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.ans li { padding-left: 18px; position: relative; }
-.ans li::before { content: ""; position: absolute; left: 3px; top: .62em; width: 7px; height: 7px; border-radius: 2px; background: var(--accent); }
-mark { background: linear-gradient(transparent 38%, var(--hi) 38%, var(--hi) 92%, transparent 92%); color: inherit; padding: 0 2px; border-radius: 2px; }
+.ans ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 9px; }
+.ans li { padding-left: 20px; position: relative; }
+.ans li::before { content: ""; position: absolute; left: 3px; top: .6em; width: 8px; height: 8px; border-radius: 2px; background: var(--u); }
+mark { background: linear-gradient(transparent 50%, var(--hi) 50%, var(--hi) 94%, transparent 94%); color: var(--hi-ink); font-weight: 700; padding: 0 1px; border-radius: 1px; }
+code, pre { font-variant-ligatures: none; font-feature-settings: "liga" 0, "calt" 0; }
 code { font-family: var(--f-mono); font-size: .86em; background: var(--chip); padding: 1px 5px; border-radius: 5px; }
 pre {
-  margin: 0; font-family: var(--f-mono); font-size: 14px; line-height: 1.5; background: var(--chip); border-radius: 10px;
-  padding: 10px 12px; overflow-x: auto; white-space: pre; -webkit-user-select: text; user-select: text;
+  margin: 0; font-family: var(--f-mono); font-size: 14.5px; line-height: 1.55; background: var(--chip); border-radius: 10px;
+  padding: 11px 12px; overflow-x: auto; white-space: pre; -webkit-user-select: text; user-select: text;
 }
-.src { font-size: 12.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-top: 1px dashed var(--line); padding-top: 10px; }
+.src { font-size: 13.5px; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; border-top: 1px solid var(--line); padding-top: 10px; }
 .tint { position: absolute; inset: 0; border-radius: 18px; pointer-events: none; opacity: 0; display: grid; place-items: center; font-family: var(--f-display); font-weight: 800; font-size: 26px; }
-.tint.good { background: color-mix(in srgb, var(--ok) 20%, transparent); color: var(--ok); }
-.tint.again { background: color-mix(in srgb, var(--bad) 18%, transparent); color: var(--bad); }
+.tint.good { background: color-mix(in srgb, var(--ok) 18%, transparent); color: var(--ok); }
+.tint.again { background: color-mix(in srgb, var(--bad) 16%, transparent); color: var(--bad); }
 .card.out-r { transition: transform .22s ease-in, opacity .22s; transform: translateX(110%) rotate(6deg); opacity: 0; }
 .card.out-l { transition: transform .22s ease-in, opacity .22s; transform: translateX(-110%) rotate(-6deg); opacity: 0; }
 .card.in { animation: cardin .22s ease-out; }
 @keyframes cardin { from { transform: translateY(14px) scale(.98); opacity: 0; } to { transform: none; opacity: 1; } }
 .actions { padding-block: 10px 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; border-top: 1px solid var(--line); }
 .actions.one { grid-template-columns: 1fr; }
-.rate { border: 0; border-radius: 14px; padding: 13px 6px; font-weight: 700; font-size: 15.5px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 1px; color: var(--rate-ink); }
-.rate small { font-weight: 400; font-size: 11.5px; opacity: .85; }
-.rate.again { background: var(--bad); } .rate.hard { background: var(--mid); } .rate.good { background: var(--ok); }
+.rate {
+  --c: var(--ok); border: 1.5px solid color-mix(in srgb, var(--c) 70%, var(--surface)); background: color-mix(in srgb, var(--c) 14%, var(--surface));
+  border-radius: 14px; padding: 12px 6px; font-weight: 700; font-size: 16px; cursor: pointer; color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+}
+.rate::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--c); margin-bottom: 2px; }
+.rate small { font-weight: 400; font-size: 12.5px; color: var(--muted); }
+.rate.again { --c: var(--bad); } .rate.hard { --c: var(--mid); } .rate.good { --c: var(--ok); }
 
 /* ---------- resumen ---------- */
 .done { display: flex; flex-direction: column; gap: 18px; padding-block: 28px 24px; }
 .done h1 { font-size: 30px; }
 .tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .tile { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 12px; display: flex; flex-direction: column; gap: 2px; }
-.tile b { font-family: var(--f-display); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.05; }
-.tile span { font-size: 13px; color: var(--muted); }
+.tile b { font-family: var(--f-num); font-size: 30px; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.tile span { font-size: 14px; color: var(--muted); }
 .tile.ok b { color: var(--ok); } .tile.mid b { color: var(--mid); } .tile.bad b { color: var(--bad); }
 .done .btn { width: 100%; }
 .miss { display: flex; flex-direction: column; gap: 6px; }
-.miss li { font-size: 14.5px; }
-.miss ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 5px; }
+.miss li { font-size: 15.5px; }
+.miss ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; }
 
 /* ---------- lista ---------- */
 .listbar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); }
 .listbar h2 { font-size: 13px; }
 .list { display: flex; flex-direction: column; gap: 10px; padding-block: 14px 28px; }
-.list h3 { font-family: var(--f-display); font-size: 19px; font-weight: 700; margin: 14px 0 2px; letter-spacing: -.01em; }
-.list h3 small { font-family: var(--f-mono); font-size: 12.5px; color: var(--muted); font-weight: 600; margin-right: 8px; }
-.item { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 6px; cursor: pointer; text-align: left; width: 100%; }
-.item .iq { font-weight: 700; font-size: 15.5px; line-height: 1.3; display: flex; gap: 8px; justify-content: space-between; }
-.item .iq em { font-style: normal; font-family: var(--f-mono); font-size: 11.5px; color: var(--accent); white-space: nowrap; }
-.item .ans { font-size: 15px; gap: 5px; }
-.item .ans li { padding-left: 16px; }
-.item pre { font-size: 13px; }
+.list h3 { font-family: var(--f-display); font-size: 19px; font-weight: 800; margin: 14px 0 2px; display: flex; align-items: center; gap: 8px; }
+.list h3 .udtag { font-size: 12px; }
+.item { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--u); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 7px; cursor: pointer; text-align: left; width: 100%; }
+.item .iq { font-weight: 700; font-size: 16px; line-height: 1.35; display: flex; gap: 8px; justify-content: space-between; }
+.item .iq em { font-style: normal; font-family: var(--f-mono); font-size: 12px; color: var(--muted); white-space: nowrap; }
+.item .ans { font-size: 16px; gap: 6px; }
+.item .ans li { padding-left: 17px; }
+.item .ans li::before { width: 7px; height: 7px; }
+.item pre { font-size: 13.5px; }
 .list.hide-a .item:not(.open) .ia { display: none; }
 .st-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; margin-right: 6px; background: var(--chip); vertical-align: 1px; }
 .st-dot.s-ok { background: var(--ok); } .st-dot.s-mid { background: var(--mid); } .st-dot.s-bad { background: var(--bad); }
 
+/* ---------- modo test: inicio ---------- */
+.seg.modes { border-radius: 13px; padding: 4px; gap: 4px; }
+.seg.modes button { padding: 10px 6px; font-size: 16px; border-radius: 10px; }
+.seg.modes small { font-weight: 400; font-size: 13px; margin-left: 5px; font-variant-numeric: tabular-nums; }
+.verdict { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 14px; }
+.v-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.v-top > div { min-width: 0; display: flex; flex-direction: column; gap: 4px; }
+.v-state { font-family: var(--f-display); font-weight: 800; font-size: 25px; line-height: 1.15; margin: 0; text-wrap: balance; display: flex; align-items: center; gap: 8px; }
+.v-state svg { width: 22px; height: 22px; stroke: currentColor; flex: none; }
+.v-state.ok { color: var(--ok); } .v-state.mid { color: var(--mid); } .v-state.bad { color: var(--bad); }
+.v-avg { text-align: right; flex: none; display: flex; flex-direction: column; gap: 2px; }
+.v-avg b { font-family: var(--f-num); font-size: 34px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums; }
+.v-avg span { font-size: 13px; color: var(--muted); }
+.v-text { margin: 0; font-size: 15.5px; color: var(--muted); }
+.v-text b { color: var(--ink); }
+.v-foot { margin: 0; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 10px; font-variant-numeric: tabular-nums; }
+.hist { display: grid; grid-template-columns: 20px 1fr; gap: 0 8px; padding-top: 16px; }
+.hist-y { position: relative; height: 92px; font-family: var(--f-num); font-size: 11.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.hist-y span { position: absolute; right: 0; transform: translateY(50%); line-height: 1; }
+.plot { position: relative; height: 92px; border-bottom: 1px solid var(--muted); }
+.plot .ref { position: absolute; left: 0; right: 0; border-top: 1px dashed var(--line); }
+.plot .ref.goal { border-top: 1.5px solid var(--line); }
+.bars { position: absolute; inset: 0; display: flex; gap: 6px; }
+.bars button { flex: 1 1 0; max-width: 34px; height: 100%; background: none; border: 0; padding: 0; display: flex; align-items: flex-end; justify-content: center; cursor: default; position: relative; }
+.bars button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.bars .b { display: block; width: 100%; background: var(--ink); border-radius: 4px 4px 0 0; min-height: 3px; position: relative; }
+.bars .b.old { opacity: .3; }
+.bars .b em { position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); margin-bottom: 3px; font-style: normal; font-family: var(--f-num); font-size: 12px; font-weight: 700; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.hist-cap { margin: 6px 0 0; grid-column: 2; font-size: 13px; color: var(--muted); }
+.tip { position: absolute; z-index: 3; pointer-events: none; background: var(--ink); color: var(--bg); font-size: 13px; line-height: 1.3; padding: 5px 8px; border-radius: 7px; white-space: nowrap; transform: translate(-50%, calc(-100% - 8px)); }
+.resume { display: flex; flex-direction: column; gap: 10px; background: color-mix(in srgb, var(--hi) 30%, var(--surface)); border: 1.5px solid var(--ink); border-radius: var(--r); padding: 13px 14px; }
+.resume p { margin: 0; font-size: 15px; color: var(--muted); }
+.resume p b { display: block; font-size: 16px; color: var(--ink); }
+.resume .row { display: grid; grid-template-columns: 1fr auto; gap: 8px; }
+.resume .btn { padding: 11px 14px; font-size: 15.5px; }
+.resume .reset { align-self: stretch; }
+.dock.two { grid-template-columns: 1fr 1fr; }
+
+/* ---------- modo test: pregunta ---------- */
+.qwrap { display: flex; flex-direction: column; gap: 12px; }
+.qcard { background: var(--surface); border: 1px solid var(--line); border-top: 6px solid var(--u); border-radius: 18px; box-shadow: var(--shadow); padding: 14px 16px 18px; display: flex; flex-direction: column; gap: 14px; }
+.qtext { font-family: var(--f-display); font-weight: 700; font-size: clamp(20px, 5.6vw, 24px); line-height: 1.3; margin: 0; text-wrap: pretty; }
+.ops { display: flex; flex-direction: column; gap: 8px; }
+.op {
+  display: grid; grid-template-columns: 30px 1fr; gap: 11px; align-items: start; text-align: left; width: 100%;
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: 13px; padding: 11px 12px; cursor: pointer;
+  font-size: 17px; line-height: 1.4; transition: border-color .12s, background-color .12s, opacity .12s;
+}
+.op .lt { width: 30px; height: 30px; border-radius: 9px; background: var(--chip); display: grid; place-items: center; font-family: var(--f-mono); font-weight: 700; font-size: 14px; }
+.op .ot { min-width: 0; padding-top: 3px; overflow-wrap: anywhere; }
+.qcard pre, .rv pre { font-size: 13.5px; padding: 10px; }
+.qcard pre.wide, .rv pre.wide { font-size: clamp(11.5px, 3vw, 13.5px); }
+.qtext mark, .op mark, .rv-q mark, .rv-a mark { background: none; padding: 0; font-weight: 700; color: inherit; }
+.op[aria-pressed="true"] { border-color: var(--ink); background: color-mix(in srgb, var(--ink) 6%, var(--surface)); }
+.op[aria-pressed="true"] .lt { background: var(--primary); color: var(--primary-ink); }
+.op[aria-disabled="true"] { cursor: default; }
+.op.right { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 12%, var(--surface)); }
+.op.right .lt { background: var(--ok); color: var(--on-status); }
+.op.wrong { border-color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, var(--surface)); }
+.op.wrong .lt { background: var(--bad); color: var(--on-status); }
+.op.dim { opacity: .5; }
+.fb { border-radius: 14px; padding: 13px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 16.5px; line-height: 1.5; border: 1.5px solid var(--line); background: var(--surface); }
+.fb.ok { border-color: var(--ok); } .fb.bad { border-color: var(--bad); }
+.fb p { margin: 0; }
+.fb-h { font-weight: 700; display: flex; align-items: center; gap: 8px; font-size: 17px; }
+.fb-h svg { width: 18px; height: 18px; stroke: currentColor; flex: none; }
+.fb.ok .fb-h { color: var(--ok); } .fb.bad .fb-h { color: var(--bad); }
+.fb details { border-top: 1px solid var(--line); padding-top: 9px; }
+.fb summary { cursor: pointer; font-weight: 700; color: var(--accent); font-size: 15.5px; }
+.fb details .ans { font-size: 16.5px; margin-top: 8px; gap: 7px; }
+.fb .src { padding-top: 8px; }
+.qact { padding-block: 10px 14px; display: grid; grid-template-columns: auto 1fr; gap: 8px; border-top: 1px solid var(--line); }
+.qact.one { grid-template-columns: 1fr; }
+.qact .btn svg { width: 20px; height: 20px; stroke: currentColor; }
+.qact #qprev { padding-inline: 16px; }
+
+/* ---------- modo test: entrega y resultado ---------- */
+.tiles.two { grid-template-columns: repeat(2, 1fr); }
+.note { margin: 0; font-size: 15.5px; color: var(--muted); }
+.score { display: flex; align-items: center; gap: 8px 14px; flex-wrap: wrap; }
+.score b { font-family: var(--f-num); font-size: 64px; font-weight: 800; line-height: .95; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.score > span { font-size: 17px; color: var(--muted); font-weight: 700; }
+.tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 999px; font-weight: 700; font-size: 15px; }
+.tag svg { width: 15px; height: 15px; stroke: currentColor; }
+.tag.ok { background: color-mix(in srgb, var(--ok) 15%, var(--surface)); color: var(--ok); }
+.tag.bad { background: color-mix(in srgb, var(--bad) 14%, var(--surface)); color: var(--bad); }
+.formula { margin: 0; font-size: 14.5px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.byud { display: flex; flex-direction: column; gap: 10px; }
+.byud-row { display: grid; grid-template-columns: 40px 1fr 44px; align-items: center; gap: 10px; font-size: 15px; }
+.byud-row > span:last-child { text-align: right; color: var(--muted); font-variant-numeric: tabular-nums; }
+.mbar { display: flex; gap: 2px; height: 9px; }
+.mbar i { flex: 1 1 0; border-radius: 3px; background: var(--chip); }
+.mbar .s-ok { background: var(--ok); } .mbar .s-bad { background: var(--bad); }
+.legend .l-blank::before { background: var(--chip); border: 1px solid var(--line); }
+.review { display: flex; flex-direction: column; gap: 10px; }
+.rv { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--u); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 1.45; }
+.rv p { margin: 0; }
+.rv-q { font-weight: 700; }
+.rv-q .udtag { font-size: 11.5px; margin-right: 6px; vertical-align: 1px; }
+.rv-a { display: grid; grid-template-columns: 18px 1fr; gap: 8px; align-items: start; }
+.rv-a svg { width: 16px; height: 16px; margin-top: 4px; }
+.rv-a.ok svg { stroke: var(--ok); } .rv-a.bad svg { stroke: var(--bad); } .rv-a.blank svg { stroke: var(--muted); }
+.rv-a.blank { color: var(--muted); }
+.rv-why { color: var(--muted); font-size: 15px; }
+.rv pre { font-size: 13.5px; }
+
 @media (prefers-reduced-motion: reduce) {
+  .op { transition: none; }
   .inner { transition: none; }
   .face { transition: opacity .15s; }
   .card.flipped .inner { transform: none; }
@@ -258,7 +386,12 @@ pre {
   'use strict';
   const CARDS = /*@CARDS@*/[];
   const UDS = /*@UDS@*/[];
+  const QS = /*@QS@*/[];
   const BY_ID = new Map(CARDS.map(c => [c.id, c]));
+  const Q_BY = new Map(QS.map(q => [q.id, q]));
+  // Simulacro: 40 preguntas; acierto +1, fallo −1/3, en blanco 0. Veredicto: media de los 3 últimos ≥ 7 y ninguno < 6.
+  const SIM_N = Math.min(40, QS.length), PEN = 1 / 3, GOAL = 7, FLOOR = 6, PASS = 5, WINDOW = 3;
+  const LETTERS = 'ABCD';
   const UD_OF = new Map(UDS.map(u => [u.ud, u]));
   const app = document.getElementById('app');
 
@@ -320,51 +453,96 @@ pre {
     return JSON.stringify(x === undefined ? null : x);
   }
   let S = sanitize(parse(LS.get(KEY)));
-  const DEF_PREFS = { uds: UDS.map(u => u.ud), off: [], filtro: 'todas', ess: false, orden: 'temario', hideA: false };
+  const DEF_PREFS = { uds: UDS.map(u => u.ud), off: [], filtro: 'todas', ess: false, orden: 'temario', hideA: false, modo: 'fichas', tfiltro: 'todas', tanda: 20 };
   let P = Object.assign({}, DEF_PREFS, isObj(parse(LS.get(PKEY))) ? parse(LS.get(PKEY)) : {});
   if (!Array.isArray(P.uds)) P.uds = DEF_PREFS.uds.slice();
   P.uds = P.uds.filter(u => UD_OF.has(u));
   if (!Array.isArray(P.off)) P.off = [];
+  if (P.modo !== 'test' || !QS.length) P.modo = 'fichas';
+  if (!['todas', 'pendientes', 'falladas'].includes(P.tfiltro)) P.tfiltro = 'todas';
+  if (![10, 20, 0].includes(P.tanda)) P.tanda = 20;
   const savePrefs = () => LS.set(PKEY, JSON.stringify(P));
 
-  // ---------- sincronización con la cuenta (capacidad db) ----------
-  const Remote = { ref: null, status: 'local', writing: false, again: false, last: null, t: 0 };
+  // ---------- progreso del test (preguntas vistas y simulacros) ----------
+  const TKEY = 'test-paradigmas-v1', TSKEY = 'test-paradigmas-sesion';
+  function udMap(x) {
+    const o = {};
+    if (isObj(x)) for (const u of UDS) { const v = x[u.ud]; if (Array.isArray(v)) o[u.ud] = [0, 1, 2].map(i => Math.max(0, +v[i] || 0)); }
+    return o;
+  }
+  function tSanitize(s) {
+    const o = { v: 1, epoch: 0, qs: {}, sims: [] };
+    if (!isObj(s)) return o;
+    o.epoch = +s.epoch || 0;
+    if (isObj(s.qs)) for (const [k, e] of Object.entries(s.qs)) {
+      if (isObj(e)) o.qs[k] = { n: +e.n || 0, ok: +e.ok || 0, last: +e.last || 0, r: e.r === 1 ? 1 : 0 };
+    }
+    if (Array.isArray(s.sims)) o.sims = s.sims.filter(isObj).map(x => ({
+      t: +x.t || 0, n: +x.n || 0, ok: +x.ok || 0, bad: +x.bad || 0, blank: +x.blank || 0,
+      nota: Math.max(0, Math.min(10, +x.nota || 0)), ud: udMap(x.ud),
+    })).filter(x => x.t && x.n).sort((a, b) => a.t - b.t).slice(-60);
+    return o;
+  }
+  function tMerge(a, b) {
+    if (!b) return a; if (!a) return b;
+    if (a.epoch !== b.epoch) return a.epoch > b.epoch ? a : b;
+    const o = { v: 1, epoch: a.epoch, qs: {}, sims: [] };
+    for (const k of new Set([...Object.keys(a.qs), ...Object.keys(b.qs)])) {
+      const x = a.qs[k], y = b.qs[k];
+      o.qs[k] = !x ? y : !y ? x : (y.last > x.last ? y : x);
+    }
+    const byT = new Map(); for (const x of [...a.sims, ...b.sims]) byT.set(x.t, x);
+    o.sims = [...byT.values()].sort((p, q) => p.t - q.t).slice(-60);
+    return o;
+  }
+  let T = tSanitize(parse(LS.get(TKEY)));
+
+  // ---------- sincronización con la cuenta (capacidad db): un documento para las fichas y otro para el test ----------
+  const SYNCS = [];
+  function makeSync(name, store) { const R = { name, store, ref: null, status: 'local', writing: false, again: false, last: null, t: 0 }; SYNCS.push(R); return R; }
+  const SF = makeSync('fichas-paradigmas', { get: () => S, set: v => { S = v; LS.set(KEY, JSON.stringify(S)); }, sanitize, merge, empty: () => !(Object.keys(S.cards).length || S.epoch) });
+  const STT = makeSync('test-paradigmas', { get: () => T, set: v => { T = v; LS.set(TKEY, JSON.stringify(T)); }, sanitize: tSanitize, merge: tMerge, empty: () => !(Object.keys(T.qs).length || T.sims.length || T.epoch) });
   const SYNC_TXT = { local: ['', 'Progreso guardado en este dispositivo'], connecting: ['', 'Conectando con tu cuenta…'], ok: ['ok', 'Progreso sincronizado con tu cuenta'], error: ['err', 'Sin conexión; se guardará al volver'] };
-  function syncHTML() { const m = SYNC_TXT[Remote.status]; return '<span class="sync ' + m[0] + '" id="sync-st"><i></i>' + m[1] + '</span>'; }
-  function setSync(st) { Remote.status = st; const el = document.getElementById('sync-st'); if (el) el.outerHTML = syncHTML(); }
+  function syncState() { const st = SYNCS.map(r => r.status); return st.includes('error') ? 'error' : st.includes('connecting') ? 'connecting' : st.includes('ok') ? 'ok' : 'local'; }
+  function syncHTML() { const m = SYNC_TXT[syncState()]; return '<span class="sync ' + m[0] + '" id="sync-st"><i></i>' + m[1] + '</span>'; }
+  function setSync(R, st) { R.status = st; const el = document.getElementById('sync-st'); if (el) el.outerHTML = syncHTML(); }
+  function listen(R, db, uid) {
+    R.ref = db.doc('data/users/' + uid + '/' + R.name);
+    setSync(R, 'connecting');
+    const timer = setTimeout(() => { if (R.status === 'connecting') setSync(R, 'error'); }, 10000);
+    R.ref.onSnapshot(snap => {
+      if (!snap.metadata || !snap.metadata.fromCache) clearTimeout(timer);
+      const remote = snap.exists ? R.store.sanitize(snap.data()) : null;
+      R.last = remote ? stable(remote) : null;
+      if (remote) {
+        const cur = R.store.get(), m = R.store.merge(cur, remote);
+        if (stable(m) !== stable(cur)) { R.store.set(m); if (view === 'home') keepScroll(renderHome); }
+      }
+      setSync(R, 'ok');
+      if (stable(R.store.get()) !== R.last && !R.store.empty()) scheduleWrite(R, 1200);
+    }, () => { clearTimeout(timer); R.ref = null; setSync(R, 'local'); });
+  }
   async function initRemote() {
     if (!(window.claude && typeof window.claude.use === 'function')) return;
     try {
       const [user, db] = await Promise.all([window.claude.use('user'), window.claude.use('db')]);
       if (!user || !db) return;
       const id = await user.id(); if (!id) return;
-      Remote.ref = db.doc('data/users/' + id + '/fichas-paradigmas');
-      setSync('connecting');
-      const timer = setTimeout(() => { if (Remote.status === 'connecting') setSync('error'); }, 10000);
-      Remote.ref.onSnapshot(snap => {
-        if (!snap.metadata || !snap.metadata.fromCache) clearTimeout(timer);
-        const remote = snap.exists ? sanitize(snap.data()) : null;
-        Remote.last = remote ? stable(remote) : null;
-        if (remote) {
-          const m = merge(S, remote);
-          if (stable(m) !== stable(S)) { S = m; LS.set(KEY, JSON.stringify(S)); if (view === 'home') render(); }
-        }
-        setSync('ok');
-        if (stable(S) !== Remote.last && (Object.keys(S.cards).length || S.epoch)) scheduleWrite(1200);
-      }, () => { clearTimeout(timer); Remote.ref = null; setSync('local'); });
-    } catch (e) { setSync('local'); }
+      for (const R of SYNCS) listen(R, db, id);
+    } catch (e) { for (const R of SYNCS) setSync(R, 'local'); }
   }
-  function scheduleWrite(ms) { if (!Remote.ref) return; clearTimeout(Remote.t); Remote.t = setTimeout(flushWrite, ms || 600); }
-  async function flushWrite() {
-    if (!Remote.ref) return;
-    if (Remote.writing) { Remote.again = true; return; }
-    const body = stable(S); if (body === Remote.last) return;
-    Remote.writing = true;
-    try { await Remote.ref.set(JSON.parse(body)); Remote.last = body; setSync('ok'); }
-    catch (e) { if (e && e.code === 'invalid_argument') { Remote.ref = null; setSync('local'); } else setSync('error'); }
-    finally { Remote.writing = false; if (Remote.again) { Remote.again = false; scheduleWrite(800); } }
+  function scheduleWrite(R, ms) { if (!R.ref) return; clearTimeout(R.t); R.t = setTimeout(() => flushWrite(R), ms || 600); }
+  async function flushWrite(R) {
+    if (!R.ref) return;
+    if (R.writing) { R.again = true; return; }
+    const body = stable(R.store.get()); if (body === R.last) return;
+    R.writing = true;
+    try { await R.ref.set(JSON.parse(body)); R.last = body; setSync(R, 'ok'); }
+    catch (e) { if (e && e.code === 'invalid_argument') { R.ref = null; setSync(R, 'local'); } else setSync(R, 'error'); }
+    finally { R.writing = false; if (R.again) { R.again = false; scheduleWrite(R, 800); } }
   }
-  function commit() { LS.set(KEY, JSON.stringify(S)); scheduleWrite(700); }
+  function commit() { LS.set(KEY, JSON.stringify(S)); scheduleWrite(SF, 700); }
+  function tCommit() { LS.set(TKEY, JSON.stringify(T)); scheduleWrite(STT, 700); }
 
   // ---------- estado de cada ficha ----------
   const rec = id => S.cards[id];
@@ -420,57 +598,46 @@ pre {
     if (view === 'study' && ses) return renderStudy();
     if (view === 'done' && ses) return renderDone();
     if (view === 'list') return renderList();
+    if (view === 'quiz' && tses) return renderQuiz();
+    if (view === 'qconfirm' && tses) return renderConfirm();
+    if (view === 'qdone' && tses && tses.res) return renderQDone();
     view = 'home'; renderHome();
   }
 
-  function renderHome() {
-    const all = tally(CARDS);
-    const one = singleUd();
-    const n = pool().length;
-    const udRows = UDS.map(u => {
-      const cs = CARDS.filter(c => c.ud === u.ud), t = tally(cs), on = P.uds.includes(u.ud);
-      return '<button class="ud" data-ud="' + u.ud + '" aria-pressed="' + on + '">' +
+  // Piezas comunes del inicio de los dos modos.
+  function headerHTML() {
+    const what = P.modo === 'test' ? QS.length + ' preguntas' : CARDS.length + ' fichas';
+    return '<header><div class="brand"><span class="brand-mark" aria-hidden="true">λ</span><div><h1>Fichas de Paradigmas</h1>' +
+      '<p class="sub"><span>10901 · UD1–UD5 · ' + what + '</span>' + syncHTML() + '</p></div></div></header>' +
+      (QS.length ? '<div class="seg modes" role="group" aria-label="Modo">' +
+        '<button data-modo="fichas" aria-pressed="' + (P.modo === 'fichas') + '">Fichas<small>' + CARDS.length + '</small></button>' +
+        '<button data-modo="test" aria-pressed="' + (P.modo === 'test') + '">Test<small>' + QS.length + '</small></button></div>' : '');
+  }
+  // El color de cada unidad es el de su paradigma; la leyenda lo hace explícito.
+  const PLEGEND = '<p class="plegend"><span class="u1"><i></i>Introducción</span><span class="u2"><i></i>Funcional</span><span class="u4"><i></i>Lógico</span></p>';
+  function udRowsHTML(items, t2) {
+    return PLEGEND + UDS.map(u => {
+      const t = t2(items.filter(c => c.ud === u.ud)), on = P.uds.includes(u.ud);
+      return '<button class="ud u' + u.ud + '" data-ud="' + u.ud + '" aria-pressed="' + on + '">' +
         '<span class="ud-glyph" aria-hidden="true">' + esc(u.glyph) + '</span>' +
         '<span class="ud-txt"><span class="ud-name"><small>UD' + u.ud + '</small>' + esc(u.name) + '</span>' +
         '<span class="ud-bar">' + bar(t) + '</span></span>' +
         '<span class="ud-num">' + t.ok + '/' + t.total + '<span class="ud-check">' + ICON.check + '</span></span></button>';
     }).join('');
-    let temas = '';
-    if (one) {
-      temas = '<section class="sec"><div class="sec-head"><h2>Temas de la UD' + one + '</h2>' +
-        '<button class="link" id="temas-all">' + (P.off.some(k => k.startsWith(one + '|')) ? 'Todos' : 'Ninguno') + '</button></div><div class="chips">' +
-        temasOf(one).map(tm => {
-          const k = temaKey(one, tm), cnt = CARDS.filter(c => c.ud === one && c.tema === tm).length;
-          return '<button class="chip" data-tema="' + esc(k) + '" aria-pressed="' + !P.off.includes(k) + '">' + esc(tm) + '<small>' + cnt + '</small></button>';
-        }).join('') + '</div></section>';
-    }
-    const seg = (name, opts) => '<div class="seg" role="group">' + opts.map(([v, l]) =>
-      '<button data-' + name + '="' + v + '" aria-pressed="' + (P[name] === v) + '">' + l + '</button>').join('') + '</div>';
-    const ess = CARDS.filter(c => P.uds.includes(c.ud) && c.imp === 1).length;
-    app.innerHTML =
-      '<div class="view"><div class="scroll"><div class="home wrap">' +
-      '<header><div class="brand"><span class="brand-mark" aria-hidden="true">λ</span><div><h1>Fichas de Paradigmas</h1>' +
-      '<p class="sub"><span>10901 · UD1–UD5 · ' + CARDS.length + ' fichas</span>' + syncHTML() + '</p></div></div></header>' +
-      '<section class="global" aria-label="Progreso"><div class="big"><b>' + all.ok + '</b><span>de ' + all.total + ' fichas dominadas</span></div>' +
-      '<div class="stack">' + bar(all) + '</div>' +
-      '<div class="legend"><span class="l-ok">' + all.ok + ' me las sé</span><span class="l-mid">' + all.mid + ' dudosas</span><span class="l-bad">' + all.bad + ' falladas</span><span>' + all.new + ' sin ver</span></div></section>' +
-      '<section class="sec"><div class="sec-head"><h2>Unidades</h2><button class="link" id="uds-all">' + (P.uds.length === UDS.length ? 'Ninguna' : 'Todas') + '</button></div><div class="uds">' + udRows + '</div></section>' +
-      temas +
-      '<section class="sec"><h2>Qué fichas</h2>' +
-      seg('filtro', [['todas', 'Todas'], ['pendientes', 'Sin dominar'], ['falladas', 'Falladas']]) +
-      '<button class="toggle" id="ess" aria-pressed="' + P.ess + '"><span><b>Solo esenciales ★</b><small>' + plural(ess, 'ficha de lo más seguro de examen', 'fichas de lo más seguro de examen') + '</small></span><i class="sw" aria-hidden="true"></i></button>' +
-      '</section>' +
-      '<section class="sec"><h2>Orden</h2>' + seg('orden', [['temario', 'Como el temario'], ['mezcla', 'Mezcladas']]) + '</section>' +
-      '<section class="howto"><p><b>Cómo se usa.</b> Toca la ficha para girarla. Luego elige: <b>Otra vez</b> (vuelve a salir en unos minutos), <b>Dudé</b> o <b>Me la sé</b>. También puedes deslizar: → me la sé, ← otra vez.</p>' +
-      '<p>Cuando un mismo tema ocupa varias fichas verás <b>1/5, 2/5…</b> y salen siempre seguidas. La fuente (diapositiva o página) va al pie de cada respuesta.</p>' +
-      '<button class="reset' + (armed ? ' armed' : '') + '" id="reset">' + (armed ? 'Toca otra vez para borrar todo el progreso' : 'Borrar progreso') + '</button></section>' +
-      '</div></div>' +
-      '<div class="dock wrap">' +
-      '<button class="btn" id="go"' + (n ? '' : ' disabled') + '>Empezar · ' + plural(n, 'ficha', 'fichas') + '</button>' +
-      '<button class="btn ghost" id="list"' + (n ? '' : ' disabled') + '>Lista</button>' +
-      (n ? '' : '<p class="empty-note">' + (P.uds.length ? 'No hay fichas con estos filtros. Prueba con «Todas».' : 'Elige al menos una unidad.') + '</p>') +
-      '</div></div>';
-
+  }
+  function temasHTML(one, items) {
+    if (!one) return '';
+    return '<section class="sec"><div class="sec-head"><h2>Temas de la UD' + one + '</h2>' +
+      '<button class="link" id="temas-all">' + (P.off.some(k => k.startsWith(one + '|')) ? 'Todos' : 'Ninguno') + '</button></div><div class="chips">' +
+      temasOf(one).map(tm => {
+        const k = temaKey(one, tm), cnt = items.filter(c => c.ud === one && c.tema === tm).length;
+        return cnt ? '<button class="chip" data-tema="' + esc(k) + '" aria-pressed="' + !P.off.includes(k) + '">' + esc(tm) + '<small>' + cnt + '</small></button>' : '';
+      }).join('') + '</div></section>';
+  }
+  const seg = (name, opts) => '<div class="seg" role="group">' + opts.map(([v, l]) =>
+    '<button data-' + name + '="' + v + '" aria-pressed="' + (String(P[name]) === String(v)) + '">' + l + '</button>').join('') + '</div>';
+  function bindShared(one) {
+    app.querySelectorAll('[data-modo]').forEach(b => b.onclick = () => { if (P.modo === b.dataset.modo) return; P.modo = b.dataset.modo; savePrefs(); renderHome(); });
     app.querySelectorAll('.ud').forEach(b => b.onclick = () => {
       const u = +b.dataset.ud;
       P.uds = P.uds.includes(u) ? P.uds.filter(x => x !== u) : [...P.uds, u].sort();
@@ -488,9 +655,41 @@ pre {
       P.off = P.off.some(k => k.startsWith(one + '|')) ? P.off.filter(k => !k.startsWith(one + '|')) : [...P.off, ...mine];
       savePrefs(); keepScroll(renderHome);
     };
-    app.querySelectorAll('[data-filtro]').forEach(b => b.onclick = () => { P.filtro = b.dataset.filtro; savePrefs(); keepScroll(renderHome); });
-    app.querySelectorAll('[data-orden]').forEach(b => b.onclick = () => { P.orden = b.dataset.orden; savePrefs(); keepScroll(renderHome); });
-    document.getElementById('ess').onclick = () => { P.ess = !P.ess; savePrefs(); keepScroll(renderHome); };
+    for (const name of ['filtro', 'orden', 'tfiltro']) app.querySelectorAll('[data-' + name + ']').forEach(b => b.onclick = () => { P[name] = b.dataset[name]; savePrefs(); keepScroll(renderHome); });
+    app.querySelectorAll('[data-tanda]').forEach(b => b.onclick = () => { P.tanda = +b.dataset.tanda; savePrefs(); keepScroll(renderHome); });
+    const es = document.getElementById('ess');
+    if (es) es.onclick = () => { P.ess = !P.ess; savePrefs(); keepScroll(renderHome); };
+  }
+
+  function renderHome() {
+    if (P.modo === 'test') return renderTestHome();
+    const all = tally(CARDS);
+    const one = singleUd();
+    const n = pool().length;
+    const ess = CARDS.filter(c => P.uds.includes(c.ud) && c.imp === 1).length;
+    app.innerHTML =
+      '<div class="view"><div class="scroll"><div class="home wrap">' + headerHTML() +
+      '<section class="global" aria-label="Progreso"><div class="big"><b>' + all.ok + '</b><span>de ' + all.total + ' fichas dominadas</span></div>' +
+      '<div class="stack">' + bar(all) + '</div>' +
+      '<div class="legend"><span class="l-ok">' + all.ok + ' me las sé</span><span class="l-mid">' + all.mid + ' dudosas</span><span class="l-bad">' + all.bad + ' falladas</span><span>' + all.new + ' sin ver</span></div></section>' +
+      '<section class="sec"><div class="sec-head"><h2>Unidades</h2><button class="link" id="uds-all">' + (P.uds.length === UDS.length ? 'Ninguna' : 'Todas') + '</button></div><div class="uds">' + udRowsHTML(CARDS, tally) + '</div></section>' +
+      temasHTML(one, CARDS) +
+      '<section class="sec"><h2>Qué fichas</h2>' +
+      seg('filtro', [['todas', 'Todas'], ['pendientes', 'Sin dominar'], ['falladas', 'Falladas']]) +
+      '<button class="toggle" id="ess" aria-pressed="' + P.ess + '"><span><b>Solo esenciales ★</b><small>' + plural(ess, 'ficha de lo más seguro de examen', 'fichas de lo más seguro de examen') + '</small></span><i class="sw" aria-hidden="true"></i></button>' +
+      '</section>' +
+      '<section class="sec"><h2>Orden</h2>' + seg('orden', [['temario', 'Como el temario'], ['mezcla', 'Mezcladas']]) + '</section>' +
+      '<section class="howto"><p><b>Cómo se usa.</b> Toca la ficha para girarla. Luego elige: <b>Otra vez</b> (vuelve a salir en unos minutos), <b>Dudé</b> o <b>Me la sé</b>. También puedes deslizar: → me la sé, ← otra vez.</p>' +
+      '<p>Cuando un mismo tema ocupa varias fichas verás <b>1/5, 2/5…</b> y salen siempre seguidas. La fuente (diapositiva o página) va al pie de cada respuesta.</p>' +
+      '<button class="reset' + (armed ? ' armed' : '') + '" id="reset">' + (armed ? 'Toca otra vez para borrar todo el progreso' : 'Borrar progreso') + '</button></section>' +
+      '</div></div>' +
+      '<div class="dock wrap">' +
+      '<button class="btn" id="go"' + (n ? '' : ' disabled') + '>Empezar · ' + plural(n, 'ficha', 'fichas') + '</button>' +
+      '<button class="btn ghost" id="list"' + (n ? '' : ' disabled') + '>Lista</button>' +
+      (n ? '' : '<p class="empty-note">' + (P.uds.length ? 'No hay fichas con estos filtros. Prueba con «Todas».' : 'Elige al menos una unidad.') + '</p>') +
+      '</div></div>';
+
+    bindShared(one);
     document.getElementById('reset').onclick = () => {
       if (!armed) { armed = true; keepScroll(renderHome); setTimeout(() => { if (armed) { armed = false; if (view === 'home') keepScroll(renderHome); } }, 4000); return; }
       armed = false; S = { v: 1, epoch: Date.now(), cards: {} }; commit(); keepScroll(renderHome);
@@ -509,6 +708,370 @@ pre {
   function describe() {
     const u = P.uds.length === UDS.length ? 'UD1–UD5' : P.uds.map(x => 'UD' + x).join(' · ');
     return u + (P.ess ? ' · esenciales' : '');
+  }
+
+  // ================= MODO TEST =================
+  const nf = x => (Math.round(x * 10) / 10).toFixed(1).replace('.', ',');
+  const fecha = t => { try { return new Date(t).toLocaleDateString('es-ES', { day: 'numeric', month: 'short' }); } catch (e) { return ''; } };
+  const pct = (a, b) => b ? Math.round(100 * a / b) : 0;
+  ICON.dash = '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.6" stroke-linecap="round"><path d="M6 12h12"/></svg>';
+  function qStatus(id) { const e = T.qs[id]; return !e || !e.n ? 'new' : e.r ? 'ok' : 'bad'; }
+  const seenN = id => (T.qs[id] && T.qs[id].n) || 0;
+  function qRecord(id, right) {
+    const e = Object.assign({ n: 0, ok: 0, last: 0, r: 0 }, T.qs[id]);
+    e.n++; if (right) e.ok++; e.r = right ? 1 : 0; e.last = Date.now();
+    T.qs[id] = e;
+  }
+  function qTally(list) { const t = { ok: 0, mid: 0, bad: 0, new: 0, total: list.length }; for (const q of list) t[qStatus(q.id)]++; return t; }
+  function qPool() {
+    const one = singleUd();
+    return QS.filter(q => {
+      if (!P.uds.includes(q.ud)) return false;
+      if (one && P.off.includes(temaKey(q.ud, q.tema))) return false;
+      if (P.ess && q.imp !== 1) return false;
+      const st = qStatus(q.id);
+      if (P.tfiltro === 'pendientes' && st === 'ok') return false;
+      if (P.tfiltro === 'falladas' && st !== 'bad') return false;
+      return true;
+    });
+  }
+  // Simulacro: cupo de cada unidad proporcional a sus preguntas; dentro de cada unidad, primero las menos vistas
+  // y repartidas entre temas. Así cada simulacro nuevo trae sobre todo preguntas que aún no has visto.
+  function simPick() {
+    const n = SIM_N; if (!n) return [];
+    const byUd = UDS.map(u => QS.filter(q => q.ud === u.ud));
+    const quota = byUd.map(l => n * l.length / QS.length), take = quota.map(Math.floor);
+    let rest = n - take.reduce((a, b) => a + b, 0);
+    quota.map((x, i) => [x - Math.floor(x), i]).sort((a, b) => b[0] - a[0]).forEach(([, i]) => { if (rest > 0) { take[i]++; rest--; } });
+    const ids = [];
+    byUd.forEach((l, i) => {
+      const rnd = new Map(l.map(q => [q.id, Math.random()])), used = {}, got = new Set(), mine = [];
+      for (let k = 0; k < take[i]; k++) {
+        let best = null, bk = null;
+        for (const q of l) {
+          if (got.has(q.id)) continue;
+          const key = [seenN(q.id), used[q.tema] || 0, rnd.get(q.id)];
+          if (!bk || key[0] < bk[0] || (key[0] === bk[0] && (key[1] < bk[1] || (key[1] === bk[1] && key[2] < bk[2])))) { best = q; bk = key; }
+        }
+        if (!best) break;
+        got.add(best.id); used[best.tema] = (used[best.tema] || 0) + 1; mine.push(best.id);
+      }
+      ids.push(...shuffle(mine));
+    });
+    return ids;
+  }
+
+  let tses = null, pendingSim = null, tarmed = false, darmed = false;
+  function newTSes(kind, ids, title) {
+    const perm = {}; for (const id of ids) perm[id] = shuffle([0, 1, 2, 3]);
+    return { kind, ids: ids.slice(), perm, ans: {}, i: 0, title, t0: Date.now(), res: null };
+  }
+  function validSes(x) {
+    if (!isObj(x) || !['sim', 'prac'].includes(x.kind) || !Array.isArray(x.ids) || !x.ids.length || !isObj(x.perm) || !isObj(x.ans)) return null;
+    if (!x.ids.every(id => Q_BY.has(id) && Array.isArray(x.perm[id]) && x.perm[id].length === 4 && [0, 1, 2, 3].every(k => x.perm[id].includes(k)))) return null;
+    x.i = Math.max(0, Math.min(x.ids.length - 1, +x.i || 0));
+    if (x.res != null && !isObj(x.res)) x.res = null;
+    return x;
+  }
+  pendingSim = validSes(parse(LS.get(TSKEY)));
+  if (pendingSim && (pendingSim.kind !== 'sim' || pendingSim.res)) pendingSim = null;
+  function saveTSes() { LS.set(TSKEY, tses && tses.kind === 'sim' && !tses.res ? JSON.stringify(tses) : ''); }
+  function startSim() {
+    const ids = simPick(); if (!ids.length) return;
+    tses = newTSes('sim', ids, 'Simulacro de examen'); pendingSim = null; saveTSes();
+    view = 'quiz'; render();
+  }
+  function startPrac(ids, title) { if (!ids.length) return; tses = newTSes('prac', ids, title); view = 'quiz'; render(); }
+  function startPracFromHome() {
+    const list = shuffle(qPool().slice()).sort((a, b) => (qStatus(a.id) === 'new' ? 0 : 1) - (qStatus(b.id) === 'new' ? 0 : 1));
+    if (!list.length) return;
+    const n = P.tanda ? Math.min(P.tanda, list.length) : list.length;
+    startPrac(list.slice(0, n).map(q => q.id), describe() + ' · práctica');
+  }
+  const codeHTML = c => c ? '<pre' + (Math.max(...c.split(String.fromCharCode(10)).map(l => l.length)) > 38 ? ' class="wide"' : '') + '>' + esc(c) + '</pre>' : '';
+  const isRight = (s, id) => s.ans[id] !== undefined && s.ans[id] !== -1 && s.perm[id][s.ans[id]] === 0;
+
+  // ---------- veredicto ----------
+  function fullSims() { return T.sims.filter(x => x.n >= SIM_N); }
+  function verdict() {
+    const all = fullSims(), last = all.slice(-WINDOW);
+    if (!last.length) return { st: 'none', all, last };
+    const avg = Math.round(last.reduce((a, x) => a + x.nota, 0) / last.length * 10) / 10;
+    const min = Math.min(...last.map(x => x.nota));
+    const ud = {};
+    for (const x of last) for (const [u, v] of Object.entries(x.ud)) { const o = ud[u] || (ud[u] = [0, 0]); o[0] += v[0]; o[1] += v[2]; }
+    let weak = null;
+    for (const [u, v] of Object.entries(ud)) if (v[1] && (!weak || v[0] / v[1] < weak.r)) weak = { ud: u, r: v[0] / v[1] };
+    if (last.length < WINDOW) return { st: 'pending', avg, min, all, last, weak, need: WINDOW - last.length };
+    return { st: avg >= GOAL && min >= FLOOR ? 'ok' : avg >= PASS ? 'mid' : 'bad', avg, min, all, last, weak };
+  }
+  function histHTML(v) {
+    const hist = v.all.slice(-8); if (!hist.length) return '';
+    const from = hist.length - Math.min(WINDOW, v.last.length);
+    const y = [0, 5, 7, 10].map(k => '<span style="bottom:' + (k * 10) + '%">' + k + '</span>').join('');
+    const bars = hist.map((x, j) => {
+      const counted = j >= from;
+      return '<button type="button" data-tip="' + esc(fecha(x.t) + ' · ' + nf(x.nota) + ' (' + x.ok + ' bien, ' + x.bad + ' mal, ' + x.blank + ' en blanco)') + '" data-nota="' + x.nota + '" aria-label="Simulacro del ' + esc(fecha(x.t)) + ': ' + nf(x.nota) + '">' +
+        '<i class="b' + (counted ? '' : ' old') + '" style="height:' + Math.max(3, x.nota * 10) + '%">' + (counted ? '<em>' + nf(x.nota) + '</em>' : '') + '</i></button>';
+    }).join('');
+    return '<div class="hist"><div class="hist-y" aria-hidden="true">' + y + '</div>' +
+      '<div class="plot" id="plot"><i class="ref" style="bottom:50%"></i><i class="ref goal" style="bottom:70%"></i>' +
+      '<div class="bars">' + bars + '</div><div class="tip" id="tip" hidden></div></div>' +
+      '<p class="hist-cap">Resaltados, los que cuentan. Línea continua: objetivo ' + GOAL + '; discontinua: aprobado ' + PASS + '.</p></div>';
+  }
+  function bindHist() {
+    const plot = document.getElementById('plot'), tip = document.getElementById('tip'); if (!plot || !tip) return;
+    const show = b => {
+      tip.textContent = b.dataset.tip; tip.hidden = false;
+      const w = plot.clientWidth, half = tip.offsetWidth / 2 + 2;
+      const x = Math.max(half, Math.min(w - half, b.offsetLeft + b.offsetWidth / 2));
+      tip.style.left = x + 'px'; tip.style.top = (plot.clientHeight * (1 - (+b.dataset.nota) / 10)) + 'px';
+    };
+    const hide = () => { tip.hidden = true; };
+    plot.querySelectorAll('button').forEach(b => {
+      b.addEventListener('pointerenter', () => show(b)); b.addEventListener('pointerleave', hide);
+      b.addEventListener('focus', () => show(b)); b.addEventListener('blur', hide);
+      b.addEventListener('click', () => (tip.hidden ? show(b) : hide()));
+    });
+  }
+  function verdictHTML() {
+    const v = verdict();
+    const seen = QS.filter(q => seenN(q.id)).length;
+    const weak = v.weak && v.weak.r < .8 ? ' Lo que peor llevas: <b>UD' + v.weak.ud + '</b> (' + Math.round(100 * v.weak.r) + ' % de aciertos).' : '';
+    let cls = '', icon = '', title, text;
+    if (v.st === 'none') {
+      title = 'Haz tu primer simulacro';
+      text = SIM_N + ' preguntas de todo el temario, corregidas como un examen. Con tres hechos, aquí verás si vas para aprobado.';
+    } else if (v.st === 'pending') {
+      title = v.need === 1 ? 'Te falta 1 simulacro' : 'Te faltan ' + v.need + ' simulacros';
+      text = 'El veredicto sale de la media de los tres últimos.' + weak;
+    } else if (v.st === 'ok') {
+      cls = 'ok'; icon = ICON.check; title = 'Probablemente apruebas';
+      text = 'Media de <b>' + nf(v.avg) + '</b> en los tres últimos y ninguno por debajo de ' + FLOOR + '. Haz alguno de vez en cuando para mantenerlo.';
+    } else if (v.st === 'mid') {
+      cls = 'mid'; icon = ICON.dash; title = 'En el límite';
+      text = (v.avg >= GOAL ? 'Media de <b>' + nf(v.avg) + '</b>, pero uno de los tres bajó de ' + FLOOR + ': aún vas irregular.' : 'Media de <b>' + nf(v.avg) + '</b>: aprobarías por poco. El objetivo es ' + GOAL + ' de media sin bajar de ' + FLOOR + '.') + weak;
+    } else {
+      cls = 'bad'; icon = ICON.x; title = 'Todavía no';
+      text = 'Media de <b>' + nf(v.avg) + '</b> en los tres últimos. Practica por unidades las que fallas y vuelve a probar.' + weak;
+    }
+    return '<section class="verdict" aria-label="¿Apruebas?"><div class="v-top"><div><h2>¿Apruebas?</h2>' +
+      '<p class="v-state ' + cls + '">' + icon + esc(title) + '</p></div>' +
+      (v.last.length ? '<div class="v-avg"><b>' + nf(v.avg) + '</b><span>' + (v.last.length === 1 ? 'último' : 'media de ' + v.last.length) + '</span></div>' : '') + '</div>' +
+      histHTML(v) +
+      '<p class="v-text">' + text + '</p>' +
+      '<p class="v-foot">Has visto ' + seen + ' de ' + QS.length + ' preguntas · ' + plural(fullSims().length, 'simulacro hecho', 'simulacros hechos') + '</p></section>';
+  }
+
+  // ---------- inicio del modo test ----------
+  function renderTestHome() {
+    const one = singleUd(), list = qPool(), n = list.length, tn = P.tanda ? Math.min(P.tanda, n) : n;
+    const ess = QS.filter(q => P.uds.includes(q.ud) && q.imp === 1).length;
+    const pend = pendingSim && pendingSim.kind === 'sim' && !pendingSim.res;
+    const pendDone = pend ? pendingSim.ids.filter(id => pendingSim.ans[id] !== undefined).length : 0;
+    app.innerHTML =
+      '<div class="view"><div class="scroll"><div class="home wrap">' + headerHTML() +
+      (pend ? '<section class="resume"><p><b>Tienes un simulacro a medias</b>Vas por la ' + (pendingSim.i + 1) + ' de ' + pendingSim.ids.length + ' · ' + pendDone + ' respondidas</p>' +
+        '<div class="row"><button class="btn" id="tresume">Seguir el simulacro</button><button class="reset' + (darmed ? ' armed' : '') + '" id="tdiscard">' + (darmed ? '¿Seguro? Toca otra vez' : 'Descartar') + '</button></div></section>' : '') +
+      verdictHTML() +
+      '<section class="sec"><div class="sec-head"><h2>Practicar por unidades</h2><button class="link" id="uds-all">' + (P.uds.length === UDS.length ? 'Ninguna' : 'Todas') + '</button></div><div class="uds">' + udRowsHTML(QS, qTally) + '</div></section>' +
+      temasHTML(one, QS) +
+      '<section class="sec"><h2>Qué preguntas</h2>' +
+      seg('tfiltro', [['todas', 'Todas'], ['pendientes', 'Sin acertar'], ['falladas', 'Falladas']]) +
+      '<button class="toggle" id="ess" aria-pressed="' + P.ess + '"><span><b>Solo de lo esencial ★</b><small>' + plural(ess, 'pregunta de lo más seguro de examen', 'preguntas de lo más seguro de examen') + '</small></span><i class="sw" aria-hidden="true"></i></button>' +
+      '</section>' +
+      '<section class="sec"><h2>Preguntas por tanda</h2>' + seg('tanda', [['10', '10'], ['20', '20'], ['0', 'Todas']]) + '</section>' +
+      '<section class="howto"><p><b>Simulacro.</b> ' + SIM_N + ' preguntas de UD1–UD5, en proporción a lo que pesa cada unidad. Se corrige como un examen tipo test: acierto +1, fallo −⅓, en blanco 0. No sabes si aciertas hasta entregar, y puedes volver atrás y cambiar respuestas. Cada simulacro saca primero las preguntas que aún no has visto.</p>' +
+      '<p><b>Veredicto.</b> Si sacas ' + GOAL + ' o más de media en los tres últimos simulacros, sin ninguno por debajo de ' + FLOOR + ', lo más probable es que apruebes. Se pide más que un 5 porque las preguntas del examen real serán otras y porque, con ' + SIM_N + ' preguntas, la nota de un simulacro sube o baja unos 0,7 puntos solo por azar.</p>' +
+      '<p><b>Practicar.</b> Corrige cada pregunta al momento, con la explicación y la ficha que la repasa. Las barras de cada unidad cuentan las preguntas que acertaste la última vez.</p>' +
+      '<button class="reset' + (tarmed ? ' armed' : '') + '" id="treset">' + (tarmed ? 'Toca otra vez para borrar los resultados del test' : 'Borrar resultados del test') + '</button></section>' +
+      '</div></div>' +
+      '<div class="dock two wrap">' +
+      '<button class="btn" id="tsim"' + (SIM_N ? '' : ' disabled') + '>' + (pend ? 'Simulacro nuevo' : 'Simulacro · ' + SIM_N) + '</button>' +
+      '<button class="btn ghost" id="tprac"' + (n ? '' : ' disabled') + '>Practicar · ' + tn + '</button>' +
+      (n ? '' : '<p class="empty-note">' + (P.uds.length ? 'No hay preguntas con estos filtros. Prueba con «Todas».' : 'Elige al menos una unidad para practicar.') + '</p>') +
+      '</div></div>';
+
+    bindShared(one);
+    bindHist();
+    document.getElementById('tsim').onclick = startSim;
+    document.getElementById('tprac').onclick = startPracFromHome;
+    const rs = document.getElementById('tresume');
+    if (rs) rs.onclick = () => { tses = pendingSim; pendingSim = null; darmed = false; view = 'quiz'; render(); };
+    const ds = document.getElementById('tdiscard');
+    if (ds) ds.onclick = () => {
+      if (!darmed) { darmed = true; keepScroll(renderHome); setTimeout(() => { if (darmed) { darmed = false; if (view === 'home') keepScroll(renderHome); } }, 4000); return; }
+      darmed = false; pendingSim = null; LS.set(TSKEY, ''); keepScroll(renderHome);
+    };
+    document.getElementById('treset').onclick = () => {
+      if (!tarmed) { tarmed = true; keepScroll(renderHome); setTimeout(() => { if (tarmed) { tarmed = false; if (view === 'home') keepScroll(renderHome); } }, 4000); return; }
+      tarmed = false; T = { v: 1, epoch: Date.now(), qs: {}, sims: [] }; tCommit(); keepScroll(renderHome);
+    };
+  }
+
+  // ---------- pregunta ----------
+  function keepStage(fn) {
+    const st = app.querySelector('.stage'), y = st ? st.scrollTop : 0;
+    fn();
+    const st2 = app.querySelector('.stage'); if (st2) st2.scrollTop = y;
+  }
+  function renderQuiz() {
+    const s = tses, id = s.ids[s.i], q = Q_BY.get(id), sim = s.kind === 'sim';
+    const a = s.ans[id], shown = !sim && a !== undefined;
+    const ops = s.perm[id].map((orig, k) => {
+      let cls = 'op';
+      if (shown) cls += orig === 0 ? ' right' : k === a ? ' wrong' : ' dim';
+      return '<button class="' + cls + '" data-k="' + k + '"' + (sim ? ' aria-pressed="' + (a === k) + '"' : '') + (shown ? ' aria-disabled="true"' : '') + '>' +
+        '<span class="lt">' + LETTERS[k] + '</span><span class="ot">' + inline(q.ops[orig]) + '</span></button>';
+    }).join('');
+    let fb = '';
+    if (shown) {
+      const right = isRight(s, id), kr = LETTERS[s.perm[id].indexOf(0)];
+      const card = q.ficha ? BY_ID.get(q.ficha) : null;
+      fb = '<div class="fb ' + (right ? 'ok' : 'bad') + '" id="fb"><p class="fb-h">' + (right ? ICON.check + 'Correcto' : ICON.x + (a === -1 ? 'Era la ' + kr : 'No: la correcta es la ' + kr)) + '</p>' +
+        '<p>' + inline(q.why) + '</p>' +
+        (card ? '<details><summary>Repasar la ficha</summary><div class="ans"><p class="q-small">' + inline(card.q) + '</p>' + fmt(card.a) + (card.code ? '<pre>' + esc(card.code) + '</pre>' : '') + '</div></details>' : '') +
+        '<div class="src"><span>Fuente: ' + esc(q.src || '—') + '</span>' + (card ? '<span>Ficha ' + esc(card.id) + '</span>' : '') + '</div></div>';
+    }
+    let act;
+    if (!sim) act = shown
+      ? '<div class="qact one wrap"><button class="btn" id="qnext">' + (s.i + 1 < s.ids.length ? 'Siguiente' : 'Ver resultado') + '</button></div>'
+      : '<div class="qact one wrap"><button class="btn ghost" id="qblank">No lo sé</button></div>';
+    else {
+      const last = s.i + 1 >= s.ids.length;
+      act = '<div class="qact wrap"><button class="btn ghost" id="qprev" aria-label="Pregunta anterior"' + (s.i ? '' : ' disabled') + '>' + ICON.back + '</button>' +
+        '<button class="btn' + (a === undefined && !last ? ' ghost' : '') + '" id="qnext">' + (last ? 'Terminar' : a === undefined ? 'Dejar en blanco' : 'Siguiente') + '</button></div>';
+    }
+    const eb = '<div class="eyebrow"><span class="udtag">UD' + q.ud + '</span>' + (sim ? '<span>Pregunta ' + (s.i + 1) + '</span>' : '<span>' + esc(q.tema) + '</span>') +
+      (!sim && q.imp === 1 ? '<span class="star" title="Esencial">★ Esencial</span>' : '') + '</div>';
+    const done = sim ? s.ids.filter(x => s.ans[x] !== undefined).length : s.i + (shown ? 1 : 0);
+    app.innerHTML =
+      '<div class="view">' +
+      '<div class="studybar wrap"><button class="icon-btn" id="qquit" aria-label="' + (sim ? 'Pausar y volver al inicio' : 'Salir al inicio') + '">' + ICON.x + '</button>' +
+      '<div class="prog" aria-hidden="true"><i style="width:' + (100 * done / s.ids.length).toFixed(1) + '%"></i></div>' +
+      '<span class="count">' + (s.i + 1) + ' / ' + s.ids.length + '</span></div>' +
+      '<div class="stage wrap"><div class="qwrap u' + q.ud + '"><div class="qcard">' + eb + '<p class="qtext">' + inline(q.q) + '</p>' + codeHTML(q.code) + '</div>' +
+      '<div class="ops" role="group" aria-label="Opciones">' + ops + '</div>' + fb + '</div></div>' + act + '</div>';
+
+    app.querySelectorAll('.op').forEach(b => b.onclick = () => pick(+b.dataset.k));
+    document.getElementById('qquit').onclick = quitQuiz;
+    const nx = document.getElementById('qnext'); if (nx) nx.onclick = qNext;
+    const pv = document.getElementById('qprev'); if (pv) pv.onclick = qPrev;
+    const bl = document.getElementById('qblank'); if (bl) bl.onclick = () => pick(-1);
+  }
+  function pick(k) {
+    const s = tses; if (!s) return;
+    const id = s.ids[s.i];
+    if (s.kind === 'sim') {
+      if (k < 0) return;
+      if (s.ans[id] === k) delete s.ans[id]; else s.ans[id] = k;
+      saveTSes(); keepStage(renderQuiz); return;
+    }
+    if (s.ans[id] !== undefined) return;
+    s.ans[id] = k; qRecord(id, isRight(s, id)); tCommit();
+    keepStage(renderQuiz);
+    const fb = document.getElementById('fb');
+    if (fb) fb.scrollIntoView({ block: 'nearest', behavior: reduced() ? 'auto' : 'smooth' });
+  }
+  function qNext() {
+    const s = tses; if (!s) return;
+    if (s.kind === 'prac') {
+      if (s.ans[s.ids[s.i]] === undefined) return;
+      if (s.i + 1 >= s.ids.length) { finishPrac(); return; }
+      s.i++; render(); return;
+    }
+    if (s.i + 1 >= s.ids.length) { view = 'qconfirm'; render(); return; }
+    s.i++; saveTSes(); render();
+  }
+  function qPrev() { const s = tses; if (s && s.kind === 'sim' && s.i > 0) { s.i--; saveTSes(); render(); } }
+  function quitQuiz() {
+    if (tses && tses.kind === 'sim' && !tses.res) { pendingSim = tses; saveTSes(); }
+    tses = null; view = 'home'; render();
+  }
+
+  // ---------- entrega ----------
+  function renderConfirm() {
+    const s = tses, n = s.ids.length, done = s.ids.filter(id => s.ans[id] !== undefined).length, blank = n - done;
+    app.innerHTML =
+      '<div class="view"><div class="scroll"><div class="done wrap">' +
+      '<div><h2>Simulacro de examen</h2><h1>¿Lo entregas?</h1></div>' +
+      '<div class="tiles two"><div class="tile"><b>' + done + '</b><span>respondidas</span></div><div class="tile"><b>' + blank + '</b><span>en blanco</span></div></div>' +
+      '<p class="note">Cada fallo resta un tercio de acierto y lo que dejes en blanco no resta. Si en una pregunta puedes descartar al menos una opción, te compensa contestarla.</p>' +
+      '<button class="btn" id="deliver">Entregar y ver la nota</button>' +
+      (blank ? '<button class="btn ghost" id="toblank">' + (blank === 1 ? 'Ir a la que está en blanco' : 'Ir a la primera en blanco') + '</button>' : '') +
+      '<button class="btn ghost" id="toback">Volver a la última pregunta</button>' +
+      '</div></div></div>';
+    document.getElementById('deliver').onclick = finishSim;
+    const tb = document.getElementById('toblank');
+    if (tb) tb.onclick = () => { s.i = s.ids.findIndex(id => s.ans[id] === undefined); view = 'quiz'; saveTSes(); render(); };
+    document.getElementById('toback').onclick = () => { view = 'quiz'; render(); };
+  }
+  function finishSim() {
+    const s = tses; let ok = 0, bad = 0, blank = 0; const ud = {};
+    for (const id of s.ids) {
+      const q = Q_BY.get(id), right = isRight(s, id), u = ud[q.ud] || (ud[q.ud] = [0, 0, 0]);
+      u[2]++;
+      if (s.ans[id] === undefined) blank++; else if (right) { ok++; u[0]++; } else { bad++; u[1]++; }
+      qRecord(id, right);
+    }
+    const n = s.ids.length, nota = Math.round(Math.max(0, (ok - bad * PEN) / n * 10) * 10) / 10;
+    const rec = { t: Date.now(), n, ok, bad, blank, nota, ud };
+    T.sims.push(rec); T.sims = T.sims.slice(-60); tCommit();
+    s.res = rec; pendingSim = null; LS.set(TSKEY, '');
+    view = 'qdone'; render();
+  }
+  function finishPrac() {
+    const s = tses, ok = s.ids.filter(id => isRight(s, id)).length;
+    s.res = { ok, bad: s.ids.length - ok, n: s.ids.length };
+    view = 'qdone'; render();
+  }
+
+  // ---------- resultado ----------
+  function byUdHTML(ud) {
+    const rows = UDS.filter(u => ud[u.ud] && ud[u.ud][2]).map(u => {
+      const [ok, bad, n] = ud[u.ud], blank = n - ok - bad;
+      const segs = [['s-ok', ok], ['s-bad', bad], ['', blank]].filter(x => x[1]).map(([c, k]) => '<i class="' + c + '" style="flex-grow:' + k + '"></i>').join('');
+      return '<div class="byud-row u' + u.ud + '"><span class="udtag">UD' + u.ud + '</span><span class="mbar" role="img" aria-label="' + ok + ' bien, ' + bad + ' mal, ' + blank + ' en blanco">' + segs + '</span><span>' + ok + '/' + n + '</span></div>';
+    }).join('');
+    return '<section class="sec"><h2>Por unidades</h2><div class="byud">' + rows + '</div>' +
+      '<div class="legend"><span class="l-ok">bien</span><span class="l-bad">mal</span><span class="l-blank">en blanco</span></div></section>';
+  }
+  function reviewHTML(s, id) {
+    const q = Q_BY.get(id), a = s.ans[id], blank = a === undefined || a === -1;
+    return '<div class="rv u' + q.ud + '"><p class="rv-q"><span class="udtag">UD' + q.ud + '</span>' + inline(q.q) + '</p>' + codeHTML(q.code) +
+      (blank ? '<p class="rv-a blank">' + ICON.dash + '<span>En blanco</span></p>' : '<p class="rv-a bad">' + ICON.x + '<span>' + inline(q.ops[s.perm[id][a]]) + '</span></p>') +
+      '<p class="rv-a ok">' + ICON.check + '<span>' + inline(q.ops[0]) + '</span></p>' +
+      '<p class="rv-why">' + inline(q.why) + '</p></div>';
+  }
+  function renderQDone() {
+    const s = tses, sim = s.kind === 'sim', r = s.res;
+    const miss = s.ids.filter(id => !isRight(s, id));
+    let top;
+    if (sim) {
+      const pass = r.nota >= PASS;
+      top = '<div><h2>Simulacro · ' + esc(fecha(r.t)) + '</h2></div>' +
+        '<div class="score"><b>' + nf(r.nota) + '</b><span>sobre 10</span><span class="tag ' + (pass ? 'ok' : 'bad') + '">' + (pass ? ICON.check + 'Aprobado' : ICON.x + 'Suspenso') + '</span></div>' +
+        '<div class="tiles"><div class="tile ok"><b>' + r.ok + '</b><span>bien</span></div><div class="tile bad"><b>' + r.bad + '</b><span>mal</span></div><div class="tile"><b>' + r.blank + '</b><span>en blanco</span></div></div>' +
+        '<p class="formula">Nota = (' + r.ok + ' − ' + r.bad + ' ÷ 3) ÷ ' + r.n + ' × 10 = ' + nf(r.nota) + '</p>' +
+        verdictHTML();
+    } else {
+      top = '<div><h2>' + esc(s.title) + '</h2><h1>' + (miss.length ? r.ok + ' de ' + r.n + ' bien' : '¡Todas bien!') + '</h1></div>' +
+        '<div class="tiles two"><div class="tile ok"><b>' + r.ok + '</b><span>bien</span></div><div class="tile bad"><b>' + r.bad + '</b><span>mal o «no lo sé»</span></div></div>';
+    }
+    const redoTxt = miss.length === 1 ? 'Repasar la que fallé' : 'Repasar las ' + miss.length + (sim ? ' que fallé o dejé en blanco' : ' que fallé');
+    app.innerHTML =
+      '<div class="view"><div class="scroll"><div class="done wrap">' + top +
+      (miss.length ? '<button class="btn" id="qredo">' + redoTxt + '</button>' : '') +
+      (sim ? '<button class="btn ghost" id="qagain">Otro simulacro</button>' : '') +
+      '<button class="btn ghost" id="qhome">Volver al inicio</button>' +
+      (sim ? byUdHTML(r.ud) : '') +
+      (miss.length ? '<section class="sec"><h2>Revisión · ' + miss.length + '</h2><div class="review">' + miss.map(id => reviewHTML(s, id)).join('') + '</div></section>' : '') +
+      '</div></div></div>';
+    bindHist();
+    const rd = document.getElementById('qredo');
+    if (rd) rd.onclick = () => startPrac(shuffle(miss.slice()), 'Repaso de los fallos');
+    const ag = document.getElementById('qagain'); if (ag) ag.onclick = startSim;
+    document.getElementById('qhome').onclick = () => { tses = null; view = 'home'; render(); };
   }
 
   // ---------- sesión de estudio ----------
@@ -535,10 +1098,10 @@ pre {
       '<div class="studybar wrap"><button class="icon-btn" id="quit" aria-label="Salir al inicio">' + ICON.x + '</button>' +
       '<div class="prog" aria-hidden="true"><i style="width:' + pct.toFixed(1) + '%"></i></div>' +
       '<span class="count">' + (ses.i + 1) + ' / ' + ses.q.length + '</span></div>' +
-      '<div class="stage wrap"><div class="card in' + (ses.flipped ? ' flipped' : '') + '" id="card" tabindex="0" role="button" aria-label="Ficha. Toca para girarla">' +
+      '<div class="stage wrap"><div class="card in u' + c.ud + (ses.flipped ? ' flipped' : '') + '" id="card" tabindex="0" role="button" aria-label="Ficha. Toca para girarla">' +
       '<div class="inner">' +
       '<div class="face front" aria-hidden="' + ses.flipped + '">' + eyebrow(c) + serie +
-      '<p class="q">' + inline(c.q) + '</p><p class="tap">Toca para ver la respuesta</p></div>' +
+      '<p class="q">' + inline(c.q) + '</p><p class="tap">Intenta responder antes de girarla</p></div>' +
       '<div class="face back" aria-hidden="' + !ses.flipped + '">' + eyebrow(c) + serie +
       '<p class="q-small">' + inline(c.q) + '</p>' +
       '<div class="ans">' + fmt(c.a) + (c.code ? '<pre>' + esc(c.code) + '</pre>' : '') + '</div>' +
@@ -615,6 +1178,15 @@ pre {
     card.focus({ preventScroll: true });
   }
   document.addEventListener('keydown', e => {
+    if (view === 'quiz' && tses) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      const k = e.key.length === 1 ? Math.max('1234'.indexOf(e.key), 'abcd'.indexOf(e.key.toLowerCase())) : -1;
+      if (k >= 0) { e.preventDefault(); pick(k); return; }
+      if (e.key === 'Escape') { quitQuiz(); return; }
+      if (e.key === 'ArrowLeft') { qPrev(); return; }
+      if ((e.key === 'Enter' && e.target.tagName !== 'BUTTON') || e.key === 'ArrowRight') { e.preventDefault(); qNext(); }
+      return;
+    }
     if (view !== 'study' || !ses) return;
     if (e.key === 'Escape') { ses = null; view = 'home'; render(); return; }
     if (!ses.flipped) { if (e.key === 'ArrowUp' || e.key === 'ArrowDown') { e.preventDefault(); flip(); } return; }
@@ -647,11 +1219,11 @@ pre {
     let html = '', lastUd = null, lastTema = null;
     for (const c of cards) {
       if (c.ud !== lastUd || c.tema !== lastTema) {
-        html += '<h3><small>UD' + c.ud + '</small>' + esc(c.tema) + '</h3>';
+        html += '<h3 class="u' + c.ud + '"><span class="udtag">UD' + c.ud + '</span>' + esc(c.tema) + '</h3>';
         lastUd = c.ud; lastTema = c.tema;
       }
       const st = status(c.id);
-      html += '<button class="item" data-id="' + esc(c.id) + '"><span class="iq"><span><span class="st-dot s-' + st + '"></span>' + inline(c.q) + '</span>' +
+      html += '<button class="item u' + c.ud + '" data-id="' + esc(c.id) + '"><span class="iq"><span><span class="st-dot s-' + st + '"></span>' + inline(c.q) + '</span>' +
         '<em>' + (c.serie && c.total > 1 ? c.n + '/' + c.total : '') + (c.imp === 1 ? ' ★' : '') + '</em></span>' +
         '<span class="ia"><span class="ans">' + fmt(c.a) + (c.code ? '<pre>' + esc(c.code) + '</pre>' : '') + '</span></span></button>';
     }
@@ -670,11 +1242,17 @@ pre {
     if (isObj(data) && isObj(data.ses) && Array.isArray(data.ses.q) && data.ses.q.every(id => BY_ID.has(id))) {
       ses = data.ses; view = data.view === 'done' ? 'done' : 'study'; ses.flipped = false;
     }
+    if (isObj(data)) {
+      const ts = validSes(data.tses);
+      if (ts && ['quiz', 'qconfirm', 'qdone'].includes(data.view) && (data.view !== 'qdone' || ts.res)) { tses = ts; view = data.view; }
+      const ps = validSes(data.pendingSim);
+      if (ps && ps.kind === 'sim' && !ps.res && !tses) pendingSim = ps;
+    }
     render();
     initRemote();
   }
   const hot = window.claude && window.claude.hot;
-  if (hot && typeof hot.snapshot === 'function') { try { hot.snapshot(() => ({ ses: ses, view: view })); } catch (e) { /* sin hot */ } }
+  if (hot && typeof hot.snapshot === 'function') { try { hot.snapshot(() => ({ ses: ses, view: view, tses: tses, pendingSim: pendingSim })); } catch (e) { /* sin hot */ } }
   if (hot && typeof hot.ready === 'function') { try { hot.ready(boot); } catch (e) { boot({}); } }
   else boot((hot && hot.data) || {});
 })();

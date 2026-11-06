@@ -1,11 +1,13 @@
-// Genera dist/fichas.html: mete las fichas de ../tarjetas/ud*.json y unidades.json en fichas.src.html.
-// Uso: node build.mjs [carpeta-de-tarjetas]   (por defecto ../tarjetas)
+// Genera dist/fichas.html: mete las fichas de ../tarjetas/ud*.json, unidades.json y las preguntas tipo test de
+// ../preguntas/ud*.json en fichas.src.html. Valida ids, series y preguntas.
+// Uso: node build.mjs [carpeta-de-tarjetas] [carpeta-de-preguntas]   (por defecto ../tarjetas y ../preguntas)
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const here = dirname(fileURLToPath(import.meta.url));
 const dir = process.argv[2] || join(here, '..', 'tarjetas');
+const qdir = process.argv[3] || join(here, '..', 'preguntas');
 const errors = [], warns = [];
 
 const unidades = JSON.parse(readFileSync(join(dir, 'unidades.json'), 'utf8'));
@@ -44,6 +46,49 @@ for (let i = 0; i < cards.length;) {
 const seriesSeen = new Map();
 cards.forEach((c, i) => { if (!c.serie) return; const k = c.ud + '|' + c.serie; if (seriesSeen.has(k) && seriesSeen.get(k) !== i - 1) errors.push(`${c.id}: la serie «${c.serie}» está partida`); seriesSeen.set(k, i); });
 
+// ---------- preguntas tipo test ----------
+const qs = [], qids = new Set();
+const QKEYS = ['id', 'ud', 'tema', 'tipo', 'imp', 'q', 'code', 'ops', 'why', 'src', 'ficha'];
+const temasDe = ud => new Set(cards.filter(c => c.ud === ud).map(c => c.tema));
+const cardIds = new Set(cards.map(c => c.id));
+const plain = s => String(s).replace(/[`*]/g, '').trim();
+const PROHIB = /todas las anteriores|ninguna de las anteriores|son correctas|son falsas|ambas son/i;
+for (const u of unidades) {
+  const f = join(qdir, `ud${u.ud}.json`);
+  if (!existsSync(f)) { warns.push(`sin preguntas: falta ${f}`); continue; }
+  let arr; try { arr = JSON.parse(readFileSync(f, 'utf8')); } catch (e) { errors.push(`${f}: JSON mal formado (${e.message})`); continue; }
+  if (!Array.isArray(arr)) { errors.push(`${f} no es un array`); continue; }
+  const temas = temasDe(u.ud);
+  for (const [i, q] of arr.entries()) {
+    const at = q && q.id ? q.id : `ud${u.ud}#${i}`;
+    for (const k of ['id', 'tema', 'q', 'why']) if (typeof q[k] !== 'string' || !q[k].trim()) errors.push(`${at}: falta ${k}`);
+    if (qids.has(q.id)) errors.push(`${at}: id repetido`); qids.add(q.id);
+    if (q.ud !== u.ud) errors.push(`${at}: ud ${q.ud} en el fichero de la UD${u.ud}`);
+    if (!temas.has(q.tema)) errors.push(`${at}: tema «${q.tema}» no existe en las fichas de la UD${u.ud}`);
+    if (!['teoria', 'codigo'].includes(q.tipo)) errors.push(`${at}: tipo debe ser teoria o codigo`);
+    if (q.imp !== 1 && q.imp !== 2) errors.push(`${at}: imp debe ser 1 o 2`);
+    if (q.code != null && typeof q.code !== 'string') errors.push(`${at}: code no es texto`);
+    if (!Array.isArray(q.ops) || q.ops.length !== 4 || q.ops.some(o => typeof o !== 'string' || !o.trim())) { errors.push(`${at}: ops debe tener 4 opciones de texto`); continue; }
+    if (new Set(q.ops.map(o => plain(o).toLowerCase())).size !== 4) errors.push(`${at}: opciones repetidas`);
+    if (q.ops.some(o => PROHIB.test(o))) errors.push(`${at}: opción prohibida («todas/ninguna de las anteriores»…)`);
+    if (q.ficha != null && !cardIds.has(q.ficha)) errors.push(`${at}: la ficha ${q.ficha} no existe`);
+    for (const k of Object.keys(q)) if (!QKEYS.includes(k)) warns.push(`${at}: campo extra ${k}`);
+    if (q.q.length > 260) warns.push(`${at}: enunciado largo (${q.q.length})`);
+    if (q.why.length > 340) warns.push(`${at}: explicación larga (${q.why.length})`);
+    for (const o of q.ops) if (o.length > 130) warns.push(`${at}: opción larga (${o.length})`);
+    if (q.code) for (const l of q.code.split(String.fromCharCode(10))) if (l.length > 48) warns.push(`${at}: línea de código ancha (${l.length})`);
+    qs.push(q);
+  }
+}
+// Sesgo de longitud: si la correcta suele ser la más larga, se acierta sin saber.
+for (const u of unidades) {
+  const l = qs.filter(q => q.ud === u.ud); if (!l.length) continue;
+  const longest = l.filter(q => { const len = q.ops.map(o => plain(o).length); return len[0] > Math.max(...len.slice(1)); }).length;
+  const r = longest / l.length;
+  console.log(`UD${u.ud}: ${l.length} preguntas (${l.filter(q => q.tipo === 'codigo').length} de código, ${l.filter(q => q.imp === 1).length}★) · la correcta es la más larga en ${Math.round(100 * r)} %`);
+  if (r > 0.4) warns.push(`UD${u.ud}: la correcta es la opción más larga en el ${Math.round(100 * r)} % (aleatorio = 25 %)`);
+}
+
 for (const w of warns) console.warn('aviso:', w);
 if (errors.length) { for (const e of errors) console.error('ERROR:', e); process.exit(1); }
 
@@ -57,9 +102,15 @@ const LS2 = String.fromCharCode(0x2028), PS2 = String.fromCharCode(0x2029);
 const BS = String.fromCharCode(92);
 const js = x => JSON.stringify(x).split('<').join(BS + 'u003c').split(LS2).join(BS + 'u2028').split(PS2).join(BS + 'u2029');
 let html = readFileSync(join(here, 'fichas.src.html'), 'utf8').replace(/\r\n/g, '\n');
-if (!html.includes('/*@CARDS@*/[]') || !html.includes('/*@UDS@*/[]')) { console.error('ERROR: faltan los marcadores en fichas.src.html'); process.exit(1); }
-html = html.replace('/*@CARDS@*/[]', () => js(slim)).replace('/*@UDS@*/[]', () => js(unidades));
+if (!['/*@CARDS@*/[]', '/*@UDS@*/[]', '/*@QS@*/[]'].every(m => html.includes(m))) { console.error('ERROR: faltan los marcadores en fichas.src.html'); process.exit(1); }
+const qslim = qs.map(q => {
+  const o = { id: q.id, ud: q.ud, tema: q.tema, q: q.q, ops: q.ops, why: q.why, src: q.src || '', imp: q.imp };
+  if (q.code) o.code = q.code;
+  if (q.ficha) o.ficha = q.ficha;
+  return o;
+});
+html = html.replace('/*@CARDS@*/[]', () => js(slim)).replace('/*@UDS@*/[]', () => js(unidades)).replace('/*@QS@*/[]', () => js(qslim));
 mkdirSync(join(here, 'dist'), { recursive: true });
 writeFileSync(join(here, 'dist', 'fichas.html'), html);
 const by = unidades.map(u => `UD${u.ud}: ${slim.filter(c => c.ud === u.ud).length} (${slim.filter(c => c.ud === u.ud && c.imp === 1).length}★)`).join(' · ');
-console.log(`OK ${slim.length} fichas · ${by} · ${(html.length / 1024).toFixed(0)} KB`);
+console.log(`OK ${slim.length} fichas · ${by} · ${qslim.length} preguntas · ${(html.length / 1024).toFixed(0)} KB`);

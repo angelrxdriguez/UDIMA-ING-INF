@@ -6,6 +6,9 @@ const dist = fs.readFileSync(path.join(__dirname, '..', 'dist', 'fichas.html'), 
 const out = process.argv[2]; fs.mkdirSync(out, { recursive: true });
 const H = `const sleep=ms=>new Promise(r=>setTimeout(r,ms));const q=s=>document.querySelector(s);const click=s=>{const e=q(s);if(e)e.click();return !!e;};
 const still=()=>{const i=q('#card .inner');if(i)i.style.transition='none';const c=q('#card');if(c)c.classList.remove('in');};
+async function pickRight(){q('.op[data-k="0"]').click();await sleep(30);const r=q('.op.right');if(r&&!q('.op.wrong')){return;}}
+async function pickWrong(){for(let k=0;k<4;k++){const b=q('.op[data-k="'+k+'"]');b.click();await sleep(30);if(q('.op.wrong'))return;q('#qnext').click();await sleep(30);}}
+async function simAll(p){for(let i=0;i<80;i++){await sleep(12);if(!q('.op'))break;if(Math.random()<p){const k=Math.floor(Math.random()*4);q('.op[data-k="'+k+'"]').click();await sleep(10);}q('#qnext').click();}}
 async function rateAll(r){for(let i=0;i<400;i++){await sleep(20);if(!q('#card'))break;if(q('#flip')){q('#flip').click();await sleep(20);}const b=q('.rate.'+r);if(b)b.click();await sleep(240);}}`;
 const SC = {
   home: ['light', `(async()=>{})()`],
@@ -17,7 +20,25 @@ const SC = {
   serieL: ['dark', `(async()=>{await sleep(30);click('#uds-all');await sleep(20);click('.ud[data-ud="4"]');await sleep(20);click('#go');for(let i=0;i<14;i++){await sleep(20);click('#flip');await sleep(20);click('.rate.good');await sleep(250);}still();click('#flip');})()`, 6000],
   list: ['dark', `(async()=>{await sleep(30);click('#list');})()`],
   homeDark: ['dark', `(async()=>{await sleep(30);for(const u of [2,3,4,5])click('.ud[data-ud="'+u+'"]');})()`],
+  // ---- modo test ----
+  tHome: ['light', `(async()=>{await sleep(30);click('[data-modo="test"]');})()`],
+  tHist: ['dark', `(async()=>{})()`, 2000, TPRE([6.2, 4.8, 7.4, 7.9, 6.6])],
+  tHistOk: ['light', `(async()=>{})()`, 2000, TPRE([5.1, 7.3, 7.8, 8.2])],
+  tSim: ['light', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tsim');await sleep(30);click('.op[data-k="2"]');})()`],
+  tPracOk: ['light', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tprac');await sleep(30);await pickRight();})()`],
+  tPracBad: ['dark', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tprac');await sleep(30);await pickWrong();})()`],
+  tConfirm: ['light', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tsim');await simAll(0.85);})()`, 5000],
+  tDone: ['light', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tsim');await simAll(0.85);await sleep(30);click('#deliver');})()`, 5000],
+  tDoneDark: ['dark', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tsim');await simAll(0.85);await sleep(30);click('#deliver');await sleep(60);const s=q('.scroll');s.scrollTop=s.scrollHeight;})()`, 5000],
+  tCode: ['dark', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);for(const u of [1,2,3,4])click('.ud[data-ud="'+u+'"]');await sleep(20);click('[data-tanda="0"]');await sleep(20);click('#tprac');await sleep(30);for(let i=0;i<45&&!q('pre');i++){q('#qblank').click();await sleep(20);q('#qnext').click();await sleep(20);}await pickWrong();})()`, 4000],
+  tResume: ['light', `(async()=>{await sleep(30);click('[data-modo="test"]');await sleep(20);click('#tsim');await sleep(30);click('.op[data-k="1"]');click('#qnext');await sleep(30);click('#qquit');})()`],
 };
+// Progreso de test inventado para ver el gráfico del veredicto (solo en las capturas).
+function TPRE(notas) {
+  const t0 = Date.UTC(2026, 10, 1);
+  const sims = notas.map((nota, i) => ({ t: t0 + i * 86400000, n: 40, ok: Math.round(nota * 4) + 2, bad: 6, blank: 34 - Math.round(nota * 4), nota, ud: { 1: [6, 1, 8], 2: [7, 1, 9], 3: [5, 2, 7], 4: [4, 3, 9], 5: [5, 1, 7] } }));
+  return `localStorage.setItem('test-paradigmas-v1', ${JSON.stringify(JSON.stringify({ v: 1, epoch: 0, qs: {}, sims }))});localStorage.setItem('fichas-paradigmas-prefs', JSON.stringify({ modo: 'test' }));`;
+}
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 (async () => {
   const userDir = path.join(out, 'prof'); fs.mkdirSync(userDir, { recursive: true });
@@ -37,10 +58,10 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 1, mobile: true });
   const names = process.argv.slice(3).length ? process.argv.slice(3) : Object.keys(SC);
   for (const k of names) {
-    const [theme, js, wait] = SC[k];
+    const [theme, js, wait, pre] = SC[k];
     await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: theme }] });
     const file = path.join(out, 'cdp-' + k + '.html');
-    fs.writeFileSync(file, `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><script>try{localStorage.clear()}catch(e){}</script>${dist}<script>${H}${js}</script></body></html>`);
+    fs.writeFileSync(file, `<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><script>try{localStorage.clear();${pre || ''}}catch(e){}</script>${dist}<script>${H}${js}</script></body></html>`);
     logs.length = 0;
     await send('Page.navigate', { url: 'file:///' + file.split(path.sep).join('/') });
     await sleep(wait || 2000);
