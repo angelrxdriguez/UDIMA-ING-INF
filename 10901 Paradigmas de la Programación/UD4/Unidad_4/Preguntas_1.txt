@@ -1,0 +1,35 @@
+EJM0:
+a) ** "¿Juan es listo?"
+listo(juan).
+b) ** ¿José no es listo?
+\+ listo(jose). 
+
+EJM1:
+a) Consulta booleana:
+** "¿Juan es padre de José?"
+padre(juan, jose).
+** "¿Juan es padre de Alberto?"
+padre(juan, alberto).
+** ¿María es madre de José?
+padre(maria, jose).
+b) Consulta para obtener todos los hijos de una persona: 
+**"¿Quiénes son los hijos de Juan?"
+padre(juan, Hijo).
+**"¿Quién es el padre de Juan?"
+padre(Padre, juan). 
+padre(juan, Hijo).
+
+EJM2:
+** ¿De quién es abuelo Carlos?
+abuelo(carlos, Z). 
+** ¿Quién es el abuelo de Alberto?
+abuelo(Z, alberto). 
+** Hagamos la consulta general de todos los abuelos-nietos
+abuelo(Abuelo, Nieto).
+
+EJM3:
+factorial(3,F).
+factorial(5, X).
+factorial(4, 24).
+factorial(N, F).  
+

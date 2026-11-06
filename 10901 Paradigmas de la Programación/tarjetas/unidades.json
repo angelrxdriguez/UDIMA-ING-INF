@@ -1,0 +1,7 @@
+[
+  {"ud": 1, "glyph": "{ }", "name": "Introducción a los paradigmas"},
+  {"ud": 2, "glyph": "( )", "name": "Paradigma funcional y Lisp"},
+  {"ud": 3, "glyph": "λ", "name": "Funcional: Hope y Haskell"},
+  {"ud": 4, "glyph": ":-", "name": "Paradigma lógico y Prolog"},
+  {"ud": 5, "glyph": "?-", "name": "Prolog: listas, grafos y ejercicios"}
+]
