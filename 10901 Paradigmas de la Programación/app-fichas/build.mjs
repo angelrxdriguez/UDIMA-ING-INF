@@ -89,6 +89,43 @@ for (const u of unidades) {
   if (r > 0.4) warns.push(`UD${u.ud}: la correcta es la opción más larga en el ${Math.round(100 * r)} % (aleatorio = 25 %)`);
 }
 
+// ---------- temario para «Pregúntale» (../temario/*.md, una sección «## …» por diapositiva o página) ----------
+// Se trocea en pasajes de ~1500 caracteres; la app busca los que tocan y se los pasa a Claude con cada pregunta.
+const tdir = join(here, '..', 'temario');
+const FUENTES = {
+  'S1': ['S1', 1], 'Estado del arte': ['Estado del arte', 1], 'Resumen UD1': ['Resumen UD1', 1],
+  'Cap2': ['Cap. 2', 2], 'Guía Lisp': ['Guía Lisp', 2], 'Resumen clase UD2': ['Resumen clase UD2', 2], 'introduccion.lisp': ['introduccion.lisp', 2],
+  'S3': ['S3', 3], 'Guía Haskell': ['Guía Haskell', 3],
+  'S4': ['S4', 4], 'Unidad 4': ['Unidad 4', 4], 'Ejercicios Prolog UD4': ['Ejercicios Prolog', 4], 'S5': ['S5', 5],
+};
+function trocea(text, max) {
+  if (text.length <= max) return [text];
+  const out = []; let cur = [], len = 0, fence = false;
+  for (const l of text.split('\n')) {
+    if (/^\s*```/.test(l)) fence = !fence;
+    cur.push(l); len += l.length + 1;
+    if (!fence && len >= max * 0.6 && (!l.trim() || len >= max)) { out.push(cur.join('\n').trim()); cur = []; len = 0; }
+  }
+  const last = cur.join('\n').trim();
+  if (last) { if (out.length && last.length < 300) out[out.length - 1] += '\n' + last; else out.push(last); }
+  return out.filter(Boolean);
+}
+const docs = [];
+if (existsSync(tdir)) for (const [file, [cita, ud]] of Object.entries(FUENTES)) {
+  const f = join(tdir, file + '.md');
+  if (!existsSync(f)) { warns.push(`temario: falta ${file}.md`); continue; }
+  const secs = readFileSync(f, 'utf8').replace(/\r\n/g, '\n').split(/^## /m).slice(1);
+  for (const sec of secs) {
+    const nl = sec.indexOf('\n');
+    const head = (nl < 0 ? sec : sec.slice(0, nl)).trim(), body = (nl < 0 ? '' : sec.slice(nl + 1)).trim();
+    const [lab, ...rest] = head.split(' · ');
+    if (body.replace(/\[Figura:[^\]]*\]/g, '').trim().length < 40) continue; // portadas y diapositivas decorativas
+    for (const x of trocea(body, 1500)) docs.push({ s: cita + ' ' + lab.replace(/\s*\(impresa[^)]*\)/, '').trim(), u: ud, t: rest.join(' · ').trim(), x });
+  }
+} else warns.push('sin temario: falta la carpeta ../temario (la app no podrá buscar en él)');
+console.log(`temario: ${docs.length} pasajes · ${(docs.reduce((a, d) => a + d.x.length, 0) / 1024).toFixed(0)} KB · ` +
+  [1, 2, 3, 4, 5].map(u => `UD${u} ${docs.filter(d => d.u === u).length}`).join(' · '));
+
 for (const w of warns) console.warn('aviso:', w);
 if (errors.length) { for (const e of errors) console.error('ERROR:', e); process.exit(1); }
 
@@ -102,14 +139,14 @@ const LS2 = String.fromCharCode(0x2028), PS2 = String.fromCharCode(0x2029);
 const BS = String.fromCharCode(92);
 const js = x => JSON.stringify(x).split('<').join(BS + 'u003c').split(LS2).join(BS + 'u2028').split(PS2).join(BS + 'u2029');
 let html = readFileSync(join(here, 'fichas.src.html'), 'utf8').replace(/\r\n/g, '\n');
-if (!['/*@CARDS@*/[]', '/*@UDS@*/[]', '/*@QS@*/[]'].every(m => html.includes(m))) { console.error('ERROR: faltan los marcadores en fichas.src.html'); process.exit(1); }
+if (!['/*@CARDS@*/[]', '/*@UDS@*/[]', '/*@QS@*/[]', '/*@DOCS@*/[]'].every(m => html.includes(m))) { console.error('ERROR: faltan los marcadores en fichas.src.html'); process.exit(1); }
 const qslim = qs.map(q => {
   const o = { id: q.id, ud: q.ud, tema: q.tema, q: q.q, ops: q.ops, why: q.why, src: q.src || '', imp: q.imp };
   if (q.code) o.code = q.code;
   if (q.ficha) o.ficha = q.ficha;
   return o;
 });
-html = html.replace('/*@CARDS@*/[]', () => js(slim)).replace('/*@UDS@*/[]', () => js(unidades)).replace('/*@QS@*/[]', () => js(qslim));
+html = html.replace('/*@CARDS@*/[]', () => js(slim)).replace('/*@UDS@*/[]', () => js(unidades)).replace('/*@QS@*/[]', () => js(qslim)).replace('/*@DOCS@*/[]', () => js(docs));
 mkdirSync(join(here, 'dist'), { recursive: true });
 writeFileSync(join(here, 'dist', 'fichas.html'), html);
 const by = unidades.map(u => `UD${u.ud}: ${slim.filter(c => c.ud === u.ud).length} (${slim.filter(c => c.ud === u.ud && c.imp === 1).length}★)`).join(' · ');

@@ -363,7 +363,86 @@ pre {
 .rv-why { color: var(--muted); font-size: 15px; }
 .rv pre { font-size: 13.5px; }
 
+/* ---------- pregúntale ---------- */
+.askentry {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center; text-align: left; width: 100%;
+  background: var(--surface); border: 1.5px solid var(--line); border-radius: var(--r); padding: 12px 14px; cursor: pointer;
+}
+.ai-ico { width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: var(--primary-ink); display: grid; place-items: center; }
+.ai-ico svg { width: 22px; height: 22px; stroke: currentColor; }
+.askentry b { display: block; font-size: 17px; line-height: 1.25; }
+.askentry small { color: var(--muted); font-size: 14px; }
+.askentry .chev { width: 18px; height: 18px; stroke: var(--muted); }
+.asklink { background: none; border: 0; padding: 6px 0; color: var(--accent); font-weight: 700; font-size: 15.5px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; text-align: left; line-height: 1.3; }
+.asklink svg { width: 18px; height: 18px; stroke: currentColor; flex: none; }
+.asklink:disabled { opacity: .45; cursor: default; }
+.actions .asklink { grid-column: 1 / -1; justify-self: center; padding: 0 0 2px; }
+.fb .asklink { align-self: flex-start; }
+.askbar { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 12px; padding-block: 10px; border-bottom: 1px solid var(--line); }
+.askbar .ttl { font-weight: 800; font-size: 17px; margin: 0; }
+.chat { display: flex; flex-direction: column; gap: 14px; padding-block: 14px 22px; }
+.ctx { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--u); border-radius: 12px; padding: 10px 13px; display: flex; flex-direction: column; gap: 3px; }
+.ctx span { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); }
+.ctx p { margin: 0; font-weight: 700; font-size: 16px; line-height: 1.35; }
+.ctx p mark { background: none; padding: 0; color: inherit; }
+.ctx pre { margin-top: 6px; font-size: 13.5px; padding: 9px 10px; }
+.ask-intro { margin: 4px 0 0; color: var(--muted); font-size: 15.5px; }
+.sugs { display: flex; flex-direction: column; gap: 8px; }
+.sug { text-align: left; background: var(--surface); border: 1.5px solid var(--line); border-radius: 13px; padding: 11px 14px; font-size: 16px; line-height: 1.35; cursor: pointer; }
+.sug mark { background: none; padding: 0; color: inherit; font-weight: inherit; }
+.exch { display: flex; flex-direction: column; gap: 14px; }
+#sendslot, #asknewslot { display: contents; }
+.msg-u {
+  align-self: flex-end; max-width: 86%; background: var(--primary); color: var(--primary-ink); border-radius: 16px 16px 5px 16px;
+  padding: 9px 13px; font-size: 16.5px; line-height: 1.4; white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 6px;
+}
+.msg-a { font-size: 17.5px; line-height: 1.55; display: flex; flex-direction: column; gap: 10px; overflow-wrap: anywhere; }
+.msg-a p { margin: 0; }
+.msg-a .mh { font-weight: 800; }
+.msg-a ul, .msg-a ol { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.msg-a li { padding-left: 20px; position: relative; }
+.msg-a ul > li::before { content: ""; position: absolute; left: 3px; top: .62em; width: 7px; height: 7px; border-radius: 2px; background: var(--muted); }
+.msg-a ol { counter-reset: n; }
+.msg-a ol > li { padding-left: 24px; }
+.msg-a ol > li::before { counter-increment: n; content: counter(n) "."; position: absolute; left: 0; font-weight: 700; color: var(--muted); font-variant-numeric: tabular-nums; }
+.msg-a pre { font-size: 14px; }
+.think { color: var(--muted); display: inline-flex; align-items: center; gap: 5px; }
+.think i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; animation: blink 1.2s infinite both; }
+.think i:nth-child(2) { animation-delay: .2s; } .think i:nth-child(3) { animation-delay: .4s; margin-right: 6px; }
+@keyframes blink { 0%, 80%, 100% { opacity: .25; } 40% { opacity: 1; } }
+.msg-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 16px; font-size: 14px; color: var(--muted); margin-top: -4px; }
+.msg-foot .asklink { font-size: 15px; }
+.msg-err { color: var(--bad); font-size: 15px; margin: 0; width: 100%; }
+.composer {
+  border-top: 1px solid var(--line); background: var(--bg); padding-top: 10px; padding-bottom: max(12px, env(safe-area-inset-bottom, 0px));
+  display: grid; grid-template-columns: 1fr 48px; gap: 8px; align-items: end;
+}
+.composer textarea {
+  font: inherit; font-size: 17px; line-height: 1.4; resize: none; border: 1.5px solid var(--line); border-radius: 14px;
+  padding: 11px 13px; background: var(--surface); color: var(--ink); min-height: 48px; max-height: 140px; display: block; width: 100%; box-sizing: border-box;
+}
+.composer textarea::placeholder { color: var(--muted); }
+.composer textarea:focus { outline: none; border-color: var(--ink); }
+.composer textarea:disabled { opacity: .55; }
+.send { width: 48px; height: 48px; border-radius: 14px; border: 0; background: var(--primary); color: var(--primary-ink); display: grid; place-items: center; cursor: pointer; }
+.send svg { width: 22px; height: 22px; stroke: currentColor; }
+.send:disabled { opacity: .35; cursor: default; }
+.composer .msg-err { grid-column: 1 / -1; }
+.composer.has-photo { grid-template-columns: 48px 1fr 48px; }
+.clip { width: 48px; height: 48px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--surface); color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.clip svg { width: 23px; height: 23px; stroke: currentColor; }
+.clip:disabled { opacity: .4; cursor: default; }
+.att { grid-column: 1 / -1; display: flex; align-items: center; gap: 12px; }
+.att canvas { width: 56px; height: 56px; border-radius: 10px; border: 1px solid var(--line); display: block; }
+.att span { flex: 1; font-size: 14.5px; color: var(--muted); }
+.att button { background: none; border: 1.5px solid var(--line); border-radius: 10px; padding: 7px 12px; font-size: 14px; color: var(--muted); cursor: pointer; }
+.att.busy span::after { content: "…"; }
+.msg-u.has-img { display: flex; flex-direction: column; gap: 8px; padding: 6px; }
+.msg-u.has-img span { padding: 0 7px 3px; }
+.msg-img { display: block; max-width: 100%; width: auto; height: auto; max-height: 260px; border-radius: 11px; background: var(--chip); }
+
 @media (prefers-reduced-motion: reduce) {
+  .think i { animation: none; opacity: .6; }
   .op { transition: none; }
   .inner { transition: none; }
   .face { transition: opacity .15s; }
@@ -387,6 +466,7 @@ pre {
   const CARDS = /*@CARDS@*/[];
   const UDS = /*@UDS@*/[];
   const QS = /*@QS@*/[];
+  const DOCS = /*@DOCS@*/[]; // pasajes del temario ({s: fuente, u: UD, t: título, x: texto}) para «Pregúntale»
   const BY_ID = new Map(CARDS.map(c => [c.id, c]));
   const Q_BY = new Map(QS.map(q => [q.id, q]));
   // Simulacro: 40 preguntas; acierto +1, fallo −1/3, en blanco 0. Veredicto: media de los 3 últimos ≥ 7 y ninguno < 6.
@@ -417,6 +497,11 @@ pre {
     x: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
     back: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
     check: '<svg viewBox="0 0 24 24" fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+    chat: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7.5a2.5 2.5 0 0 1-2.5 2.5H11l-4.5 3.5v-3.5A2.5 2.5 0 0 1 4 14z"/><path d="M8.5 9h7M8.5 12h4.5"/></svg>',
+    send: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg>',
+    stop: '<svg viewBox="0 0 24 24" stroke="none"><rect x="7" y="7" width="10" height="10" rx="2" fill="currentColor"/></svg>',
+    camera: '<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5A2.5 2.5 0 0 1 6.5 6h1.8l1.4-2h4.6l1.4 2h1.8A2.5 2.5 0 0 1 20 8.5v8a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 16.5z"/><circle cx="12" cy="12.5" r="3.5"/></svg>',
+    chev: '<svg class="chev" viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
   };
   const reduced = () => { try { return matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; } };
 
@@ -601,6 +686,7 @@ pre {
     if (view === 'quiz' && tses) return renderQuiz();
     if (view === 'qconfirm' && tses) return renderConfirm();
     if (view === 'qdone' && tses && tses.res) return renderQDone();
+    if (view === 'ask' && ask) return renderAsk();
     view = 'home'; renderHome();
   }
 
@@ -611,7 +697,9 @@ pre {
       '<p class="sub"><span>10901 · UD1–UD5 · ' + what + '</span>' + syncHTML() + '</p></div></div></header>' +
       (QS.length ? '<div class="seg modes" role="group" aria-label="Modo">' +
         '<button data-modo="fichas" aria-pressed="' + (P.modo === 'fichas') + '">Fichas<small>' + CARDS.length + '</small></button>' +
-        '<button data-modo="test" aria-pressed="' + (P.modo === 'test') + '">Test<small>' + QS.length + '</small></button></div>' : '');
+        '<button data-modo="test" aria-pressed="' + (P.modo === 'test') + '">Test<small>' + QS.length + '</small></button></div>' : '') +
+      (AI ? '<button class="askentry" id="askopen"><span class="ai-ico" aria-hidden="true">' + ICON.chat + '</span>' +
+        '<span><b>Pregúntale al temario</b><small>' + (AI_IMG ? 'Escribe tu duda o manda una foto' : 'Cualquier duda, al momento') + '</small></span>' + ICON.chev + '</button>' : '');
   }
   // El color de cada unidad es el de su paradigma; la leyenda lo hace explícito.
   const PLEGEND = '<p class="plegend"><span class="u1"><i></i>Introducción</span><span class="u2"><i></i>Funcional</span><span class="u4"><i></i>Lógico</span></p>';
@@ -638,6 +726,7 @@ pre {
     '<button data-' + name + '="' + v + '" aria-pressed="' + (String(P[name]) === String(v)) + '">' + l + '</button>').join('') + '</div>';
   function bindShared(one) {
     app.querySelectorAll('[data-modo]').forEach(b => b.onclick = () => { if (P.modo === b.dataset.modo) return; P.modo = b.dataset.modo; savePrefs(); renderHome(); });
+    const ao = document.getElementById('askopen'); if (ao) ao.onclick = () => openAsk(null);
     app.querySelectorAll('.ud').forEach(b => b.onclick = () => {
       const u = +b.dataset.ud;
       P.uds = P.uds.includes(u) ? P.uds.filter(x => x !== u) : [...P.uds, u].sort();
@@ -931,6 +1020,7 @@ pre {
       fb = '<div class="fb ' + (right ? 'ok' : 'bad') + '" id="fb"><p class="fb-h">' + (right ? ICON.check + 'Correcto' : ICON.x + (a === -1 ? 'Era la ' + kr : 'No: la correcta es la ' + kr)) + '</p>' +
         '<p>' + inline(q.why) + '</p>' +
         (card ? '<details><summary>Repasar la ficha</summary><div class="ans"><p class="q-small">' + inline(card.q) + '</p>' + fmt(card.a) + (card.code ? '<pre>' + esc(card.code) + '</pre>' : '') + '</div></details>' : '') +
+        (AI ? '<button class="asklink" id="askq">' + ICON.chat + (right ? 'Pregúntale una duda' : 'Pregúntale por qué') + '</button>' : '') +
         '<div class="src"><span>Fuente: ' + esc(q.src || '—') + '</span>' + (card ? '<span>Ficha ' + esc(card.id) + '</span>' : '') + '</div></div>';
     }
     let act;
@@ -958,6 +1048,7 @@ pre {
     const nx = document.getElementById('qnext'); if (nx) nx.onclick = qNext;
     const pv = document.getElementById('qprev'); if (pv) pv.onclick = qPrev;
     const bl = document.getElementById('qblank'); if (bl) bl.onclick = () => pick(-1);
+    const aq = document.getElementById('askq'); if (aq) aq.onclick = () => openAsk({ kind: 'q', id, perm: s.perm[id].slice(), ans: s.ans[id] });
   }
   function pick(k) {
     const s = tses; if (!s) return;
@@ -1041,7 +1132,8 @@ pre {
     return '<div class="rv u' + q.ud + '"><p class="rv-q"><span class="udtag">UD' + q.ud + '</span>' + inline(q.q) + '</p>' + codeHTML(q.code) +
       (blank ? '<p class="rv-a blank">' + ICON.dash + '<span>En blanco</span></p>' : '<p class="rv-a bad">' + ICON.x + '<span>' + inline(q.ops[s.perm[id][a]]) + '</span></p>') +
       '<p class="rv-a ok">' + ICON.check + '<span>' + inline(q.ops[0]) + '</span></p>' +
-      '<p class="rv-why">' + inline(q.why) + '</p></div>';
+      '<p class="rv-why">' + inline(q.why) + '</p>' +
+      (AI ? '<button class="asklink" data-askq="' + esc(id) + '">' + ICON.chat + 'Pregúntale por qué</button>' : '') + '</div>';
   }
   function renderQDone() {
     const s = tses, sim = s.kind === 'sim', r = s.res;
@@ -1071,6 +1163,7 @@ pre {
     const rd = document.getElementById('qredo');
     if (rd) rd.onclick = () => startPrac(shuffle(miss.slice()), 'Repaso de los fallos');
     const ag = document.getElementById('qagain'); if (ag) ag.onclick = startSim;
+    app.querySelectorAll('[data-askq]').forEach(b => b.onclick = () => { const id = b.dataset.askq; openAsk({ kind: 'q', id, perm: s.perm[id].slice(), ans: s.ans[id] }); });
     document.getElementById('qhome').onclick = () => { tses = null; view = 'home'; render(); };
   }
 
@@ -1117,6 +1210,7 @@ pre {
   function actionsHTML() {
     if (!ses.flipped) return '<div class="actions one wrap"><button class="btn" id="flip">Ver respuesta</button></div>';
     return '<div class="actions wrap">' +
+      (AI ? '<button class="asklink" id="askcard">' + ICON.chat + '¿No te queda claro? Pregúntale</button>' : '') +
       '<button class="rate again" data-r="again">Otra vez<small>no me la sé</small></button>' +
       '<button class="rate hard" data-r="hard">Dudé<small>a medias</small></button>' +
       '<button class="rate good" data-r="good">Me la sé<small>bien</small></button></div>';
@@ -1150,6 +1244,7 @@ pre {
   function bindActions() {
     const f = document.getElementById('flip'); if (f) f.onclick = flip;
     app.querySelectorAll('.rate').forEach(b => b.onclick = () => answer(b.dataset.r));
+    const ak = document.getElementById('askcard'); if (ak) ak.onclick = () => { if (ses) openAsk({ kind: 'card', id: ses.q[ses.i] }); };
   }
   function bindStudy() {
     document.getElementById('quit').onclick = () => { ses = null; view = 'home'; render(); };
@@ -1178,6 +1273,7 @@ pre {
     card.focus({ preventScroll: true });
   }
   document.addEventListener('keydown', e => {
+    if (view === 'ask') { if (e.key === 'Escape') closeAsk(); return; }
     if (view === 'quiz' && tses) {
       if (e.metaKey || e.ctrlKey || e.altKey) return;
       const k = e.key.length === 1 ? Math.max('1234'.indexOf(e.key), 'abcd'.indexOf(e.key.toLowerCase())) : -1;
@@ -1237,6 +1333,456 @@ pre {
     app.querySelectorAll('.item').forEach(b => b.onclick = () => { if (P.hideA) b.classList.toggle('open'); });
   }
 
+  // ================= PREGÚNTALE =================
+  // La app pregunta a Claude con la cuenta de quien la abre (capacidad «sample»). Cada llamada es independiente:
+  // con la pregunta van las instrucciones, lo que el alumno tiene delante (ficha o pregunta del test), las últimas
+  // preguntas de la conversación y los pasajes del temario y las fichas que más se parecen a la pregunta (BM25).
+  // El alumno solo quiere la respuesta: nada de citar unidad, diapositiva, página ni ficha.
+  let AI; // undefined: aún no se sabe · null: no disponible · función: sample
+  let AI_TIERS = null;
+  let AI_IMG = null;     // límites de imágenes si esta vista puede mandar fotos ({maxCount, maxInputBytes, mediaTypes})
+  let AI_TOOLS = false;  // si Claude puede llamar a funciones de la página (para buscar en el temario lo que ve en la foto)
+  async function initAI() {
+    if (!(window.claude && typeof window.claude.use === 'function')) { AI = null; return; }
+    try { AI = await window.claude.use('sample'); } catch (e) { AI = null; }
+    if (!AI) return;
+    try {
+      const l = await AI.limits();
+      AI_TIERS = (l && Array.isArray(l.modelTiers)) ? l.modelTiers : null;
+      AI_IMG = l && l.images && l.images.maxCount > 0 ? l.images : null;
+      AI_TOOLS = !!(l && l.tools && l.tools.maxCount > 0);
+    } catch (e) { /* sin límites: se asumen los modelos de siempre, sin fotos */ }
+    refreshAskEntries();
+    if (view === 'ask' && ask) renderAsk();
+  }
+  function refreshAskEntries() {
+    if (view === 'home') keepScroll(renderHome);
+    else if (view === 'study' && ses && ses.flipped) { const old = app.querySelector('.actions'); if (old) { old.outerHTML = actionsHTML(); bindActions(); } }
+    else if (view === 'quiz' && tses) keepStage(renderQuiz);
+    else if (view === 'qdone' && tses && tses.res) keepScroll(renderQDone);
+  }
+  const tierOk = t => !AI_TIERS || AI_TIERS.includes(t);
+
+  // ---------- búsqueda en el temario ----------
+  const STOP = new Set(('a al algo algun alguna ante antes asi como con contra cual cuales cuando de del desde donde dos e el ella ellas ellos en entre era eres es esa ese eso esta estas este esto estos fue ha han hay la las le les lo los mas me mi mis mucho muy ni no nos o otra otro otros para pero poco por porque pues que quien se sea segun ser si sin sobre son su sus tal tambien tanto te tiene tienen todo todos tu un una uno unos unas y ya yo hace hacer puede pueden cada mismo misma ' +
+    'explica explicame explicamelo dime dame pon ponme cuentame significa quiere decir sirve usa usar utiliza').split(' '));
+  const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+  function stem(w) { if (w.length > 4) w = w.replace(/(es|s)$/, ''); if (w.length > 4) w = w.replace(/[aeo]$/, ''); return w.slice(0, 7); }
+  function toks(s) { const out = []; for (const w of norm(s).split(/[^a-z0-9]+/)) if (w.length > 1 && !STOP.has(w)) out.push(stem(w)); return out; }
+  function mkIndex(items, textOf) {
+    const docs = items.map(it => { const tf = new Map(), ts = toks(textOf(it)); for (const t of ts) tf.set(t, (tf.get(t) || 0) + 1); return { tf, len: ts.length }; });
+    const df = new Map(); for (const d of docs) for (const t of d.tf.keys()) df.set(t, (df.get(t) || 0) + 1);
+    return { docs, df, N: docs.length, avg: docs.reduce((a, d) => a + d.len, 0) / Math.max(1, docs.length) };
+  }
+  function bm25(ix, q) {
+    const out = new Float64Array(ix.N), k1 = 1.2, b = 0.75;
+    for (const [t, w] of q) {
+      const df = ix.df.get(t); if (!df) continue;
+      const idf = Math.log(1 + (ix.N - df + 0.5) / (df + 0.5));
+      ix.docs.forEach((d, i) => { const f = d.tf.get(t); if (f) out[i] += w * idf * f * (k1 + 1) / (f + k1 * (1 - b + b * d.len / ix.avg)); });
+    }
+    return out;
+  }
+  let IX = null;
+  const ixs = () => IX || (IX = { d: mkIndex(DOCS, d => d.t + ' ' + d.t + ' ' + d.x), c: mkIndex(CARDS, c => c.q + ' ' + c.q + ' ' + c.tema + ' ' + c.a + ' ' + (c.code || '')) });
+  const best = (sc, n) => [...sc.keys()].filter(i => sc[i] > 0).sort((a, b) => sc[b] - sc[a]).slice(0, n);
+  // Pasajes que cita una ficha o pregunta («S4 diap. 6; Unidad 4», «Cap. 2 p. 15 y 26», «Guía Haskell p. 1–2»).
+  function srcDocs(src) {
+    const out = [];
+    for (const piece of String(src || '').split(';')) {
+      const m = piece.trim().match(/^(.*?)\s*(diap\.|p\.)\s*(.+)$/); if (!m) continue;
+      for (const r of m[3].matchAll(/(\d+)(?:\s*[–-]\s*(\d+))?/g)) {
+        const a = +r[1], z = r[2] ? Math.min(+r[2], a + 3) : a;
+        for (let k = a; k <= z; k++) for (const d of DOCS) if (d.s === m[1].trim() + ' ' + m[2] + ' ' + k && !out.includes(d)) out.push(d);
+      }
+    }
+    return out.slice(0, 4);
+  }
+  function ctxItems(c) {
+    if (!c) return { card: null, q: null };
+    if (c.kind === 'card') return { card: BY_ID.get(c.id) || null, q: null };
+    const q = Q_BY.get(c.id) || null;
+    return { q, card: q && q.ficha ? BY_ID.get(q.ficha) || null : null };
+  }
+  function gather(question, deep, prevQ) {
+    const ix = ixs(), { card, q } = ctxItems(ask.ctx);
+    const qm = new Map(), add = (s, w) => { for (const t of toks(s)) qm.set(t, Math.max(qm.get(t) || 0, w)); };
+    // «Ponme un ejemplo», «¿Por qué es la B?»…: con preguntas genéricas manda lo que el alumno tiene delante.
+    const generic = (q || card) && (ask.sugs.includes(question) || toks(question).length <= 2);
+    if (q) add(q.q + ' ' + q.ops[0] + ' ' + q.why, generic ? 1 : .5);
+    if (card) add(card.q + ' ' + card.a, generic ? 1 : .5);
+    if (prevQ) add(prevQ, .4);
+    add(question, generic ? .3 : 1);
+    const sd = bm25(ix.d, qm), sc = bm25(ix.c, qm);
+    const um = norm(question).match(/\b(?:ud|unidad|tema)\s*([1-5])\b/), ud = um ? +um[1] : null;
+    if (ud) {
+      DOCS.forEach((d, i) => { if (d.u === ud) sd[i] = sd[i] * 1.6 + .4; });
+      CARDS.forEach((x, i) => { if (x.ud === ud) sc[i] = sc[i] * 1.6 + (x.imp === 1 ? .8 : .2); });
+    }
+    const cards = []; const addC = x => { if (x && !cards.includes(x)) cards.push(x); };
+    addC(card); for (const i of best(sc, deep ? 10 : 6)) addC(CARDS[i]);
+    const docs = [], maxLen = deep ? 15000 : 7500, nDocs = deep ? 10 : 6; let len = 0;
+    const addD = d => { if (!docs.includes(d) && len + d.x.length <= maxLen && docs.length < nDocs) { docs.push(d); len += d.x.length; } };
+    for (const d of srcDocs(q ? q.src : card ? card.src : '')) addD(d);
+    if (q && card) for (const d of srcDocs(card.src)) addD(d);
+    for (const i of best(sd, nDocs + 6)) addD(DOCS[i]);
+    return { cards, docs };
+  }
+
+  // ---------- lo que se manda a Claude ----------
+  // Las fichas dicen a veces «según las diapositivas» o «según el resumen»: fuera, para que Claude no lo repita.
+  function clean(s) {
+    const t = String(s).replace(/,?\s*\b[Ss]eg[uú]n (?:las diapositivas|el libro|el resumen|la guía(?: de \w+)?|la clase|el profesor|el temario)\b[,:]?\s*/g, ' ')
+      .replace(/\s+([?.,:])/g, '$1').replace(/\s{2,}/g, ' ').trim();
+    return t.replace(/^(¿?)([a-záéíóú])/, (m, a, b) => a + b.toUpperCase());
+  }
+  const RULES = 'Eres el profesor particular de la asignatura «Paradigmas de la Programación» (UDIMA, Grado en Ingeniería Informática). ' +
+    'El alumno prepara el examen, tipo test y sobre todo de teoría: introducción a los paradigmas, paradigma funcional (cálculo lambda, Lisp, Hope, Haskell) y paradigma lógico (Prolog).\n\n' +
+    'Cómo respondes:\n' +
+    '- Solo la respuesta, en español, directa y breve: de 2 a 6 frases o viñetas. Empieza por lo que te pregunta, sin saludos, sin introducciones y sin repetir la pregunta.\n' +
+    '- No digas nunca de qué unidad, tema, diapositiva, página, ficha o documento sale algo, ni hables del «material» o del «contexto»: responde como si lo supieras de memoria.\n' +
+    '- Básate en el MATERIAL DEL TEMARIO que acompaña a cada pregunta y usa sus términos exactos, que son los del examen. Pon en **negrita** los términos clave (de 1 a 3).\n' +
+    '- Si el temario no trata lo que pregunta, dilo en una frase («Esto no está en el temario.») y, si ayuda, añade una explicación general muy breve.\n' +
+    '- Si el temario se contradice (fechas, número de características…), da las dos versiones en una sola frase.\n' +
+    '- Si pide un ejemplo o código, pon uno corto en un bloque ``` con la sintaxis que usa el temario (Lisp, Hope, Haskell o Prolog).';
+  const DEEP = '\n\n(Responde a fondo: explica el porqué y añade un ejemplo si ayuda, en 8–14 frases o viñetas. Sigue sin decir de dónde sale nada.)';
+  function ctxBlock(c) {
+    const { card, q } = ctxItems(c);
+    if (c && c.kind === 'card' && card) return 'El alumno está repasando esta ficha y te pregunta sobre ella:\nFicha: ' + clean(card.q) + '\nRespuesta de la ficha: ' + card.a + (card.code ? '\n```\n' + card.code + '\n```' : '');
+    if (!q) return '';
+    const ops = c.perm.map((orig, k) => LETTERS[k] + ') ' + q.ops[orig]).join('\n');
+    const his = c.ans === undefined || c.ans === -1 ? 'la dejó en blanco' : 'marcó la ' + LETTERS[c.ans] + (c.perm[c.ans] === 0 ? ' (acertó)' : ' (falló)');
+    return 'El alumno está con esta pregunta tipo test y te pregunta sobre ella:\n' + clean(q.q) + (q.code ? '\n```\n' + q.code + '\n```' : '') + '\n' + ops +
+      '\nCorrecta: la ' + LETTERS[c.perm.indexOf(0)] + '. El alumno ' + his + '.\nExplicación oficial: ' + q.why;
+  }
+  function materialText(r) {
+    return r.cards.map(x => '• ' + clean(x.q) + ' → ' + x.a.replace(/\n+/g, ' ') + (x.code ? '\n```\n' + x.code + '\n```' : '')).join('\n') +
+      (r.docs.length ? '\n\n' + r.docs.map(d => '--- ' + (d.t || 'Temario') + '\n' + d.x).join('\n\n') : '');
+  }
+  const PHOTO = 'FOTO: el alumno adjunta una foto (puede ser un ejercicio, una pregunta de examen, una diapositiva, sus apuntes o código). ' +
+    'Léela con atención y responde a lo que pregunta; si no ha escrito nada, resuelve o explica lo que se ve. Si es una pregunta tipo test, empieza por la opción correcta y por qué. ' +
+    'Si la foto no se lee bien o no tiene que ver con la asignatura, dilo en una frase.';
+  const PHOTO_AGAIN = 'FOTO: va adjunta otra vez la foto que el alumno mandó antes en esta conversación, por si su pregunta se refiere a ella.';
+  const TOOL_HINT = ' Antes de responder, usa una vez la herramienta buscar_temario con los términos clave de lo que se ve en la foto; no escribas nada antes de usarla.';
+  // img: null | 'new' (foto de esta pregunta) | 'again' (la última foto de la conversación, reenviada)
+  function buildInput(ex, deep, img, tools) {
+    const done = ask.ex.slice(0, ask.ex.indexOf(ex)).filter(x => x.st === 'ok' && x.a.trim()).slice(-3);
+    const turns = [{ role: 'user', content: RULES }];
+    for (const x of done) {
+      turns.push({ role: 'user', content: (x.q || '¿Qué me dices de esta foto?') + (x.img ? ' [adjuntó una foto]' : '') });
+      turns.push({ role: 'assistant', content: x.a.length > 1500 ? x.a.slice(0, 1500) + '…' : x.a });
+    }
+    const cb = ctxBlock(ask.ctx);
+    // Sin texto (solo foto) y con herramienta, el material lo pide Claude al ver la foto.
+    const mat = toks(ex.q).length || ask.ctx || !tools ? materialText(gather(ex.q, deep, done.length ? done[done.length - 1].q : '')) : '';
+    let last = (cb ? cb + '\n\n' : '') + (mat.trim() ? 'MATERIAL DEL TEMARIO (no lo menciones ni lo cites):\n' + mat + '\n\n' : '');
+    if (img) last += (img === 'again' ? PHOTO_AGAIN : PHOTO + (tools ? TOOL_HINT : '')) + '\n\n';
+    last += 'PREGUNTA DEL ALUMNO: ' + (ex.q || '(no ha escrito nada: responde a lo que se ve en la foto)') + (deep ? DEEP : '');
+    turns.push({ role: 'user', content: last });
+    return turns;
+  }
+
+  // ---------- estado y errores ----------
+  let ask = null; // { ctx, ex: [{q, a, st: wait|stream|ok|stop|err, deep, err, code, cut}], busy, ctl, draft, sugs, from }
+  const ERR = {
+    not_granted: 'No has dado permiso para que la app pregunte a Claude. Puedes darlo en el menú Permisos del artifact o al volver a abrirlo.',
+    sampling_disabled: 'Claude no está disponible para tu cuenta desde aquí.',
+    capability_disabled: 'Desde esta vista no se puede preguntar a Claude.',
+    not_declared: 'Esta versión de la app no puede preguntar a Claude.',
+    capability_removed: 'Esta versión de la app no puede preguntar a Claude.',
+    rate_limited: 'Has llegado al límite de uso de tu plan o van muchas seguidas. Prueba dentro de un rato.',
+    session_expired: 'Tu sesión de Claude ha caducado: vuelve a iniciar sesión.',
+    refused: 'Claude no ha contestado a eso. Prueba a preguntarlo de otra forma.',
+    prompt_too_large: 'La pregunta es demasiado larga: acórtala.',
+    empty_completion: 'No ha llegado respuesta. Prueba a reformularla.',
+    upstream_error: 'Se ha cortado la conexión.',
+    image_rejected: 'Esa foto no se ha podido usar. Prueba a hacerla de nuevo o elige otra.',
+    images_unavailable: 'Desde aquí no se pueden mandar fotos; escribe la pregunta.',
+  };
+  const HIDE = new Set(['not_granted', 'sampling_disabled', 'capability_disabled', 'not_declared', 'capability_removed']);
+  const RETRY = new Set(['upstream_error', 'rate_limited', 'empty_completion']);
+  function sugsFor(c) {
+    if (c && c.kind === 'card') return ['Explícamelo con otras palabras', 'Ponme un ejemplo', '¿Con qué se suele confundir?', '¿Cómo me lo pueden preguntar en el test?'];
+    if (c && c.kind === 'q') {
+      const failed = c.ans !== undefined && c.ans !== -1 && c.perm[c.ans] !== 0;
+      return ['¿Por qué es la ' + LETTERS[c.perm.indexOf(0)] + '?', ...(failed ? ['¿Por qué no es la ' + LETTERS[c.ans] + '?'] : []), 'Explícame cada opción', 'Ponme otra pregunta parecida'];
+    }
+    return shuffle(CARDS.filter(x => x.imp === 1 && !x.serie && x.q.length <= 80 && /^¿.*\?$/.test(x.q) && !/\b(diap|ficha|fuente)/i.test(x.q))).slice(0, 4).map(x => clean(x.q));
+  }
+  const sameCtx = (a, b) => (!a && !b) || (!!a && !!b && a.kind === b.kind && a.id === b.id);
+  function openAsk(ctx) {
+    if (!AI) return;
+    const sc = app.querySelector('.stage') || app.querySelector('.scroll');
+    const from = { view, y: sc ? sc.scrollTop : 0 };
+    if (!ask || !sameCtx(ask.ctx, ctx)) ask = { ctx, ex: [], busy: false, ctl: null, draft: '', sugs: sugsFor(ctx) };
+    else if (ctx) ask.ctx = ctx; // misma pregunta, quizá con la respuesta del alumno ya puesta
+    ask.from = from; view = 'ask'; render();
+    const box = document.getElementById('askbox');
+    let fine = false; try { fine = matchMedia('(pointer: fine)').matches; } catch (e) { /* sin media queries */ }
+    if (box && fine) box.focus();
+  }
+  function closeAsk() {
+    if (!ask) { view = 'home'; render(); return; }
+    const f = ask.from || { view: 'home', y: 0 };
+    view = f.view === 'ask' ? 'home' : f.view; render();
+    const sc = app.querySelector('.stage') || app.querySelector('.scroll'); if (sc) sc.scrollTop = f.y;
+  }
+
+  // ---------- respuesta en Markdown sencillo (sin HTML de Claude: todo se escapa) ----------
+  function inlineA(s) {
+    return String(s).split('`').map((part, i) => i % 2
+      ? '<code>' + esc(part) + '</code>'
+      : esc(part).replace(/\*\*([^*]+)\*\*/g, '<mark>$1</mark>').replace(/(^|[^*\w])\*([^*\s][^*]*?)\*(?![*\w])/g, '$1<em>$2</em>')).join('');
+  }
+  function md(s) {
+    let html = '', list = null, code = null;
+    const close = () => { if (list) { html += '</' + list + '>'; list = null; } };
+    for (const raw of String(s || '').replace(/\r/g, '').split('\n')) {
+      if (code) { if (/^\s*```/.test(raw)) { html += '<pre>' + esc(code.join('\n')) + '</pre>'; code = null; } else code.push(raw); continue; }
+      if (/^\s*```/.test(raw)) { close(); code = []; continue; }
+      const l = raw.trim(); if (!l) { close(); continue; }
+      let m;
+      if ((m = l.match(/^[-•*]\s+(.*)$/))) { if (list !== 'ul') { close(); html += '<ul>'; list = 'ul'; } html += '<li>' + inlineA(m[1]) + '</li>'; continue; }
+      if ((m = l.match(/^\d+[.)]\s+(.*)$/))) { if (list !== 'ol') { close(); html += '<ol>'; list = 'ol'; } html += '<li>' + inlineA(m[1]) + '</li>'; continue; }
+      close();
+      if ((m = l.match(/^#{1,4}\s+(.*)$/))) { html += '<p class="mh">' + inlineA(m[1].replace(/\*\*/g, '')) + '</p>'; continue; }
+      html += '<p>' + inlineA(l) + '</p>';
+    }
+    close();
+    if (code) html += '<pre>' + esc(code.join('\n')) + '</pre>';
+    return html;
+  }
+
+  // ---------- pantalla ----------
+  // La conversación se pinta por partes (lista de mensajes y botones) sin tocar la caja de texto ni el desplazamiento:
+  // redibujarlo todo devolvía el scroll arriba del todo y, en el iPhone, cerraba el teclado de golpe.
+  const thinkHTML = x => '<p class="think" role="status"><i></i><i></i><i></i>' + (x.st === 'search' ? 'Buscando en el temario…' : x.img ? 'Mirando la foto…' : 'Pensando…') + '</p>';
+  function exHTML(x, i) {
+    const act = i === ask.ex.length - 1 && AI && !ask.busy; // los botones, solo en la última respuesta
+    const body = x.a ? md(x.a) : ['wait', 'search', 'stream'].includes(x.st) ? thinkHTML(x) : '';
+    const user = x.prev ? '<div class="msg-u has-img"><canvas class="msg-img" data-img="' + i + '" role="img" aria-label="Tu foto"></canvas>' + (x.q ? '<span>' + esc(x.q) + '</span>' : '') + '</div>'
+      : '<div class="msg-u">' + esc(x.q) + '</div>';
+    let foot = '';
+    if (x.st === 'err') foot += '<p class="msg-err">' + esc(x.err) + '</p>' + (act && RETRY.has(x.code) ? '<button class="asklink" data-retry="' + i + '">Reintentar</button>' : '');
+    if (x.st === 'stop') foot += '<span>Detenida</span>' + (act ? '<button class="asklink" data-retry="' + i + '">Volver a preguntar</button>' : '');
+    if (x.st === 'ok' && x.cut) foot += '<span>Se cortó por larga</span>';
+    if (x.st === 'ok' && !x.deep && act) foot += '<button class="asklink" data-deep="' + i + '">Más a fondo</button>';
+    if (x.st === 'ok' && x.deep) foot += '<span>Respuesta a fondo</span>';
+    return '<div class="exch">' + user + '<div class="msg-a" data-i="' + i + '">' + body + '</div>' + (foot ? '<div class="msg-foot">' + foot + '</div>' : '') + '</div>';
+  }
+  function ctxHTML(c) {
+    const { card, q } = ctxItems(c);
+    if (c && c.kind === 'card' && card) return '<div class="ctx u' + card.ud + '"><span>Sobre esta ficha</span><p>' + inline(clean(card.q)) + '</p></div>';
+    if (q) { const t = clean(q.q); return '<div class="ctx u' + q.ud + '"><span>Sobre esta pregunta</span><p>' + inline(t.length > 160 ? t.slice(0, 157) + '…' : t) + '</p>' + codeHTML(q.code) + '</div>'; }
+    return '';
+  }
+  function renderAsk() {
+    const a = ask;
+    app.innerHTML =
+      '<div class="view">' +
+      '<div class="askbar wrap"><button class="icon-btn" id="askback" aria-label="Volver">' + ICON.back + '</button>' +
+      '<p class="ttl">Pregúntale al temario</p><span id="asknewslot"></span></div>' +
+      '<div class="scroll" id="chatsc"><div class="chat wrap" id="chat"></div></div>' +
+      '<div class="composer wrap' + (AI_IMG ? ' has-photo' : '') + '"><div class="att" id="attrow" hidden></div>' +
+      (AI_IMG ? '<button class="clip" id="askphoto" aria-label="Añadir una foto">' + ICON.camera + '</button><input type="file" id="askfile" accept="image/*" capture="environment" hidden>' : '') +
+      '<textarea id="askbox" rows="1" aria-label="Tu pregunta" enterkeyhint="send"></textarea><span id="sendslot"></span></div></div>';
+    const box = document.getElementById('askbox');
+    box.value = a.draft || '';
+    const ph = document.getElementById('askphoto'), file = document.getElementById('askfile');
+    if (ph && file) {
+      ph.onclick = () => file.click();
+      file.addEventListener('change', async () => {
+        const f = file.files && file.files[0]; file.value = ''; if (!f) return;
+        a.att = { busy: true }; paintAtt();
+        let p = null;
+        try { p = await loadPhoto(f); } catch (e) { p = null; }
+        if (ask !== a) return;
+        if (!p) { a.att = { err: 'No he podido abrir la foto. Prueba a hacerla otra vez.' }; if (view === 'ask') paintAtt(); return; }
+        a.att = p;
+        if (view !== 'ask') return;
+        // Se envía sola nada más hacerla, con lo que hubiera escrito en la caja como pregunta.
+        if (AI && !a.busy) submitAsk(); else paintAtt();
+      });
+    }
+    box.addEventListener('input', () => { a.draft = box.value; growBox(); });
+    box.addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey && !e.isComposing) { e.preventDefault(); submitAsk(); } });
+    box.addEventListener('blur', unshift);
+    document.getElementById('askback').onclick = closeAsk;
+    paintChat(); paintControls(); paintAtt();
+    if (a.ex.length) pinLast(); // al volver a una conversación, su última pregunta arriba
+  }
+
+  // ---------- fotos ----------
+  // Se reducen a 1600 px y se pasan a JPEG en la página (también las HEIC del iPhone): suben antes y gastan menos.
+  async function loadPhoto(file) {
+    let src = null;
+    try { src = await createImageBitmap(file); } catch (e) { src = null; }
+    if (!src) src = await new Promise((res, rej) => {
+      const fr = new FileReader();
+      fr.onload = () => { const im = new Image(); im.onload = () => res(im); im.onerror = rej; im.src = fr.result; };
+      fr.onerror = rej; fr.readAsDataURL(file);
+    });
+    const w0 = src.width || src.naturalWidth, h0 = src.height || src.naturalHeight;
+    if (!w0 || !h0) throw new Error('imagen vacía');
+    const k = Math.min(1, 1600 / Math.max(w0, h0)), w = Math.round(w0 * k), h = Math.round(h0 * k);
+    const cv = document.createElement('canvas'); cv.width = w; cv.height = h;
+    const cx = cv.getContext('2d'); cx.fillStyle = '#fff'; cx.fillRect(0, 0, w, h); cx.drawImage(src, 0, 0, w, h);
+    const blob = await new Promise(r => cv.toBlob(r, 'image/jpeg', 0.85));
+    const kp = Math.min(1, 480 / Math.max(w, h)), prev = document.createElement('canvas');
+    prev.width = Math.round(w * kp); prev.height = Math.round(h * kp);
+    prev.getContext('2d').drawImage(cv, 0, 0, prev.width, prev.height);
+    if (src.close) try { src.close(); } catch (e) { /* nada */ }
+    return { blob: blob || file, prev };
+  }
+  function paintAtt() {
+    const row = document.getElementById('attrow'); if (!row || !ask) return;
+    const at = ask.att;
+    if (!at) { row.hidden = true; row.innerHTML = ''; growBox(); return; }
+    row.hidden = false; row.className = 'att' + (at.busy ? ' busy' : '');
+    row.innerHTML = (at.prev ? '<canvas width="112" height="112"></canvas>' : '') +
+      '<span>' + (at.busy ? 'Preparando la foto' : at.err ? esc(at.err) : 'Foto lista. Escribe qué quieres saber o envíala tal cual.') + '</span>' +
+      (at.busy ? '' : '<button id="attx">Quitar</button>');
+    const cv = row.querySelector('canvas');
+    if (cv && at.prev) { const s = Math.min(at.prev.width, at.prev.height); cv.getContext('2d').drawImage(at.prev, (at.prev.width - s) / 2, (at.prev.height - s) / 2, s, s, 0, 0, 112, 112); }
+    const bx = document.getElementById('attx'); if (bx) bx.onclick = () => { ask.att = null; paintAtt(); };
+    growBox();
+  }
+  function takeAtt() { const at = ask && ask.att && ask.att.blob ? ask.att : null; if (at) { ask.att = null; paintAtt(); } return at; }
+  function paintChat() {
+    const chat = document.getElementById('chat'), sc = document.getElementById('chatsc'); if (!chat || !sc || !ask) return;
+    const a = ask, y = sc.scrollTop;
+    const intro = a.ex.length ? '' : '<p class="ask-intro">' + (a.ctx ? 'Pregunta lo que no te quede claro o toca una sugerencia.'
+      : AI_IMG ? 'Escribe cualquier duda del temario, haz una foto (un ejercicio, una pregunta, tus apuntes…) o toca una sugerencia. La foto se envía sola; si antes escribes algo, va como pregunta.' : 'Escribe cualquier duda del temario o toca una sugerencia.') + '</p>' +
+      '<div class="sugs">' + a.sugs.map((t, k) => '<button class="sug" data-sug="' + k + '">' + inlineA(t) + '</button>').join('') + '</div>';
+    chat.innerHTML = ctxHTML(a.ctx) + intro + a.ex.map(exHTML).join('');
+    chat.querySelectorAll('canvas[data-img]').forEach(c => {
+      const x = a.ex[+c.dataset.img]; if (!x || !x.prev) return;
+      c.width = x.prev.width; c.height = x.prev.height; c.getContext('2d').drawImage(x.prev, 0, 0);
+    });
+    fitLast();
+    sc.scrollTop = y; // pintar no mueve lo que estás leyendo
+    chat.querySelectorAll('[data-sug]').forEach(b => b.onclick = () => sendAsk(a.sugs[+b.dataset.sug], takeAtt()));
+    chat.querySelectorAll('[data-deep]').forEach(b => b.onclick = () => runAsk(a.ex[+b.dataset.deep], true));
+    chat.querySelectorAll('[data-retry]').forEach(b => b.onclick = () => { const x = a.ex[+b.dataset.retry]; runAsk(x, x.deep); });
+  }
+  function paintControls() {
+    if (view !== 'ask' || !ask) return;
+    const a = ask, box = document.getElementById('askbox'), slot = document.getElementById('sendslot'), ns = document.getElementById('asknewslot');
+    if (box) box.disabled = !AI;
+    const ph = document.getElementById('askphoto');
+    if (ph) { ph.hidden = !AI_IMG; ph.disabled = !AI || a.busy; ph.parentNode.classList.toggle('has-photo', !!AI_IMG); }
+    if (slot) {
+      slot.innerHTML = a.busy ? '<button class="send" id="askstop" aria-label="Detener">' + ICON.stop + '</button>'
+        : '<button class="send" id="asksend" aria-label="Enviar">' + ICON.send + '</button>';
+      const st = document.getElementById('askstop'); if (st) st.onclick = () => { if (a.ctl) a.ctl.abort(); };
+      const sb = document.getElementById('asksend'); if (sb) sb.onclick = submitAsk;
+    }
+    if (ns) {
+      ns.innerHTML = a.ex.length && !a.busy ? '<button class="link" id="asknew">Nueva</button>' : '';
+      const nw = document.getElementById('asknew');
+      if (nw) nw.onclick = () => { ask = { ctx: a.ctx, ex: [], busy: false, ctl: null, draft: (box && box.value) || '', sugs: sugsFor(a.ctx), from: a.from }; renderAsk(); };
+    }
+    growBox();
+  }
+  function growBox() {
+    const box = document.getElementById('askbox'); if (!box) return;
+    const att = !!(ask && ask.att && ask.att.blob);
+    box.placeholder = !AI ? 'No disponible' : att ? 'Tu pregunta (opcional)…' : 'Escribe tu duda…';
+    box.style.height = 'auto'; box.style.height = Math.min(140, box.scrollHeight + 3) + 'px';
+    const sb = document.getElementById('asksend'); if (sb) sb.disabled = !(box.value.trim() || att) || !AI;
+  }
+  // La última pregunta tiene sitio para subir hasta arriba aunque su respuesta sea corta: se lee desde el
+  // principio mientras se escribe debajo, y nada salta al terminar.
+  function fitLast() {
+    const sc = document.getElementById('chatsc'); if (!sc) return;
+    const all = sc.querySelectorAll('.exch'); all.forEach(e => { e.style.minHeight = ''; });
+    if (all.length) all[all.length - 1].style.minHeight = Math.max(0, sc.clientHeight - 30) + 'px';
+  }
+  function pinLast() {
+    const sc = document.getElementById('chatsc'), all = sc ? sc.querySelectorAll('.exch') : [];
+    if (!all.length) return;
+    sc.scrollTop += all[all.length - 1].getBoundingClientRect().top - sc.getBoundingClientRect().top - 8;
+  }
+  // iOS deja a veces la página desplazada hacia arriba al cerrarse el teclado: se recoloca.
+  function unshift() {
+    setTimeout(() => {
+      if (document.activeElement && document.activeElement.id === 'askbox') return;
+      try { window.scrollTo(0, 0); if (document.scrollingElement) document.scrollingElement.scrollTop = 0; } catch (e) { /* nada */ }
+      if (view === 'ask') fitLast();
+    }, 80);
+  }
+  const onResize = () => { if (view === 'ask') fitLast(); };
+  window.addEventListener('resize', onResize);
+  if (window.visualViewport) window.visualViewport.addEventListener('resize', onResize);
+  function paintEx(x) {
+    if (view !== 'ask' || !ask || !ask.ex.includes(x)) return;
+    const el = app.querySelector('.msg-a[data-i="' + ask.ex.indexOf(x) + '"]'); if (el) el.innerHTML = x.a ? md(x.a) : thinkHTML(x);
+  }
+  const coarse = () => { try { return matchMedia('(pointer: coarse)').matches; } catch (e) { return false; } };
+  function submitAsk() {
+    const box = document.getElementById('askbox'); if (!box || !ask) return;
+    const t = box.value.trim(), has = !!(ask.att && ask.att.blob);
+    if ((!t && !has) || !AI || ask.busy) return;
+    ask.draft = ''; box.value = '';
+    const at = takeAtt(); growBox();
+    if (coarse()) box.blur(); // en el móvil se cierra el teclado para leer la respuesta a pantalla completa
+    sendAsk(t, at);
+  }
+  function sendAsk(text, at) {
+    if (!AI || !ask || ask.busy) return;
+    const x = { q: String(text || '').slice(0, 2000), a: '', st: 'wait', deep: false };
+    if (at) { x.img = at.blob; x.prev = at.prev; }
+    ask.ex.push(x); runAsk(x, false);
+  }
+  let NO_TOOLS = false;
+  async function runAsk(x, deep) {
+    if (!AI || !ask || ask.busy) return;
+    const mine = ask, tier = deep || !tierOk('quick') ? 'default' : 'quick';
+    // Foto: la de esta pregunta o, si no trae, la última de la conversación (Claude no recuerda las de antes).
+    const prevImg = x.img ? null : mine.ex.slice(0, mine.ex.indexOf(x)).reverse().find(e => e.img);
+    const blob = AI_IMG ? (x.img || (prevImg && prevImg.img) || null) : null;
+    const img = blob ? (x.img ? 'new' : 'again') : null;
+    const tools = img === 'new' && AI_TOOLS && !NO_TOOLS;
+    Object.assign(x, { a: '', st: 'wait', deep: !!deep, err: '', code: '', cut: false });
+    const ctl = new AbortController(); mine.ctl = ctl; mine.busy = true;
+    if (view === 'ask' && ask === mine) { paintChat(); paintControls(); pinLast(); } // sin animación: una respuesta rápida la cortaba a medias
+    // Con herramienta, lo que Claude escriba antes de buscar (si escribe algo) no se enseña: solo la respuesta.
+    let raw = '', pre = 0;
+    const opts = { modelTier: tier, signal: ctl.signal, onText: u => {
+      raw = u.text; x.a = raw.slice(pre).replace(/^\s+/, '');
+      if (x.a && x.st !== 'stream') x.st = 'stream';
+      paintEx(x);
+    } };
+    if (tier !== 'quick') opts.effort = 'low';
+    if (blob) opts.images = [blob];
+    if (tools) opts.tools = [{
+      name: 'buscar_temario',
+      description: 'Busca en el temario de la asignatura (diapositivas, libro, guías y fichas del alumno) y devuelve los fragmentos más relacionados. Úsala una vez, con los términos clave de lo que se ve en la foto, antes de responder.',
+      inputSchema: { type: 'object', properties: { consulta: { type: 'string', description: 'Términos clave en español, p. ej. «corte prolog backtracking» o «evaluación perezosa haskell».' } }, required: ['consulta'] },
+      execute: inp => {
+        pre = raw.length; x.a = ''; x.st = 'search'; paintEx(x);
+        const t = materialText(gather(String((inp && inp.consulta) || '').slice(0, 300), deep, ''));
+        return t.trim() ? t : 'No hay nada en el temario sobre eso.';
+      },
+    }];
+    try {
+      const r = await AI(buildInput(x, !!deep, img, tools), opts);
+      x.a = r.text.slice(pre).trim(); x.st = 'ok'; x.cut = !!r.truncated;
+    } catch (e) {
+      const code = e && ERR[e.code] ? e.code : (e && e.code === 'cancelled' ? 'cancelled' : e && e.code === 'tools_unavailable' ? 'tools_unavailable' : 'upstream_error');
+      if (code === 'tools_unavailable' && !NO_TOOLS) { NO_TOOLS = true; mine.busy = false; mine.ctl = null; return runAsk(x, deep); } // una sola vez: sin herramienta
+      x.a = code === 'refused' ? '' : ((e && e.text) || '').slice(pre).trim();
+      if (code === 'cancelled') x.st = 'stop';
+      else {
+        x.st = 'err'; x.code = code; x.err = ERR[code] || ERR.upstream_error;
+        if (HIDE.has(code)) AI = null;
+        if (code === 'images_unavailable') AI_IMG = null;
+      }
+    }
+    mine.busy = false; mine.ctl = null;
+    if (view === 'ask' && ask === mine) { paintChat(); paintControls(); }
+  }
+
   // ---------- arranque (conserva la sesión si la página se actualiza mientras estudias) ----------
   function boot(data) {
     if (isObj(data) && isObj(data.ses) && Array.isArray(data.ses.q) && data.ses.q.every(id => BY_ID.has(id))) {
@@ -1250,6 +1796,7 @@ pre {
     }
     render();
     initRemote();
+    initAI();
   }
   const hot = window.claude && window.claude.hot;
   if (hot && typeof hot.snapshot === 'function') { try { hot.snapshot(() => ({ ses: ses, view: view, tses: tses, pendingSim: pendingSim })); } catch (e) { /* sin hot */ } }
