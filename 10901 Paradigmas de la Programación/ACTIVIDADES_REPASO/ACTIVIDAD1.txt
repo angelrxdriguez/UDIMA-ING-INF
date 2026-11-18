@@ -1,0 +1,80 @@
+1. El paradigma funcional es un enfoque de programación que se centra en el uso de
+funciones para resolver problemas.
+El paradigma funcional se caracteriza por evitar estados mutables y depender
+únicamente de funciones puras, lo que facilita la paralelización y mejora la
+predictibilidad del código. Utilizando este enfoque, implemente las siguientes
+funciones, haciendo uso de recursividad y funciones lambda siempre que sea
+posible:
+a) concatenarCadenas (lista): Dada una lista de cadenas de texto, la función debe
+devolver una única cadena que resulte de concatenar todos sus elementos de manera
+recursiva. Por ejemplo:
+concatenarCadenas(["El", " ", "paradigma", " ", "funcional"]) = "El
+paradigma funcional"
+b) separarCadenasPorLongitud (lista, n): Dada una lista de cadenas y un
+número entero n, la función debe retornar dos listas: Una con todas las cadenas
+cuya longitud sea mayor o igual a n. y otra con aquellas cadenas que tengan una
+longitud menor que n. Por ejemplo:
+separarCadenasPorLongitud(["funcional", "programacion", "lambda",
+"recursividad"], 9) = (["programacion", "recursividad","funcional"],
+["lambda"])
+c) encontrarCadenasRepetidas (lista): Dada una lista de cadenas, la función
+debe devolver una lista de aquellas que aparecen más de una vez. Para lograrlo, se
+debe utilizar una función auxiliar que lleve el estado de las apariciones durante la
+recursión. Por ejemplo:
+encontrarCadenasRepetidas(["lambda", "funcional", "lambda", "paradigma",
+"funcional"]) = ["lambda", "funcional"]
+d) transformarYContar (lista, f): Dada una lista de cadenas y una función f que
+se aplica a cada cadena, la función debe transformar cada elemento aplicando f y,
+posteriormente, sumar el número total de caracteres de todas las cadenas
+transformadas. Por ejemplo:
+transformarYContar(["hola", "mundo"], f) = 9
+Nota: f es simplemente una función que se pasa como parámetro y que se aplica a
+cada cadena de la lista para transformarla antes de realizar la suma de caracteres,
+devolviendo otra lista de caracteres. Por ejemplo, podríamos definirla así: f =
+lambda cadena: cadena.upper()
+2. En una prestigiosa escuela de cocina se cuenta con varios chefs y se tienen
+planificados distintos eventos gastronómicos. Cada chef posee un conjunto de
+especialidades culinarias, un nivel de experiencia (le permite realizar tareas de
+mayor dificultad) y un porcentaje de disponibilidad (representado como
+"disponibilidad" o carga libre). De forma similar, cada evento requiere ciertas
+habilidades culinarias, tiene una dificultad asociada y demanda un porcentaje
+específico de carga de trabajo. .
+Chefs:
+◦ Antonio: Especialidades en italiana, repostería, mediterránea; nivel 8;
+disponibilidad 60%.
+◦ Bianca: Conocida por su cocina asiática, sushi y vegetariana; nivel 7;
+disponibilidad 50%.
+◦ Carlos: Experto en cocina mexicana, barbacoa y latina; nivel 9; disponibilidad
+55%.
+◦ Diana: Especialista en francesa, repostería y cocina gourmet; nivel 8;
+disponibilidad 40%.
+◦ Erika: Destaca en cocina mediterránea, saludable y fusión; nivel 7;
+disponibilidad 65%.
+◦ Fernando: Maneja con destreza la cocina asiática, fusión y platos picantes; nivel
+8; disponibilidad 50%.
+◦ Gabriela: Con experiencia en italiana, mediterránea y repostería; nivel 9;
+disponibilidad 45%.
+Eventos Gastronómicos y habilidades requeridas:
+◦ Cena_Nupcial: Requiere habilidades en italiana y repostería; dificultad 7; carga
+requerida 30%.
+◦ Almuerzo_Corporativo: Requiere habilidades en mexicana y barbacoa;
+dificultad 8; carga requerida 25%.
+◦ Festival_Sushi: Requiere habilidades en asiática y sushi; dificultad 6; carga
+requerida 20%.
+◦ Cena_Gourmet: Requiere habilidades en francesa, gourmet y repostería;
+dificultad 8; carga requerida 35%.
+◦ Feria_Saludable: Requiere habilidades en mediterránea y saludable; dificultad
+7; carga requerida 15%.
+◦ Noche_Fusion: Requiere habilidades en asiática y fusion; dificultad 8; carga
+requerida 20%.
+Condiciones:
+a) Crear la función es_candidato(Chef, Evento). Esta regla debe determinar si
+un chef posee todas las especialidades requeridas por el evento.
+b) Se pide crear la función sugerir_asignación(Chef, Evento). Además de
+comprobar que el chef es candidato para el evento (es decir, que posee las
+especialidades necesarias), esta regla debe verificar que el nivel del chef sea mayor
+o igual a la dificultad del evento, y asegurarse de que la disponibilidad del chef
+(porcentaje) sea mayor o igual a la carga requerida por el evento.
+3. Instrucciones para la realización y entrega de la actividad
+Son las siguientes:
+Haz una memoria en formato PDF y los archivos de implementación utilizados

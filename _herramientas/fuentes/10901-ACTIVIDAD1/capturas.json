@@ -1,0 +1,25 @@
+{
+  "codigo": "10901 Paradigmas de la Programación/ACTIVIDADES_REPASO",
+  "salida": "10901 Paradigmas de la Programación/ACTIVIDADES_REPASO/Capturas",
+  "prompt": "PS C:\\…\\ACTIVIDADES_REPASO>",
+  "capturas": [
+    {"png": "01 - Ej1 a) concatenarCadenas.png", "archivo": "ejercicio1.py",
+     "titulo": "Ejercicio 1 · a) concatenarCadenas", "bloques": ["concatenarCadenas"]},
+    {"png": "02 - Ej1 b) separarCadenasPorLongitud.png", "archivo": "ejercicio1.py",
+     "titulo": "Ejercicio 1 · b) separarCadenasPorLongitud", "bloques": ["separarCadenasPorLongitud"]},
+    {"png": "03 - Ej1 c) encontrarCadenasRepetidas.png", "archivo": "ejercicio1.py",
+     "titulo": "Ejercicio 1 · c) encontrarCadenasRepetidas", "bloques": ["buscarRepetidas", "encontrarCadenasRepetidas"]},
+    {"png": "04 - Ej1 d) transformarYContar.png", "archivo": "ejercicio1.py",
+     "titulo": "Ejercicio 1 · d) transformarYContar", "bloques": ["transformarYContar"]},
+    {"png": "05 - Ej1 pruebas y salida.png", "archivo": "ejercicio1.py",
+     "titulo": "Ejercicio 1 · Pruebas", "bloques": ["@pruebas"], "ejecutar": true},
+    {"png": "06 - Ej2 datos de chefs y eventos.png", "archivo": "ejercicio2.py",
+     "titulo": "Ejercicio 2 · Hechos: chefs y eventos", "bloques": ["chefs", "eventos"]},
+    {"png": "07 - Ej2 a) es_candidato.png", "archivo": "ejercicio2.py",
+     "titulo": "Ejercicio 2 · a) es_candidato", "bloques": ["es_candidato"]},
+    {"png": "08 - Ej2 b) sugerir_asignacion.png", "archivo": "ejercicio2.py",
+     "titulo": "Ejercicio 2 · b) sugerir_asignacion", "bloques": ["sugerir_asignacion"]},
+    {"png": "09 - Ej2 pruebas y salida.png", "archivo": "ejercicio2.py",
+     "titulo": "Ejercicio 2 · Pruebas", "bloques": ["@pruebas"], "ejecutar": true}
+  ]
+}

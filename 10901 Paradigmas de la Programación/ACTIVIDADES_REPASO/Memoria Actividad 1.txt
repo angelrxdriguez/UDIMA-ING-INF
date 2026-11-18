@@ -1,0 +1,405 @@
+==========================================================================================
+MEMORIA - ACTIVIDAD 1
+Paradigmas de la Programación (10901)
+Alumno: [Nombre y apellidos]
+Fecha:  [dd/mm/aaaa]
+==========================================================================================
+
+ÍNDICE
+  1. Introducción y elección del lenguaje
+  2. Ejercicio 1: paradigma funcional
+  3. Ejercicio 2: chefs y eventos gastronómicos
+  4. Ejecución y pruebas
+  5. Conclusiones
+  Anexo. El ejercicio 2 en Prolog
+
+
+------------------------------------------------------------------------------------------
+1. INTRODUCCIÓN Y ELECCIÓN DEL LENGUAJE
+------------------------------------------------------------------------------------------
+
+La actividad tiene dos ejercicios. En el primero se implementan cuatro funciones sobre
+listas de cadenas siguiendo el paradigma funcional. En el segundo se definen dos reglas
+que deciden qué chefs de una escuela de cocina pueden encargarse de cada evento
+gastronómico.
+
+Los dos ejercicios se han implementado en Python 3 (archivos ejercicio1.py y
+ejercicio2.py). He elegido este lenguaje por dos motivos:
+
+  - Familiaridad: es el lenguaje con el que más he trabajado en estudios anteriores.
+    Esto me permite centrarme en aplicar correctamente los paradigmas que pide la
+    actividad, en lugar de dedicar el esfuerzo a aprender la sintaxis de un lenguaje
+    nuevo.
+  - Cumple los requisitos de la actividad: Python es un lenguaje multiparadigma.
+      * Para el ejercicio 1 permite programar con funciones puras, recursividad,
+        funciones lambda y funciones de orden superior (map, filter), que es justo lo
+        que pide el enunciado. El propio enunciado usa sintaxis de Python en su ejemplo
+        (f = lambda cadena: cadena.upper()).
+      * Para el ejercicio 2 permite seguir la estructura del paradigma lógico: los datos
+        de chefs y eventos funcionan como hechos, y es_candidato y sugerir_asignacion
+        como reglas (predicados que devuelven verdadero o falso). En el anexo se muestra
+        cómo quedaría en Prolog.
+
+Además, usar un único lenguaje simplifica la ejecución y las pruebas de toda la actividad.
+
+
+------------------------------------------------------------------------------------------
+2. EJERCICIO 1: PARADIGMA FUNCIONAL
+------------------------------------------------------------------------------------------
+
+Criterios seguidos en todas las funciones:
+
+  - Funciones puras: el resultado depende solo de los parámetros y no se modifica nada
+    de fuera de la función.
+  - Sin estado mutable: no se usan bucles ni operaciones que modifiquen datos (append,
+    +=, asignar en una posición...). Cuando hace falta una lista "modificada" se crea una
+    nueva: lista[1:] devuelve una lista nueva sin el primer elemento, y repetidas + [x]
+    devuelve otra lista con x añadido. Los datos originales nunca cambian.
+  - Recursividad en lugar de bucles: un caso base que detiene la recursión y un caso
+    recursivo que trabaja con la cabeza de la lista (lista[0]) y llama a la función con
+    la cola (lista[1:]), que tiene un elemento menos.
+  - Funciones lambda y funciones de orden superior (map, filter) siempre que es posible.
+
+
+a) concatenarCadenas(lista)
+---------------------------
+
+Planteamiento: concatenar una lista es unir su primer elemento con la concatenación del
+resto de la lista.
+
+  - Caso base: si la lista está vacía se devuelve la cadena vacía "", que es el elemento
+    neutro de la concatenación ("hola" + "" = "hola").
+  - Caso recursivo: se separa la cabeza (lista[0]) de la cola (lista[1:]), se concatena
+    la cola llamando otra vez a la función y se pega la cabeza delante.
+
+En cada llamada la lista tiene un elemento menos, así que siempre se llega al caso base.
+
+    def concatenarCadenas(lista):
+        if len(lista) == 0:
+            return ""
+
+        primera = lista[0]
+        resto = lista[1:]
+
+        restoConcatenado = concatenarCadenas(resto)
+        return primera + restoConcatenado
+
+Traza con el ejemplo del enunciado:
+
+    concatenarCadenas(["El", " ", "paradigma", " ", "funcional"])
+    = "El" + concatenarCadenas([" ", "paradigma", " ", "funcional"])
+    = "El" + " " + concatenarCadenas(["paradigma", " ", "funcional"])
+    = "El" + " " + "paradigma" + concatenarCadenas([" ", "funcional"])
+    = "El" + " " + "paradigma" + " " + concatenarCadenas(["funcional"])
+    = "El" + " " + "paradigma" + " " + "funcional" + concatenarCadenas([])
+    = "El" + " " + "paradigma" + " " + "funcional" + ""          <- caso base
+    = "El paradigma funcional"
+
+Resultado: "El paradigma funcional"
+
+Nota: en un programa real se usaría "".join(lista), que hace lo mismo en una sola línea,
+pero el enunciado pide expresamente una solución recursiva.
+
+
+b) separarCadenasPorLongitud(lista, n)
+--------------------------------------
+
+Planteamiento: las dos condiciones se escriben como funciones lambda y se usa filter, una
+función de orden superior que recibe una función de condición y una lista, y devuelve
+solo los elementos que cumplen la condición.
+
+  - esLarga: la cadena tiene n caracteres o más  (len(cadena) >= n).
+  - esCorta: la cadena tiene menos de n caracteres (len(cadena) < n).
+
+La función devuelve una tupla con las dos listas.
+
+    def separarCadenasPorLongitud(lista, n):
+        esLarga = lambda cadena: len(cadena) >= n
+        esCorta = lambda cadena: len(cadena) < n
+
+        largas = list(filter(esLarga, lista))
+        cortas = list(filter(esCorta, lista))
+        return (largas, cortas)
+
+Las lambdas se definen dentro de la función, por lo que pueden usar el parámetro n
+directamente. filter no devuelve una lista sino un objeto que se recorre bajo demanda,
+por eso se convierte con list().
+
+Resultado: (['funcional', 'programacion', 'recursividad'], ['lambda'])
+
+"funcional" tiene exactamente 9 caracteres, así que va con las largas (la condición es
+mayor o igual). El enunciado muestra las cadenas largas en otro orden
+(["programacion", "recursividad", "funcional"]); los elementos son los mismos. La función
+conserva el orden de la lista original.
+
+
+c) encontrarCadenasRepetidas(lista)
+-----------------------------------
+
+Planteamiento: el enunciado pide una función auxiliar que lleve el estado de las
+apariciones durante la recursión. Esa función es buscarRepetidas(lista, vistas,
+repetidas), que recibe, además de la lista, dos listas de estado:
+
+  - vistas:    las cadenas que ya han aparecido.
+  - repetidas: las cadenas que han aparecido más de una vez (el resultado que se va
+               construyendo).
+
+En cada llamada se mira la primera cadena de la lista:
+  - si ya estaba en vistas (y todavía no está en repetidas), se añade a repetidas;
+  - en cualquier caso, se añade a vistas;
+  - y se sigue recursivamente con el resto de la lista, pasando el estado nuevo.
+
+Caso base: cuando la lista está vacía se devuelve repetidas.
+
+El estado no se modifica nunca: en cada paso se crean listas nuevas
+(repetidas + [primera], vistas + [primera]) que se pasan como parámetros a la siguiente
+llamada. Así el estado viaja por la recursión en lugar de guardarse en variables que
+cambian, que es como se trabaja en el paradigma funcional.
+
+La condición "primera not in repetidas" evita que una cadena que aparece tres o más
+veces salga varias veces en el resultado.
+
+    def buscarRepetidas(lista, vistas, repetidas):
+        if len(lista) == 0:
+            return repetidas
+
+        primera = lista[0]
+        resto = lista[1:]
+
+        if primera in vistas and primera not in repetidas:
+            repetidasNuevas = repetidas + [primera]
+        else:
+            repetidasNuevas = repetidas
+        vistasNuevas = vistas + [primera]
+        return buscarRepetidas(resto, vistasNuevas, repetidasNuevas)
+
+    def encontrarCadenasRepetidas(lista):
+        return buscarRepetidas(lista, [], [])
+
+encontrarCadenasRepetidas solo pone en marcha la recursión con el estado inicial vacío.
+
+Traza con el ejemplo del enunciado:
+
+    Paso  primera     ¿ya estaba en vistas?   repetidas después del paso
+    1     lambda      no                      []
+    2     funcional   no                      []
+    3     lambda      sí                      ["lambda"]
+    4     paradigma   no                      ["lambda"]
+    5     funcional   sí                      ["lambda", "funcional"]
+    fin   (vacía)     caso base               devuelve ["lambda", "funcional"]
+
+Resultado: ['lambda', 'funcional'], en el mismo orden que el enunciado.
+
+
+d) transformarYContar(lista, f)
+-------------------------------
+
+Planteamiento: transformarYContar es una función de orden superior, porque recibe otra
+función (f) como parámetro. Se resuelve en tres pasos encadenados:
+
+  1. Transformar: map(f, lista) aplica f a cada cadena.
+  2. Contar:      map(len, transformadas) obtiene la longitud de cada cadena transformada.
+  3. Sumar:       sum(longitudes) suma todas las longitudes.
+
+    def transformarYContar(lista, f):
+        transformadas = list(map(f, lista))
+        longitudes = list(map(len, transformadas))
+        total = sum(longitudes)
+        return total
+
+Prueba con la función del enunciado, f = lambda cadena: cadena.upper():
+
+    ["hola", "mundo"]  ->  ["HOLA", "MUNDO"]  ->  4 + 5 = 9
+
+Como pasar a mayúsculas no cambia la longitud, se ha probado también con funciones que
+sí la cambian, para comprobar que f se aplica realmente a cada cadena:
+
+    lambda cadena: cadena + "!"   ->  ["hola!", "mundo!"]           ->  11
+    lambda cadena: cadena * 2     ->  ["holahola", "mundomundo"]    ->  18
+
+
+------------------------------------------------------------------------------------------
+3. EJERCICIO 2: CHEFS Y EVENTOS GASTRONÓMICOS
+------------------------------------------------------------------------------------------
+
+3.1 Representación de los datos (hechos)
+
+Los chefs y los eventos se guardan en dos diccionarios. La clave es el nombre y el valor,
+otro diccionario con sus datos:
+
+  - chefs:   especialidades (lista), nivel y disponibilidad (%).
+  - eventos: habilidades_requeridas (lista), dificultad y carga_requerida (%).
+
+    chefs = {
+        "Antonio": {"especialidades": ["italiana", "reposteria", "mediterranea"],
+                    "nivel": 8, "disponibilidad": 60},
+        ...
+    }
+    eventos = {
+        "Cena_Nupcial": {"habilidades_requeridas": ["italiana", "reposteria"],
+                         "dificultad": 7, "carga_requerida": 30},
+        ...
+    }
+
+Las especialidades se escriben en minúsculas y sin tildes ("reposteria", "asiatica",
+"fusion") para que las comparaciones entre chefs y eventos coincidan siempre. Estos
+datos equivalen a los hechos de un programa lógico: describen el mundo sin decir cómo se
+van a usar.
+
+
+3.2 a) es_candidato(Chef, Evento)
+
+Regla: un chef es candidato si tiene TODAS las especialidades que requiere el evento.
+
+  - tieneHabilidad es una lambda que indica si el chef tiene una habilidad concreta.
+  - map aplica tieneHabilidad a cada habilidad requerida y da una lista de True/False.
+  - all devuelve True solo si todos los valores de esa lista son True.
+
+    def es_candidato(chef, evento):
+        requeridas = evento["habilidades_requeridas"]
+        especialidades = chef["especialidades"]
+
+        tieneHabilidad = lambda habilidad: habilidad in especialidades
+        comprobaciones = list(map(tieneHabilidad, requeridas))
+
+        return all(comprobaciones)
+
+Ejemplos:
+  - Antonio y Cena_Nupcial: requiere [italiana, reposteria] -> [True, True]  -> True
+  - Diana y Cena_Nupcial:   requiere [italiana, reposteria] -> [False, True] -> False
+    (Diana no tiene cocina italiana)
+
+
+3.3 b) sugerir_asignacion(Chef, Evento)
+
+Regla: se sugiere asignar el chef al evento si se cumplen las tres condiciones del
+enunciado. Cada condición se guarda en una variable con nombre para que se lea igual que
+el enunciado, y la primera reutiliza la regla del apartado a):
+
+  - candidato:           el chef tiene las especialidades (es_candidato).
+  - nivelSuficiente:     nivel del chef >= dificultad del evento.
+  - tieneDisponibilidad: disponibilidad del chef >= carga requerida por el evento.
+
+    def sugerir_asignacion(chef, evento):
+        candidato = es_candidato(chef, evento)
+        nivelSuficiente = chef["nivel"] >= evento["dificultad"]
+        tieneDisponibilidad = chef["disponibilidad"] >= evento["carga_requerida"]
+
+        return candidato and nivelSuficiente and tieneDisponibilidad
+
+Ejemplos:
+  - Diana y Cena_Gourmet: es candidata, nivel 8 >= 8 y disponibilidad 40 >= 35 -> True
+    (cumple justo en el límite; por eso las comparaciones son "mayor o igual").
+  - Bianca y Noche_Fusion: no tiene cocina de fusión, así que no es candidata -> False
+
+
+3.4 Resultados para todos los chefs y eventos
+
+Se han comprobado las dos reglas con todas las combinaciones de chef y evento:
+
+    Evento                  Candidatos (a)        Asignación sugerida (b)
+    Cena_Nupcial            Antonio, Gabriela     Antonio, Gabriela
+    Almuerzo_Corporativo    Carlos                Carlos
+    Festival_Sushi          Bianca                Bianca
+    Cena_Gourmet            Diana                 Diana
+    Feria_Saludable         Erika                 Erika
+    Noche_Fusion            Fernando              Fernando
+
+Todos los eventos tienen al menos un chef válido. Con estos datos, todos los chefs que
+son candidatos cumplen también el nivel y la disponibilidad que pide el evento.
+
+
+------------------------------------------------------------------------------------------
+4. EJECUCIÓN Y PRUEBAS
+------------------------------------------------------------------------------------------
+
+Requisitos: Python 3. Cada archivo se ejecuta desde la terminal, en la carpeta donde está:
+
+    python ejercicio1.py
+    python ejercicio2.py
+
+Al final de cada archivo hay unas llamadas print con los ejemplos del enunciado.
+
+Salida de ejercicio1.py:
+
+    a) El paradigma funcional
+    b) (['funcional', 'programacion', 'recursividad'], ['lambda'])
+    c) ['lambda', 'funcional']
+    d) 9
+    d) 11
+    d) 18
+
+[CAPTURA: terminal con la salida de python ejercicio1.py]
+
+Salida de ejercicio2.py:
+
+    a) Antonio - Cena_Nupcial: True
+    a) Diana - Cena_Nupcial: False
+    b) Diana - Cena_Gourmet: True
+    b) Bianca - Noche_Fusion: False
+
+[CAPTURA: terminal con la salida de python ejercicio2.py]
+
+
+------------------------------------------------------------------------------------------
+5. CONCLUSIONES
+------------------------------------------------------------------------------------------
+
+En el ejercicio 1 se han aplicado las ideas principales del paradigma funcional:
+recursividad dividiendo la lista en cabeza y cola, estado que viaja como parámetro en
+lugar de guardarse en variables que cambian, funciones lambda y funciones de orden
+superior (map, filter y funciones que reciben otras funciones, como transformarYContar).
+Como las funciones son puras, cada una se puede entender y probar por separado: con los
+mismos datos siempre devuelve el mismo resultado y no tiene efectos secundarios.
+
+En el ejercicio 2 se ha seguido la estructura del paradigma lógico (hechos + reglas)
+dentro de Python. La diferencia con un lenguaje lógico como Prolog es que en Python cada
+regla comprueba un chef y un evento concretos que se le pasan. En Prolog se puede dejar
+un dato como incógnita y preguntar, por ejemplo, qué chefs pueden hacer la Cena Nupcial:
+el propio lenguaje busca todas las soluciones mediante unificación y backtracking.
+
+
+------------------------------------------------------------------------------------------
+ANEXO. EL EJERCICIO 2 EN PROLOG
+------------------------------------------------------------------------------------------
+
+Para comparar paradigmas, así se escribiría el ejercicio 2 en Prolog. Los nombres van en
+minúscula porque en Prolog lo que empieza por mayúscula es una variable.
+
+    % chef(Nombre, Especialidades, Nivel, Disponibilidad).
+    chef(antonio,  [italiana, reposteria, mediterranea], 8, 60).
+    chef(bianca,   [asiatica, sushi, vegetariana],       7, 50).
+    chef(carlos,   [mexicana, barbacoa, latina],         9, 55).
+    chef(diana,    [francesa, reposteria, gourmet],      8, 40).
+    chef(erika,    [mediterranea, saludable, fusion],    7, 65).
+    chef(fernando, [asiatica, fusion, picante],          8, 50).
+    chef(gabriela, [italiana, mediterranea, reposteria], 9, 45).
+
+    % evento(Nombre, Requeridas, Dificultad, Carga).
+    evento(cena_nupcial,         [italiana, reposteria],          7, 30).
+    evento(almuerzo_corporativo, [mexicana, barbacoa],            8, 25).
+    evento(festival_sushi,       [asiatica, sushi],               6, 20).
+    evento(cena_gourmet,         [francesa, gourmet, reposteria], 8, 35).
+    evento(feria_saludable,      [mediterranea, saludable],       7, 15).
+    evento(noche_fusion,         [asiatica, fusion],              8, 20).
+
+    es_candidato(Chef, Evento) :-
+        chef(Chef, Especialidades, _, _),
+        evento(Evento, Requeridas, _, _),
+        subset(Requeridas, Especialidades).
+
+    sugerir_asignacion(Chef, Evento) :-
+        es_candidato(Chef, Evento),
+        chef(Chef, _, Nivel, Disponibilidad),
+        evento(Evento, _, Dificultad, Carga),
+        Nivel >= Dificultad,
+        Disponibilidad >= Carga.
+
+Consultas:
+
+    ?- es_candidato(antonio, cena_nupcial).
+    true.
+
+    ?- sugerir_asignacion(X, cena_nupcial).
+    X = antonio ;
+    X = gabriela.
