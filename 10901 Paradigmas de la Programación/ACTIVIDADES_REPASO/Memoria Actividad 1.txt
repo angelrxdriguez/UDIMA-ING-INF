@@ -246,6 +246,11 @@ Las especialidades se escriben en minúsculas y sin tildes ("reposteria", "asiat
 datos equivalen a los hechos de un programa lógico: describen el mundo sin decir cómo se
 van a usar.
 
+No se han usado clases (programación orientada a objetos) porque los chefs y los eventos
+solo contienen datos, sin comportamiento propio, y lo que pide el enunciado son reglas
+que se aplican sobre esos datos; con diccionarios el modelo queda más sencillo y más
+cercano al estilo de hechos y reglas del paradigma lógico.
+
 
 3.2 a) es_candidato(Chef, Evento)
 
