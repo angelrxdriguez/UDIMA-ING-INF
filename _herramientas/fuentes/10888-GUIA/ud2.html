@@ -1,0 +1,436 @@
+<!-- ============================================================ UNIDAD 2 -->
+<section class="unidad">
+<!--toc level=1 label="UNIDAD 2" title="Unidad 2 · Sistemas y método de Gauss"-->
+<div class="banda">
+  <div class="sup">UNIDAD 2</div>
+  <div class="titulo">Sistemas y método de Gauss</div>
+  <div class="sub">Diapositivas «Sistemas y reducción de matrices por Gauss» (44) · clase del 5 de octubre de 2026 · 9 lecciones</div>
+</div>
+<div class="dos">
+<div>
+<h3 style="margin-top:0">Qué vas a aprender</h3>
+<p>A pasar un sistema a una matriz, reducirla por Gauss o por Gauss-Jordan, calcular rangos, decir si el sistema tiene
+una solución, infinitas o ninguna, escribir las soluciones con parámetros y discutir sistemas con una letra.</p>
+</div>
+<div>
+<h3 style="margin-top:0">Qué suele caer</h3>
+<p>Casi todo: un sistema por Gauss con sustitución hacia atrás, otro por Gauss-Jordan con parámetros (pidiendo la FERF)
+y uno con parámetro para discutir. En la AEC 1 fueron los problemas 2, 3 y 4.</p>
+</div>
+</div>
+<div class="nota clase"><span class="lead">En clase · por qué esta unidad es la base.</span> Gauss y Gauss-Jordan son
+«fundamentales, porque resulta que toda la asignatura está basada en esto». El profesor lo comparó con una bola que crece:
+de nada sirve saber cosas avanzadas si fallas en las operaciones por filas. Y quien haga bien todo lo de esta clase
+tiene «ganada» la AEC 1. <span class="min">▶ 01:03</span> <span class="min">▶ 1:14:11</span> (5/10)</div>
+
+<!-- ------------------------------------------------ 2.1 -->
+<div class="leccion" style="margin-top:8pt">
+<!--toc level=2 label="LECCIÓN 2.1" title="2.1 Del sistema a la matriz ampliada"-->
+<div class="etq">Lección 2.1</div>
+<h1>Del sistema a la matriz ampliada<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> escribir cualquier sistema como $A\mathbf x=\mathbf b$ y como matriz ampliada.</p>
+<p><b>La idea.</b> «Acarrear» las letras es un lío. Se trabaja solo con los números: cada fila es una ecuación y cada
+columna, una incógnita. A la izquierda de la raya, los coeficientes ($A$, la <b>matriz del sistema</b>); a la derecha,
+los términos independientes ($\mathbf b$). Todo junto es la <b>matriz ampliada</b> $(A|\mathbf b)$.</p>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 2</div><div class="cue">
+$$\begin{cases}\phantom{2x_1+{}}x_2-3x_3=-5\\2x_1+3x_2-x_3=7\\4x_1+5x_2-2x_3=10\end{cases}
+\ \Rightarrow\ \underbrace{\M{rrr}{0&1&-3\\2&3&-1\\4&5&-2}}_{A}\underbrace{\M{c}{x_1\\x_2\\x_3}}_{\mathbf x}=\underbrace{\M{r}{-5\\7\\10}}_{\mathbf b}
+\ \Rightarrow\ (A|\mathbf b)=\M{rrr|r}{0&1&-3&-5\\2&3&-1&7\\4&5&-2&10}$$
+<p class="gris">Donde falta una incógnita se pone un 0 (aquí $x_1$ en la primera ecuación). Las incógnitas pueden
+llamarse $x,y,z,w$ o $x_1,x_2,x_3,\dots$: «puedo tener mil millones de variables y no necesito un nombre para cada una».</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.1 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Escribe la matriz ampliada de $\ 2x-z=1,\ \ x+y+3z=0,\ \ y-2z=4$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 2.2 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.2" title="2.2 Las tres operaciones por filas"-->
+<div class="etq">Lección 2.2</div>
+<h1>Las tres operaciones por filas<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> hacer ceros con operaciones elementales por filas (OEPF) sin equivocarte de signo.</p>
+<p>Hay «solamente tres, nada más», y ninguna cambia las soluciones del sistema:</p>
+<table>
+  <tr><th style="width:150pt">Operación</th><th style="width:95pt">Cómo se escribe</th><th>Para qué sirve</th></tr>
+  <tr><td>1. Multiplicar una fila por un número $\neq0$</td><td>$\tfrac15F_2$, $\ -F_3$</td><td>Conseguir un pivote 1, quitar fracciones o cambiar el signo.</td></tr>
+  <tr><td>2. Intercambiar dos filas</td><td>$F_1\leftrightarrow F_2$ (el profesor: $F_{12}$)</td><td>Poner arriba una fila con un 1 o −1, o quitar un 0 del sitio del pivote. «¿Qué más me da el orden en el cual yo las escriba?».</td></tr>
+  <tr><td>3. Sumar a una fila un múltiplo de otra</td><td>$F_2-2F_1$ (el profesor: $-2F_1+F_2$)</td><td>Hacer ceros. <b>Cambia la fila que va sola</b> ($F_2$); la otra ($F_1$) es la herramienta y no cambia.</td></tr>
+</table>
+<div class="caja metodo"><div class="tit">Método · cómo hacer un cero</div><div class="cue">
+<p>Quiero un 0 en el lugar de un número $a$ que está debajo de un pivote $p$. Hago $F_{\text{abajo}}-\dfrac{a}{p}F_{\text{pivote}}$.
+Si el pivote es 1, el multiplicador es <b>el propio número $a$</b>: por eso conviene tener pivotes 1 o −1.</p>
+<p style="margin-bottom:1pt">Ejemplo: pivote 1 y debajo un 3 → $F_2-3F_1$. Debajo un $-4$ → $F_3+4F_1$.</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · cuenta a cuenta</div><div class="cue">
+{{chain rrr|r : 1 2 -1 3 ; 3 5 1 4 ; -2 1 3 0 :: F2-3F1, F3+2F1 ! piv}}
+<p>Fila 2: $3-3\cdot1=0$, $\ 5-3\cdot2=-1$, $\ 1-3\cdot(-1)=4$, $\ 4-3\cdot3=-5$.
+Fila 3: $-2+2\cdot1=0$, $\ 1+2\cdot2=5$, $\ 3+2\cdot(-1)=1$, $\ 0+2\cdot3=6$.</p>
+</div></div>
+<div class="dos">
+<div class="nota comprueba" style="margin-top:0"><span class="lead">Dos comprobaciones del profesor.</span> Si la fila
+herramienta tiene un 0 en una columna, el número de abajo <b>no cambia</b>. Y si a un 0 le sumas algo distinto de 0,
+el resultado no puede ser 0: «te está dando algo». <span class="min">▶ 1:10:41</span></div>
+<div class="nota clase" style="margin-top:0"><span class="lead">En clase · en el examen, todos los ceros de una vez.</span>
+Con cada pivote puedes hacer todos los ceros de su columna en un solo paso, sin copiar la matriz tras cada
+operación. Las diapositivas van una a una «por razones pedagógicas». <span class="min">▶ 48:40</span></div>
+</div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.2 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Aplica $F_2-2F_1$ y $F_3+F_1$ a la matriz $\M{rrr}{1&2&-1\\2&3&1\\-1&0&4}$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 2.3 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.3" title="2.3 Gauss y sustitución hacia atrás"-->
+<div class="etq">Lección 2.3</div>
+<h1>Gauss y sustitución hacia atrás<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> llevar una matriz a forma escalonada y resolver el sistema de abajo arriba.</p>
+<p><b>La idea.</b> El método de Gauss hace ceros «hacia abajo y hacia la izquierda» hasta tener una <b>forma escalonada</b>:
+cada fila empieza más a la derecha que la anterior. En el mejor caso (3 ecuaciones, 3 incógnitas) queda un triángulo de
+ceros y la última fila da directamente $z$. Luego se sube: se sustituye $z$ en la fila 2 para sacar $y$, y los dos en la
+fila 1 para sacar $x$. Eso es la <b>sustitución hacia atrás</b>.</p>
+<div class="caja metodo"><div class="tit">Método de Gauss</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Primer pivote: si la fila 1 empieza por 0 o por un número incómodo, <b>intercambia</b> con una fila que empiece por 1 o −1.</li>
+  <li>Haz ceros debajo del primer pivote (todos en un paso).</li>
+  <li>Repite con el segundo pivote, mirando solo las filas de debajo. Y así hasta el final.</li>
+  <li>Despeja de abajo arriba y <b>comprueba</b> sustituyendo en una ecuación original.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 15 a 17: $2x+y-z=-3,\ x-2y+2z=1,\ 2x+y+z=5$</div><div class="cue">
+{{chain rrr|r : 2 1 -1 -3 ; 1 -2 2 1 ; 2 1 1 5 :: F1<->F2 :: F2-2F1, F3-2F1 :: 1/5F2 :: F3-5F2 :: 1/2F3 ! piv}}
+<div class="pasos">
+  <div>$F_1\leftrightarrow F_2$</div><p class="gris">Para tener un 1 de pivote: «se puede [con el 2], pero soy vago y cómodo igual que vosotros». <span class="min">▶ 29:28</span></p>
+  <div>Fila 3: $z=4$</div><p class="gris">La última fila dice $0x+0y+1z=4$.</p>
+  <div>Fila 2: $y-z=-1\Rightarrow y=-1+4=3$</div><p class="gris">Sustituyo $z$.</p>
+  <div>Fila 1: $x-2\cdot3+2\cdot4=1\Rightarrow x=-1$</div><p class="gris">Sustituyo $y$ y $z$.</p>
+</div>
+<p>Solución $(x,y,z)=(-1,3,4)$. <b>Comprobación</b> en la 1.ª ecuación original: $2(-1)+3-4=-3$ \ok</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 32: cuando la primera fila empieza por 0</div><div class="cue">
+<p>$y-3z=-5,\ 2x+3y-z=7,\ 4x+5y-2z=10$. «Con el cero no puedo hacer nada»: intercambio y uso el 2 de pivote.</p>
+{{chain rrr|r : 0 1 -3 -5 ; 2 3 -1 7 ; 4 5 -2 10 :: F1<->F2 :: F3-2F1 :: F3+F2 ! piv}}
+<p>$-3z=-9\Rightarrow z=3$; $\ y-9=-5\Rightarrow y=4$; $\ 2x+12-3=7\Rightarrow x=-1$.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.3 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Resuelve por Gauss y sustitución hacia atrás: $\ x+y+z=6,\ \ 2x-y+z=3,\ \ x+2y-z=2$.</p>
+</div></div>
+<div class="nota idea"><span class="lead">¿Dónde paro?</span> Si piden «Gauss», con el triángulo de ceros basta: «puedo parar
+donde yo quiera, siempre y cuando tenga mi triángulo de ceros». Formas escalonadas hay infinitas (dividir una fila o
+cambiarle el signo sigue valiendo). <span class="min">▶ 1:15:13</span></div>
+</div>
+
+<!-- ------------------------------------------------ 2.4 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.4" title="2.4 Gauss-Jordan y la FERF"-->
+<div class="etq">Lección 2.4</div>
+<h1>Gauss-Jordan y la forma escalonada reducida (FERF)<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> llegar a la FERF, reconocerla y leer la solución directamente.</p>
+<p><b>La idea.</b> Gauss-Jordan sigue donde se para Gauss: «no solamente voy a poner ceros por debajo, voy a poner ceros
+por arriba», y además cada pivote tiene que valer 1. El resultado es la <b>forma escalonada reducida por filas</b>
+(FERF, también «forma canónica»). En el mejor caso la solución «es una lectura»:</p>
+$$\M{rrr|r}{1&0&0&a\\0&1&0&b\\0&0&1&c}\ \Rightarrow\ x=a,\ y=b,\ z=c$$
+<div class="dos">
+<div class="caja metodo" style="margin-top:0"><div class="tit">Cómo reconocer una FERF</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Es escalonada (las filas de ceros, abajo del todo).</li>
+  <li>Cada pivote vale <b>1</b>.</li>
+  <li>Encima y debajo de cada pivote, <b>solo ceros</b>.</li>
+</ol>
+<p style="margin-bottom:1pt">Las columnas sin pivote pueden tener cualquier número.</p>
+</div></div>
+<div class="nota clase" style="margin-top:0"><span class="lead">En clase · el orden importa.</span> «Primero se consiguen
+los ceros por debajo y, una vez que están todos los ceros que están abajo, conseguimos los ceros que están por arriba».
+Los de arriba, empezando por el <b>último</b> pivote. Mezclar, «mal asunto». <span class="min">▶ 38:44</span></div>
+</div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 23 a 25: el mismo sistema por Gauss y por Gauss-Jordan</div><div class="cue">
+<p>$x+2y+6z=-13,\ \ -2x+4y+8z=-18,\ \ -4x+y+2z=-8$. <b>Primero Gauss:</b></p>
+{{chain rrr|r : 1 2 6 -13 ; -2 4 8 -18 ; -4 1 2 -8 :: F2+2F1, F3+4F1 :: 1/4F2 :: 2F3, F3-9F2 ! piv}}
+<p class="gris">Tras $\tfrac14F_2$ la fila 2 es $[0,2,5\,|\,-11]$. Para hacer el 0 debajo del 2 sin fracciones, multiplico
+la fila 3 por 2 y le resto 9 veces la fila 2 (dos operaciones permitidas seguidas). Sustitución hacia atrás:
+$7z=-21\Rightarrow z=-3$; $\ 2y-15=-11\Rightarrow y=2$; $\ x+4-18=-13\Rightarrow x=1$.</p>
+<p><b>Después Gauss-Jordan</b>, siguiendo con la misma matriz: pivotes 1 y ceros por arriba, desde el último.</p>
+{{chain rrr|r : 1 2 6 -13 ; 0 2 5 -11 ; 0 0 7 -21 :: 1/7F3 :: F2-5F3, F1-6F3 :: 1/2F2 :: F1-2F2 ! piv}}
+<p>Se lee $x=1,\ y=2,\ z=-3$. «Tenía que dar lo mismo. Si no da lo mismo, mal asunto»: pedir dos métodos te regala una
+comprobación. <span class="min">▶ 45:35</span></p>
+<p class="gris">Errata: en la diapositiva 24, $x+2(2)+6(3)$ debe ser $x+2(2)+6(-3)$; el resultado $x=1$ es correcto.</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 17 y 18: FERF de una matriz (no es un sistema)</div><div class="cue">
+{{chain rrr : 1 0 -3 ; 2 3 -6 ; 4 6 -11 :: F2-2F1, F3-4F1 :: F3-2F2 :: 1/3F2 :: F1+3F3 ! piv}}
+<p class="gris">El cero encima del segundo pivote «ya venía de fábrica». La FERF es la identidad: las tres filas son independientes.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.4 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Obtén la FERF de $\M{rrrr}{1&2&0&3\\2&4&1&8\\1&2&1&5}$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 2.5 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.5" title="2.5 Rango y Rouché-Frobenius"-->
+<div class="etq">Lección 2.5</div>
+<h1>Rango y teorema de Rouché-Frobenius<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular el rango y clasificar cualquier sistema mirando la matriz escalonada.</p>
+<p><b>Rango</b> de una matriz = número de filas que <b>no</b> son todo ceros después de hacer Gauss (= número de filas
+linealmente independientes = número de pivotes). Se llama $r$ al rango de $A$, $r'$ al de $(A|\mathbf b)$ y $n$ al número de incógnitas.</p>
+<table>
+  <tr><th style="width:85pt">Rangos</th><th style="width:130pt">Tipo de sistema</th><th>Soluciones</th></tr>
+  <tr><td>$r=r'=n$</td><td><b>Compatible determinado</b> (SCD)</td><td>Una única solución.</td></tr>
+  <tr><td>$r=r'&lt;n$</td><td><b>Compatible indeterminado</b> (SCI)</td><td>Infinitas, con $n-r$ parámetros (variables libres).</td></tr>
+  <tr><td>$r&lt;r'$</td><td><b>Incompatible</b> (SI)</td><td>Ninguna.</td></tr>
+</table>
+<div class="caja metodo"><div class="tit">Método · leer la matriz escalonada</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>¿Hay alguna fila $[\,0\ 0\ \cdots\ 0\,|\,g\,]$ con $g\neq0$? Dice $0=g$, «una barbaridad»: <b>incompatible</b>. Basta con una.</li>
+  <li>Si no, cuenta los pivotes ($r=r'$) y compáralos con el número de incógnitas $n$.</li>
+</ol>
+</div></div>
+<div class="tres">
+<div class="centro">$\M{rrr|r}{1&0&0&2\\0&1&0&-1\\0&0&1&3}$<p class="gris">$r=r'=3=n$: SCD.</p></div>
+<div class="centro">$\M{rrr|r}{1&2&0&1\\0&0&1&4\\0&0&0&0}$<p class="gris">$r=r'=2&lt;3$: SCI, 1 parámetro.</p></div>
+<div class="centro">$\M{rrr|r}{1&-1&2&3\\0&1&1&2\\0&0&0&5}$<p class="gris">$r=2&lt;r'=3$: SI.</p></div>
+</div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 9 a 11: rango de una 4 × 4</div><div class="cue">
+{{chain rrrr : 1 1 -2 1 ; 2 0 1 3 ; -1 1 2 1 ; 3 2 1 2 :: F2-2F1, F3+F1, F4-3F1 :: F2<->F4 :: F3+2F2, F4-2F2 :: 1/14F3 :: F4+9F3 ! piv}}
+<p>Cuatro filas no nulas: <b>rango 4</b>. «Voy a ser astuto»: en la columna 2 había un $-2$ y un $-1$; intercambié para
+trabajar con el $-1$. <span class="min">▶ 21:09</span> En la grabación se le escapa «Rouché-Laplace»: es Rouché-Frobenius.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.5 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Calcula el rango de $\M{rrr}{1&2&3\\2&4&6\\1&0&1}$. ¿Qué tipo de sistema sería si fuese la matriz ampliada de un sistema de 2 incógnitas?</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 2.6 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.6" title="2.6 Infinitas soluciones: parámetros"-->
+<div class="etq">Lección 2.6</div>
+<h1>Infinitas soluciones: variables libres y parámetros<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> escribir la solución de un sistema compatible indeterminado en función de parámetros.</p>
+<div class="caja metodo"><div class="tit">Método</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Llega a la FERF (Gauss-Jordan).</li>
+  <li>Columnas con pivote: <b>variables principales</b>. Columnas sin pivote: <b>variables libres</b>, que se llaman
+    $t$ (y $s$ si hay dos).</li>
+  <li>Cada fila no nula da una ecuación: deja la variable principal a la izquierda y pasa las libres a la derecha
+    (<b>cambiando el signo</b>).</li>
+  <li>Escribe todas las incógnitas, también las libres ($z=t$). Comprueba con un valor de $t$.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 19: $x+y+2z=2,\ y+z=1,\ 2x+2z=2$</div><div class="cue">
+{{chain rrr|r : 1 1 2 2 ; 0 1 1 1 ; 2 0 2 2 :: F3-2F1 :: F3+2F2 :: F1-F2 ! piv}}
+<p>$r=r'=2&lt;3$: compatible indeterminado. Pivotes en $x$ e $y$; $z$ es libre, $z=t$. Filas: $x+z=1$ y $y+z=1$, así que
+$\ x=1-t,\ \ y=1-t,\ \ z=t$. Son tres planos que «pasan por la misma recta». <span class="min">▶ 36:38</span></p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 20 a 22: Gauss-Jordan con 4 incógnitas</div><div class="cue">
+<p>$x+2y-3z-16w=4,\ \ y+2z-3w=6,\ \ -x-y+z+9w=-2$. Con 3 ecuaciones y 4 incógnitas, «el mejor caso va a ser compatible indeterminado».</p>
+{{chain rrrr|r : 1 2 -3 -16 4 ; 0 1 2 -3 6 ; -1 -1 1 9 -2 :: F3+F1 :: F3-F2 :: -1/4F3 :: F2-2F3, F1+3F3 :: F1-2F2 ! piv}}
+<div class="pasos">
+  <div>$x-3w=-1,\quad y-5w=4,\quad z+w=1$</div><p class="gris">Lo que dice cada fila de la FERF. La columna de $w$ no tiene pivote: $w=t$.</p>
+  <div>$x=-1+3t,\ \ y=4+5t,\ \ z=1-t,\ \ w=t$</div><p class="gris">Paso $t$ al otro lado con el signo cambiado.</p>
+</div>
+<p>En forma vectorial: $(x,y,z,w)=(-1,4,1,0)+t\,(3,5,-1,1)$, una <b>recta en $\mathbb R^4$</b>: un parámetro, un grado
+de libertad. «Por primera vez estáis trabajando en cuatro dimensiones… y es fascinante». <span class="min">▶ 42:08</span>
+<b>Comprobación</b> con $t=1$: $(2,9,0,1)$ en la 3.ª: $-2-9+0+9=-2$ \ok</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.6 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Resuelve por Gauss-Jordan: $\ x+2y-z=1,\ \ 2x+4y+z=5,\ \ 3x+6y=6$. Ojo: la variable libre no es la última.</p>
+</div></div>
+<div class="nota error"><span class="lead">Errores típicos.</span> Olvidar escribir la variable libre ($z=t$). No cambiar
+el signo al pasar $t$. Y en los ejercicios que piden la FERF, pararse antes: si piden FERF «y te paras aquí… fallas el
+ejercicio». <span class="min">▶ 35:49</span></div>
+</div>
+
+<!-- ------------------------------------------------ 2.7 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.7" title="2.7 Sistemas homogéneos"-->
+<div class="etq">Lección 2.7</div>
+<h1>Sistemas homogéneos<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> resolver un sistema $A\mathbf x=\mathbf 0$ y saber de antemano qué tipo puede ser.</p>
+<p><b>La idea.</b> Un sistema es <b>homogéneo</b> si todos los términos independientes son 0. Esa columna de ceros no
+cambia nunca al operar, así que <b>nunca es incompatible</b> ($r=r'$ siempre) y siempre tiene la solución nula
+$x=y=z=0$. Si $r=n$, esa es la única; si $r&lt;n$, hay infinitas. Por eso la columna de ceros «se puede ni escribir».</p>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 26 a 29: cuatro ecuaciones, cuatro incógnitas</div><div class="cue">
+<p>$x+2y+3z+4w=0,\ \ 2x+3y+4z+5w=0,\ \ 3x+4y+5z+6w=0,\ \ 4x+5y+6z+7w=0$ (sin escribir la columna de ceros):</p>
+{{chain rrrr : 1 2 3 4 ; 2 3 4 5 ; 3 4 5 6 ; 4 5 6 7 :: F2-2F1, F3-3F1, F4-4F1 :: F3-2F2, F4-3F2 :: F1+2F2, -F2 ! piv}}
+<p>Rango 2 &lt; 4: <b>dos parámetros</b>, $z=s$ y $w=t$. Filas: $x-z-2w=0$, $y+2z+3w=0$:</p>
+$$x=s+2t,\quad y=-2s-3t,\quad z=s,\quad w=t$$
+<p>«Un grado de libertad es una recta, dos grados de libertad es un plano»: es un plano en $\mathbb R^4$. <span class="min">▶ 51:24</span></p>
+<p class="gris">Errata: la diapositiva 28 escribe el primer paso como $-1F_1+F_2$, $-2F_1+F_3$, $-3F_1+F_4$; para que salgan
+esas matrices (que sí están bien) tiene que ser $-2F_1+F_2$, $-3F_1+F_3$, $-4F_1+F_4$.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.7 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Resuelve el sistema homogéneo $\ x+y-z=0,\ \ 2x-y+z=0,\ \ x+2y-2z=0$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 2.8 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.8" title="2.8 Vectores linealmente independientes"-->
+<div class="etq">Lección 2.8</div>
+<h1>Vectores linealmente independientes<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> decidir con Gauss si unos vectores son independientes y encontrar la combinación si no lo son.</p>
+<p><b>La idea.</b> Unos vectores son <b>linealmente independientes</b> si ninguno es combinación lineal de los otros
+(lección 1.2), y <b>dependientes</b> si alguno lo es. «Cuidado con la doble negación»: dependiente = no independiente.
+Al operar por filas, «lo que estoy haciendo es descubrir esas combinaciones lineales»: si aparece una fila de ceros,
+esa fila era combinación de las demás. <span class="min">▶ 16:46</span></p>
+<div class="caja metodo"><div class="tit">Método</div><div class="cue">
+<p style="margin-bottom:1pt">Pon los vectores como filas de una matriz y haz Gauss. Si el rango es igual al número de
+vectores, son <b>independientes</b>; si es menor (sale alguna fila de ceros), son <b>dependientes</b>.</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 8: $\mathbf u=(1,1,2)$, $\mathbf v=(0,1,1)$, $\mathbf w=(2,0,2)$</div><div class="cue">
+{{chain rrr : 1 1 2 ; 0 1 1 ; 2 0 2 :: F3-2F1 :: F3+2F2 ! piv}}
+<p>Sale una fila de ceros: rango 2 &lt; 3, <b>dependientes</b>. Las operaciones dicen cuál es la combinación:
+$F_3-2F_1+2F_2=\mathbf 0$, es decir $\mathbf w=2\mathbf u-2\mathbf v$. Compr.: $2(1,1,2)-2(0,1,1)=(2,0,2)$ \ok</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.8 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>¿Son independientes $(1,2,1)$, $(2,1,0)$ y $(1,-1,-1)$? Si no lo son, escribe uno como combinación de los otros.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 2.9 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 2.9" title="2.9 Discutir un sistema con parámetro"-->
+<div class="etq">Lección 2.9</div>
+<h1>Discutir un sistema con parámetro (por Gauss)<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> decir para qué valores de una letra $k$ el sistema es compatible determinado,
+indeterminado o incompatible, usando solo Gauss.</p>
+<p>«Este es un problema típico que se suele pedir». Es el mismo Gauss, con una letra dentro. En la AEC 1 se pidió
+«usando eliminación gaussiana» y «no resolver por determinantes»: con determinantes (lección 4.6) solo cuando lo permitan.</p>
+<div class="caja metodo"><div class="tit">Método</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li><b>Ordena las filas</b> para que arriba quede una fila sin $k$ que empiece por 1, y la $k$ quede «abajo del todo».</li>
+  <li>Haz Gauss normal. Las expresiones con $k$ se complican: «me aguanto y la voy cargando». <b>No dividas</b> entre una
+    expresión con $k$ (podría valer 0).</li>
+  <li>Al final, mira qué pivotes dependen de $k$ e iguálalos a 0: salen los <b>valores especiales</b>.</li>
+  <li>Para $k$ distinto de esos valores: $r=r'=n$, compatible determinado.</li>
+  <li>Cada valor especial, <b>por separado</b>: sustituye $k$ en la matriz escalonada y compara $r$ y $r'$.</li>
+  <li><b>Concluye</b> con una frase por caso. Errores típicos: dividir entre $k-1$ sin avisar de que $k\neq1$, y no
+    escribir la conclusión.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 30 y 31 (matriz ampliada con $k$)</div><div class="cue">
+<div class="cadena">
+<span>$\M{rrr|r}{k&1&1&k\\1&k&1&2\\1&1&k&1}$</span>
+<span>$\xrightarrow{F_1\leftrightarrow F_3}\M{rrr|r}{\piv{1}&1&k&1\\1&k&1&2\\k&1&1&k}$</span>
+<span>$\xrightarrow{\substack{F_2-F_1\\F_3-kF_1}}\M{ccc|c}{1&1&k&1\\0&k-1&1-k&1\\0&1-k&1-k^2&0}$</span>
+<span>$\xrightarrow{F_3+F_2}\M{ccc|c}{1&1&k&1\\0&k-1&1-k&1\\0&0&-k^2-k+2&1}$</span>
+</div>
+<div class="pasos">
+  <div>$F_3-kF_1$: $\ k-k=0,\ 1-k,\ 1-k^2,\ k-k=0$</div><p class="gris">La fila 1 por $k$: $(k,k,k^2,k)$, y se resta a la fila 3.</p>
+  <div>$-k^2-k+2=0\iff k=1$ o $k=-2$</div><p class="gris">El último elemento de la fila 3 es 1 y nunca se anula: los rangos solo se separan si se anula el $(3,3)$.</p>
+  <div>$k=1$: filas 2 y 3 quedan $[0\ 0\ 0\,|\,1]$</div><p class="gris">$r=1$, $r'=2$: <b>incompatible</b>.</p>
+  <div>$k=-2$: fila 3 $[0\ 0\ 0\,|\,1]$, fila 2 $[0\ {-3}\ 3\,|\,1]$</div><p class="gris">$r=2$, $r'=3$: <b>incompatible</b>.</p>
+  <div>$k\neq1,\ k\neq-2$</div><p class="gris">Tres pivotes: $r=r'=3$, <b>compatible determinado</b>.</p>
+</div>
+<p class="gris">Aquí no hay caso indeterminado. Errata: la diapositiva 31 dice $r(A|\mathbf b)=3$ también para $k=1$; es 2 (la conclusión, incompatible, es correcta).</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T2.9 · solución en la p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Discute según $k$: $\ x+y+kz=1,\ \ x+ky+z=1,\ \ kx+y+z=1$. Resuélvelo cuando sea compatible determinado.</p>
+</div></div>
+</div>
+</section>
+
+<!-- ============================================================ LISTA UD2 -->
+<section class="nueva">
+<!--toc level=2 label="UNIDAD 2 · LISTA DE CONTROL" title="Lista de control de la UD2"-->
+<div class="etq">Unidad 2 · Lista de control</div>
+<h1>¿Has terminado la unidad 2?</h1>
+<p>Esta es la unidad más importante: no la des por terminada hasta que <b>todas</b> las casillas estén marcadas.
+Los ejercicios 13 a 17 de las diapositivas son los «propuestos»: el profesor los deja sin resolver para casa.</p>
+<table class="control">
+  <tr><th></th><th>Ejercicio</th><th>Enunciado o qué practica</th><th>Dónde</th></tr>
+  <tr class="grupo"><td colspan="4">2.1–2.3 Matriz ampliada, operaciones por filas y Gauss</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 3, 10</td><td>Gauss con sustitución hacia atrás (en el 10, la fila 1 empieza por 0).</td><td class="donde">lecc. 2.3</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 15</td><td>Propuesto (es el mismo sistema del ejercicio 3: hazlo sin mirar).</td><td class="donde">lecc. 2.3</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T2.1 · T2.2 · T2.3</td><td>Matriz ampliada; dos OEPF; Gauss con sustitución hacia atrás.</td><td class="donde">lecc. 2.1–2.3</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.1 <span class="tag ex">TIPO EXAMEN</span></td><td>Por Gauss y sustitución hacia atrás: $x-y+2z=6,\ 2x+y-z=-1,\ 3x+2y+z=3$.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></td></tr>
+  <tr class="grupo"><td colspan="4">2.4 Gauss-Jordan y FERF · 2.5 Rango y Rouché-Frobenius</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 2, 12</td><td>Escalonar una 4 × 4 (es la misma matriz en los dos).</td><td class="donde">lecc. 2.5</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 4, 7</td><td>FERF de una matriz; un sistema por Gauss y por Gauss-Jordan.</td><td class="donde">lecc. 2.4</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 13 <span class="tag ex">TIPO EXAMEN</span></td><td>Propuesto: por Gauss-Jordan, $x+2y+z=1,\ 3x+5y+z=0,\ 2x+2y+3z=6$.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">T2.4 · T2.5</td><td>FERF de una 3 × 4; rango y clasificación.</td><td class="donde">lecc. 2.4–2.5</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.2</td><td>El sistema de E2.1, ahora por Gauss-Jordan hasta la FERF (debe dar lo mismo).</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.4</td><td>Discute y resuelve si se puede: $x+2y-z=2,\ 2x+y+z=3,\ 3x+3y=4$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.8</td><td>Rango de $\M{rrrr}{1&2&0&1\\2&4&1&3\\-1&-2&1&0\\0&0&1&1}$.</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">2.6 Parámetros · 2.7 Homogéneos · 2.8 Independencia</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 5, 6, 11</td><td>Sistemas compatibles indeterminados (3 y 4 incógnitas).</td><td class="donde">lecc. 2.6</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 16</td><td>Propuesto: escalonar, discutir y resolver $y+z=2,\ 2x+2y=4,\ -x-2y-z=-4$.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 8, 17</td><td>Homogéneos (el 17 es propuesto: el del ejercicio 6 con $\mathbf b=\mathbf 0$).</td><td class="donde">lecc. 2.7</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 1</td><td>¿Son independientes tres vectores?</td><td class="donde">lecc. 2.8</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T2.6 · T2.7 · T2.8</td><td>SCI con variable libre en medio; homogéneo; independencia.</td><td class="donde">lecc. 2.6–2.8</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.3 <span class="tag ex">TIPO EXAMEN</span></td><td>Por Gauss-Jordan (FERF y solución con parámetros $s$, $t$): $x+y+2z-w=3,\ 2x+2y+5z=8,\ x+y+3z+w=5$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.5</td><td>Homogéneo: $x-y+2z+w=0,\ 2x-2y+5z+3w=0,\ x-y+3z+2w=0$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.6</td><td>¿Son independientes $(1,0,1)$, $(1,1,0)$ y $(0,1,1)$?</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">2.9 Discutir con parámetro</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 9</td><td>Discutir según $k$.</td><td class="donde">lecc. 2.9</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 14 <span class="tag ex">TIPO EXAMEN</span></td><td>Propuesto: ampliada $\M{rrr|r}{k&1&-1&k^2\\1&k&1&1\\1&1&k&1}$. ¿Para qué $k$ es indeterminado? Da un $k$ incompatible.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 2 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">T2.9</td><td>Discutir y resolver con $k$.</td><td class="donde">lecc. 2.9</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E2.7 <span class="tag ex">TIPO EXAMEN</span></td><td>Discute usando eliminación gaussiana: $x+y+az=1,\ -x+ay+2z=0,\ x+y+2z=1$.</td><td class="donde"></td></tr>
+</table>
+</section>
+
+<!-- ============================================================ SOLUCIONES UD2 -->
+<section class="nueva soluciones">
+<!--toc level=2 label="UNIDAD 2 · SOLUCIONES" title="Soluciones de la UD2"-->
+<div class="etq">Unidad 2 · Soluciones</div>
+<h1>Soluciones de la unidad 2</h1>
+<p class="sol"><span class="id">T2.1</span>$\M{rrr|r}{2&0&-1&1\\1&1&3&0\\0&1&-2&4}$ (en la 1.ª ecuación falta $y$ y en la 3.ª falta $x$: van ceros).</p>
+<p class="sol"><span class="id">T2.2</span></p>
+{{chain rrr : 1 2 -1 ; 2 3 1 ; -1 0 4 :: F2-2F1, F3+F1}}
+<p class="sol"><span class="id">T2.3</span></p>
+{{chain rrr|r : 1 1 1 6 ; 2 -1 1 3 ; 1 2 -1 2 :: F2-2F1, F3-F1 :: F2<->F3 :: F3+3F2 ! piv}}
+<p class="sol">$-7z=-21\Rightarrow z=3$; $\ y-6=-4\Rightarrow y=2$; $\ x+2+3=6\Rightarrow x=1$. Solución $(1,2,3)$. Compr. en la 2.ª: $2-2+3=3$ \ok</p>
+<p class="sol"><span class="id">T2.4</span></p>
+{{chain rrrr : 1 2 0 3 ; 2 4 1 8 ; 1 2 1 5 :: F2-2F1, F3-F1 :: F3-F2 ! piv}}
+<p class="sol">Ya es la FERF: pivotes 1 en las columnas 1 y 3, con ceros encima y debajo (la columna 2 no tiene pivote).</p>
+<p class="sol"><span class="id">T2.5</span>$F_2-2F_1$ da una fila de ceros y $F_3-F_1=[0,-2,-2]$: <b>rango 2</b>. Como ampliada de un sistema de 2
+incógnitas: la fila $[0,-2\,|\,-2]$ y ninguna $[0\ 0\,|\,g]$, $r=r'=2=n$: compatible determinado ($y=1$, $x=1$).</p>
+<div class="dos">
+<div>
+<p class="sol"><span class="id">T2.6</span></p>
+{{chain rrr|r : 1 2 -1 1 ; 2 4 1 5 ; 3 6 0 6 :: F2-2F1, F3-3F1 :: F3-F2 :: 1/3F2 :: F1+F2 ! piv}}
+<p class="sol">Pivotes en $x$ y $z$; $y$ libre. $x+2y=2$, $z=1$: $\ x=2-2t,\ y=t,\ z=1$. Compr. $t=1$: $(0,1,1)$: $0+2-1=1$ \ok</p>
+</div>
+<div>
+<p class="sol"><span class="id">T2.7</span></p>
+{{chain rrr : 1 1 -1 ; 2 -1 1 ; 1 2 -2 :: F2-2F1, F3-F1 :: F2<->F3 :: F3+3F2 :: F1-F2 ! piv}}
+<p class="sol">$x=0$ y $y-z=0$: $\ x=0,\ y=t,\ z=t$ (rango 2 &lt; 3, infinitas soluciones).</p>
+</div>
+</div>
+<p class="sol"><span class="id">T2.8</span>$F_2-2F_1=[0,-3,-2]$, $F_3-F_1=[0,-3,-2]$, y $F_3-F_2$ da ceros: rango 2, <b>dependientes</b>.
+$(1,-1,-1)=(2,1,0)-(1,2,1)$.</p>
+<p class="sol"><span class="id">T2.9</span>Ya está ordenado (la $k$ de la fila 1 está a la derecha). $F_2-F_1$, $F_3-kF_1$ y luego $F_3+F_2$:</p>
+$$\M{ccc|c}{1&1&k&1\\0&k-1&1-k&0\\0&1-k&1-k^2&1-k}\to\M{ccc|c}{1&1&k&1\\0&k-1&1-k&0\\0&0&(1-k)(2+k)&1-k}$$
+<p class="sol">$(1-k)+(1-k^2)=(1-k)(1+1+k)=(1-k)(2+k)$. Valores especiales: $k=1$ y $k=-2$.
+<b>$k=1$:</b> filas 2 y 3 de ceros, $r=r'=1&lt;3$: compatible indeterminado con dos parámetros ($x=1-s-t$, $y=s$, $z=t$).
+<b>$k=-2$:</b> fila 3 $[0\ 0\ 0\,|\,3]$: incompatible. <b>Otro $k$:</b> compatible determinado; de la fila 3, $z=\tfrac{1}{k+2}$,
+y por simetría $x=y=z=\tfrac{1}{k+2}$ (compr.: $\tfrac{1+1+k}{k+2}=1$ \ok).</p>
+<div class="dos">
+<div>
+<p class="sol e"><span class="id">E2.1</span></p>
+{{chain rrr|r : 1 -1 2 6 ; 2 1 -1 -1 ; 3 2 1 3 :: F2-2F1, F3-3F1 :: 1/5F3 :: F2<->F3 :: F3-3F2 ! piv}}
+<p class="sol">$z=2$; $y-2=-3\Rightarrow y=-1$; $x+1+4=6\Rightarrow x=1$. Solución $(1,-1,2)$.</p>
+</div>
+<div>
+<p class="sol e"><span class="id">E2.2</span>Desde la escalonada de E2.1:</p>
+{{chain rrr|r : 1 -1 2 6 ; 0 1 -1 -3 ; 0 0 -2 -4 :: -1/2F3 :: F2+F3, F1-2F3 :: F1+F2 ! piv}}
+</div>
+</div>
+<p class="sol e"><span class="id">E2.3</span>$F_2-2F_1=[0,0,1,2\,|\,2]$, $F_3-F_1=[0,0,1,2\,|\,2]$, $F_3-F_2$ = ceros, $F_1-2F_2$:
+FERF $\M{rrrr|r}{1&1&0&-5&-1\\0&0&1&2&2\\0&0&0&0&0}$. $r=r'=2&lt;4$: SCI con dos parámetros, $y=s$, $w=t$:
+$\ x=-1-s+5t,\ y=s,\ z=2-2t,\ w=t$.</p>
+<p class="sol e"><span class="id">E2.4</span>$F_2-2F_1=[0,-3,3\,|\,-1]$, $F_3-3F_1=[0,-3,3\,|\,-2]$, $F_3-F_2=[0,0,0\,|\,-1]$: $r=2&lt;r'=3$, <b>incompatible</b>.</p>
+<p class="sol e"><span class="id">E2.5</span>FERF $\M{rrrr}{1&-1&0&-1\\0&0&1&1\\0&0&0&0}$; $y=s$, $w=t$: $\ x=s+t,\ y=s,\ z=-t,\ w=t$.</p>
+<p class="sol e"><span class="id">E2.6</span>$F_2-F_1=[0,1,-1]$, $F_3-F_2=[0,0,2]$: rango 3, <b>independientes</b>.</p>
+<p class="sol e"><span class="id">E2.7</span>Pongo arriba la 3.ª ecuación (sin $a$): filas $[1,1,2\,|\,1]$, $[-1,a,2\,|\,0]$, $[1,1,a\,|\,1]$.
+$F_2+F_1$ y $F_3-F_1$: $\M{ccc|c}{1&1&2&1\\0&a+1&4&1\\0&0&a-2&0}$. <b>$a\neq-1,2$:</b> SCD. <b>$a=2$:</b> fila 3 de ceros, $r=r'=2$:
+SCI. <b>$a=-1$:</b> filas $[0,0,4\,|\,1]$ y $[0,0,-3\,|\,0]$; $F_3+\tfrac34F_2=[0,0,0\,|\,\tfrac34]$: SI.</p>
+<p class="sol e"><span class="id">E2.8</span>$F_2-2F_1=[0,0,1,1]$, $F_3+F_1=[0,0,1,1]$; restando, filas 3 y 4 se anulan: <b>rango 2</b>.</p>
+<p class="sol e"><span class="id">Diap. 13</span></p>
+{{chain rrr|r : 1 2 1 1 ; 3 5 1 0 ; 2 2 3 6 :: F2-3F1, F3-2F1 :: -F2 :: F3+2F2 :: 1/5F3 :: F2-2F3, F1-F3 :: F1-2F2 ! piv}}
+<p class="sol e"><span class="id">Diap. 14</span>Ordeno $[1,1,k\,|\,1]$, $[1,k,1\,|\,1]$, $[k,1,-1\,|\,k^2]$. $F_2-F_1$, $F_3-kF_1$, $F_3+F_2$: fila 2
+$[0,\ k-1,\ 1-k\,|\,0]$, fila 3 $[0,\ 0,\ -k(k+1)\,|\,k(k-1)]$. <b>$k=0$</b> y <b>$k=1$</b>: $r=r'=2$, compatible indeterminado.
+<b>$k=-1$</b>: fila 3 $[0\ 0\ 0\,|\,2]$, incompatible. Otro $k$: compatible determinado.</p>
+<p class="sol e"><span class="id">Diap. 16</span>Ordeno $[-1,-2,-1\,|\,-4]$ arriba (o $\tfrac12F_2$ y cambio). Sale $r=r'=2$: SCI, $\ x=t,\ y=2-t,\ z=t$.</p>
+<p class="sol e"><span class="id">Diap. 17</span>Mismas operaciones que el ejercicio 6 con la columna de ceros: $\ x=3t,\ y=5t,\ z=-t,\ w=t$.</p>
+</section>

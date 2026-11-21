@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Álgebra · Guía para dominar las unidades 1 a 4</title>
+<style>
+  @page :first { margin: 0; }
+  body { line-height: 13.4pt; }
+  h1 { break-after: avoid; margin-bottom: 9pt; }
+  h2 { margin-top: 12pt; }
+  .etq { break-after: avoid; }
+  .leccion { margin-top: 16pt; }
+  .leccion.nueva, .nueva { break-before: page; margin-top: 0; }
+  .prio { font: bold 9pt Arial, sans-serif; color: #c58a00; letter-spacing: 1pt; margin-left: 6pt; vertical-align: 2pt; }
+  .sabras { font-size: 10pt; line-height: 12.6pt; color: #333; margin: -4pt 0 7pt; }
+  .sabras b { font-family: Arial, sans-serif; font-size: 9pt; color: var(--azul); }
+
+  /* Cadenas de matrices (la macro {{chain}} las genera) */
+  .cadena { break-inside: avoid; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 5pt 7pt; margin: 6pt 0 8pt; }
+  .cadena > span { white-space: nowrap; }
+  .cadena > span.gris { white-space: normal; }
+  .cadena .katex { font-size: .92em; }
+  .cadena + p, .cadena + ul { margin-top: 2pt; }
+  .izq { justify-content: flex-start; }
+
+  /* Banda de cada unidad */
+  .unidad { break-before: page; }
+  .banda { background: var(--azul); color: #fff; padding: 16pt 16pt 13pt; margin: 0 0 12pt; border-radius: 2.5pt; }
+  .banda .sup { font: bold 9pt Arial, sans-serif; letter-spacing: .4pt; color: #cfdceb; }
+  .banda .titulo { font: bold 21pt/25pt Arial, sans-serif; margin: 3pt 0 6pt; }
+  .banda .sub { font: 10pt/13pt Arial, sans-serif; color: #dfe8f1; }
+
+  /* Portada */
+  .portada .titulo { font-size: 27pt; line-height: 31pt; }
+  .portada .lema { font: 11pt/15pt Arial, sans-serif; color: #fff; margin-top: 14pt; border-top: .6pt solid #6f93b7; padding-top: 10pt; }
+
+  /* Etiquetas pequeñas */
+  .tag { font: bold 7pt Arial, sans-serif; letter-spacing: .3pt; padding: .6pt 3.5pt; border-radius: 2pt; vertical-align: 1pt; white-space: nowrap; }
+  .tag.ex { background: #fbe3d0; color: #9a4a08; }
+  .tag.prof { background: #e3eaf2; color: var(--azul); }
+  .tag.nuevo { background: #ece6f4; color: var(--turno); }
+  .tag.clase { background: #dcefec; color: var(--clase); }
+
+  /* Tu turno: caja morada con número */
+  .caja.turno > .tit .num { float: right; font-weight: normal; opacity: .9; }
+  .caja .cue > :last-child { margin-bottom: 1pt; }
+  .caja.ejemplo .cue p:last-child { margin-bottom: 1pt; }
+  .sol-ref { font: 8.5pt Arial, sans-serif; color: var(--gris-texto); }
+
+  /* Lista de control */
+  table.control { font-size: 9.2pt; line-height: 11.2pt; break-inside: auto; margin-top: 3pt; }
+  table.control td { padding-top: 1.7pt; padding-bottom: 1.7pt; }
+  table.control .katex { font-size: .95em; }
+  table.control tr { break-inside: avoid; }
+  table.control td.cb { width: 13pt; font-size: 12pt; color: #6b7780; padding-right: 0; }
+  table.control td.id { white-space: nowrap; font-weight: bold; font-family: Arial, sans-serif; font-size: 8.8pt; width: 48pt; }
+  table.control td.donde { white-space: nowrap; color: var(--gris-texto); font-size: 8.8pt; width: 62pt; }
+  table.control tr.grupo td { font: bold 8.8pt Arial, sans-serif; color: var(--azul); background: #eef2f6; padding-top: 3pt; padding-bottom: 2pt; }
+
+  /* Soluciones */
+  .sol { margin: 0 0 7pt; break-inside: avoid; }
+  .sol > .id { font: bold 9pt Arial, sans-serif; color: var(--turno); margin-right: 4pt; }
+  .sol.e > .id { color: var(--azul); }
+  .soluciones { font-size: 10pt; line-height: 12.6pt; }
+  .soluciones .cadena { margin: 3pt 0 4pt; }
+
+  /* Índice */
+  .indice-g { font-size: 9.6pt; line-height: 12.6pt; }
+  .indice-g .u { font: bold 9.5pt Arial, sans-serif; color: var(--azul); margin: 7pt 0 2pt; border-bottom: .5pt solid #c5d0da; padding-bottom: 1pt; display: flex; }
+  .indice-g .l { display: flex; align-items: baseline; margin: 0 0 .8pt; }
+  .indice-g .t { flex: 0 1 auto; }
+  .indice-g .dots { flex: 1 0 8pt; border-bottom: 1.1pt dotted #b3bcc2; margin: 0 3pt; transform: translateY(-2.5pt); }
+  .indice-g .u .dots { border: 0; }
+  .indice-g .pg { font-family: Arial, sans-serif; font-size: 9pt; min-width: 13pt; text-align: right; }
+  .indice-g .n { display: inline-block; width: 24pt; color: var(--gris-texto); font-family: Arial, sans-serif; font-size: 8.8pt; }
+  /* Pequeños ajustes de paginación */
+  .sabras { break-after: avoid; }
+  /* La cabecera reserva 150pt detrás: si no caben, pasa entera a la página siguiente. */
+  .cab { break-inside: avoid; }
+  .cab::after { content: ''; display: block; height: 150pt; margin-bottom: -150pt; }
+  .leccion > p, .caja.metodo { orphans: 3; widows: 3; }
+  .peq { font-size: 9.6pt; line-height: 12pt; }
+  .derecha { text-align: right; }
+  td.c, th.c { text-align: center; }
+  .marco { border: .6pt solid #c5d0da; border-radius: 2pt; padding: 5pt 9pt 3pt; margin: 6pt 0 9pt; break-inside: avoid; }
+  .tres { display: grid; grid-template-columns: 1fr 1fr 1fr; column-gap: 12pt; }
+  .dos > div, .tres > div { min-width: 0; }
+  .nota .lead, .caja .lead { font-family: Arial, Helvetica, sans-serif; }
+  .pasos { grid-template-columns: 50% 50%; }
+  .k { font-family: Arial, sans-serif; font-weight: bold; font-size: 9pt; }
+  ol.pasosn { padding-left: 15pt; }
+  ol.pasosn > li { margin-bottom: 3.5pt; }
+  .formulario td { font-size: 9.5pt; line-height: 12pt; padding-top: 2.2pt; padding-bottom: 2.2pt; }
+  .formulario td:first-child { white-space: nowrap; font-family: Arial, sans-serif; font-size: 8.8pt; color: var(--azul); font-weight: bold; }
+</style>
+</head>
+<body>

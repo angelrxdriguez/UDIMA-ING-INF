@@ -1,0 +1,233 @@
+<!-- ============================================================ MAPA -->
+<section class="unidad">
+<!--toc level=1 label="MAPA DEL EXAMEN" title="Para el examen"-->
+<div class="banda">
+  <div class="sup">PARA EL EXAMEN</div>
+  <div class="titulo">Mapa, simulacro y formulario</div>
+  <div class="sub">Qué hacer según el enunciado · un examen de prueba con las cuatro unidades · todas las fórmulas · erratas</div>
+</div>
+<div class="etq">Mapa del examen</div>
+<h1 style="margin-bottom:6pt">Qué hacer según lo que pida el enunciado</h1>
+<table class="peq">
+  <tr><th style="width:165pt">Si el enunciado dice…</th><th>Haz esto</th><th style="width:38pt">Lección</th></tr>
+  <tr><td>«distancia del punto $Q$ a la recta intersección de los planos…»</td><td>Gauss-Jordan de los dos planos → paramétricas → $P$, $\mathbf d$ → $\mathbf v=\overrightarrow{PQ}$ → $\|\mathbf v-\operatorname{proy}_{\mathbf d}\mathbf v\|$.</td><td>1.9 + 1.11</td></tr>
+  <tr><td>«distancia del punto al plano»</td><td>$A$ del plano, $\mathbf v=\overrightarrow{AB}$, $\|\operatorname{proy}_{\mathbf n}\mathbf v\|=\tfrac{|\mathbf n\cdot\mathbf v|}{\|\mathbf n\|}$.</td><td>1.12</td></tr>
+  <tr><td>«plano que pasa por tres puntos»; «forma general»</td><td>Dos directores; $\mathbf n=\mathbf u\times\mathbf v$; $d=\mathbf n\cdot P$.</td><td>1.8</td></tr>
+  <tr><td>«posición relativa de tres planos»; «interpretar geométricamente»</td><td>Gauss: punto (SCD), recta (SCI), sin corte (SI); paralelos si normales proporcionales.</td><td>1.10</td></tr>
+  <tr><td>«por Gauss», «eliminación gaussiana», «sustitución hacia atrás»</td><td>Escalonada (triángulo de ceros) y despejar de abajo arriba.</td><td>2.3</td></tr>
+  <tr><td>«Gauss-Jordan», «FERF», «forma canónica», «reducida por filas»</td><td>Hasta la FERF: pivotes 1 y ceros encima y debajo. Es única.</td><td>2.4</td></tr>
+  <tr><td>«discutir», «compatible», «rango»</td><td>Rouché-Frobenius: comparar $r$, $r'$ y $n$; buscar filas $[0\cdots0\,|\,g\neq0]$.</td><td>2.5</td></tr>
+  <tr><td>«expresar la solución en función de parámetros $s$, $t$»</td><td>Variables sin pivote = parámetros; pasarlas a la derecha con el signo cambiado.</td><td>2.6</td></tr>
+  <tr><td>«sistema homogéneo»</td><td>Nunca incompatible; si $r&lt;n$, infinitas soluciones.</td><td>2.7</td></tr>
+  <tr><td>«¿son linealmente independientes?»</td><td>Vectores como filas, Gauss, rango = n.º de vectores ⇒ independientes.</td><td>2.8</td></tr>
+  <tr><td>«para qué valores de $k$…» + «usando eliminación gaussiana»</td><td>Gauss con $k$ abajo; pivotes con $k$ igualados a 0; cada valor por separado.</td><td>2.9</td></tr>
+  <tr><td>«para qué valores de $a$…» (sin prohibir determinantes)</td><td>$\det A=0$ da los valores; cada uno por separado con Gauss en la ampliada.</td><td>4.6</td></tr>
+  <tr><td>«producto $AB$», «$A^3$», «$A^n$»</td><td>Tamaños primero; fila por columna; buscar patrón en $A^n$.</td><td>3.2–3.3</td></tr>
+  <tr><td>«inversa por Gauss» o «por Gauss-Jordan»</td><td>$(A\,|\,I)\to(I\,|\,A^{-1})$; comprobar $AA^{-1}=I$.</td><td>3.5</td></tr>
+  <tr><td>«con la inversa, resuelve…»</td><td>$\mathbf x=A^{-1}\mathbf b$, una multiplicación. No repetir Gauss.</td><td>3.6</td></tr>
+  <tr><td>«calcula el determinante» (4 × 4)</td><td>Gauss hasta triangular (intercambio: −; fila por $k$: dividir) o fila/columna con más ceros.</td><td>4.3–4.4</td></tr>
+  <tr><td>«por Cramer»</td><td>$x_i=|C_i|/|A|$. Solo hasta 3 × 3.</td><td>4.5</td></tr>
+  <tr><td>«$\det(A-\lambda I)=0$», «raíces del polinomio»</td><td>Restar $\lambda$ en la diagonal, determinante, Ruffini.</td><td>4.7</td></tr>
+  <tr><td>«factorización LU», «comprueba el resultado»</td><td>Gauss sin intercambios → $U$; multiplicadores con signo cambiado → $L$; multiplicar $LU$.</td><td>4.9</td></tr>
+  <tr><td>«resuelve usando LU»</td><td>① $L\mathbf y=\mathbf b$ hacia delante; ② $U\mathbf x=\mathbf y$ hacia atrás.</td><td>4.9</td></tr>
+</table>
+</section>
+
+<!-- ============================================================ SIMULACRO -->
+<section class="nueva">
+<!--toc level=2 label="SIMULACRO" title="Simulacro de examen"-->
+<div class="etq">Simulacro</div>
+<h1>Simulacro de examen: unidades 1 a 4</h1>
+<div class="nota idea"><span class="lead">Cómo hacerlo.</span> De una sentada, sin apuntes ni esta guía, con papel en blanco.
+Apunta cuánto tardas. Escribe como en el examen: matrices intermedias, operaciones encima de cada flecha, conclusión con
+una frase y <b>sin decimales</b>. Después corrígete con las soluciones siendo estricto: un problema solo cuenta si está
+entero y bien. Con 8 o 9 bien, este bloque está listo; con 6 o 7, repasa las lecciones de los que fallaste y repite el
+simulacro una semana después; con menos, vuelve a las listas de control.</div>
+<ol class="pasosn" style="font-size:11pt; line-height:15pt">
+  <li><b>(UD1)</b> Calcula la distancia desde el punto $Q=(4,2,1)$ a la recta intersección de los planos
+    $\ x+y-z=1\ $ y $\ x-y+z=3$. Expresa el resultado sin decimales.</li>
+  <li><b>(UD2)</b> Resuelve por Gauss y sustitución hacia atrás: $\ \ y+2z=1,\quad x+y+z=2,\quad 2x-y+3z=8$.</li>
+  <li><b>(UD2)</b> Resuelve por Gauss-Jordan obteniendo la forma escalonada reducida por filas de la matriz ampliada.
+    Di si es compatible y si es determinado o indeterminado; en ese caso, expresa la solución con parámetros $s$, $t$:
+    $$2x+4y+z+4w=8,\qquad x+2y+w=3,\qquad -x-2y+z+w=-1$$</li>
+  <li><b>(UD2)</b> Discute, usando eliminación gaussiana (no por determinantes), según los valores de $a$:
+    $\ \ x+y+z=1,\quad x+2y+az=2,\quad 2x+ay+4z=3$.</li>
+  <li><b>(UD3)</b> Calcula por Gauss-Jordan la inversa de $A=\M{rrr}{1&1&0\\2&3&1\\1&1&1}$ y úsala para resolver
+    $A\mathbf x=\mathbf b$ con $\mathbf b=(2,7,4)$.</li>
+  <li><b>(UD4)</b> Calcula el determinante $\left|\begin{matrix}1&-1&2&1\\1&-1&0&0\\-1&3&2&2\\2&2&0&-1\end{matrix}\right|$.</li>
+  <li><b>(UD4)</b> Discute según $a$ el sistema $\ \ x-y+az=0,\quad 2x+ay+z=2,\quad -x+y+z=0\ $ usando el determinante.
+    Para $a=0$, resuélvelo por Cramer.</li>
+  <li><b>(UD4)</b> Realiza la factorización LU de $A=\M{rrr}{1&-1&2\\2&1&1\\-1&4&-1}$, comprueba el resultado y úsala
+    para resolver $A\mathbf x=\mathbf b$ con $\mathbf b=(1,5,6)$.</li>
+  <li><b>(UD4)</b> Calcula $\det(A-\lambda I)$ para $A=\M{rrr}{1&2&0\\2&1&0\\0&0&3}$, iguala el resultado a 0 y obtén las
+    raíces del polinomio.</li>
+</ol>
+</section>
+
+<!-- ============================================================ SOLUCIONES SIMULACRO -->
+<section class="nueva soluciones">
+<!--toc level=2 label="SOLUCIONES DEL SIMULACRO" title="Soluciones del simulacro"-->
+<div class="etq">Soluciones del simulacro</div>
+<h1>Soluciones del simulacro</h1>
+
+<h3>1. Distancia punto-recta ($\sqrt6$)</h3>
+{{chain rrr|r : 1 1 -1 1 ; 1 -1 1 3 :: F2-F1 :: -1/2F2 :: F1-F2 ! piv}}
+<p>$x=2$, $y-z=-1$. Con $z=t$: $\ x=2,\ y=-1+t,\ z=t$. Punto $P=(2,-1,0)$, director $\mathbf d=[0,1,1]$.
+$\mathbf v=Q-P=[2,3,1]$; $\ \mathbf d\cdot\mathbf v=4$, $\mathbf d\cdot\mathbf d=2$; $\ \operatorname{proy}_{\mathbf d}\mathbf v=2[0,1,1]=[0,2,2]$;
+$\ \mathbf w=\mathbf v-\operatorname{proy}=[2,1,-1]$ (compr.: $\mathbf w\cdot\mathbf d=0+1-1=0$ \ok). Distancia $=\sqrt{4+1+1}=\boxed{\sqrt6}$.</p>
+
+<h3>2. Gauss y sustitución hacia atrás ($x=2,\ y=-1,\ z=1$)</h3>
+{{chain rrr|r : 0 1 2 1 ; 1 1 1 2 ; 2 -1 3 8 :: F1<->F2 :: F3-2F1 :: F3+3F2 ! piv}}
+<p>$7z=7\Rightarrow z=1$; $\ y+2=1\Rightarrow y=-1$; $\ x-1+1=2\Rightarrow x=2$. Compr. en la 3.ª: $4+1+3=8$ \ok</p>
+
+<h3>3. Gauss-Jordan con dos parámetros</h3>
+{{chain rrrr|r : 2 4 1 4 8 ; 1 2 0 1 3 ; -1 -2 1 1 -1 :: F1<->F2 :: F2-2F1, F3+F1 :: F3-F2 ! piv}}
+<p>Ya es la FERF (pivotes 1 en las columnas de $x$ y $z$, con ceros encima y debajo). $r=r'=2&lt;4$: <b>compatible
+indeterminado</b> con dos parámetros. Variables libres $y=s$, $w=t$: $\ x+2s+t=3$, $\ z+2t=2$:
+$$x=3-2s-t,\qquad y=s,\qquad z=2-2t,\qquad w=t$$
+<p class="gris">Compr. con $s=t=1$: $(0,1,0,1)$ en la 1.ª: $0+4+0+4=8$ \ok</p>
+
+<h3>4. Discusión por Gauss</h3>
+$$\M{rrr|r}{1&1&1&1\\1&2&a&2\\2&a&4&3}\xrightarrow{\substack{F_2-F_1\\F_3-2F_1}}\M{ccc|c}{1&1&1&1\\0&1&a-1&1\\0&a-2&2&1}
+\xrightarrow{F_3-(a-2)F_2}\M{ccc|c}{1&1&1&1\\0&1&a-1&1\\0&0&a(3-a)&3-a}$$
+<p>Fila 3: $2-(a-2)(a-1)=-a^2+3a=a(3-a)$ y $1-(a-2)=3-a$. (Sumar a una fila un múltiplo de otra vale aunque el
+multiplicador tenga $a$; lo que no se puede es dividir entre algo que puede ser 0.)</p>
+<ul>
+  <li>$a=0$: fila 3 $[0\ 0\ 0\,|\,3]$, $r=2&lt;r'=3$: <b>incompatible</b>.</li>
+  <li>$a=3$: fila 3 de ceros, $r=r'=2&lt;3$: <b>compatible indeterminado</b>.</li>
+  <li>$a\neq0$ y $a\neq3$: $r=r'=3$: <b>compatible determinado</b> (con $z=\tfrac1a$).</li>
+</ul>
+
+<h3>5. Inversa por Gauss-Jordan y sistema</h3>
+{{chain rrr|rrr : 1 1 0 1 0 0 ; 2 3 1 0 1 0 ; 1 1 1 0 0 1 :: F2-2F1, F3-F1 :: F2-F3 :: F1-F2 ! piv}}
+<p>$A^{-1}=\M{rrr}{2&-1&1\\-1&1&-1\\-1&0&1}$. Compr. fila 1 de $A$: $(2-1,\ -1+1,\ 1-1)=(1,0,0)$ \ok
+$\ \mathbf x=A^{-1}\mathbf b=(4-7+4,\ -2+7-4,\ -2+0+4)=\boxed{(1,1,2)}$. Compr.: $1+1=2$ \ok $\ 2+3+2=7$ \ok $\ 1+1+2=4$ \ok</p>
+
+<h3>6. Determinante 4 × 4 ($-12$)</h3>
+{{chain rrrr : 1 -1 2 1 ; 1 -1 0 0 ; -1 3 2 2 ; 2 2 0 -1 :: F2-F1, F3+F1, F4-2F1 :: F2<->F3 :: F4-2F2 :: F4-6F3 ! piv}}
+<p>Diagonal $1\cdot2\cdot(-2)\cdot(-3)=12$. Un intercambio cambia el signo: $\ \det=\boxed{-12}$. (Las demás operaciones no lo cambian.)</p>
+
+<h3>7. Discusión con el determinante y Cramer</h3>
+<p>$\det A=\left|\begin{matrix}1&-1&a\\2&a&1\\-1&1&1\end{matrix}\right|=a+1+2a-(-a^2+1-2)=a^2+3a+2=(a+1)(a+2)$.</p>
+<ul>
+  <li>$a\neq-1,-2$: $\det A\neq0$, <b>compatible determinado</b>.</li>
+  <li>$a=-1$: la fila 3 $[-1,1,1\,|\,0]$ es la 1.ª $[1,-1,-1\,|\,0]$ cambiada de signo; $F_3+F_1$ = ceros y $F_2-2F_1=[0,1,3\,|\,2]$: $r=r'=2$, <b>indeterminado</b>.</li>
+  <li>$a=-2$: $F_2-2F_1=[0,0,5\,|\,2]$, $F_3+F_1=[0,0,-1\,|\,0]$; $F_2\leftrightarrow F_3$ y $F_3+5F_2=[0,0,0\,|\,2]$: <b>incompatible</b>.</li>
+</ul>
+<p>$a=0$: $|A|=2$; $\ x=\tfrac12\left|\begin{smallmatrix}0&amp;-1&amp;0\\2&amp;0&amp;1\\0&amp;1&amp;1\end{smallmatrix}\right|=\tfrac22=1$,
+$\ y=\tfrac12\left|\begin{smallmatrix}1&amp;0&amp;0\\2&amp;2&amp;1\\-1&amp;0&amp;1\end{smallmatrix}\right|=\tfrac22=1$,
+$\ z=\tfrac12\left|\begin{smallmatrix}1&amp;-1&amp;0\\2&amp;0&amp;2\\-1&amp;1&amp;0\end{smallmatrix}\right|=\tfrac02=0$. Solución $(1,1,0)$. Compr.: $1-1=0$ \ok $2+0=2$ \ok $-1+1=0$ \ok</p>
+
+<h3>8. Factorización LU y sistema</h3>
+{{chain rrr : 1 -1 2 ; 2 1 1 ; -1 4 -1 :: F2-2F1, F3+F1 :: F3-F2 ! piv}}
+<p>Multiplicadores $-2$, $+1$, $-1$ → en $L$: $2$, $-1$, $1$. $\ L=\M{rrr}{1&0&0\\2&1&0\\-1&1&1}$, $\ U=\M{rrr}{1&-1&2\\0&3&-3\\0&0&4}$.
+<b>Comprobación</b> $LU$: fila 2: $2(1,-1,2)+(0,3,-3)=(2,1,1)$ \ok; fila 3: $-1(1,-1,2)+(0,3,-3)+(0,0,4)=(-1,4,-1)$ \ok
+① $y_1=1$; $\ 2+y_2=5\Rightarrow y_2=3$; $\ -1+3+y_3=6\Rightarrow y_3=4$. ② $4z=4\Rightarrow z=1$; $\ 3y-3=3\Rightarrow y=2$; $\ x-2+2=1\Rightarrow x=1$.
+Solución $\boxed{(1,2,1)}$.</p>
+
+<h3>9. Raíces de $\det(A-\lambda I)$</h3>
+<p>$\left|\begin{matrix}1-\lambda&2&0\\2&1-\lambda&0\\0&0&3-\lambda\end{matrix}\right|=(3-\lambda)\big[(1-\lambda)^2-4\big]=(3-\lambda)(\lambda^2-2\lambda-3)
+=-\lambda^3+5\lambda^2-3\lambda-9$ (desarrollando por la fila 3). Por Ruffini (o factorizando: $\lambda^2-2\lambda-3=(\lambda-3)(\lambda+1)$):
+raíces $\lambda=3$ (<b>doble</b>) y $\lambda=-1$.</p>
+</section>
+
+<!-- ============================================================ FORMULARIO -->
+<section class="nueva">
+<!--toc level=2 label="FORMULARIO" title="Formulario"-->
+<div class="etq">Formulario</div>
+<h1>Formulario de las cuatro unidades</h1>
+<div class="dos">
+<div>
+<table class="formulario">
+  <tr><th colspan="2">Unidad 1 · Vectores, rectas y planos</th></tr>
+  <tr><td>Vector $A\to B$</td><td>$\overrightarrow{AB}=B-A$</td></tr>
+  <tr><td>Escalar</td><td>$\mathbf u\cdot\mathbf v=u_1v_1+u_2v_2+u_3v_3$</td></tr>
+  <tr><td>Módulo</td><td>$\|\mathbf v\|=\sqrt{\mathbf v\cdot\mathbf v}$; unitario $\tfrac{1}{\|\mathbf v\|}\mathbf v$</td></tr>
+  <tr><td>Distancia</td><td>$d(\mathbf u,\mathbf v)=\|\mathbf u-\mathbf v\|$</td></tr>
+  <tr><td>Ángulo</td><td>$\cos\theta=\dfrac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\|\mathbf v\|}$</td></tr>
+  <tr><td>Perpendiculares</td><td>$\mathbf u\cdot\mathbf v=0$</td></tr>
+  <tr><td>Proyección</td><td>$\operatorname{proy}_{\mathbf u}\mathbf v=\dfrac{\mathbf u\cdot\mathbf v}{\mathbf u\cdot\mathbf u}\mathbf u$</td></tr>
+  <tr><td>Vectorial</td><td>$\mathbf u\times\mathbf v=\left|\begin{smallmatrix}\mathbf i&amp;\mathbf j&amp;\mathbf k\\u_1&amp;u_2&amp;u_3\\v_1&amp;v_2&amp;v_3\end{smallmatrix}\right|$, $\ \perp$ a los dos</td></tr>
+  <tr><td>Recta</td><td>$\mathbf x=\mathbf p+t\mathbf d$; en $\mathbb R^2$: $ax+by=c$, $\mathbf n=[a,b]$, $\mathbf d=[-b,a]$</td></tr>
+  <tr><td>Plano</td><td>$ax+by+cz=d$, $\mathbf n=[a,b,c]$; $\ \mathbf x=\mathbf p+s\mathbf u+t\mathbf v$</td></tr>
+  <tr><td>Plano por 3 puntos</td><td>$\mathbf n=\overrightarrow{PQ}\times\overrightarrow{PR}$, $\ d=\mathbf n\cdot P$</td></tr>
+  <tr><td>Recta de 2 planos</td><td>Gauss-Jordan, variable libre $z=t$</td></tr>
+  <tr><td>Dist. punto-recta</td><td>$\|\mathbf v-\operatorname{proy}_{\mathbf d}\mathbf v\|$, $\ \mathbf v=\overrightarrow{PQ}$</td></tr>
+  <tr><td>Dist. punto-plano</td><td>$\|\operatorname{proy}_{\mathbf n}\mathbf v\|=\dfrac{|\mathbf n\cdot\mathbf v|}{\|\mathbf n\|}$, $\ \mathbf v=\overrightarrow{AB}$</td></tr>
+</table>
+<table class="formulario">
+  <tr><th colspan="2">Unidad 2 · Sistemas y Gauss</th></tr>
+  <tr><td>OEPF</td><td>Multiplicar fila por $k\neq0$ · intercambiar · $F_i+kF_j$</td></tr>
+  <tr><td>Gauss</td><td>Escalonada + sustitución hacia atrás</td></tr>
+  <tr><td>Gauss-Jordan</td><td>FERF: pivotes 1, ceros encima y debajo (única)</td></tr>
+  <tr><td>Rango</td><td>N.º de filas no nulas tras Gauss</td></tr>
+  <tr><td>Rouché-Frobenius</td><td>$r=r'=n$ SCD · $r=r'&lt;n$ SCI ($n-r$ parámetros) · $r&lt;r'$ SI</td></tr>
+  <tr><td>Homogéneo</td><td>Siempre compatible; $r&lt;n\Rightarrow$ infinitas</td></tr>
+  <tr><td>Independientes</td><td>Vectores en filas; rango = n.º de vectores</td></tr>
+</table>
+<table class="formulario">
+  <tr><th colspan="2">Cosenos de los ángulos notables</th></tr>
+  <tr><td>0°, 30°, 45°, 60°, 90°</td><td>$1,\ \tfrac{\sqrt3}2,\ \tfrac{\sqrt2}2,\ \tfrac12,\ 0$ · obtuso: el mismo valor en negativo, $180^\circ-\alpha$</td></tr>
+</table>
+</div>
+<div>
+<table class="formulario">
+  <tr><th colspan="2">Unidad 3 · Matrices e inversa</th></tr>
+  <tr><td>Producto</td><td>$A_{m\times n}B_{n\times r}=C_{m\times r}$; fila por columna; $AB\neq BA$</td></tr>
+  <tr><td>Traspuesta</td><td>Filas ↔ columnas; simétrica si $A=A^T$</td></tr>
+  <tr><td>Inversa</td><td>$AA^{-1}=A^{-1}A=I$; única</td></tr>
+  <tr><td>Propiedades</td><td>$(AB)^{-1}=B^{-1}A^{-1}$ · $(cA)^{-1}=\tfrac1cA^{-1}$ · $(A^T)^{-1}=(A^{-1})^T$</td></tr>
+  <tr><td>2 × 2</td><td>$\M{cc}{a&b\\c&d}^{-1}=\dfrac{1}{ad-bc}\M{rr}{d&-b\\-c&a}$</td></tr>
+  <tr><td>Por Gauss-Jordan</td><td>$(A\,|\,I)\to(I\,|\,A^{-1})$</td></tr>
+  <tr><td>Sistema</td><td>$\mathbf x=A^{-1}\mathbf b$</td></tr>
+  <tr><td>Invertible</td><td>$\iff$ FERF $=I$ $\iff$ rango $n$ $\iff$ $\det A\neq0$</td></tr>
+</table>
+<table class="formulario">
+  <tr><th colspan="2">Unidad 4 · Determinantes y LU</th></tr>
+  <tr><td>2 × 2</td><td>$ad-bc$</td></tr>
+  <tr><td>Sarrus</td><td>$aei+bfg+cdh-(ceg+afh+bdi)$</td></tr>
+  <tr><td>Adjuntos</td><td>Fila/columna con más ceros; signos $(-1)^{i+j}$</td></tr>
+  <tr><td>Por Gauss</td><td>$F_i+kF_j$: igual · intercambio: $-$ · fila por $k$: $\times k$</td></tr>
+  <tr><td>Triangular</td><td>Producto de la diagonal</td></tr>
+  <tr><td>Propiedades</td><td>$\det(AB)=\det A\det B$ · $\det A^T=\det A$ · $\det A^{-1}=\tfrac1{\det A}$ · $\det(kA)=k^n\det A$</td></tr>
+  <tr><td>Es 0 si…</td><td>Fila de ceros, dos filas iguales o proporcionales</td></tr>
+  <tr><td>Cramer</td><td>$x_i=\dfrac{|C_i|}{|A|}$ ($C_i$: columna $i$ cambiada por $\mathbf b$)</td></tr>
+  <tr><td>Con parámetro</td><td>$\det A=0$ → valores especiales → Gauss en cada uno</td></tr>
+  <tr><td>$\det(A-\lambda I)$</td><td>Restar $\lambda$ en la diagonal; raíces con Ruffini</td></tr>
+  <tr><td>LU</td><td>Gauss sin intercambios → $U$; multiplicadores con el signo cambiado → $L$</td></tr>
+  <tr><td>Resolver con LU</td><td>① $L\mathbf y=\mathbf b$ (hacia delante) ② $U\mathbf x=\mathbf y$ (hacia atrás)</td></tr>
+</table>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ ERRATAS -->
+<section class="leccion">
+<!--toc level=2 label="ERRATAS" title="Erratas de las diapositivas"-->
+<div class="etq">Erratas</div>
+<h1>Erratas de las diapositivas</h1>
+<p>Si un resultado de las diapositivas no te cuadra, mira aquí antes de dar vueltas. Todas están comprobadas sustituyendo
+en las ecuaciones originales o con el cálculo exacto.</p>
+<table class="peq">
+  <tr><th style="width:85pt">Dónde</th><th>Pone</th><th>Debe poner</th></tr>
+  <tr><td>UD1, diap. 44</td><td>$y=2z$, $\ y=2t$</td><td>$y=-2z$, $\ y=-2t$. Solución: $x=6+5t,\ y=-2t,\ z=t$</td></tr>
+  <tr><td>UD1, diap. 54</td><td>«proyección de $\mathbf v$ sobre $\mathbf d$»</td><td>sobre $\mathbf n$ (las cuentas ya usan $\mathbf n$)</td></tr>
+  <tr><td>UD1, libro p. 2-30</td><td>$y=-2-t$</td><td>$y=-2+t$ (la diapositiva 39 lo tiene bien)</td></tr>
+  <tr><td>UD2, diap. 24</td><td>$x+2(2)+6(3)=-13$</td><td>$x+2(2)+6(-3)=-13$; el resultado $x=1$ es correcto</td></tr>
+  <tr><td>UD2, diap. 28</td><td>Primer paso: $-1F_1+F_2$, $-2F_1+F_3$, $-3F_1+F_4$</td><td>$-2F_1+F_2$, $-3F_1+F_3$, $-4F_1+F_4$ (las matrices están bien)</td></tr>
+  <tr><td>UD2, diap. 31</td><td>$r(A|\mathbf b)=3$ también para $k=1$</td><td>Para $k=1$ es 2; la conclusión (incompatible) es correcta</td></tr>
+  <tr><td>UD3, diap. 16</td><td>$B$ con la fila 2 igual a $(0\ 1\ 0)$</td><td>$(0\ 0\ 1)$</td></tr>
+  <tr><td>UD3, diap. 24</td><td>Fila 3 de la superextendida $(1\ 3\ 2)$</td><td>$(1\ 3\ 3)$, como en el enunciado</td></tr>
+  <tr><td>UD3, diap. 25</td><td>$(-1\ 1\ 0)$ a la derecha de la fila $(0\ 1\ 2)$</td><td>$(-1\ 0\ 1)$; el resultado final es correcto</td></tr>
+  <tr><td>UD4, diap. 14</td><td>$(14-10)+(-28-10)$</td><td>$(14-10)-(-28-10)=4+38$; el 42 es correcto</td></tr>
+  <tr><td>UD4, diap. 7 y 10</td><td>Dos ejercicios con el número 2</td><td>El de Cramer y el del 4 × 4 por adjuntos; no es un error de cuentas</td></tr>
+</table>
+
+<div class="caja resumen"><div class="tit">Para terminar</div><div class="cue">
+<p>Lo que de verdad aprueba esta parte de la asignatura no es leer la guía, es <b>hacer los ejercicios con papel</b> hasta
+que salgan solos. Si una lección no te sale después de leerla dos veces, apunta la frase exacta que no entiendes y
+pregúntala: cuanto más concreta sea la duda, más rápido se resuelve. Y en el examen: lee el verbo del enunciado, escribe
+los pasos, comprueba y concluye.</p>
+<p style="margin-bottom:1pt">«Trabajad un poquito y vais a ver cómo esto se saca». <span class="min">▶ 1:14:10</span> (19/10)</p>
+</div></div>
+</section>

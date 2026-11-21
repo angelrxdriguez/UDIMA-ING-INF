@@ -1,0 +1,272 @@
+<div class="primera">
+<div class="portada">
+  <div class="sup">ÁLGEBRA · 10888 · UNIDADES 1, 2, 3 Y 4</div>
+  <div class="titulo">Guía para dominar<br>las unidades 1 a 4</div>
+  <div class="sub">Vectores, rectas y planos · Sistemas y método de Gauss · Matrices e inversa · Determinantes y LU</div>
+  <div class="lema">Todo lo que entra hasta la unidad 4, explicado paso a paso, con un ejemplo resuelto en cada punto
+  importante, un ejercicio para que lo hagas tú y una lista de control por unidad. Cuando completes las cuatro listas
+  y el simulacro final, tendrás preparado este bloque para el examen.</div>
+</div>
+
+<div class="caja metodo">
+  <div class="tit">Cómo está hecha esta guía</div>
+  <div class="cue">
+    <ul style="margin-bottom:2pt">
+      <li><b>Fuentes.</b> Las diapositivas del profesor J. J. Moreno de las cuatro unidades, el libro de la unidad 1
+        («Vectores y geometría») y las transcripciones de las clases en directo del <b>5 de octubre</b> (Gauss) y del
+        <b>19 de octubre</b> (matrices y determinantes). Lo que el profesor dijo de palabra va en recuadros verdes
+        <span class="tag clase">EN CLASE</span> con el minuto de la grabación <span class="min">▶ 25:24</span>.</li>
+      <li><b>Comprobado.</b> Todos los resultados (los de las diapositivas y los ejercicios nuevos) se han comprobado con
+        un programa de cálculo exacto con fracciones, y las matrices intermedias de los ejemplos las ha calculado ese
+        programa a partir de cada operación por filas, así que no llevan errores de copia. Cuando una diapositiva trae
+        una errata, se dice dónde está y cuál es el valor correcto.</li>
+      <li><b>Prioridad.</b> Cada lección lleva estrellas: <span class="prio" style="margin:0">★★★</span> sale seguro en
+        el examen, <span class="prio" style="margin:0">★★</span> es importante,
+        <span class="prio" style="margin:0">★</span> conviene saberlo. Si vas justo de tiempo, empieza por las de tres
+        estrellas.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="dos" style="margin-top:4pt">
+<div class="nota idea"><span class="lead">La idea que lo une todo.</span> Las cuatro unidades son en el fondo una sola
+herramienta: <b>operar por filas</b> (Gauss). Con ella se cortan planos (UD1), se resuelven y discuten sistemas (UD2),
+se calcula la inversa (UD3) y se calculan determinantes y la LU (UD4). Por eso la UD2 es la que más horas merece.</div>
+<div class="nota clase"><span class="lead">En clase.</span> «Si no controláis las operaciones elementales por filas, lo
+que dice la estadística es que se acabó». Pero la buena noticia: la mayoría lo hace bien, «porque es fácil, son
+metodologías». <span class="min">▶ 1:11:15</span> (19/10). Y la despedida: «trabajad un poquito y vais a ver cómo
+esto se saca».</div>
+</div>
+</div>
+
+<!-- ============================================================ ÍNDICE -->
+<section>
+<h1>Índice</h1>
+<div class="dos indice-g">
+<div>
+  <div class="l"><span class="t"><span class="n"></span>Cómo usar la guía y plan de estudio</span><span class="pg" data-l="EMPIEZA AQUÍ"></span></div>
+  <div class="l"><span class="t"><span class="n"></span>Lo que el profesor da por bueno</span><span class="pg" data-l="LAS REGLAS DEL JUEGO"></span></div>
+  <div class="l"><span class="t"><span class="n">0</span>Herramientas: signos, fracciones, Ruffini</span><span class="pg" data-l="LECCIÓN 0"></span></div>
+
+  <div class="u"><span class="t">Unidad 1 · Vectores, rectas y planos</span><span class="pg" data-l="UNIDAD 1"></span></div>
+  <div class="l"><span class="t"><span class="n">1.1</span>Vectores y sus operaciones</span><span class="pg" data-l="LECCIÓN 1.1"></span></div>
+  <div class="l"><span class="t"><span class="n">1.2</span>Combinación lineal</span><span class="pg" data-l="LECCIÓN 1.2"></span></div>
+  <div class="l"><span class="t"><span class="n">1.3</span>Escalar, módulo, distancia y ángulo</span><span class="pg" data-l="LECCIÓN 1.3"></span></div>
+  <div class="l"><span class="t"><span class="n">1.4</span>Perpendiculares y proyección</span><span class="pg" data-l="LECCIÓN 1.4"></span></div>
+  <div class="l"><span class="t"><span class="n">1.5</span>Producto vectorial</span><span class="pg" data-l="LECCIÓN 1.5"></span></div>
+  <div class="l"><span class="t"><span class="n">1.6</span>Rectas en el plano</span><span class="pg" data-l="LECCIÓN 1.6"></span></div>
+  <div class="l"><span class="t"><span class="n">1.7</span>Rectas en el espacio</span><span class="pg" data-l="LECCIÓN 1.7"></span></div>
+  <div class="l"><span class="t"><span class="n">1.8</span>Planos</span><span class="pg" data-l="LECCIÓN 1.8"></span></div>
+  <div class="l"><span class="t"><span class="n">1.9</span>Recta en la que se cortan dos planos</span><span class="pg" data-l="LECCIÓN 1.9"></span></div>
+  <div class="l"><span class="t"><span class="n">1.10</span>Tres planos: cómo están colocados</span><span class="pg" data-l="LECCIÓN 1.10"></span></div>
+  <div class="l"><span class="t"><span class="n">1.11</span>Distancia de un punto a una recta</span><span class="pg" data-l="LECCIÓN 1.11"></span></div>
+  <div class="l"><span class="t"><span class="n">1.12</span>Distancia de un punto a un plano</span><span class="pg" data-l="LECCIÓN 1.12"></span></div>
+  <div class="l"><span class="t"><span class="n"></span><b>Lista de control y soluciones</b></span><span class="pg" data-l="UNIDAD 1 · LISTA DE CONTROL"></span></div>
+
+  <div class="u"><span class="t">Unidad 2 · Sistemas y método de Gauss</span><span class="pg" data-l="UNIDAD 2"></span></div>
+  <div class="l"><span class="t"><span class="n">2.1</span>Del sistema a la matriz ampliada</span><span class="pg" data-l="LECCIÓN 2.1"></span></div>
+  <div class="l"><span class="t"><span class="n">2.2</span>Las tres operaciones por filas</span><span class="pg" data-l="LECCIÓN 2.2"></span></div>
+  <div class="l"><span class="t"><span class="n">2.3</span>Gauss y sustitución hacia atrás</span><span class="pg" data-l="LECCIÓN 2.3"></span></div>
+  <div class="l"><span class="t"><span class="n">2.4</span>Gauss-Jordan y la FERF</span><span class="pg" data-l="LECCIÓN 2.4"></span></div>
+  <div class="l"><span class="t"><span class="n">2.5</span>Rango y teorema de Rouché-Frobenius</span><span class="pg" data-l="LECCIÓN 2.5"></span></div>
+  <div class="l"><span class="t"><span class="n">2.6</span>Infinitas soluciones y parámetros</span><span class="pg" data-l="LECCIÓN 2.6"></span></div>
+  <div class="l"><span class="t"><span class="n">2.7</span>Sistemas homogéneos</span><span class="pg" data-l="LECCIÓN 2.7"></span></div>
+  <div class="l"><span class="t"><span class="n">2.8</span>Vectores linealmente independientes</span><span class="pg" data-l="LECCIÓN 2.8"></span></div>
+  <div class="l"><span class="t"><span class="n">2.9</span>Discutir con parámetro (por Gauss)</span><span class="pg" data-l="LECCIÓN 2.9"></span></div>
+  <div class="l"><span class="t"><span class="n"></span><b>Lista de control y soluciones</b></span><span class="pg" data-l="UNIDAD 2 · LISTA DE CONTROL"></span></div>
+</div>
+<div>
+  <div class="u"><span class="t">Unidad 3 · Matrices e inversa</span><span class="pg" data-l="UNIDAD 3"></span></div>
+  <div class="l"><span class="t"><span class="n">3.1</span>Matrices: tipos, suma y traspuesta</span><span class="pg" data-l="LECCIÓN 3.1"></span></div>
+  <div class="l"><span class="t"><span class="n">3.2</span>El producto de matrices</span><span class="pg" data-l="LECCIÓN 3.2"></span></div>
+  <div class="l"><span class="t"><span class="n">3.3</span>Potencias de una matriz</span><span class="pg" data-l="LECCIÓN 3.3"></span></div>
+  <div class="l"><span class="t"><span class="n">3.4</span>La inversa y la fórmula del 2 × 2</span><span class="pg" data-l="LECCIÓN 3.4"></span></div>
+  <div class="l"><span class="t"><span class="n">3.5</span>La inversa por Gauss-Jordan</span><span class="pg" data-l="LECCIÓN 3.5"></span></div>
+  <div class="l"><span class="t"><span class="n">3.6</span>Resolver un sistema con la inversa</span><span class="pg" data-l="LECCIÓN 3.6"></span></div>
+  <div class="l"><span class="t"><span class="n"></span><b>Lista de control y soluciones</b></span><span class="pg" data-l="UNIDAD 3 · LISTA DE CONTROL"></span></div>
+
+  <div class="u"><span class="t">Unidad 4 · Determinantes, Cramer y LU</span><span class="pg" data-l="UNIDAD 4"></span></div>
+  <div class="l"><span class="t"><span class="n">4.1</span>Determinantes 2 × 2 y 3 × 3</span><span class="pg" data-l="LECCIÓN 4.1"></span></div>
+  <div class="l"><span class="t"><span class="n">4.2</span>Propiedades del determinante</span><span class="pg" data-l="LECCIÓN 4.2"></span></div>
+  <div class="l"><span class="t"><span class="n">4.3</span>Desarrollo por una fila o columna</span><span class="pg" data-l="LECCIÓN 4.3"></span></div>
+  <div class="l"><span class="t"><span class="n">4.4</span>El determinante por Gauss</span><span class="pg" data-l="LECCIÓN 4.4"></span></div>
+  <div class="l"><span class="t"><span class="n">4.5</span>La regla de Cramer</span><span class="pg" data-l="LECCIÓN 4.5"></span></div>
+  <div class="l"><span class="t"><span class="n">4.6</span>Discutir con el determinante</span><span class="pg" data-l="LECCIÓN 4.6"></span></div>
+  <div class="l"><span class="t"><span class="n">4.7</span>det(A − λI) y sus raíces</span><span class="pg" data-l="LECCIÓN 4.7"></span></div>
+  <div class="l"><span class="t"><span class="n">4.8</span>Producto vectorial con determinante</span><span class="pg" data-l="LECCIÓN 4.8"></span></div>
+  <div class="l"><span class="t"><span class="n">4.9</span>La factorización LU</span><span class="pg" data-l="LECCIÓN 4.9"></span></div>
+  <div class="l"><span class="t"><span class="n"></span><b>Lista de control y soluciones</b></span><span class="pg" data-l="UNIDAD 4 · LISTA DE CONTROL"></span></div>
+
+  <div class="u"><span class="t">Para el examen</span><span class="pg" data-l="MAPA DEL EXAMEN"></span></div>
+  <div class="l"><span class="t"><span class="n"></span>Mapa: qué hacer según el enunciado</span><span class="pg" data-l="MAPA DEL EXAMEN"></span></div>
+  <div class="l"><span class="t"><span class="n"></span>Simulacro de examen</span><span class="pg" data-l="SIMULACRO"></span></div>
+  <div class="l"><span class="t"><span class="n"></span>Soluciones del simulacro</span><span class="pg" data-l="SOLUCIONES DEL SIMULACRO"></span></div>
+  <div class="l"><span class="t"><span class="n"></span>Formulario de las cuatro unidades</span><span class="pg" data-l="FORMULARIO"></span></div>
+  <div class="l"><span class="t"><span class="n"></span>Erratas de las diapositivas</span><span class="pg" data-l="ERRATAS"></span></div>
+
+  <div class="nota idea" style="margin-top:12pt"><span class="lead">Cómo se llaman los ejercicios.</span>
+  <ul style="margin:3pt 0 0">
+    <li><span class="tag prof">DIAP. 2·EJ 3</span> ejercicio 3 de las diapositivas de la unidad 2 (están resueltos en la guía o en las diapositivas).</li>
+    <li><span class="tag nuevo">T2.3</span> «Tu turno»: el ejercicio para hacer tú en esa lección.</li>
+    <li><span class="tag nuevo">E2.3</span> ejercicio extra de la lista de control.</li>
+    <li><span class="tag ex">TIPO EXAMEN</span> igual que los de la AEC 1 y los del examen.</li>
+  </ul>
+  Las soluciones de los T y los E están al final de cada unidad, detrás de su lista de control.</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ CÓMO USARLA -->
+<section class="nueva">
+<!--toc level=1 label="EMPIEZA AQUÍ" title="Cómo usar la guía y plan de estudio"-->
+<div class="etq">Empieza aquí</div>
+<h1>Cómo usar la guía y plan de estudio</h1>
+
+<h2>Cada lección tiene siempre las mismas partes</h2>
+<ol class="pasosn">
+  <li><b>Al terminar sabrás</b>: lo que tienes que saber hacer al acabar la lección.</li>
+  <li><b>La idea</b>, en pocas líneas y con palabras normales. Primero entender qué es; luego la fórmula.</li>
+  <li><b>El método</b>: los pasos, siempre en el mismo orden. En el examen solo tienes que seguirlos.</li>
+  <li><b>Ejemplo resuelto</b> (recuadro verde): casi siempre es un ejercicio de las diapositivas del profesor, con todas
+    las cuentas. Intenta cada paso antes de leerlo.</li>
+  <li><b>Tu turno</b> (recuadro morado): un ejercicio parecido para hacerlo tú en papel. La solución está al final de la
+    unidad, para que no la veas sin querer.</li>
+  <li><b>Errores típicos</b> (rojo) y <b>lo que dijo el profesor</b> (verde).</li>
+</ol>
+
+<h2>Cómo dar por terminada una unidad</h2>
+<p>Al final de cada unidad hay una <b>lista de control</b> con todos los ejercicios que tienes que saber hacer: los de las
+diapositivas (también los «propuestos», que el profesor deja sin resolver), los «Tu turno» y algunos extra. Marca la
+casilla ☐ solo cuando el ejercicio te salga <b>entero, sin mirar y con el resultado comprobado</b>. Cuando todas las
+casillas estén marcadas, la unidad está terminada. Si fallas uno, vuelve a la lección, busca el paso en el que te
+equivocaste y repítelo otro día con el papel en blanco.</p>
+
+<div class="nota comprueba"><span class="lead">La regla de oro: comprobar.</span> Casi todos los ejercicios de esta
+asignatura se pueden comprobar en un minuto: sustituir la solución en el sistema, multiplicar $A\cdot A^{-1}$ para ver
+si da $I$, multiplicar $L\cdot U$, comprobar que el producto vectorial es perpendicular… En cada lección se indica cómo.
+El profesor: «Siempre es mejor poner una solución bien hecha que no la primera cosa que haya parecido».
+<span class="min">▶ 1:10:17</span> (19/10)</div>
+
+<h2>Plan de estudio hasta el examen</h2>
+<p>El examen es en enero. Desde hoy hay unas siete semanas. Este reparto deja la Navidad para simulacros y repaso, que
+es donde de verdad se fija lo aprendido. Una o dos horas al día bastan si son constantes.</p>
+<table>
+  <tr><th style="width:62pt">Semana</th><th>Qué estudiar</th><th style="width:150pt">Para cerrarla</th></tr>
+  <tr><td class="n">1</td><td>Lección 0 y unidad 1 completa. Lo más importante: 1.4 (proyección), 1.9 (recta de dos
+    planos) y 1.11 (distancia punto-recta).</td><td>Lista de control de la UD1.</td></tr>
+  <tr><td class="n">2</td><td>Unidad 2, lecciones 2.1 a 2.6. Repetir Gauss y Gauss-Jordan hasta que salgan sin pensar.</td>
+    <td>Diapositivas 2: ejercicios 3, 5, 6, 7, 10, 13.</td></tr>
+  <tr><td class="n">3</td><td>Unidad 2, lecciones 2.7 a 2.9 (homogéneos, independencia y <b>parámetros</b>). Empieza la
+    unidad 3 (3.1 a 3.3).</td><td>Lista de control de la UD2.</td></tr>
+  <tr><td class="n">4</td><td>Unidad 3: inversa por Gauss-Jordan y sistemas con la inversa. Unidad 4: 4.1 y 4.2.</td>
+    <td>Lista de control de la UD3.</td></tr>
+  <tr><td class="n">5</td><td>Unidad 4: 4.3 a 4.9 (determinantes grandes, Cramer, parámetro, LU).</td>
+    <td>Lista de control de la UD4.</td></tr>
+  <tr><td class="n">6</td><td>Simulacro completo con reloj. Corrígelo con la solución y repite las lecciones de lo que
+    falles.</td><td>Simulacro con 8 o más sobre 10.</td></tr>
+  <tr><td class="n">7</td><td>Repaso: todos los «Tu turno» otra vez, con números cambiados por ti. Formulario y erratas.</td>
+    <td>Repetir el simulacro sin mirar nada.</td></tr>
+</table>
+<div class="nota idea"><span class="lead">Si vas con poco tiempo.</span> Haz solo las lecciones de tres estrellas, en
+este orden: 2.2 → 2.3 → 2.4 → 2.5 → 2.6 → 2.9 → 3.5 → 3.6 → 4.1 → 4.4 → 4.6 → 4.9 → 1.9 → 1.11. Son los tipos de
+ejercicio de la AEC 1 y del examen.</div>
+</section>
+
+<!-- ============================================================ REGLAS -->
+<section class="nueva">
+<!--toc level=1 label="LAS REGLAS DEL JUEGO" title="Lo que el profesor da por bueno"-->
+<div class="etq">Las reglas del juego</div>
+<h1>Lo que el profesor da por bueno (y lo que es un cero)</h1>
+<p>Esto no está en las diapositivas: sale de las bases de la AEC 1 y de lo que el profesor repitió en clase. Saberlo
+vale tantos puntos como saber la materia.</p>
+<table>
+  <tr><th style="width:150pt">Regla</th><th>Qué significa en la práctica</th></tr>
+  <tr><td><b>Sin pasos intermedios, un cero</b></td><td>«Si me ponéis la solución final, os pongo un cero, porque eso
+    significa que lo habéis hecho con Matlab». Hay que escribir las matrices del Gauss. No hace falta copiar la matriz
+    entera tras cada operación: con cada pivote puedes hacer todos los ceros de su columna en un solo paso.
+    <span class="min">▶ 1:12:19</span> (19/10)</td></tr>
+  <tr><td><b>Si piden un método, se usa ese método</b></td><td>«Si me calculáis bien la inversa, pero yo la he pedido
+    por Gauss, me lo calculáis por otro, es un cero». Lo mismo con «por Cramer», «por LU», «usando eliminación
+    gaussiana» o «no resolver por determinantes». Si no piden método, vale cualquiera.
+    <span class="min">▶ 29:03</span> (19/10)</td></tr>
+  <tr><td><b>Nada de decimales</b></td><td>Las bases de la AEC califican con 0 las respuestas en decimales. Se deja
+    $\sqrt{21}$, $\tfrac{\sqrt3}{3}$ o $\tfrac52$; nunca 4,58 o 2,5 como resultado final.</td></tr>
+  <tr><td><b>La FERF es única</b></td><td>Formas escalonadas hay infinitas y vale cualquiera; la forma escalonada
+    reducida por filas es una sola. «Si no concuerda con lo que yo tengo, está mal». Si piden la FERF y te paras en una
+    escalonada, «fallas el ejercicio». <span class="min">▶ 12:10</span> <span class="min">▶ 35:49</span> (5/10)</td></tr>
+  <tr><td><b>La inversa también es única</b></td><td>«No existe una inversa alternativa». Si no coincide con la buena,
+    hay un error. Compruébala siempre con $A\cdot A^{-1}=I$. <span class="min">▶ 19:22</span> (19/10)</td></tr>
+  <tr><td><b>Números feos = error</b></td><td>El profesor prepara los ejercicios para que salgan cuentas limpias.
+    «El profe no es masoca»: si te aparece algo como $\tfrac{117}{81}$, te has equivocado antes. Vuelve atrás en vez de
+    seguir. <span class="min">▶ 01:54</span> <span class="min">▶ 1:18:01</span> (5/10)</td></tr>
+  <tr><td><b>Argumentar y concluir</b></td><td>«Hay que argumentar los pasos que se van dando» y escribir la conclusión:
+    qué tipo de sistema es, cuál es la solución, qué significa geométricamente. Una frase corta basta: «r = r′ = 2 &lt; 3,
+    compatible indeterminado».</td></tr>
+  <tr><td><b>Comprobar «de verdad»</b></td><td>Si piden comprobar que $LU=A$, «es para que lo comprobéis, no para que me
+    lo pongáis así y decir: “Sí, funciona”». Se hace la multiplicación. <span class="min">▶ 1:06:36</span> (19/10)</td></tr>
+  <tr><td><b>Lee el verbo del enunciado</b></td><td>«Gauss» o «eliminación gaussiana» = basta una escalonada y
+    sustitución hacia atrás. «Gauss-Jordan», «FERF», «forma canónica» o «reducida por filas» = hasta la FERF. Inversa
+    «por Gauss» = Gauss-Jordan completo hasta $(I\,|\,A^{-1})$.</td></tr>
+</table>
+<div class="nota error"><span class="lead">El error más caro.</span> No son los conceptos, son las cuentas: un signo
+mal en la primera operación se arrastra hasta el final. Escribe siempre los paréntesis con los negativos,
+$2-(-1)$ y no $2--1$, y usa pivotes 1 o −1 siempre que puedas (intercambiando filas).</div>
+</section>
+
+<!-- ============================================================ LECCIÓN 0 -->
+<section class="leccion nueva">
+<!--toc level=1 label="LECCIÓN 0" title="0 Herramientas"-->
+<div class="etq">Lección 0</div>
+<h1>Herramientas: signos, fracciones, raíces y Ruffini<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> hacer sin errores las cuentas que aparecen en todos los ejercicios. Si las
+dominas ya, pasa a la unidad 1; si fallas alguna del «Tu turno», no la saltes.</p>
+
+<div class="dos">
+<div>
+<h3>Signos</h3>
+<ul>
+  <li>Menos por menos, más: $(-2)\cdot(-3)=6$.</li>
+  <li>Restar un negativo es sumar: $4-(-3)=7$.</li>
+  <li>Un menos delante de un paréntesis cambia todos los signos: $-(2-5)=-2+5=3$.</li>
+  <li>Al cuadrado, siempre positivo: $(-3)^2=9$, pero $-3^2=-9$.</li>
+</ul>
+<h3>Fracciones</h3>
+<ul>
+  <li>Sumar: mismo denominador. $\tfrac12+\tfrac13=\tfrac36+\tfrac26=\tfrac56$.</li>
+  <li>Multiplicar: arriba por arriba, abajo por abajo. $\tfrac23\cdot\tfrac34=\tfrac{6}{12}=\tfrac12$.</li>
+  <li>Dividir: multiplicar por la fracción dada la vuelta. $\dfrac{10}{5/4}=10\cdot\tfrac45=8$. Sale en la proyección.</li>
+</ul>
+</div>
+<div>
+<h3>Raíces</h3>
+<ul>
+  <li>Sacar factores: $\sqrt{50}=\sqrt{25\cdot2}=5\sqrt2$; $\sqrt{32}=4\sqrt2$; $\sqrt{12}=2\sqrt3$.</li>
+  <li>Racionalizar: $\dfrac{1}{\sqrt3}=\dfrac{\sqrt3}{3}$ (multiplica arriba y abajo por $\sqrt3$).</li>
+  <li>$\sqrt{a+b}\neq\sqrt a+\sqrt b$: $\sqrt{9+16}=5$, no 7.</li>
+  <li>Cuadrados que conviene saber: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144.</li>
+</ul>
+<h3>Ecuación de segundo grado</h3>
+<p>$ax^2+bx+c=0\ \Rightarrow\ x=\dfrac{-b\pm\sqrt{b^2-4ac}}{2a}$. Sale al discutir sistemas con parámetro (2.9 y 4.6).
+Ejemplo: $-k^2-k+2=0\iff k^2+k-2=0\iff k=\tfrac{-1\pm3}{2}$, es decir $k=1$ o $k=-2$.</p>
+</div>
+</div>
+
+<h2>Ruffini: encontrar las raíces enteras de un polinomio</h2>
+<p>Lo necesitarás en la unidad 4, cuando un determinante dé un polinomio de grado 3. La idea: <b>las raíces enteras
+dividen al término independiente</b>. Se prueban esos divisores ($\pm1,\pm2,\dots$) hasta que el resto salga 0.</p>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · raíces de $a^3-3a+2$ (diapositivas UD4, ejercicio 5)</div>
+<div class="cue">
+<div class="pasos">
+  <div>$$\begin{array}{r|rrrr} & 1 & 0 & -3 & 2\\ 1 & & 1 & 1 & -2\\\hline & 1 & 1 & -2 & \mathbf{0}\end{array}$$</div>
+  <p class="gris">Coeficientes de mayor a menor grado, sin olvidar el 0 de $a^2$. Divisores de 2: $\pm1,\pm2$. Pruebo
+  $a=1$: bajo el 1; $1\cdot1=1$, $0+1=1$; $1\cdot1=1$, $-3+1=-2$; $1\cdot(-2)=-2$, $2-2=0$. Resto 0: $a=1$ es raíz.</p>
+</div>
+<p>Queda $a^2+a-2=(a-1)(a+2)$, así que $a^3-3a+2=(a-1)^2(a+2)$: raíces $a=1$ (doble) y $a=-2$.</p>
+</div></div>
+
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T0 · solución en la página <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div>
+<div class="cue">
+<p>(a) $3-(-2)\cdot4$ · (b) $\tfrac{3}{4}-\tfrac{5}{6}$ · (c) $\dfrac{6}{3/2}$ · (d) simplifica $\sqrt{72}$ y racionaliza
+$\tfrac{2}{\sqrt2}$ · (e) resuelve $k^2-k-6=0$ · (f) raíces de $\lambda^3-2\lambda^2-\lambda+2$ con Ruffini.</p>
+</div></div>
+</section>

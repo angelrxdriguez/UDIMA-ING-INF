@@ -1,0 +1,612 @@
+<!-- ============================================================ UNIDAD 1 -->
+<section class="unidad">
+<!--toc level=1 label="UNIDAD 1" title="Unidad 1 · Vectores, rectas y planos"-->
+<div class="banda">
+  <div class="sup">UNIDAD 1</div>
+  <div class="titulo">Vectores, rectas y planos</div>
+  <div class="sub">Diapositivas «Vectores, rectas y planos» (59) y libro «Vectores y geometría» · 12 lecciones</div>
+</div>
+<div class="dos">
+<div>
+<h3 style="margin-top:0">Qué vas a aprender</h3>
+<p>A operar con vectores (sumar, multiplicar, producto escalar y vectorial), a escribir rectas y planos de todas las
+formas posibles, a cortar planos resolviendo sistemas y a calcular distancias de un punto a una recta o a un plano.</p>
+</div>
+<div>
+<h3 style="margin-top:0">Qué suele caer</h3>
+<p>La <b>distancia de un punto a la recta en la que se cortan dos planos</b> (fue el problema 1 de la AEC 1): junta la
+lección 1.9 (sacar la recta) con la 1.11 (proyectar). También la posición de tres planos y las ecuaciones de un plano.</p>
+</div>
+</div>
+<div class="nota idea"><span class="lead">Notación.</span> Los puntos van en mayúscula, $A=(1,2,3)$; los vectores en
+negrita, $\mathbf v=[3,1]$. El profesor escribe los vectores con corchetes o en columna, y a veces con paréntesis: es lo
+mismo. Un vector de $\mathbb R^2$ tiene 2 componentes y uno de $\mathbb R^3$, tres.</div>
+
+<!-- ------------------------------------------------ 1.1 -->
+<div class="leccion" style="margin-top:8pt">
+<!--toc level=2 label="LECCIÓN 1.1" title="1.1 Vectores y sus operaciones"-->
+<div class="etq">Lección 1.1</div>
+<h1>Vectores y sus operaciones<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> sacar el vector que va de un punto a otro, y sumar, restar y multiplicar
+vectores por un número.</p>
+<div class="dos">
+<div>
+<p><b>La idea.</b> Un vector es una flecha: tiene dirección, sentido y longitud. Para describirla basta decir cuánto
+avanza en cada eje. La flecha que va de $A$ a $B$ es</p>
+$$\overrightarrow{AB}=B-A\qquad\text{(destino menos origen)}$$
+<p>En álgebra lineal todos los vectores se dibujan <b>saliendo del origen</b>: la flecha de $A(-1,2)$ a $B(2,3)$ es la
+misma que la que va de $O$ a $(3,1)$.</p>
+</div>
+<div class="centro">
+<svg width="190" height="128" viewBox="-60 -20 190 128" style="font:9px Arial">
+  <g stroke="#c5d0da" stroke-width=".6"><line x1="-55" y1="90" x2="125" y2="90"/><line x1="-25" y1="105" x2="-25" y2="-15"/></g>
+  <text x="120" y="100" fill="#556068">x</text><text x="-21" y="-10" fill="#556068">y</text>
+  <defs><marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1f4e79"/></marker>
+  <marker id="fl2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#b8620b"/></marker></defs>
+  <line x1="-55" y1="30" x2="35" y2="0" stroke="#1f4e79" stroke-width="1.6" marker-end="url(#fl)"/>
+  <circle cx="-55" cy="30" r="2" fill="#000"/><circle cx="35" cy="0" r="2" fill="#000"/>
+  <text x="-58" y="44">A(−1, 2)</text><text x="38" y="-4">B(2, 3)</text>
+  <line x1="-25" y1="90" x2="65" y2="60" stroke="#b8620b" stroke-width="1.6" marker-end="url(#fl2)"/>
+  <text x="68" y="62" fill="#b8620b">(3, 1)</text><text x="-34" y="100">O</text>
+</svg>
+<p class="gris" style="margin-top:-2pt">$\overrightarrow{AB}=[2-(-1),\ 3-2]=[3,1]$ (diapositiva 2). Las dos flechas son el mismo vector.</p>
+</div>
+</div>
+<p><b>Las operaciones se hacen componente a componente.</b> Con $\mathbf u=[u_1,u_2,u_3]$ y $\mathbf v=[v_1,v_2,v_3]$:</p>
+<table>
+  <tr><th>Operación</th><th>Fórmula</th><th>Qué hace</th></tr>
+  <tr><td>Suma</td><td>$\mathbf u+\mathbf v=[u_1+v_1,\ u_2+v_2,\ u_3+v_3]$</td><td>Pone una flecha detrás de la otra (regla del paralelogramo). $\mathbf u+\mathbf v=\mathbf v+\mathbf u$.</td></tr>
+  <tr><td>Resta</td><td>$\mathbf u-\mathbf v=\mathbf u+(-\mathbf v)$</td><td>La flecha que va de la punta de $\mathbf v$ a la de $\mathbf u$.</td></tr>
+  <tr><td>Por un número</td><td>$k\mathbf v=[kv_1,\ kv_2,\ kv_3]$</td><td>Misma dirección; cambia la longitud, y el sentido si $k&lt;0$.</td></tr>
+</table>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas UD1, ejercicios 1 y 2</div><div class="cue">
+<p><b>Ej. 1.</b> $\mathbf u=[1,2,3]$, $\mathbf v=[3,2,1]$: $\ \mathbf u+\mathbf v=[1+3,\ 2+2,\ 3+1]=[4,4,4]$.</p>
+<p><b>Ej. 2.</b> Expresar vectores de un hexágono en función de $\mathbf a=\overrightarrow{OA}$ y $\mathbf b=\overrightarrow{OB}$.
+El truco es <b>caminar por flechas que ya conoces</b>: para ir de $A$ a $B$ vuelvo de $A$ al centro ($-\mathbf a$) y voy
+a $B$ ($+\mathbf b$): $\overrightarrow{AB}=\mathbf b-\mathbf a$. Del mismo modo, en la figura de la diapositiva 7,
+$\overrightarrow{BC}=-\mathbf a$, $\overrightarrow{AD}=-2\mathbf a$, $\overrightarrow{CF}=-2(\mathbf b-\mathbf a)$ y
+$\overrightarrow{AC}=(\mathbf b-\mathbf a)-\mathbf a$.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.1 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Con $A=(2,-1,3)$ y $B=(5,1,-1)$, calcula $\overrightarrow{AB}$. Con $\mathbf u=[1,-2,2]$ y $\mathbf v=[3,0,-1]$,
+calcula $2\mathbf u-3\mathbf v$.</p>
+</div></div>
+<div class="nota error"><span class="lead">Error típico.</span> Hacer origen menos destino ($A-B$): sale el vector al revés.
+Y perder el signo al restar coordenadas negativas: escribe $2-(-1)$, con paréntesis.</div>
+</div>
+
+<!-- ------------------------------------------------ 1.2 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.2" title="1.2 Combinación lineal"-->
+<div class="etq">Lección 1.2</div>
+<h1>Combinación lineal<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> decidir si un vector se puede «fabricar» con otros y con qué números.</p>
+<p><b>La idea.</b> $\mathbf w$ es <b>combinación lineal</b> de $\mathbf u$ y $\mathbf v$ si existen dos números $a$ y $b$
+tales que $\mathbf w=a\mathbf u+b\mathbf v$. Es como una receta: «$a$ veces $\mathbf u$ más $b$ veces $\mathbf v$». Esta
+idea vuelve en la unidad 2: unas filas son <b>dependientes</b> cuando una es combinación lineal de las otras.</p>
+<p><b>El método.</b> Escribe $\mathbf w=a\mathbf u+b\mathbf v$ componente a componente: sale un sistema con incógnitas
+$a$ y $b$. Si tiene solución, sí es combinación lineal.</p>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 8 de la UD1</div><div class="cue">
+<p>¿Es $\mathbf w=[2,-1]$ combinación lineal de $\mathbf u=[-1,1]$ y $\mathbf v=[0,2]$?</p>
+<div class="pasos">
+  <div>$[2,-1]=a[-1,1]+b[0,2]\ \Rightarrow\ \begin{cases}-a=2\\ a+2b=-1\end{cases}$</div>
+  <p class="gris">Primera componente: $a\cdot(-1)+b\cdot0=2$. Segunda: $a\cdot1+b\cdot2=-1$.</p>
+  <div>$a=-2,\quad -2+2b=-1\ \Rightarrow\ b=\tfrac12$</div>
+  <p class="gris">De la primera sale $a$ directamente; se sustituye en la segunda.</p>
+</div>
+<p>Sí: $\mathbf w=-2\mathbf u+\tfrac12\mathbf v$. <b>Comprobación:</b> $-2[-1,1]+\tfrac12[0,2]=[2,-2]+[0,1]=[2,-1]$ \ok</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.2 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Escribe $\mathbf w=[4,1]$ como combinación lineal de $\mathbf u=[1,-1]$ y $\mathbf v=[2,3]$.</p>
+</div></div>
+<p class="gris">Las propiedades de la diapositiva 9 ($\mathbf u+\mathbf v=\mathbf v+\mathbf u$, $c(\mathbf u+\mathbf v)=c\mathbf u+c\mathbf v$…)
+dicen que con vectores se opera como con números. No hace falta memorizarlas: se usan sin darte cuenta.</p>
+</div>
+
+<!-- ------------------------------------------------ 1.3 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.3" title="1.3 Producto escalar, módulo, distancia y ángulo"-->
+<div class="etq">Lección 1.3</div>
+<h1>Producto escalar, módulo, distancia y ángulo<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular el producto escalar, la longitud de un vector, hacerlo unitario,
+la distancia entre dos vectores y el ángulo que forman.</p>
+<p><b>La idea.</b> El producto escalar multiplica dos vectores y da <b>un número</b> (no un vector). Con él se mide todo:
+longitudes, distancias y ángulos.</p>
+<table>
+  <tr><th style="width:105pt">Concepto</th><th style="width:170pt">Fórmula</th><th>Ejemplo de las diapositivas</th></tr>
+  <tr><td>Producto escalar</td><td>$\mathbf u\cdot\mathbf v=u_1v_1+u_2v_2+u_3v_3$</td>
+    <td>Ej. 3: $[1,2,-1]\cdot[-1,0,-2]=-1+0+2=1$</td></tr>
+  <tr><td>Módulo (norma)</td><td>$\|\mathbf v\|=\sqrt{\mathbf v\cdot\mathbf v}=\sqrt{v_1^2+v_2^2+v_3^2}$</td>
+    <td>Ej. 5: $\|[4,3]\|=\sqrt{16+9}=5$</td></tr>
+  <tr><td>Normalizar (unitario)</td><td>$\mathbf q=\dfrac{1}{\|\mathbf v\|}\,\mathbf v$</td>
+    <td>Ej. 5: $\mathbf q=\tfrac15[4,3]=[\tfrac45,\tfrac35]$. Ej. 4: $[1,1]\to[\tfrac1{\sqrt2},\tfrac1{\sqrt2}]$</td></tr>
+  <tr><td>Distancia</td><td>$d(\mathbf u,\mathbf v)=\|\mathbf u-\mathbf v\|$</td>
+    <td>Ej. 6: $[1,2]-[3,1]=[-2,1]$, $\ d=\sqrt{4+1}=\sqrt5$</td></tr>
+  <tr><td>Ángulo</td><td>$\cos\theta=\dfrac{\mathbf u\cdot\mathbf v}{\|\mathbf u\|\,\|\mathbf v\|}$</td>
+    <td>Ej. 7: $\dfrac{5}{\sqrt5\sqrt{10}}=\dfrac{5}{\sqrt{50}}=\dfrac{1}{\sqrt2}\Rightarrow\theta=45^\circ=\tfrac\pi4$</td></tr>
+</table>
+<div class="dos">
+<div class="caja ejemplo" style="margin-top:0"><div class="tit">Ejemplo resuelto · ángulo (diapositiva 19)</div><div class="cue">
+<p>$\mathbf u=[1,2]$, $\mathbf v=[3,1]$.</p>
+<ol class="pasosn" style="margin-bottom:2pt">
+  <li>Escalar: $1\cdot3+2\cdot1=5$.</li>
+  <li>Módulos: $\|\mathbf u\|=\sqrt{1+4}=\sqrt5$; $\|\mathbf v\|=\sqrt{9+1}=\sqrt{10}$.</li>
+  <li>$\cos\theta=\dfrac{5}{\sqrt{50}}=\dfrac{5}{5\sqrt2}=\dfrac{1}{\sqrt2}$, que es el coseno de $45^\circ$.</li>
+</ol>
+</div></div>
+<div>
+<table style="margin-top:0">
+  <tr><th>Ángulo</th><th class="c">0°</th><th class="c">30°</th><th class="c">45°</th><th class="c">60°</th><th class="c">90°</th></tr>
+  <tr><td>$\cos$</td><td class="c">1</td><td class="c">$\tfrac{\sqrt3}2$</td><td class="c">$\tfrac{\sqrt2}2$</td><td class="c">$\tfrac12$</td><td class="c">0</td></tr>
+</table>
+<p class="gris">Si el coseno sale negativo, el ángulo es obtuso: $\cos\theta=-\tfrac12\Rightarrow\theta=120^\circ$. Si no
+es un ángulo de la tabla, se deja como $\theta=\arccos(\dots)$, sin decimales.</p>
+</div>
+</div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.3 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>(a) Normaliza $\mathbf v=[2,-1,2]$. (b) Distancia entre $[1,2,3]$ y $[3,0,4]$. (c) Ángulo entre $[1,0,1]$ y $[1,1,0]$.</p>
+</div></div>
+<div class="nota error"><span class="lead">Errores típicos.</span> Olvidar la raíz en el módulo. Confundir $\|\mathbf u\|\,\|\mathbf v\|$
+con $\|\mathbf u\cdot\mathbf v\|$. Y dar el resultado en decimales: $\sqrt5$ se deja como $\sqrt5$.</div>
+</div>
+
+<!-- ------------------------------------------------ 1.4 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.4" title="1.4 Perpendiculares y proyección"-->
+<div class="etq">Lección 1.4</div>
+<h1>Perpendiculares y proyección ortogonal<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> comprobar si dos vectores son perpendiculares y calcular la proyección de un
+vector sobre otro, que es la pieza clave de las distancias (1.11 y 1.12).</p>
+<div class="dos">
+<div>
+<p><b>Perpendiculares (ortogonales).</b> Dos vectores son ortogonales cuando forman 90°, y como $\cos90^\circ=0$:</p>
+$$\mathbf u\perp\mathbf v\iff\mathbf u\cdot\mathbf v=0$$
+<p>Diapositiva 21: $[1,2,0]\cdot[2,-1,0]=2-2+0=0$, son ortogonales. Si lo son, se cumple Pitágoras:
+$\|\mathbf u+\mathbf v\|^2=\|\mathbf u\|^2+\|\mathbf v\|^2$.</p>
+<p><b>Proyección.</b> Es la «sombra» de $\mathbf v$ sobre la recta de $\mathbf u$ cuando la luz cae en perpendicular:</p>
+$$\operatorname{proy}_{\mathbf u}(\mathbf v)=\frac{\mathbf u\cdot\mathbf v}{\mathbf u\cdot\mathbf u}\,\mathbf u$$
+<p>El cociente es <b>un número</b>; el resultado es ese número por $\mathbf u$, así que es un vector paralelo a $\mathbf u$.</p>
+</div>
+<div class="centro">
+<svg width="200" height="130" viewBox="0 0 200 130" style="font:10px Arial">
+  <defs><marker id="f3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1f4e79"/></marker>
+  <marker id="f4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#b8620b"/></marker>
+  <marker id="f5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#2e7d32"/></marker></defs>
+  <line x1="10" y1="115" x2="195" y2="115" stroke="#c5d0da"/>
+  <line x1="10" y1="115" x2="185" y2="115" stroke="#1f4e79" stroke-width="1.4" marker-end="url(#f3)"/>
+  <text x="178" y="128" fill="#1f4e79">u</text>
+  <line x1="10" y1="115" x2="120" y2="25" stroke="#000" stroke-width="1.4" marker-end="url(#f3)"/>
+  <text x="58" y="58">v</text>
+  <line x1="10" y1="115" x2="120" y2="115" stroke="#b8620b" stroke-width="2.6" marker-end="url(#f4)"/>
+  <text x="44" y="128" fill="#b8620b">proyᵤ(v)</text>
+  <line x1="120" y1="115" x2="120" y2="27" stroke="#2e7d32" stroke-width="1.3" stroke-dasharray="3 2" marker-end="url(#f5)"/>
+  <text x="124" y="72" fill="#2e7d32">v − proy</text>
+  <rect x="113" y="108" width="7" height="7" fill="none" stroke="#556068" stroke-width=".7"/>
+</svg>
+<p class="gris">Lo que queda, $\mathbf v-\operatorname{proy}_{\mathbf u}(\mathbf v)$ (verde), es perpendicular a $\mathbf u$.
+Esa parte verde es la que dará las distancias.</p>
+</div>
+</div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 23: proyección de $\mathbf v=(2,2)$ sobre $\mathbf u=(0,4)$</div><div class="cue">
+<div class="pasos">
+  <div>$\mathbf u\cdot\mathbf v=0\cdot2+4\cdot2=8$, $\quad\mathbf u\cdot\mathbf u=0+16=16$</div>
+  <p class="gris">Arriba el escalar de los dos; abajo, $\mathbf u$ consigo mismo (el módulo al cuadrado, sin raíz).</p>
+  <div>$\operatorname{proy}_{\mathbf u}(\mathbf v)=\tfrac{8}{16}(0,4)=\tfrac12(0,4)=(0,2)$</div>
+  <p class="gris">El número multiplica a $\mathbf u$, no a $\mathbf v$.</p>
+</div>
+<p><b>Comprobación:</b> $\mathbf v-\operatorname{proy}=(2,2)-(0,2)=(2,0)$, y $(2,0)\cdot(0,4)=0$ \ok, es perpendicular a $\mathbf u$.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.4 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>(a) Proyecta $\mathbf v=[4,2,1]$ sobre $\mathbf u=[1,1,0]$ y comprueba que lo que sobra es perpendicular a $\mathbf u$.
+(b) ¿Son ortogonales $[2,-1,0]$ y $[1,2,5]$?</p>
+</div></div>
+<div class="nota error"><span class="lead">Error típico.</span> Poner abajo $\mathbf v\cdot\mathbf v$ o
+$\|\mathbf u\|$ (con raíz). Abajo va siempre el vector <b>sobre el que</b> se proyecta, multiplicado por sí mismo.</div>
+</div>
+
+<!-- ------------------------------------------------ 1.5 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.5" title="1.5 Producto vectorial"-->
+<div class="etq">Lección 1.5</div>
+<h1>Producto vectorial<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular $\mathbf u\times\mathbf v$ y usarlo para obtener un vector
+perpendicular a otros dos (por ejemplo, el vector normal de un plano).</p>
+<p><b>La idea.</b> Solo existe en $\mathbb R^3$. Da <b>un vector</b> perpendicular a $\mathbf u$ y a $\mathbf v$ a la vez,
+con el sentido en que avanza un sacacorchos que gira de $\mathbf u$ a $\mathbf v$. Por eso cambiar el orden cambia el
+sentido: $\mathbf v\times\mathbf u=-(\mathbf u\times\mathbf v)$.</p>
+<div class="dos">
+<div>
+$$\mathbf u\times\mathbf v=\begin{bmatrix}u_2v_3-u_3v_2\\u_3v_1-u_1v_3\\u_1v_2-u_2v_1\end{bmatrix}$$
+</div>
+<div class="nota idea" style="margin-top:0"><span class="lead">Cómo recordarlo.</span> Escribe $\mathbf u$ encima de
+$\mathbf v$. Para la 1.ª componente tapa la 1.ª columna y haz «aspa» con lo que queda; para la 2.ª, tapa la 2.ª
+columna y <b>cambia el signo</b>; para la 3.ª, tapa la 3.ª. En la unidad 4 (lección 4.8) verás que es un determinante.</div>
+</div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 25: $\mathbf u=[1,2,3]$, $\mathbf v=[-1,0,4]$</div><div class="cue">
+<div class="pasos">
+  <div>1.ª: $\ 2\cdot4-3\cdot0=8$</div><p class="gris">Tapo la columna de las primeras componentes: quedan $\begin{smallmatrix}2&amp;3\\0&amp;4\end{smallmatrix}$.</p>
+  <div>2.ª: $\ 3\cdot(-1)-1\cdot4=-7$</div><p class="gris">Fórmula $u_3v_1-u_1v_3$ (es el aspa con el signo cambiado).</p>
+  <div>3.ª: $\ 1\cdot0-2\cdot(-1)=2$</div><p class="gris">Tapo la tercera columna.</p>
+</div>
+<p>$\mathbf u\times\mathbf v=[8,-7,2]$ y $\mathbf v\times\mathbf u=[-8,7,-2]$: no dan lo mismo. <b>Comprobación:</b>
+$[8,-7,2]\cdot[1,2,3]=8-14+6=0$ \ok y $[8,-7,2]\cdot[-1,0,4]=-8+0+8=0$ \ok</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.5 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Calcula $\mathbf u\times\mathbf v$ con $\mathbf u=[2,1,0]$ y $\mathbf v=[1,3,-1]$, y comprueba que es perpendicular a los dos.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 1.6 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.6" title="1.6 Rectas en el plano"-->
+<div class="etq">Lección 1.6</div>
+<h1>Rectas en el plano<span class="prio">★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> pasar una recta de $\mathbb R^2$ de una forma a otra: general, normal, vectorial y paramétrica.</p>
+<p><b>La idea.</b> Una recta se puede describir de dos maneras: diciendo hacia dónde es perpendicular (su vector
+<b>normal</b> $\mathbf n$) o diciendo hacia dónde va (su vector <b>director</b> $\mathbf d$) y un punto por el que pasa.</p>
+<table>
+  <tr><th style="width:80pt">Forma</th><th style="width:150pt">Ecuación</th><th>Qué se lee</th></tr>
+  <tr><td>General</td><td>$ax+by=c$</td><td>El normal: $\mathbf n=[a,b]$ (los números delante de $x$ e $y$).</td></tr>
+  <tr><td>Normal</td><td>$\mathbf n\cdot\mathbf x=\mathbf n\cdot\mathbf p$</td><td>$\mathbf p$ es un punto de la recta; equivale a $\mathbf n\cdot(\mathbf x-\mathbf p)=0$.</td></tr>
+  <tr><td>Vectorial</td><td>$\mathbf x=\mathbf p+t\,\mathbf d$</td><td>Un punto $\mathbf p$ y el director $\mathbf d$; $t$ es el parámetro.</td></tr>
+  <tr><td>Paramétricas</td><td>$x=p_1+td_1,\ y=p_2+td_2$</td><td>La vectorial «separada por coordenadas».</td></tr>
+</table>
+<p><b>Truco.</b> En $\mathbb R^2$, si $\mathbf n=[a,b]$ un director es $\mathbf d=[-b,a]$ (cambia el orden y un signo),
+porque $[a,b]\cdot[-b,a]=0$. También vale despejar: tomar $x=t$ y despejar $y$.</p>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 31 y 32: $-2x+y=3$</div><div class="cue">
+<div class="pasos">
+  <div>$\mathbf n=[-2,1]$</div><p class="gris">Los coeficientes de $x$ e $y$.</p>
+  <div>$\mathbf p=(1,5)$, porque $-2\cdot1+5=3$</div><p class="gris">Doy un valor a $x$ y despejo $y$. Cualquier punto vale.</p>
+  <div>Normal: $[-2,1]\cdot\begin{bmatrix}x\\y\end{bmatrix}=[-2,1]\cdot\begin{bmatrix}1\\5\end{bmatrix}$</div><p class="gris">$\mathbf n\cdot\mathbf p=-2+5=3$, el término de la derecha.</p>
+  <div>$x=t\Rightarrow y=3+2t$, así que $\mathbf d=[1,2]$</div><p class="gris">Comprueba: $[-2,1]\cdot[1,2]=0$ \ok</p>
+  <div>Vectorial: $\begin{bmatrix}x\\y\end{bmatrix}=\begin{bmatrix}1\\5\end{bmatrix}+t\begin{bmatrix}1\\2\end{bmatrix}$</div>
+  <p class="gris">Paramétricas: $x=1+t,\ y=5+2t$. (Con el punto $(0,3)$ también vale: hay muchas respuestas correctas.)</p>
+</div>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.6 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Da las formas normal, vectorial y paramétrica de la recta $3x-y=2$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 1.7 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.7" title="1.7 Rectas en el espacio"-->
+<div class="etq">Lección 1.7</div>
+<h1>Rectas en el espacio<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> escribir la recta de $\mathbb R^3$ que pasa por un punto con una dirección, o
+por dos puntos.</p>
+<p><b>La idea.</b> Igual que en el plano: $\mathbf x=\mathbf p+t\,\mathbf d$, ahora con tres componentes. Lo que
+<b>no</b> existe en $\mathbb R^3$ es una «ecuación general» de la recta: $ax+by+cz=d$ es un plano. Una recta en el
+espacio, en forma de ecuaciones, son <b>dos planos</b> que se cortan (lección 1.9).</p>
+<p><b>Por dos puntos $P$ y $Q$:</b> el director es $\mathbf d=\overrightarrow{PQ}=Q-P$ y el punto, $P$ (o $Q$).</p>
+<div class="dos">
+<div class="caja ejemplo" style="margin-top:0"><div class="tit">Ejemplo · diapositiva 33</div><div class="cue">
+<p>Recta por $P=(1,-5,1)$ paralela a $\mathbf d=[-3,2,-1]$:</p>
+$$\begin{bmatrix}x\\y\\z\end{bmatrix}=\begin{bmatrix}1\\-5\\1\end{bmatrix}+t\begin{bmatrix}-3\\2\\-1\end{bmatrix}\ \Rightarrow\ \begin{cases}x=1-3t\\y=-5+2t\\z=1-t\end{cases}$$
+</div></div>
+<div class="caja ejemplo" style="margin-top:0"><div class="tit">Ejemplo · propuesto 20 de la UD1</div><div class="cue">
+<p>Recta por $P=(-1,2,1)$ y $Q=(2,3,1)$: $\mathbf d=Q-P=[3,1,0]$.</p>
+$$\mathbf x=(-1,2,1)+t\,[3,1,0]\ \Rightarrow\ x=-1+3t,\ y=2+t,\ z=1$$
+<p class="gris">Comprueba: con $t=1$ sale $(2,3,1)=Q$ \ok</p>
+</div></div>
+</div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.7 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Ecuación vectorial y paramétricas de la recta que pasa por $P=(1,0,2)$ y $Q=(3,-1,5)$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 1.8 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.8" title="1.8 Planos"-->
+<div class="etq">Lección 1.8</div>
+<h1>Planos<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> escribir un plano en sus cuatro formas y sacar el plano que pasa por tres puntos.</p>
+<table>
+  <tr><th style="width:80pt">Forma</th><th style="width:155pt">Ecuación</th><th>Qué se lee</th></tr>
+  <tr><td>General</td><td>$ax+by+cz=d$</td><td>El normal $\mathbf n=[a,b,c]$, perpendicular al plano.</td></tr>
+  <tr><td>Normal</td><td>$\mathbf n\cdot\mathbf x=\mathbf n\cdot\mathbf p$</td><td>$\mathbf p$, un punto del plano.</td></tr>
+  <tr><td>Vectorial</td><td>$\mathbf x=\mathbf p+s\,\mathbf u+t\,\mathbf v$</td><td>Dos directores $\mathbf u,\mathbf v$ dentro del plano y no paralelos entre sí. Dos parámetros: el plano tiene <b>dos grados de libertad</b>.</td></tr>
+  <tr><td>Paramétricas</td><td>$x=p_1+su_1+tv_1,\ \dots$</td><td>La vectorial separada por coordenadas.</td></tr>
+</table>
+<div class="caja metodo"><div class="tit">Método · plano que pasa por tres puntos $P$, $Q$, $R$</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Dos directores: $\mathbf u=\overrightarrow{PQ}=Q-P$ y $\mathbf v=\overrightarrow{PR}=R-P$.</li>
+  <li>Vectorial: $\mathbf x=P+s\,\mathbf u+t\,\mathbf v$. Paramétricas: separando por coordenadas.</li>
+  <li>Para la general: $\mathbf n=\mathbf u\times\mathbf v$ (perpendicular a los dos directores) y $d=\mathbf n\cdot P$.</li>
+  <li>Comprueba que los tres puntos cumplen la ecuación general.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 36 y 37: $P=(3,0,0)$, $Q=(0,1,0)$, $R=(0,0,2)$</div><div class="cue">
+<div class="pasos">
+  <div>$\mathbf u=\overrightarrow{PR}=[-3,0,2]$, $\ \mathbf v=\overrightarrow{PQ}=[-3,1,0]$</div><p class="gris">Destino menos origen, desde el mismo punto $P$.</p>
+  <div>$\begin{bmatrix}x\\y\\z\end{bmatrix}=\begin{bmatrix}3\\0\\0\end{bmatrix}+s\begin{bmatrix}-3\\1\\0\end{bmatrix}+t\begin{bmatrix}-3\\0\\2\end{bmatrix}$</div>
+  <p class="gris">Paramétricas: $x=3-3s-3t$, $y=s$, $z=2t$ (así lo da la diapositiva).</p>
+  <div>$\mathbf u\times\mathbf v=[0\cdot0-2\cdot1,\ 2\cdot(-3)-(-3)\cdot0,\ (-3)\cdot1-0\cdot(-3)]=[-2,-6,-3]$</div>
+  <p class="gris">Paso extra (no está en la diapositiva): el normal. Vale también el opuesto, $\mathbf n=[2,6,3]$.</p>
+  <div>$d=\mathbf n\cdot P=2\cdot3=6\ \Rightarrow\ 2x+6y+3z=6$</div>
+  <p class="gris">Comprobación: $Q$: $0+6+0=6$ \ok $\ R$: $0+0+6=6$ \ok</p>
+</div>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.8 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Ecuaciones vectorial, paramétricas y general del plano que pasa por $A=(1,0,0)$, $B=(0,2,0)$ y $C=(0,0,3)$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 1.9 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.9" title="1.9 La recta en la que se cortan dos planos"-->
+<div class="etq">Lección 1.9</div>
+<h1>La recta en la que se cortan dos planos<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> obtener las paramétricas de la recta intersección de dos planos, que es el
+primer paso de muchos problemas de examen.</p>
+<p><b>La idea.</b> Dos planos no paralelos se cortan en una recta. Los puntos de esa recta cumplen las dos ecuaciones a
+la vez: hay que resolver un sistema de 2 ecuaciones con 3 incógnitas. Sobra una incógnita, que queda <b>libre</b>: se
+llama $t$ y es el parámetro de la recta. Es la primera vez que aparece el método de Gauss-Jordan, que la unidad 2
+estudia a fondo.</p>
+<div class="caja metodo"><div class="tit">Método</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Escribe los coeficientes en una tabla (la matriz ampliada) y haz un 0 debajo del primer 1.</li>
+  <li>Haz que el segundo número de la fila 2 sea 1 (divide la fila) y haz un 0 encima de él.</li>
+  <li>Lee: queda $x+\square z=\square$ y $y+\square z=\square$. Toma $z=t$ y pasa $t$ al otro lado.</li>
+  <li>Comprueba con un valor de $t$ (por ejemplo $t=1$) en las dos ecuaciones de partida.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 39: $x+2y+z=-1$ y $3x+2y+7z=5$</div><div class="cue">
+{{chain rrr|r : 1 2 1 -1 ; 3 2 7 5 :: F2-3F1 :: -1/4F2 :: F1-2F2 ! piv}}
+<div class="pasos">
+  <div>$F_2-3F_1$: $\ 3-3=0,\ 2-6=-4,\ 7-3=4,\ 5-(-3)=8$</div><p class="gris">A la fila 2 le resto 3 veces la fila 1 para hacer el 0. El profesor lo escribe $-3F_1+F_2$: es lo mismo.</p>
+  <div>$-\tfrac14F_2$: $\ [0,1,-1\,|\,-2]$</div><p class="gris">Divido entre $-4$ para que el pivote sea 1.</p>
+  <div>$F_1-2F_2$: $\ [1,0,3\,|\,3]$</div><p class="gris">Hago el 0 encima del segundo pivote.</p>
+  <div>$x+3z=3,\quad y-z=-2$</div><p class="gris">Lo que dice cada fila.</p>
+</div>
+<p>Con $z=t$: $\ \boxed{x=3-3t,\quad y=-2+t,\quad z=t}$. Es la recta que pasa por $P=(3,-2,0)$ con director $\mathbf d=[-3,1,1]$.</p>
+<p><b>Comprobación</b> con $t=1$, punto $(0,-1,1)$: $\ 0-2+1=-1$ \ok $\ 0-2+7=5$ \ok</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.9 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Paramétricas de la recta intersección de $x+y+z=2$ y $x-y+3z=4$. Da también un punto y un director.</p>
+</div></div>
+<div class="nota error"><span class="lead">Error típico.</span> Escribir $y=-2-t$ en lugar de $y=-2+t$: al pasar
+$-z$ al otro lado cambia de signo. Por eso se comprueba siempre con un valor de $t$. (El libro de la unidad tiene
+justo esta errata en la página 2-30.)</div>
+</div>
+
+<!-- ------------------------------------------------ 1.10 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.10" title="1.10 Tres planos: posiciones relativas"-->
+<div class="etq">Lección 1.10</div>
+<h1>Tres planos: cómo están colocados<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> resolver un sistema de tres ecuaciones y decir qué significa geométricamente.</p>
+<p><b>La idea.</b> Cada ecuación $ax+by+cz=d$ es un plano. Resolver el sistema es buscar los puntos que están en los
+tres planos a la vez. Solo hay tres posibilidades (las mismas que verás con nombre técnico en la lección 2.5):</p>
+<table>
+  <tr><th style="width:120pt">Lo que sale al resolver</th><th style="width:105pt">Tipo de sistema</th><th>Qué pasa con los planos</th></tr>
+  <tr><td>Un valor para cada letra</td><td>Compatible determinado</td><td>Se cortan en <b>un punto</b>. Cero grados de libertad.</td></tr>
+  <tr><td>Una fila $0=0$ y un parámetro</td><td>Compatible indeterminado</td><td>Pasan los tres por <b>la misma recta</b> (o hay planos repetidos). Un grado de libertad.</td></tr>
+  <tr><td>Una fila $0=k$, con $k\neq0$</td><td>Incompatible</td><td><b>No hay ningún punto común</b>. Si dos normales son proporcionales, esos dos planos son <b>paralelos</b>.</td></tr>
+</table>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 41 y 42: $x+y+z=9,\ 2x-y+3z=14,\ 2x+y-z=0$</div><div class="cue">
+{{chain rrr|r : 1 1 1 9 ; 2 -1 3 14 ; 2 1 -1 0 :: F2-2F1, F3-2F1 :: F2<->F3 :: F3-3F2 :: 1/10F3 ! piv}}
+<p>Abajo: $z=5$. Arriba: $-y-3\cdot5=-18\Rightarrow y=3$. Primera: $x+3+5=9\Rightarrow x=1$. Los tres planos se cortan en
+el <b>punto $(1,3,5)$</b>. (Intercambié $F_2$ y $F_3$ para tener $-1$ de pivote y no trabajar con el $-3$.)</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 43 a 45: $x+2y-z=6,\ 2x+3y-4z=12,\ 3x+5y-5z=18$</div><div class="cue">
+{{chain rrr|r : 1 2 -1 6 ; 2 3 -4 12 ; 3 5 -5 18 :: F2-2F1, F3-3F1 :: F3-F2 :: -F2 :: F1-2F2 ! piv}}
+<p>Sale una fila de ceros: la tercera ecuación era la suma de las otras dos. Queda $x-5z=6$ y $y+2z=0$; con $z=t$:
+$\ x=6+5t,\ y=-2t,\ z=t$. Los tres planos pasan por <b>una recta</b>.</p>
+<p class="gris">Errata: la diapositiva 44 escribe $y=2t$; es $y=-2t$. Compruébalo con $t=1$: $(11,-2,1)$ da $11-4-1=6$ \ok</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 46: $x+2y+z=-1,\ 3x+2y+7z=5,\ 2x+4y+2z=-1$</div><div class="cue">
+{{chain rrr|r : 1 2 1 -1 ; 3 2 7 5 ; 2 4 2 -1 :: F3-2F1}}
+<p>La fila 3 dice $0=1$: <b>absurdo, incompatible</b>. Los planos 1 y 3 tienen normales $[1,2,1]$ y $[2,4,2]$,
+proporcionales: son <b>paralelos</b> (el 3 es $x+2y+z=-\tfrac12$) y no se tocan.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.10 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Resuelve e interpreta geométricamente: $x+y+z=6,\ x-y+z=2,\ 2x+y-z=1$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 1.11 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.11" title="1.11 Distancia de un punto a una recta"-->
+<div class="etq">Lección 1.11</div>
+<h1>Distancia de un punto a una recta<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular la distancia de un punto $Q$ a una recta con el método del profesor
+(proyección), también cuando la recta viene dada como corte de dos planos.</p>
+<div class="dos">
+<div>
+<p><b>La idea.</b> Toma un punto $P$ cualquiera de la recta y la flecha $\mathbf v=\overrightarrow{PQ}$. Proyecta
+$\mathbf v$ sobre el director $\mathbf d$: la proyección es la parte de $\mathbf v$ que va «a lo largo» de la recta.
+Lo que sobra, $\mathbf v-\operatorname{proy}_{\mathbf d}(\mathbf v)$, es perpendicular a la recta y llega justo a $Q$.
+Su longitud es la distancia.</p>
+</div>
+<div class="centro">
+<svg width="200" height="118" viewBox="0 0 200 118" style="font:10px Arial">
+  <defs><marker id="f6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#1f4e79"/></marker>
+  <marker id="f7" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#b8620b"/></marker>
+  <marker id="f8" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0L10,5L0,10z" fill="#2e7d32"/></marker></defs>
+  <line x1="5" y1="100" x2="195" y2="100" stroke="#556068" stroke-width="1"/><text x="170" y="112" fill="#556068">recta</text>
+  <circle cx="30" cy="100" r="2.2"/><text x="24" y="113">P</text>
+  <line x1="30" y1="100" x2="70" y2="100" stroke="#1f4e79" stroke-width="2.4" marker-end="url(#f6)"/><text x="44" y="94" fill="#1f4e79">d</text>
+  <line x1="30" y1="100" x2="138" y2="22" stroke="#000" stroke-width="1.3" marker-end="url(#f6)"/><text x="70" y="55">v</text>
+  <circle cx="140" cy="20" r="2.2"/><text x="146" y="20">Q</text>
+  <line x1="30" y1="100" x2="138" y2="100" stroke="#b8620b" stroke-width="1.6" marker-end="url(#f7)" opacity=".85"/>
+  <text x="88" y="112" fill="#b8620b">proy_d(v)</text>
+  <line x1="140" y1="100" x2="140" y2="24" stroke="#2e7d32" stroke-width="1.5" stroke-dasharray="3 2" marker-end="url(#f8)"/>
+  <text x="145" y="64" fill="#2e7d32">distancia</text>
+</svg>
+</div>
+</div>
+<div class="caja metodo"><div class="tit">Método del profesor (diapositivas 48 a 50)</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Si la recta viene como dos planos, sácala primero en paramétricas (lección 1.9).</li>
+  <li>De las paramétricas: un punto $P$ (con $t=0$) y el director $\mathbf d$ (los números que acompañan a $t$).
+    Puedes multiplicar $\mathbf d$ por un número para quitar fracciones: la proyección no cambia.</li>
+  <li>$\mathbf v=\overrightarrow{PQ}=Q-P$.</li>
+  <li>$\operatorname{proy}_{\mathbf d}(\mathbf v)=\dfrac{\mathbf d\cdot\mathbf v}{\mathbf d\cdot\mathbf d}\,\mathbf d$.</li>
+  <li>$\mathbf w=\mathbf v-\operatorname{proy}_{\mathbf d}(\mathbf v)$. Comprueba que $\mathbf w\cdot\mathbf d=0$.</li>
+  <li>Distancia $=\|\mathbf w\|$, sin decimales.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 48 a 50: $Q=(3,-\tfrac12,10)$ y la recta $x=2,\ y=-\tfrac12-\tfrac12t,\ z=t$</div><div class="cue">
+<div class="pasos">
+  <div>$P=(2,-\tfrac12,0)$, $\ \mathbf d=[0,-\tfrac12,1]$</div><p class="gris">Con $t=0$ sale $P$. El director son los coeficientes de $t$: en $x$ no hay $t$, así que va un 0.</p>
+  <div>$\mathbf d=[0,-1,2]$</div><p class="gris">Lo multiplico por 2 para quitar la fracción (misma dirección).</p>
+  <div>$\mathbf v=Q-P=[1,0,10]$</div><p class="gris">$3-2=1$; $-\tfrac12-(-\tfrac12)=0$; $10-0=10$.</p>
+  <div>$\mathbf d\cdot\mathbf v=0+0+20=20$, $\ \mathbf d\cdot\mathbf d=0+1+4=5$</div><p class="gris">Arriba y abajo de la proyección.</p>
+  <div>$\operatorname{proy}=\tfrac{20}{5}[0,-1,2]=[0,-4,8]$</div><p class="gris">El mismo resultado que da la diapositiva con el director sin multiplicar.</p>
+  <div>$\mathbf w=[1,0,10]-[0,-4,8]=[1,4,2]$</div><p class="gris">Comprobación: $[1,4,2]\cdot[0,-1,2]=0-4+4=0$ \ok</p>
+</div>
+<p>Distancia $=\|[1,4,2]\|=\sqrt{1+16+4}=\boxed{\sqrt{21}}$.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.11 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Distancia del punto $Q=(3,0,2)$ a la recta que pasa por $P=(1,0,0)$ con director $\mathbf d=[1,1,0]$.</p>
+</div></div>
+<div class="nota clase"><span class="lead">Así lo quiere el profesor.</span> En la AEC 1 este problema venía con la recta
+como corte de dos planos. El profesor lo resuelve así: Gauss-Jordan para la recta (1.9) y luego proyección. No usa la
+fórmula $\|\overrightarrow{PQ}\times\mathbf d\|/\|\mathbf d\|$, que da lo mismo pero no es su método. Si el enunciado no
+pide método puedes usarla para <b>comprobar</b>.</div>
+</div>
+
+<!-- ------------------------------------------------ 1.12 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 1.12" title="1.12 Distancia de un punto a un plano"-->
+<div class="etq">Lección 1.12</div>
+<h1>Distancia de un punto a un plano<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular la distancia de un punto a un plano proyectando sobre el vector normal.</p>
+<p><b>La idea.</b> Ahora lo que interesa es la parte de $\mathbf v$ que va en la dirección <b>perpendicular al plano</b>,
+es decir, la proyección sobre el normal $\mathbf n$. La distancia es la longitud de esa proyección.</p>
+<div class="caja metodo"><div class="tit">Método (diapositivas 52 a 54)</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Del plano $ax+by+cz=d$ lees $\mathbf n=[a,b,c]$ y buscas un punto $A$ que cumpla la ecuación.</li>
+  <li>$\mathbf v=\overrightarrow{AB}=B-A$, siendo $B$ el punto dado.</li>
+  <li>$\operatorname{proy}_{\mathbf n}(\mathbf v)=\dfrac{\mathbf n\cdot\mathbf v}{\mathbf n\cdot\mathbf n}\,\mathbf n$ y la distancia es su módulo.
+    Atajo equivalente: distancia $=\dfrac{|\mathbf n\cdot\mathbf v|}{\|\mathbf n\|}$.</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 51 a 54: $B=(1,2,3)$ y el plano $x+y-z=1$</div><div class="cue">
+<div class="pasos">
+  <div>$\mathbf n=[1,1,-1]$, $\ A=(1,1,1)$</div><p class="gris">$1+1-1=1$ \ok, $A$ está en el plano. Cualquier punto del plano vale.</p>
+  <div>$\mathbf v=B-A=[0,1,2]$</div><p class="gris">Destino menos origen.</p>
+  <div>$\mathbf n\cdot\mathbf v=0+1-2=-1$, $\ \mathbf n\cdot\mathbf n=3$</div><p class="gris">Arriba y abajo.</p>
+  <div>$\operatorname{proy}_{\mathbf n}(\mathbf v)=-\tfrac13[1,1,-1]=[-\tfrac13,-\tfrac13,\tfrac13]$</div><p class="gris">El número por $\mathbf n$.</p>
+  <div>$\left\|\operatorname{proy}\right\|=\sqrt{\tfrac19+\tfrac19+\tfrac19}=\sqrt{\tfrac13}=\tfrac{1}{\sqrt3}=\boxed{\tfrac{\sqrt3}{3}}$</div><p class="gris">Atajo: $\tfrac{|-1|}{\sqrt3}$, lo mismo.</p>
+</div>
+<p class="gris">Errata: la diapositiva 54 dice «la proyección de $\mathbf v$ sobre $\mathbf d$»; es sobre $\mathbf n$ (las cuentas sí usan $\mathbf n$).</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T1.12 · solución en la p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Distancia del punto $Q=(2,1,3)$ al plano $2x-y+2z=3$.</p>
+</div></div>
+<div class="nota comprueba"><span class="lead">Comprobación rápida.</span> La fórmula directa
+$\dfrac{|ax_0+by_0+cz_0-d|}{\sqrt{a^2+b^2+c^2}}$ da lo mismo: $\dfrac{|1+2-3-1|}{\sqrt3}=\dfrac{1}{\sqrt3}$. Úsala para
+comprobar, pero escribe el método de la proyección si te lo piden.</div>
+</div>
+</section>
+
+<!-- ============================================================ LISTA UD1 -->
+<section class="nueva">
+<!--toc level=2 label="UNIDAD 1 · LISTA DE CONTROL" title="Lista de control de la UD1"-->
+<div class="etq">Unidad 1 · Lista de control</div>
+<h1>¿Has terminado la unidad 1?</h1>
+<p>Marca cada casilla cuando el ejercicio te salga entero, sin mirar y comprobado. Los de las diapositivas están
+resueltos en ellas (y casi todos en esta guía); los T y E tienen la solución en las páginas siguientes.</p>
+<table class="control">
+  <tr><th></th><th>Ejercicio</th><th>Enunciado o qué practica</th><th>Dónde</th></tr>
+  <tr class="grupo"><td colspan="4">1.1 Vectores · 1.2 Combinación lineal</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 1–2</td><td>Sumar vectores; expresar vectores del hexágono en función de $\mathbf a$ y $\mathbf b$.</td><td class="donde">diap. 6–7</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T1.1 · T1.2</td><td>Vector entre dos puntos, $2\mathbf u-3\mathbf v$; combinación lineal.</td><td class="donde">lecc. 1.1, 1.2</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.1</td><td>Con $A=(1,-2,0)$ y $B=(4,2,0)$: $\overrightarrow{AB}$, su módulo y el vector unitario en su dirección.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.2</td><td>Con $\mathbf u=[2,-1,3]$ y $\mathbf v=[1,0,-2]$: $\mathbf u+\mathbf v$, $3\mathbf u-2\mathbf v$ y $\mathbf u\cdot\mathbf v$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.3</td><td>Escribe $[5,4]$ como combinación lineal de $[1,2]$ y $[-1,1]$.</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">1.3 Producto escalar · 1.4 Perpendiculares y proyección · 1.5 Producto vectorial</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 3–9</td><td>Escalar, normalizar (dos), distancia, ángulo, ortogonalidad, proyección.</td><td class="donde">diap. 11–23</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 10</td><td>$\mathbf u\times\mathbf v$ y $\mathbf v\times\mathbf u$.</td><td class="donde">diap. 25</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T1.3 · T1.4 · T1.5</td><td>Normalizar, distancia, ángulo; proyección; producto vectorial.</td><td class="donde">lecc. 1.3–1.5</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.4</td><td>Ángulo entre $[1,1,0]$ y $[0,1,1]$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.5</td><td>¿Para qué $k$ son perpendiculares $[1,k,2]$ y $[3,-1,1]$?</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.6</td><td>Proyección de $[1,2,3]$ sobre $[1,0,1]$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.7</td><td>$[1,-1,2]\times[0,2,1]$, comprobando la perpendicularidad.</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">1.6 Rectas en el plano · 1.7 Rectas en el espacio · 1.8 Planos</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 11–13</td><td>Formas de una recta en $\mathbb R^2$; recta en $\mathbb R^3$; plano por tres puntos.</td><td class="donde">diap. 31–37</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 20</td><td>Propuesto: recta por $P(-1,2,1)$ y $Q(2,3,1)$.</td><td class="donde">lecc. 1.7</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T1.6 · T1.7 · T1.8</td><td>Recta $3x-y=2$; recta por dos puntos; plano por tres puntos.</td><td class="donde">lecc. 1.6–1.8</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.8</td><td>Formas normal, vectorial y paramétrica de $x+2y=4$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.9</td><td>Plano por $A(1,0,1)$, $B(2,1,0)$, $C(0,1,2)$: vectorial y general.</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">1.9 Recta de dos planos · 1.10 Tres planos</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 14</td><td>Recta intersección de dos planos.</td><td class="donde">lecc. 1.9</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 21 <span class="tag ex">TIPO EXAMEN</span></td><td>Propuesto: por Gauss-Jordan, recta de $x+2y+z=-1$ y $3x+4y+5z=3$.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 15–17</td><td>Tres planos: punto, recta e incompatible.</td><td class="donde">lecc. 1.10</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T1.9 · T1.10</td><td>Recta de dos planos; tres planos en un punto.</td><td class="donde">lecc. 1.9–1.10</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.10</td><td>Recta intersección de $x+2y-z=3$ y $2x+5y+z=4$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.11</td><td>Resuelve e interpreta: $x+y+z=3$, $x-y+z=1$, $2x+2z=4$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.12</td><td>Resuelve e interpreta: $x+y+z=1$, $2x+2y+2z=5$, $x-y=0$.</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">1.11 Distancia punto-recta · 1.12 Distancia punto-plano</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 18–19</td><td>Distancia punto-recta ($\sqrt{21}$) y punto-plano ($\tfrac{\sqrt3}{3}$).</td><td class="donde">lecc. 1.11–1.12</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 22 <span class="tag ex">TIPO EXAMEN</span></td><td>Propuesto: distancia de $Q=(3,-\tfrac12,5)$ a la recta de $x+2y+z=1$ y $3x-4y-2z=8$.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 1 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">T1.11 · T1.12</td><td>Distancia punto-recta; distancia punto-plano.</td><td class="donde">lecc. 1.11–1.12</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.13</td><td>Distancia de $Q=(4,1,1)$ a la recta $x=1+t,\ y=2t,\ z=-1+2t$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.14</td><td>Distancia del origen al plano $x+2y+2z=9$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E1.15 <span class="tag ex">TIPO EXAMEN</span></td><td>Distancia de $Q=(0,2,3)$ a la recta intersección de $x+y+z=2$ y $x-y+3z=4$.</td><td class="donde"></td></tr>
+</table>
+</section>
+
+<!-- ============================================================ SOLUCIONES UD1 -->
+<section class="nueva soluciones">
+<!--toc level=2 label="UNIDAD 1 · SOLUCIONES" title="Soluciones de la UD1"-->
+<div class="etq">Unidad 1 · Soluciones</div>
+<h1>Soluciones de la unidad 1</h1>
+<div class="dos">
+<div>
+<p class="sol"><span class="id">T0</span>(a) $3+8=11$. (b) $\tfrac{9}{12}-\tfrac{10}{12}=-\tfrac1{12}$. (c) $6\cdot\tfrac23=4$.
+(d) $\sqrt{72}=\sqrt{36\cdot2}=6\sqrt2$; $\ \tfrac{2}{\sqrt2}=\tfrac{2\sqrt2}{2}=\sqrt2$. (e) $k=\tfrac{1\pm5}{2}$: $k=3$ o $k=-2$.
+(f) $\lambda=1$ da resto 0 y queda $\lambda^2-\lambda-2=(\lambda-2)(\lambda+1)$: raíces $1,\ 2,\ -1$.</p>
+<p class="sol"><span class="id">T1.1</span>$\overrightarrow{AB}=[5-2,\ 1-(-1),\ -1-3]=[3,2,-4]$. $\ 2\mathbf u-3\mathbf v=[2,-4,4]-[9,0,-3]=[-7,-4,7]$.</p>
+<p class="sol"><span class="id">T1.2</span>$a+2b=4$ y $-a+3b=1$. Sumando: $5b=5$, $b=1$, $a=2$. $\ \mathbf w=2\mathbf u+\mathbf v$. Compr.: $[2,-2]+[2,3]=[4,1]$ \ok</p>
+<p class="sol"><span class="id">T1.3</span>(a) $\|\mathbf v\|=\sqrt{4+1+4}=3$, $\ \mathbf q=[\tfrac23,-\tfrac13,\tfrac23]$.
+(b) $[-2,2,-1]$, $\ d=\sqrt{4+4+1}=3$. (c) $\cos\theta=\tfrac{1}{\sqrt2\sqrt2}=\tfrac12$, $\ \theta=60^\circ$.</p>
+<p class="sol"><span class="id">T1.4</span>(a) $\mathbf u\cdot\mathbf v=6$, $\mathbf u\cdot\mathbf u=2$: $\operatorname{proy}=3[1,1,0]=[3,3,0]$.
+Sobra $[1,-1,1]$ y $[1,-1,1]\cdot[1,1,0]=0$ \ok (b) $2-2+0=0$: sí.</p>
+<p class="sol"><span class="id">T1.5</span>$[1\cdot(-1)-0\cdot3,\ 0\cdot1-2\cdot(-1),\ 2\cdot3-1\cdot1]=[-1,2,5]$.
+Compr.: $-2+2+0=0$ \ok $\ -1+6-5=0$ \ok</p>
+<p class="sol"><span class="id">T1.6</span>$\mathbf n=[3,-1]$; punto $(1,1)$ ($3-1=2$ \ok). Normal: $[3,-1]\cdot[x,y]=[3,-1]\cdot[1,1]=2$.
+$x=t\Rightarrow y=3t-2$, director $[1,3]$. Vectorial: $[x,y]=[1,1]+t[1,3]$; paramétricas $x=1+t,\ y=1+3t$.</p>
+<p class="sol"><span class="id">T1.7</span>$\mathbf d=[2,-1,3]$. $\ [x,y,z]=[1,0,2]+t[2,-1,3]$: $\ x=1+2t,\ y=-t,\ z=2+3t$.</p>
+<p class="sol"><span class="id">T1.8</span>$\mathbf u=\overrightarrow{AB}=[-1,2,0]$, $\mathbf v=\overrightarrow{AC}=[-1,0,3]$.
+Vectorial: $[x,y,z]=[1,0,0]+s[-1,2,0]+t[-1,0,3]$, es decir $x=1-s-t,\ y=2s,\ z=3t$.
+$\mathbf n=\mathbf u\times\mathbf v=[6,3,2]$, $d=6$: $\ 6x+3y+2z=6$. Compr.: $B$: $6$ \ok $\ C$: $6$ \ok</p>
+<p class="sol"><span class="id">T1.9</span></p>
+{{chain rrr|r : 1 1 1 2 ; 1 -1 3 4 :: F2-F1 :: -1/2F2 :: F1-F2 ! piv}}
+<p class="sol">$x+2z=3$, $y-z=-1$: $\ x=3-2t,\ y=-1+t,\ z=t$. Punto $(3,-1,0)$, director $[-2,1,1]$. Compr. $t=1$: $(1,0,1)$: $1+0+1=2$ \ok $1-0+3=4$ \ok</p>
+</div>
+<div>
+<p class="sol"><span class="id">T1.10</span></p>
+{{chain rrr|r : 1 1 1 6 ; 1 -1 1 2 ; 2 1 -1 1 :: F2-F1, F3-2F1 :: -1/2F2 :: F3+F2 :: -1/3F3 ! piv}}
+<p class="sol">$z=3$; $y=2$; $x=6-2-3=1$. Se cortan en el <b>punto</b> $(1,2,3)$. Compr.: $1-2+3=2$ \ok $\ 2+2-3=1$ \ok</p>
+<p class="sol"><span class="id">T1.11</span>$\mathbf v=[2,0,2]$; $\mathbf d\cdot\mathbf v=2$, $\mathbf d\cdot\mathbf d=2$; proy $=[1,1,0]$;
+$\mathbf w=[1,-1,2]$ ($\cdot\mathbf d=0$ \ok); distancia $=\sqrt{1+1+4}=\sqrt6$.</p>
+<p class="sol"><span class="id">T1.12</span>$\mathbf n=[2,-1,2]$, $A=(1,1,1)$ ($2-1+2=3$ \ok), $\mathbf v=[1,0,2]$, $\mathbf n\cdot\mathbf v=6$,
+$\mathbf n\cdot\mathbf n=9$: proy $=\tfrac23[2,-1,2]=[\tfrac43,-\tfrac23,\tfrac43]$, módulo $\sqrt{\tfrac{36}{9}}=2$. Atajo: $\tfrac{6}{3}=2$.</p>
+<p class="sol e"><span class="id">E1.1</span>$[3,4,0]$, módulo $5$, unitario $[\tfrac35,\tfrac45,0]$.</p>
+<p class="sol e"><span class="id">E1.2</span>$[3,-1,1]$; $\ [6,-3,9]-[2,0,-4]=[4,-3,13]$; $\ 2+0-6=-4$.</p>
+<p class="sol e"><span class="id">E1.3</span>$a-b=5$, $2a+b=4$ $\Rightarrow$ $a=3$, $b=-2$: $[5,4]=3[1,2]-2[-1,1]$.</p>
+<p class="sol e"><span class="id">E1.4</span>$\cos\theta=\tfrac{1}{2}$: $60^\circ$.</p>
+<p class="sol e"><span class="id">E1.5</span>$3-k+2=0\Rightarrow k=5$.</p>
+<p class="sol e"><span class="id">E1.6</span>$\tfrac{4}{2}[1,0,1]=[2,0,2]$.</p>
+<p class="sol e"><span class="id">E1.7</span>$[-5,-1,2]$; $\ -5+1+4=0$ \ok $\ 0-2+2=0$ \ok</p>
+<p class="sol e"><span class="id">E1.8</span>$\mathbf n=[1,2]$, punto $(0,2)$; normal $[1,2]\cdot[x,y]=4$; $\mathbf d=[2,-1]$;
+$[x,y]=[0,2]+t[2,-1]$: $x=2t,\ y=2-t$.</p>
+<p class="sol e"><span class="id">E1.9</span>$\overrightarrow{AB}=[1,1,-1]$, $\overrightarrow{AC}=[-1,1,1]$; $[x,y,z]=[1,0,1]+s[1,1,-1]+t[-1,1,1]$.
+$\mathbf n=[2,0,2]\to[1,0,1]$: $\ x+z=2$. Compr. con $B$ y $C$ \ok</p>
+<p class="sol e"><span class="id">E1.10</span>$F_2-2F_1$: $[0,1,3\,|\,-2]$; $F_1-2F_2$: $[1,0,-7\,|\,7]$. $\ x=7+7t,\ y=-2-3t,\ z=t$.</p>
+<p class="sol e"><span class="id">E1.11</span>La 3.ª es la suma de las otras dos (fila de ceros). $y=1$, $x=2-t$, $z=t$: los tres planos pasan por una <b>recta</b>.</p>
+<p class="sol e"><span class="id">E1.12</span>$F_2-2F_1$ da $0=3$: <b>incompatible</b>. Los planos 1 y 2 son paralelos (normales $[1,1,1]$ y $[2,2,2]$).</p>
+<p class="sol e"><span class="id">E1.13</span>$P=(1,0,-1)$, $\mathbf d=[1,2,2]$, $\mathbf v=[3,1,2]$, $\tfrac{9}{9}=1$, proy $=[1,2,2]$,
+$\mathbf w=[2,-1,0]$, distancia $\sqrt5$.</p>
+<p class="sol e"><span class="id">E1.14</span>$A=(9,0,0)$, $\mathbf v=[-9,0,0]$, $\mathbf n\cdot\mathbf v=-9$, $\|\mathbf n\|=3$: distancia $3$.</p>
+<p class="sol e"><span class="id">E1.15</span>La recta es la de T1.9: $P=(3,-1,0)$, $\mathbf d=[-2,1,1]$. $\mathbf v=[-3,3,3]$, $\mathbf d\cdot\mathbf v=12$,
+$\mathbf d\cdot\mathbf d=6$, proy $=[-4,2,2]$, $\mathbf w=[1,1,1]$ ($\cdot\mathbf d=0$ \ok), distancia $\sqrt3$.</p>
+<p class="sol e"><span class="id">Diap. 21</span>$F_2-3F_1$, $-\tfrac12F_2$, $F_1-2F_2$: $x+3z=5$, $y-z=-3$. $\ x=5-3t,\ y=-3+t,\ z=t$.</p>
+<p class="sol e"><span class="id">Diap. 22</span>Recta: $x=2,\ y=-\tfrac12-\tfrac12t,\ z=t$ (la del ejemplo 18). $P=(2,-\tfrac12,0)$,
+$\mathbf d=[0,-1,2]$, $\mathbf v=[1,0,5]$, $\tfrac{10}{5}=2$, proy $=[0,-2,4]$, $\mathbf w=[1,2,1]$, distancia $\sqrt6$.</p>
+</div>
+</div>
+</section>

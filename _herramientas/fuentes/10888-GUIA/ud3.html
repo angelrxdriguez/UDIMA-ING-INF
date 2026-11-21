@@ -1,0 +1,285 @@
+<!-- ============================================================ UNIDAD 3 -->
+<section class="unidad">
+<!--toc level=1 label="UNIDAD 3" title="Unidad 3 · Matrices e inversa"-->
+<div class="banda">
+  <div class="sup">UNIDAD 3</div>
+  <div class="titulo">Álgebra de matrices e inversa</div>
+  <div class="sub">Diapositivas «Álgebra de matrices y sistemas» (32) · primera parte de la clase del 19 de octubre de 2026 · 6 lecciones</div>
+</div>
+<div class="dos">
+<div>
+<h3 style="margin-top:0">Qué vas a aprender</h3>
+<p>A operar con matrices (sumar, multiplicar, trasponer, potencias), a calcular la matriz inversa (con la fórmula del
+2 × 2 y por Gauss-Jordan) y a usarla para resolver sistemas.</p>
+</div>
+<div>
+<h3 style="margin-top:0">Qué suele caer</h3>
+<p>La <b>inversa por Gauss-Jordan</b> de una 3 × 3 y usarla para resolver un sistema, $\mathbf x=A^{-1}\mathbf b$ (fue
+el problema 7 de la AEC 1). El producto de matrices aparece en todas partes: en comprobar la inversa, en la LU…</p>
+</div>
+</div>
+
+<!-- ------------------------------------------------ 3.1 -->
+<div class="leccion" style="margin-top:8pt">
+<!--toc level=2 label="LECCIÓN 3.1" title="3.1 Matrices: tipos, suma y traspuesta"-->
+<div class="etq">Lección 3.1</div>
+<h1>Matrices: tipos, suma, producto por un número y traspuesta<span class="prio">★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> nombrar los tipos de matrices, sumarlas, multiplicarlas por un número y trasponerlas.</p>
+<p><b>La idea.</b> Una matriz es una tabla de números. Una matriz $m\times n$ tiene $m$ filas y $n$ columnas. Cada
+número es una <b>entrada</b> y se nombra con dos subíndices, primero la fila y luego la columna: $a_{23}$ está en la fila 2,
+columna 3. La <b>diagonal</b> es la que va de arriba a la izquierda a abajo a la derecha: $a_{11},a_{22},a_{33},\dots$</p>
+<div class="tres peq" style="margin:4pt 0 8pt">
+<div class="centro">$\M{rrr}{1&0&-3\\0&3&-6\\0&0&-3}$<p class="gris"><b>Triangular superior</b>: ceros debajo de la diagonal (lo que deja Gauss).</p></div>
+<div class="centro">$\M{rrr}{1&0&0\\2&3&0\\4&6&9}$<p class="gris"><b>Triangular inferior</b>: ceros encima.</p></div>
+<div class="centro">$I_3=\M{rrr}{1&0&0\\0&1&0\\0&0&1}$<p class="gris"><b>Identidad</b> («unitaria»): unos en la diagonal. Hace de «1».</p></div>
+</div>
+<p>Además: <b>cuadrada</b> (tantas filas como columnas), <b>rectangular</b>, <b>diagonal</b> (solo la diagonal), <b>dispersa</b>
+(casi todo ceros) y la <b>matriz cero</b> $O$.</p>
+<table>
+  <tr><th style="width:110pt">Operación</th><th>Cómo se hace</th></tr>
+  <tr><td>Suma $A+B$</td><td>Entrada a entrada. Solo si tienen el <b>mismo tamaño</b>: «si no, mal asunto».</td></tr>
+  <tr><td>Por un número $cA$</td><td>Se multiplica <b>cada</b> entrada por $c$.</td></tr>
+  <tr><td>Traspuesta $A^T$</td><td>Las filas pasan a ser columnas: la fila 1 es la columna 1, etc. Una $3\times2$ pasa a $2\times3$.</td></tr>
+  <tr><td>Simétrica</td><td>$A=A^T$: cada número coincide con su reflejo al otro lado de la diagonal ($a_{12}=a_{21}$, $a_{13}=a_{31}$, $a_{23}=a_{32}$). La diagonal da igual.</td></tr>
+</table>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 5, 6 y 10 (ejercicios 1 a 3)</div><div class="cue">
+<div class="cadena" style="justify-content:space-around">
+<span>$\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1}+\M{rrr}{1&-1&-3\\-1&2&-6\\5&6&-1}=\M{rrr}{2&-1&-6\\1&5&-12\\9&12&-2}$</span>
+<span>$3\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1}=\M{rrr}{3&0&-9\\6&9&-18\\12&18&-3}$</span>
+</div>
+<div class="cadena" style="justify-content:space-around">
+<span>$A^T=\M{rrr}{1&2&4\\0&3&6\\-3&-6&-1}$</span>
+<span>$B=\M{rr}{1&-1\\-1&2\\5&6}\Rightarrow B^T=\M{rrr}{1&-1&5\\-1&2&6}$</span>
+</div>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T3.1 · solución en la p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Con $A=\M{rr}{1&2\\3&4}$ y $B=\M{rr}{0&1\\-1&2}$, calcula $2A-B$ y $A^T$. ¿Es simétrica $\M{rrr}{1&4&-2\\4&0&5\\-2&5&3}$?</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 3.2 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 3.2" title="3.2 El producto de matrices"-->
+<div class="etq">Lección 3.2</div>
+<h1>El producto de matrices<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> saber si un producto existe, qué tamaño tiene y calcularlo fila por columna.</p>
+<div class="caja metodo"><div class="tit">Cómo se multiplica: fila por columna</div><div class="cue">
+<p><b>1. Tamaños.</b> $A_{m\times n}\cdot B_{n\times r}=C_{m\times r}$: los dos números «de dentro» tienen que coincidir
+(columnas de $A$ = filas de $B$), y el resultado tiene los «de fuera». Si no coinciden, el producto <b>no existe</b>.</p>
+<p style="margin-bottom:1pt"><b>2. Cada entrada.</b> $c_{ij}$ = fila $i$ de $A$ por columna $j$ de $B$, como un producto
+escalar: primero por primero, segundo por segundo… y se suma. «Voy fila por fila y voy columna por columna».</p>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 12</div><div class="cue">
+<div class="cadena">
+  <span>$AB=\M{rrr}{\textcolor{2e75b6}{1}&\textcolor{2e75b6}{2}&\textcolor{2e75b6}{-1}\\0&1&2\\3&0&1}
+  \M{rrr}{\textcolor{b8620b}{2}&-1&1\\\textcolor{b8620b}{0}&0&1\\\textcolor{b8620b}{1}&1&1}
+  =\M{rrr}{\piv{1}&-2&2\\2&2&3\\7&-2&4}$</span>
+  <span class="gris" style="max-width:170pt; margin-left:6pt">Fila 1 (azul) por columna 1 (naranja):
+  $1\cdot2+2\cdot0+(-1)\cdot1=1$. Fila 1 por columna 2: $1\cdot(-1)+2\cdot0+(-1)\cdot1=-2$. Y así las nueve.</span>
+</div>
+<ul style="margin-bottom:2pt">
+  <li><b>No conmuta</b>: «A por B no es lo mismo que B por A». Aquí $BA$ empieza por la fila $(5,3,-3)$. El orden importa siempre.</li>
+  <li><b>No siempre existe</b>: una $3\times3$ por una $2\times3$ no se puede (3 columnas frente a 2 filas).</li>
+  <li><b>El tamaño puede cambiar</b> (diapositiva 13): con $D=\M{rr}{2&-1\\1&2\\0&1}$ ($3\times2$) y $F=\M{rrr}{2&2&1\\5&-1&1}$
+    ($2\times3$), $DF=\M{rrr}{-1&5&1\\12&0&3\\5&-1&1}$ es $3\times3$ y $FD=\M{rr}{6&3\\9&-6}$ es $2\times2$.</li>
+  <li>La identidad hace de «1»: $IA=AI=A$.</li>
+</ul>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T3.2 · solución en la p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></span></div><div class="cue">
+<p>(a) Con las $A$ y $B$ de T3.1, calcula $AB$ y $BA$. (b) Con las matrices de abajo, di el tamaño de $CD$ y de $DC$ y calcúlalos.</p>
+$$C=\M{rrr}{1&0&2\\-1&3&1},\qquad D=\M{rr}{2&1\\0&-1\\1&1}$$
+</div></div>
+<div class="nota clase"><span class="lead">En clase.</span> «La multiplicación es demandante en cuanto a número de
+operación» y «si uno no tiene cuidado, se puede equivocar». Escribe primero los tamaños. <span class="min">▶ 11:59</span></div>
+</div>
+
+<!-- ------------------------------------------------ 3.3 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 3.3" title="3.3 Potencias de una matriz"-->
+<div class="etq">Lección 3.3</div>
+<h1>Potencias de una matriz<span class="prio">★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular $A^2$, $A^3$ y encontrar el patrón de $A^n$ en los casos sencillos.</p>
+<p>Solo para matrices cuadradas: $A^k=A\cdot A\cdots A$ ($k$ veces), con $A^rA^s=A^{r+s}$ y $(A^r)^s=A^{rs}$. Para $A^3$ se
+calcula $A^2=A\cdot A$ y luego $A^2\cdot A$. Es «espantosamente costoso» con $k$ grande: más adelante se verá la
+diagonalización.</p>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 15 (ejercicio 4)</div><div class="cue">
+$$A=\M{rrr}{1&0&-3\\2&3&-6\\4&6&-1},\quad A^2=\M{rrr}{-11&-18&0\\-16&-27&-18\\12&12&-47},\quad A^3=A^2A=\M{rrr}{-47&-54&141\\-142&-189&228\\-152&-246&-61}$$
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 16 y 17: $A^n$ para todo $n$ (ejercicio 5)</div><div class="cue">
+<div class="pasos">
+  <div>$A=\M{ccc}{\frac13&0&0\\0&0&\frac13\\0&\frac13&0}=\tfrac13\underbrace{\M{rrr}{1&0&0\\0&0&1\\0&1&0}}_{B}$</div>
+  <p class="gris">Saco $\tfrac13$ como factor común. $B$ intercambia las filas 2 y 3; hacerlo dos veces lo deja todo como estaba.</p>
+  <div>$B^2=I\ \Rightarrow\ B^{2n}=I,\ \ B^{2n+1}=B$</div><p class="gris">Potencias pares de $B$: la identidad; impares: $B$.</p>
+  <div>$A^{2n}=\dfrac{1}{3^{2n}}I,\qquad A^{2n+1}=\dfrac{1}{3^{2n+1}}B$</div><p class="gris">El número se eleva por separado.</p>
+</div>
+<p class="gris">Errata: la diapositiva 16 escribe $B$ con la fila 2 igual a $(0\ 1\ 0)$; es $(0\ 0\ 1)$.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T3.3 · solución en la p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Con $N=\M{rr}{1&1\\0&1}$ calcula $N^2$ y $N^3$ y adivina $N^n$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 3.4 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 3.4" title="3.4 La inversa y la fórmula del 2 × 2"-->
+<div class="etq">Lección 3.4</div>
+<h1>La matriz inversa y la fórmula del 2 × 2<span class="prio">★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> qué es la inversa, sus propiedades y calcular la de una 2 × 2 en un momento.</p>
+<p><b>La idea.</b> Para resolver $2x=4$ se multiplica por el inverso de 2: $\tfrac12\cdot2x=\tfrac12\cdot4$, $x=2$. Con
+matrices es igual: si existe una matriz $A^{-1}$ con $A^{-1}A=I$, entonces</p>
+$$A\mathbf x=\mathbf b\ \Rightarrow\ A^{-1}A\mathbf x=A^{-1}\mathbf b\ \Rightarrow\ \mathbf x=A^{-1}\mathbf b$$
+<p>La <b>inversa</b> de una $A$ cuadrada es la $A^{-1}$ que cumple $AA^{-1}=I$ y $A^{-1}A=I$. Si existe, es <b>única</b> y
+$A$ se llama invertible. «No toda matriz cuadrada tiene inversa. Eso es lo que tenéis que tener en la cabeza».
+<span class="min">▶ 19:22</span></p>
+<table>
+  <tr><th style="width:120pt">Propiedad</th><th>Cómo leerla</th></tr>
+  <tr><td>$(A^{-1})^{-1}=A$</td><td>Deshacer lo deshecho deja la original.</td></tr>
+  <tr><td>$(cA)^{-1}=\tfrac1cA^{-1}$</td><td>Con $c\neq0$. El número se invierte por separado.</td></tr>
+  <tr><td>$(AB)^{-1}=B^{-1}A^{-1}$</td><td><b>Se cambia el orden</b>. «Cuidado, no es inversa de A por inversa de B». Como calcetines y zapatos: para descalzarte te quitas primero lo último que te pusiste.</td></tr>
+  <tr><td>$(A^T)^{-1}=(A^{-1})^T$</td><td>Da igual trasponer y luego invertir o al revés.</td></tr>
+  <tr><td>$(A^n)^{-1}=(A^{-1})^n$</td><td>Y se define $A^{-n}=(A^{-1})^n$.</td></tr>
+</table>
+<div class="dos">
+<div class="caja metodo" style="margin-top:0"><div class="tit">La inversa de una 2 × 2 (diapositiva 22)</div><div class="cue">
+$$A=\M{cc}{a&b\\c&d}\ \Rightarrow\ A^{-1}=\frac{1}{ad-bc}\M{rr}{d&-b\\-c&a}$$
+<p style="margin-bottom:1pt">Intercambia $a$ y $d$, cambia el signo de $b$ y $c$, y divide entre $ad-bc$. Si $ad-bc=0$,
+<b>no tiene inversa</b> (ese número es el determinante, unidad 4).</p>
+</div></div>
+<div class="caja ejemplo" style="margin-top:0"><div class="tit">Ejemplo resuelto</div><div class="cue">
+<p>$A=\M{rr}{2&1\\5&3}$: $\ ad-bc=6-5=1$, así que $A^{-1}=\M{rr}{3&-1\\-5&2}$.</p>
+<p style="margin-bottom:1pt"><b>Comprobación:</b> $AA^{-1}=\M{rr}{6-5&-2+2\\15-15&-5+6}=I$ \ok</p>
+<p class="gris" style="margin-bottom:0">Pregunta en clase: «¿siempre el b y el c serán negativos?». No: se les cambia el
+signo, valgan lo que valgan. Si $b=-4$, en la inversa va $+4$.</p>
+</div></div>
+</div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T3.4 · solución en la p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Calcula la inversa (si existe) de $\M{rr}{3&5\\1&2}$, de $\M{rr}{4&2\\3&2}$ y de $\M{rr}{2&4\\1&2}$.</p>
+</div></div>
+</div>
+
+<!-- ------------------------------------------------ 3.5 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 3.5" title="3.5 La inversa por Gauss-Jordan"-->
+<div class="etq">Lección 3.5</div>
+<h1>La inversa por Gauss-Jordan<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> calcular la inversa de una 3 × 3 (o mayor) por Gauss-Jordan y detectar cuándo no existe.</p>
+<div class="caja metodo"><div class="tit">Método · matriz «superaumentada» $(A\,|\,I)$</div><div class="cue">
+<ol class="pasosn" style="margin-bottom:1pt">
+  <li>Pega a la derecha de $A$ la identidad del mismo tamaño.</li>
+  <li>Haz Gauss-Jordan en la matriz entera (las operaciones afectan <b>a la fila completa</b>, las dos mitades):
+    primero ceros debajo, luego pivotes 1, luego ceros encima desde el último pivote.</li>
+  <li>Cuando a la izquierda quede $I$, lo de la derecha es $A^{-1}$: $\ (A\,|\,I)\to(I\,|\,A^{-1})$.</li>
+  <li>Si a la izquierda sale una fila de ceros, $A$ <b>no tiene inversa</b>.</li>
+  <li>Comprueba una fila de $A\cdot A^{-1}=I$ (mejor todas).</li>
+</ol>
+</div></div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositivas 23 a 26 (ejercicio 6): inversa de $A=\M{rrr}{1&2&1\\3&8&6\\1&3&3}$</div><div class="cue">
+{{chain rrr|rrr : 1 2 1 1 0 0 ; 3 8 6 0 1 0 ; 1 3 3 0 0 1 :: F2-3F1, F3-F1 :: F2<->F3 :: F3-2F2 :: -F3 :: F2-2F3, F1-F3 :: F1-2F2 ! piv}}
+<div class="pasos">
+  <div>$F_2\leftrightarrow F_3$</div><p class="gris">Para tener un 1 de pivote. «Intercambia toda la fila. No solamente lo de ahí, porque si no, no estamos haciendo nada». <span class="min">▶ 27:20</span></p>
+  <div>$A^{-1}=\M{rrr}{6&-3&4\\-3&2&-3\\1&-1&2}$</div><p class="gris">La mitad derecha. A la izquierda «se va simplificando… pero al otro lado se me va complicando».</p>
+  <div>Fila 1 de $A$ por columnas de $A^{-1}$: $6-6+1=1$, $\ -3+4-1=0$, $\ 4-6+2=0$ \ok</div><p class="gris">Comprobación de la primera fila de $AA^{-1}=I$.</p>
+</div>
+<p class="gris">Erratas: en la diapositiva 24 la fila 3 de la superextendida aparece como $(1\ 3\ 2)$; es $(1\ 3\ 3)$. En la
+25, a la derecha de la fila $(0\ 1\ 2)$ aparece $(-1\ 1\ 0)$; lo correcto es $(-1\ 0\ 1)$. El resultado final es correcto.</p>
+</div></div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T3.5 · solución en la p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></span></div><div class="cue">
+<p>(a) Inversa por Gauss-Jordan de $G=\M{rrr}{1&2&0\\0&1&1\\1&2&1}$, y compruébala. (b) Intenta invertir
+$H=\M{rrr}{1&2&1\\2&1&0\\3&3&1}$. ¿Qué pasa?</p>
+</div></div>
+<div class="nota clase"><span class="lead">En clase · criterio de corrección.</span> «Cuando yo os pida una inversa por
+Gauss, me tenéis que hacer esto». Por otro método, aunque esté bien, «es un cero». Y en una inversa «Gauss» quiere decir
+Gauss-Jordan completo: «si yo paro aquí, esto no es la inversa». <span class="min">▶ 29:03</span> <span class="min">▶ 30:44</span></div>
+</div>
+
+<!-- ------------------------------------------------ 3.6 -->
+<div class="leccion">
+<!--toc level=2 label="LECCIÓN 3.6" title="3.6 Resolver un sistema con la inversa"-->
+<div class="etq">Lección 3.6</div>
+<h1>Resolver un sistema con la inversa<span class="prio">★★★</span></h1>
+<p class="sabras"><b>Al terminar sabrás</b> resolver $A\mathbf x=\mathbf b$ multiplicando $A^{-1}\mathbf b$, y relacionar
+«tener inversa» con todo lo anterior.</p>
+<div class="nota idea"><span class="lead">Teorema fundamental de las matrices invertibles (diapositiva 27).</span> Para una $A$
+de $n\times n$, estas frases dicen lo mismo (si una es cierta, lo son todas):
+<b>$A$ es invertible</b> $\iff$ $A\mathbf x=\mathbf b$ tiene <b>solución única</b> para todo $\mathbf b$ $\iff$
+$A\mathbf x=\mathbf 0$ solo tiene la solución $\mathbf x=\mathbf 0$ $\iff$ la <b>FERF de $A$ es $I_n$</b> (un pivote en cada
+columna) $\iff$ rango $n$ $\iff$ $\det A\neq0$ (unidad 4).</div>
+<div class="caja ejemplo"><div class="tit">Ejemplo resuelto · diapositiva 28 (ejercicio 7)</div><div class="cue">
+<p>La matriz ampliada es $\M{rrr|r}{1&2&1&1\\3&8&6&1\\1&3&3&-1}$. La del sistema es la $A$ del ejemplo anterior, cuya
+inversa ya tenemos. Basta multiplicar:</p>
+$$\mathbf x=A^{-1}\mathbf b=\M{rrr}{6&-3&4\\-3&2&-3\\1&-1&2}\M{r}{1\\1\\-1}=\M{c}{6-3-4\\-3+2+3\\1-1-2}=\M{r}{-1\\2\\-2}$$
+<p>$x=-1,\ y=2,\ z=-2$. <b>Comprobación</b> en la 1.ª ecuación: $-1+4-2=1$ \ok</p>
+</div></div>
+<div class="nota clase"><span class="lead">En clase · lo que «me parece alucinante».</span> Hay alumnos que calculan la
+inversa y después vuelven a hacer Gauss con la matriz ampliada. «Si teniendo la inversa ya tienes la solución». Hacerlo
+así «significa que no habéis entendido para qué sirve la inversa». <span class="min">▶ 33:19</span> Ventaja: si hay muchos
+sistemas con la misma $A$ y distintos $\mathbf b$, la inversa se calcula una vez y cada solución es solo una multiplicación.</div>
+<div class="caja turno"><div class="tit">Tu turno <span class="num">T3.6 · solución en la p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></span></div><div class="cue">
+<p>Resuelve $\ x+2y=3,\ \ y+z=2,\ \ x+2y+z=4\ $ usando la inversa de $G$ que calculaste en T3.5.</p>
+</div></div>
+</div>
+</section>
+
+<!-- ============================================================ LISTA UD3 -->
+<section class="nueva">
+<!--toc level=2 label="UNIDAD 3 · LISTA DE CONTROL" title="Lista de control de la UD3"-->
+<div class="etq">Unidad 3 · Lista de control</div>
+<h1>¿Has terminado la unidad 3?</h1>
+<p>Los ejercicios 8, 9 y 10 de las diapositivas son los propuestos de la unidad. En todas las inversas, comprueba $AA^{-1}=I$.</p>
+<table class="control">
+  <tr><th></th><th>Ejercicio</th><th>Enunciado o qué practica</th><th>Dónde</th></tr>
+  <tr class="grupo"><td colspan="4">3.1 Operaciones · 3.2 Producto · 3.3 Potencias</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 1–3</td><td>Sumar, multiplicar por 3 y trasponer.</td><td class="donde">lecc. 3.1</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. 12–13</td><td>Los productos $AB$, $DF$ y $FD$ (y ver que $A\cdot C$ no existe).</td><td class="donde">lecc. 3.2</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 4–5</td><td>$A^3$; $A^n$ con el patrón.</td><td class="donde">lecc. 3.3</td></tr>
+  <tr><td class="cb">☐</td><td class="id">T3.1 · T3.2 · T3.3</td><td>$2A-B$, traspuesta, simétrica; productos; $N^n$.</td><td class="donde">lecc. 3.1–3.3</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.1</td><td>$3A-2B$ con $A=\M{rrr}{1&0&2\\-1&3&1}$ y $B=\M{rrr}{2&1&0\\0&-1&4}$.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.2</td><td>Si $A$ es $2\times3$ y $B$ es $3\times4$: ¿existen $AB$, $BA$ y $AA^T$? ¿De qué tamaño?</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.3</td><td>$\M{rrr}{2&-1&0\\1&3&1\\0&2&-1}\M{rrr}{1&0&1\\2&1&0\\-1&1&3}$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.4</td><td>$A^2$ con $A=\M{rr}{2&1\\-1&0}$.</td><td class="donde"></td></tr>
+  <tr class="grupo"><td colspan="4">3.4 Inversa y 2 × 2 · 3.5 Inversa por Gauss-Jordan · 3.6 Sistemas con la inversa</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 6–7</td><td>Inversa por Gauss-Jordan y sistema con la inversa.</td><td class="donde">lecc. 3.5–3.6</td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 8</td><td>Propuesto: rango de $\M{rrr}{2&0&0\\1&1&0\\-1&1&1}$; ¿tiene inversa? Calcúlala.</td><td class="donde">sol. p. <span class="pg" data-l="UNIDAD 3 · SOLUCIONES"></span></td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 9 <span class="tag ex">TIPO EXAMEN</span></td><td>Propuesto: inversa por Gauss-Jordan de $\M{rrr}{1&-1&1\\2&1&2\\0&0&1}$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">Diap. ej. 10</td><td>Propuesto: inversa por Gauss-Jordan de $\M{rrrr}{2&-1&1&1\\0&0&1&0\\2&1&1&1\\0&0&0&1}$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">T3.4 · T3.5 · T3.6</td><td>Inversas 2 × 2; inversa 3 × 3 y una que no existe; sistema con la inversa.</td><td class="donde">lecc. 3.4–3.6</td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.5</td><td>Con $A=\M{rr}{2&1\\1&1}$ y $B=\M{rr}{1&2\\0&1}$: calcula $(AB)^{-1}$ usando $B^{-1}A^{-1}$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.6 <span class="tag ex">TIPO EXAMEN</span></td><td>Inversa por Gauss-Jordan de $S=\M{rrr}{2&1&0\\1&1&1\\0&1&3}$.</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.7</td><td>Inversa por Gauss-Jordan de $\M{rrr}{0&1&0\\1&2&1\\0&1&1}$ (hay que intercambiar filas).</td><td class="donde"></td></tr>
+  <tr><td class="cb">☐</td><td class="id">E3.8 <span class="tag ex">TIPO EXAMEN</span></td><td>Con la inversa de E3.6, resuelve $2x+y=1,\ x+y+z=2,\ y+3z=5$.</td><td class="donde"></td></tr>
+</table>
+</section>
+
+<!-- ============================================================ SOLUCIONES UD3 -->
+<section class="nueva soluciones">
+<!--toc level=2 label="UNIDAD 3 · SOLUCIONES" title="Soluciones de la UD3"-->
+<div class="etq">Unidad 3 · Soluciones</div>
+<h1>Soluciones de la unidad 3</h1>
+<p class="sol"><span class="id">T3.1</span>$2A-B=\M{rr}{2&3\\7&6}$, $\ A^T=\M{rr}{1&3\\2&4}$. Sí es simétrica: $a_{12}=a_{21}=4$, $a_{13}=a_{31}=-2$, $a_{23}=a_{32}=5$.</p>
+<p class="sol"><span class="id">T3.2</span>(a) $AB=\M{rr}{-2&5\\-4&11}$, $\ BA=\M{rr}{3&4\\5&6}$: distintas. (b) $C_{2\times3}D_{3\times2}$ es
+$2\times2$: $CD=\M{rr}{4&3\\-1&-3}$; $\ D_{3\times2}C_{2\times3}$ es $3\times3$: $DC=\M{rrr}{1&3&5\\1&-3&-1\\0&3&3}$.</p>
+<p class="sol"><span class="id">T3.3</span>$N^2=\M{rr}{1&2\\0&1}$, $N^3=\M{rr}{1&3\\0&1}$, $\ N^n=\M{rr}{1&n\\0&1}$.</p>
+<p class="sol"><span class="id">T3.4</span>$\M{rr}{3&5\\1&2}^{-1}=\M{rr}{2&-5\\-1&3}$ ($ad-bc=1$). $\ \M{rr}{4&2\\3&2}^{-1}=\tfrac12\M{rr}{2&-2\\-3&4}=\M{rr}{1&-1\\-\frac32&2}$.
+$\ \M{rr}{2&4\\1&2}$: $ad-bc=4-4=0$, <b>no tiene inversa</b>.</p>
+<p class="sol"><span class="id">T3.5</span>(a)</p>
+{{chain rrr|rrr : 1 2 0 1 0 0 ; 0 1 1 0 1 0 ; 1 2 1 0 0 1 :: F3-F1 :: F2-F3 :: F1-2F2 ! piv}}
+<p class="sol">$G^{-1}=\M{rrr}{-1&-2&2\\1&1&-1\\-1&0&1}$. Compr. fila 1 de $G$: $(-1+2,\ -2+2,\ 2-2)=(1,0,0)$ \ok
+(b) $F_2-2F_1=[0,-3,-2]$ y $F_3-3F_1=[0,-3,-2]$: al restar sale una fila de ceros a la izquierda. $H$ <b>no tiene inversa</b> (rango 2).</p>
+<p class="sol"><span class="id">T3.6</span>Es $G\mathbf x=(3,2,4)$: $\ \mathbf x=G^{-1}\mathbf b=(-3-4+8,\ 3+2-4,\ -3+0+4)=(1,1,1)$. Compr.: $1+2=3$ \ok</p>
+<p class="sol e"><span class="id">E3.1</span>$\M{rrr}{3-4&0-2&6-0\\-3-0&9+2&3-8}=\M{rrr}{-1&-2&6\\-3&11&-5}$.</p>
+<p class="sol e"><span class="id">E3.2</span>$AB$ sí, $2\times4$. $BA$ no ($4\neq2$). $AA^T$ sí: $(2\times3)(3\times2)=2\times2$.</p>
+<p class="sol e"><span class="id">E3.3</span>$\M{rrr}{0&-1&2\\6&4&4\\5&1&-3}$. &nbsp; <span class="id">E3.4</span>$\M{rr}{3&2\\-2&-1}$.</p>
+<p class="sol e"><span class="id">E3.5</span>$A^{-1}=\M{rr}{1&-1\\-1&2}$, $B^{-1}=\M{rr}{1&-2\\0&1}$, $\ (AB)^{-1}=B^{-1}A^{-1}=\M{rr}{3&-5\\-1&2}$.</p>
+<p class="sol e"><span class="id">E3.6</span></p>
+{{chain rrr|rrr : 2 1 0 1 0 0 ; 1 1 1 0 1 0 ; 0 1 3 0 0 1 :: F1<->F2 :: F2-2F1 :: -F2 :: F3-F2 :: F2-2F3, F1-F3 :: F1-F2 ! piv}}
+<p class="sol e"><span class="id">E3.7</span></p>
+{{chain rrr|rrr : 0 1 0 1 0 0 ; 1 2 1 0 1 0 ; 0 1 1 0 0 1 :: F1<->F2 :: F3-F2 :: F1-F3 :: F1-2F2 ! piv}}
+<p class="sol e"><span class="id">E3.8</span>$\mathbf x=S^{-1}(1,2,5)=(2-6+5,\ -3+12-10,\ 1-4+5)=(1,-1,2)$. Compr.: $2-1=1$ \ok $\ 1-1+2=2$ \ok $\ -1+6=5$ \ok</p>
+<p class="sol e"><span class="id">Diap. 8</span>Triangular inferior con diagonal $2,1,1$: rango 3, invertible.</p>
+{{chain rrr|rrr : 2 0 0 1 0 0 ; 1 1 0 0 1 0 ; -1 1 1 0 0 1 :: 1/2F1 :: F2-F1, F3+F1 :: F3-F2 ! piv}}
+<p class="sol e"><span class="id">Diap. 9</span></p>
+{{chain rrr|rrr : 1 -1 1 1 0 0 ; 2 1 2 0 1 0 ; 0 0 1 0 0 1 :: F2-2F1 :: 1/3F2 :: F1+F2 :: F1-F3 ! piv}}
+<p class="sol e">Es decir, $A^{-1}=\tfrac13\M{rrr}{1&1&-3\\-2&1&0\\0&0&3}$.</p>
+<p class="sol e"><span class="id">Diap. 10</span>$F_3-F_1$ deja $[0,2,0,0]$ en la fila 3; intercambia $F_2\leftrightarrow F_3$, $\tfrac12F_2$, ceros
+encima y $\tfrac12F_1$: $\ A^{-1}=\tfrac14\M{rrrr}{1&-2&1&-2\\-2&0&2&0\\0&4&0&0\\0&0&0&4}$.</p>
+</section>
