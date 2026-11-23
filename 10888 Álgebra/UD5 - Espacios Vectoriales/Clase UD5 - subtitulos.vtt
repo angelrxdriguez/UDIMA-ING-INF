@@ -1,0 +1,4857 @@
+WEBVTT
+
+1
+00:00:02.220 --> 00:00:07.200
+Hola,
+
+2
+00:00:07.240 --> 00:00:07.960
+buenas tardes.
+
+3
+00:00:34.180 --> 00:00:36.020
+Bienvenidos a todos a esta nueva sesión
+
+4
+00:00:39.200 --> 00:00:40.960
+de Ángel. Hoy
+
+5
+00:00:42.160 --> 00:00:45.620
+vamos a empezar un nuevo tema, que es el de
+
+6
+00:00:45.940 --> 00:00:47.880
+espacios y subespacios vectoriales.
+
+7
+00:00:48.580 --> 00:00:49.740
+Hasta ahora,
+
+8
+00:00:50.560 --> 00:00:53.880
+todo lo que hemos visto ha sido bastante sencillo.
+
+9
+00:00:53.940 --> 00:00:57.600
+¿Cuál es la dificultad hasta
+
+10
+00:00:57.640 --> 00:01:00.880
+ahora? Que si no tenemos práctica a la hora de
+
+11
+00:01:01.140 --> 00:01:04.621
+realizar operaciones elementales por filas, vamos a tener
+
+12
+00:01:04.660 --> 00:01:08.560
+problemas, porque mucho de lo que vamos a ver va a estar basado en
+
+13
+00:01:08.620 --> 00:01:11.260
+eso, en Gauss, Gauss-Jordan, etcétera.
+
+14
+00:01:12.800 --> 00:01:15.860
+De todos modos, el tema de hoy, que versa sobre
+
+15
+00:01:16.620 --> 00:01:20.580
+espacios y subespacios vectoriales, es el primero que empieza
+
+16
+00:01:20.620 --> 00:01:22.540
+a ser un poco abstracto.
+
+17
+00:01:23.480 --> 00:01:24.120
+Hasta ahora,
+
+18
+00:01:25.200 --> 00:01:28.560
+lo que veíamos eran vectores, eran flechitas que
+
+19
+00:01:28.740 --> 00:01:29.220
+pinchaban.
+
+20
+00:01:30.960 --> 00:01:34.360
+Podíamos imaginárnoslas en un espacio de
+
+21
+00:01:34.480 --> 00:01:36.640
+R3 fácilmente.
+
+22
+00:01:38.320 --> 00:01:39.800
+Eso se va a ir difuminando
+
+23
+00:01:41.340 --> 00:01:44.680
+y vamos a pasar a unas definiciones un poquito más
+
+24
+00:01:44.720 --> 00:01:45.420
+abstractas.
+
+25
+00:01:48.740 --> 00:01:51.740
+Lo que vamos a ver primero es la definición de qué es un espacio vectorial.
+
+26
+00:01:52.680 --> 00:01:56.300
+Ya conocemos lo que son vectores, vectores que pinchan, pero
+
+27
+00:01:57.240 --> 00:02:00.440
+otro tipo de objetos pueden comportarse como vectores.
+
+28
+00:02:01.260 --> 00:02:03.860
+Como ya sabéis, los vectores siempre voy a poner en negrita.
+
+29
+00:02:05.820 --> 00:02:09.180
+En su defecto, en el papel, una flechita arriba estaría bien.
+
+30
+00:02:11.800 --> 00:02:12.320
+Sea V
+
+31
+00:02:14.760 --> 00:02:17.680
+un conjunto sobre el cual voy a definir dos operaciones.
+
+32
+00:02:18.980 --> 00:02:19.800
+Una va a ser la suma
+
+33
+00:02:20.980 --> 00:02:24.940
+y la otra una multiplicación por un escalar, operaciones que ya hemos visto.
+
+34
+00:02:26.640 --> 00:02:30.580
+Si tenemos dos vectores que están en este espacio V,
+
+35
+00:02:32.320 --> 00:02:33.660
+que no deja de ser un conjunto,
+
+36
+00:02:35.740 --> 00:02:36.260
+la suma
+
+37
+00:02:37.260 --> 00:02:38.160
+la vamos a denotar
+
+38
+00:02:38.960 --> 00:02:40.440
+como u + v.
+
+39
+00:02:41.240 --> 00:02:44.960
+Y si c es un escalar, la multiplicación por un escalar va a
+
+40
+00:02:45.020 --> 00:02:47.140
+ser c por u o c por v.
+
+41
+00:02:51.120 --> 00:02:52.180
+Si todo eso se cumple
+
+42
+00:02:56.440 --> 00:03:00.260
+para todos los elementos u, v, w, etcétera, en ese conjunto,
+
+43
+00:03:00.480 --> 00:03:01.920
+en ese espacio vectorial,
+
+44
+00:03:04.040 --> 00:03:06.500
+y para todos los escalares c, d, e, f.
+
+45
+00:03:06.800 --> 00:03:09.380
+Obsérvese que los escalares no los pongo en negrita porque son números.
+
+46
+00:03:10.600 --> 00:03:13.660
+Entonces, a este V se le va a llamar espacio vectorial
+
+47
+00:03:15.300 --> 00:03:17.700
+y sus elementos se llaman vectores.
+
+48
+00:03:20.920 --> 00:03:23.840
+Obsérvese que la definición es tan amplia
+
+49
+00:03:25.800 --> 00:03:29.300
+que no solamente vamos a tener nuestras flechitas de toda la vida, sino que vamos a
+
+50
+00:03:29.340 --> 00:03:31.700
+tener otros objetos que van a cumplir eso.
+
+51
+00:03:31.700 --> 00:03:36.280
+¿Qué
+
+52
+00:03:36.320 --> 00:03:37.740
+propiedades tenemos?
+
+53
+00:03:41.660 --> 00:03:45.440
+Esta es la más importante. Esto significa que si yo sumo
+
+54
+00:03:45.480 --> 00:03:47.360
+dos vectores en ese espacio vectorial,
+
+55
+00:03:49.660 --> 00:03:50.140
+la suma
+
+56
+00:03:51.160 --> 00:03:54.320
+está dentro de ese espacio vectorial, no me sale fuera.
+
+57
+00:03:57.220 --> 00:03:57.980
+Imaginemos
+
+58
+00:03:59.160 --> 00:04:00.640
+que yo estuviera en un espacio
+
+59
+00:04:01.900 --> 00:04:04.280
+bidimensional embebido en R3.
+
+60
+00:04:07.300 --> 00:04:10.540
+Yo he definido esto de tal modo que si sumo dos vectores de aquí,
+
+61
+00:04:11.680 --> 00:04:12.820
+el tercero me sale fuera
+
+62
+00:04:13.940 --> 00:04:14.660
+de ese plano.
+
+63
+00:04:15.860 --> 00:04:16.760
+No funcionaría.
+
+64
+00:04:19.680 --> 00:04:22.940
+Esta propiedad de cierre es la más importante porque significa que
+
+65
+00:04:23.540 --> 00:04:26.940
+aunque sume dos vectores, el resultado está dentro de ese U.
+
+66
+00:04:29.000 --> 00:04:32.920
+Además, es conmutativa, con lo cual va a dar igual que
+
+67
+00:04:32.960 --> 00:04:34.080
+yo suma a u le v,
+
+68
+00:04:34.900 --> 00:04:34.960
+que
+
+69
+00:04:35.860 --> 00:04:36.580
+lo sume al revés,
+
+70
+00:04:37.480 --> 00:04:37.980
+v + u,
+
+71
+00:04:38.820 --> 00:04:42.560
+conmutativa. Asociativa, yo puedo sumar estos dos y luego el otro,
+
+72
+00:04:43.960 --> 00:04:46.280
+o puedo sumar al primero la suma de los otros dos.
+
+73
+00:04:49.120 --> 00:04:52.760
+Además, existe un elemento, pero en V, llamado
+
+74
+00:04:52.800 --> 00:04:53.460
+vector cero,
+
+75
+00:04:56.600 --> 00:05:00.400
+de tal modo que cuando le sumo a un vector cualquiera, vector cero, me da u.
+
+76
+00:05:03.860 --> 00:05:05.380
+Esta también es muy importante,
+
+77
+00:05:06.940 --> 00:05:10.640
+porque si yo defino un plano en el espacio
+
+78
+00:05:10.800 --> 00:05:14.640
+R3 y lo defino como me da la gana y yo digo: "Mira,
+
+79
+00:05:15.400 --> 00:05:18.740
+este de aquí me gusta, tiene un aspecto
+
+80
+00:05:19.500 --> 00:05:20.020
+guachipún",
+
+81
+00:05:20.980 --> 00:05:23.900
+pero no contiene el cero, mal asunto,
+
+82
+00:05:25.800 --> 00:05:28.140
+porque entonces no va a ser un espacio vectorial.
+
+83
+00:05:30.820 --> 00:05:33.600
+Para cada u de ese espacio vectorial, existe un elemento,
+
+84
+00:05:33.680 --> 00:05:37.320
+-u, tal que u menos u me da
+
+85
+00:05:37.740 --> 00:05:39.020
+ese vector nulo.
+
+86
+00:05:42.440 --> 00:05:45.580
+Hay otra propiedad de cierre bajo la multiplicación por un escalar.
+
+87
+00:05:45.800 --> 00:05:47.060
+Eso significa que si yo
+
+88
+00:05:48.100 --> 00:05:48.880
+multiplico
+
+89
+00:05:51.300 --> 00:05:55.180
+un vector por un escalar, el resultado está dentro de ese
+
+90
+00:05:55.240 --> 00:05:58.460
+espacio vectorial. Incluso si lo multiplico por sobre una suma,
+
+91
+00:06:00.640 --> 00:06:02.420
+ya me da la distributiva.
+
+92
+00:06:03.320 --> 00:06:07.120
+Esto está dentro de eso. Incluso c por la suma también está
+
+93
+00:06:07.160 --> 00:06:07.380
+dentro
+
+94
+00:06:09.736 --> 00:06:13.216
+Incluso yo puedo sumar dos escalares de estos y
+
+95
+00:06:13.256 --> 00:06:17.116
+multiplicarlo por un vector, porque el resultado también
+
+96
+00:06:17.156 --> 00:06:19.196
+está allí dentro, ya que puedo separarlo
+
+97
+00:06:21.236 --> 00:06:24.656
+o multiplicar dos escalares de esta manera, por separado o juntos.
+
+98
+00:06:27.016 --> 00:06:30.476
+Luego también tengo un escalar, que es el uno, que multiplicado escalarmente por un
+
+99
+00:06:30.536 --> 00:06:31.276
+uno da ese mismo uno.
+
+100
+00:06:33.576 --> 00:06:35.556
+Estas son las propiedades que se deben de cumplir.
+
+101
+00:06:35.976 --> 00:06:39.536
+Como vemos, todas son evidentes, todas son
+
+102
+00:06:39.756 --> 00:06:41.476
+obvias, todas son lógicas.
+
+103
+00:06:43.796 --> 00:06:46.776
+He dicho antes que los vectores podrían ser
+
+104
+00:06:48.816 --> 00:06:51.776
+distintos objetos a los que estamos acostumbrados.
+
+105
+00:06:51.916 --> 00:06:52.816
+En R3
+
+106
+00:06:53.816 --> 00:06:57.236
+estoy acostumbrado a estos vectores que pinchan.
+
+107
+00:06:57.756 --> 00:07:01.456
+Yo puedo multiplicar este por -1 y le puedo sumar el dos
+
+108
+00:07:01.536 --> 00:07:02.636
+por este otro.
+
+109
+00:07:03.456 --> 00:07:07.116
+Lo hago y me da otro vector. Pues bien, este vector está también dentro de
+
+110
+00:07:07.176 --> 00:07:07.636
+R3.
+
+111
+00:07:07.636 --> 00:07:12.316
+¿Y
+
+112
+00:07:12.396 --> 00:07:12.496
+si
+
+113
+00:07:13.895 --> 00:07:14.556
+voy más allá?
+
+114
+00:07:15.916 --> 00:07:19.296
+Estos son vectores de los que pinchan con una flechita, que podemos simbolizarlos
+
+115
+00:07:19.396 --> 00:07:19.616
+así.
+
+116
+00:07:20.556 --> 00:07:22.056
+Pero ¿y si no es eso? ¿Y si son
+
+117
+00:07:23.276 --> 00:07:24.776
+las matrices dos por dos?
+
+118
+00:07:26.236 --> 00:07:26.856
+Resulta
+
+119
+00:07:28.196 --> 00:07:29.876
+que si yo defino
+
+120
+00:07:30.896 --> 00:07:34.796
+un espacio vectorial poblado por todas las matrices
+
+121
+00:07:34.856 --> 00:07:35.796
+dos por dos posibles,
+
+122
+00:07:38.756 --> 00:07:40.676
+eso forma un espacio vectorial.
+
+123
+00:07:42.036 --> 00:07:43.176
+Yo puedo multiplicar
+
+124
+00:07:44.276 --> 00:07:48.136
+una matriz dos por dos, un escalar, sumar otra matriz multiplicada
+
+125
+00:07:48.196 --> 00:07:49.336
+por un escalar
+
+126
+00:07:50.236 --> 00:07:51.636
+y así sucesivamente. Incluso
+
+127
+00:07:52.516 --> 00:07:53.156
+puedo definir
+
+128
+00:07:54.356 --> 00:07:58.096
+un vector nulo, que es ese de ahí, con cero, cero, cero, cero.
+
+129
+00:08:00.096 --> 00:08:00.716
+Y esto me da
+
+130
+00:08:02.976 --> 00:08:04.236
+una matriz dos por dos.
+
+131
+00:08:05.196 --> 00:08:08.856
+No me puede dar otra cosa, no me puede dar una matriz tres por tres, porque eso me
+
+132
+00:08:08.896 --> 00:08:09.776
+sacaría fuera
+
+133
+00:08:11.316 --> 00:08:12.516
+de este espacio vectorial.
+
+134
+00:08:15.996 --> 00:08:18.655
+No solamente eso, también puedo definir
+
+135
+00:08:20.435 --> 00:08:23.956
+un espacio vectorial de los polinomios hasta orden
+
+136
+00:08:24.016 --> 00:08:24.516
+tres.
+
+137
+00:08:24.516 --> 00:08:28.116
+¿Por qué me sacaría
+
+138
+00:08:28.236 --> 00:08:30.736
+fuera del conjunto
+
+139
+00:08:31.916 --> 00:08:32.656
+dos por dos?
+
+140
+00:08:33.437 --> 00:08:36.557
+No te saca fuera, al revés.
+
+141
+00:08:36.596 --> 00:08:40.356
+La ventaja de esto es que
+
+142
+00:08:40.437 --> 00:08:44.236
+yo puedo tomar una serie de elementos que van a ser
+
+143
+00:08:44.296 --> 00:08:47.996
+matrices dos por dos, que están definidos en el espacio vectorial
+
+144
+00:08:48.456 --> 00:08:51.896
+de matrices dos por dos, y yo puedo multiplicarlas por una escala,
+
+145
+00:08:51.996 --> 00:08:55.816
+sumarlas, etcétera, y el resultado siempre va a ser una matriz dos por
+
+146
+00:08:55.876 --> 00:08:58.556
+dos, que va a estar dentro de ese espacio vectorial.
+
+147
+00:09:01.176 --> 00:09:01.896
+Esa es la ventaja.
+
+148
+00:09:03.316 --> 00:09:07.296
+Y eso que he aplicado a las matrices dos por dos lo puedo aplicar también a
+
+149
+00:09:07.336 --> 00:09:09.636
+los polinomios de hasta orden tres.
+
+150
+00:09:10.876 --> 00:09:11.316
+Es así.
+
+151
+00:09:13.236 --> 00:09:15.556
+Por ejemplo, yo puedo multiplicar un polinomio por uno.
+
+152
+00:09:18.716 --> 00:09:20.236
+Este polinomio por -2
+
+153
+00:09:22.296 --> 00:09:23.916
+y me da este otro polinomio.
+
+154
+00:09:28.356 --> 00:09:29.016
+Perfectamente.
+
+155
+00:09:29.016 --> 00:09:32.616
+¿Por qué la limitación a polinomio
+
+156
+00:09:33.136 --> 00:09:33.896
+de grado tres?
+
+157
+00:09:34.716 --> 00:09:37.136
+Porque lo estoy definiendo así, hasta grado tres.
+
+158
+00:09:38.836 --> 00:09:41.696
+Podemos definir otros espacios vectoriales poblados por polinomios,
+
+159
+00:09:42.556 --> 00:09:46.436
+que puede ser hasta grado cuatro, hasta grado cinco, hasta grado 17.723.
+
+160
+00:09:47.536 --> 00:09:51.156
+Es completamente legítimo. Con sub s, que además dice
+
+161
+00:09:51.176 --> 00:09:51.636
+"hasta".
+
+162
+00:09:57.376 --> 00:10:01.296
+Yo puedo jugar con los números de tal modo que esto me diera, por ejemplo,
+
+163
+00:10:01.656 --> 00:10:03.096
+2x al cuadrado más uno,
+
+164
+00:10:04.096 --> 00:10:07.956
+pero este está dentro de este. Aunque no
+
+165
+00:10:08.016 --> 00:10:11.776
+sea de grado tres, es de grado dos y es hasta grado tres.
+
+166
+00:10:12.856 --> 00:10:14.016
+Lo que no puedo tener,
+
+167
+00:10:15.536 --> 00:10:19.276
+y que no hay manera de conseguirlo, es, por ejemplo, 4x a la cuarta más cinco, lo
+
+168
+00:10:19.316 --> 00:10:21.076
+que sea. A la cuarta no puede ser.
+
+169
+00:10:22.516 --> 00:10:23.476
+Me sacaría fuera,
+
+170
+00:10:24.456 --> 00:10:26.136
+pero eso no se da, no importa.
+
+171
+00:10:30.656 --> 00:10:34.136
+Así que también tenemos Rn para cualquier n,
+
+172
+00:10:35.436 --> 00:10:37.196
+cualquier matriz n por n
+
+173
+00:10:38.336 --> 00:10:41.776
+y, respondiendo a tu pregunta, cualquier polinomio de hasta grado n.
+
+174
+00:10:43.936 --> 00:10:46.656
+Puedo definir esos espacios vectoriales.
+
+175
+00:10:48.896 --> 00:10:49.036
+O
+
+176
+00:10:50.736 --> 00:10:53.896
+el conjunto S de todas las funciones reales en R.
+
+177
+00:10:54.936 --> 00:10:55.336
+¿Por qué?
+
+178
+00:10:56.936 --> 00:10:58.376
+Porque cumplen
+
+179
+00:10:59.176 --> 00:11:00.396
+con la linealidad,
+
+180
+00:11:01.696 --> 00:11:02.556
+que si yo sumo
+
+181
+00:11:03.576 --> 00:11:04.456
+dos funciones
+
+182
+00:11:06.436 --> 00:11:08.356
+de esta manera, me da una función
+
+183
+00:11:09.976 --> 00:11:10.256
+en R.
+
+184
+00:11:11.536 --> 00:11:15.396
+Y si yo multiplico por un escalar una función, me da
+
+185
+00:11:15.436 --> 00:11:16.076
+una función
+
+186
+00:11:17.016 --> 00:11:17.276
+en R.
+
+187
+00:11:23.036 --> 00:11:23.536
+Además,
+
+188
+00:11:27.036 --> 00:11:30.936
+el espacio de los polinomios está contenido
+
+189
+00:11:31.396 --> 00:11:35.316
+dentro de este espacio de funciones, porque un polinomio puede ser una función.
+
+190
+00:11:39.856 --> 00:11:41.596
+Es un subespacio
+
+191
+00:11:42.676 --> 00:11:43.076
+de hecho.
+
+192
+00:11:44.396 --> 00:11:47.776
+Y es cuando introducimos el concepto de subespacio vectorial.
+
+193
+00:11:51.156 --> 00:11:53.076
+Esta definición, un subconjunto W
+
+194
+00:11:54.816 --> 00:11:58.076
+de un espacio vectorial V, se llama subespacio de V
+
+195
+00:12:00.336 --> 00:12:00.516
+si
+
+196
+00:12:02.696 --> 00:12:04.616
+es en sí mismo un espacio vectorial.
+
+197
+00:12:06.356 --> 00:12:10.196
+Con los mismos escalares, multiplicación por el escalar, suma, etcétera.
+
+198
+00:12:10.316 --> 00:12:11.756
+Ya está
+
+199
+00:12:12.896 --> 00:12:14.076
+O sea, todo
+
+200
+00:12:14.976 --> 00:12:18.156
+subespacio tiene también las mismas
+
+201
+00:12:18.196 --> 00:12:19.056
+propiedades.
+
+202
+00:12:19.696 --> 00:12:23.596
+Sí, las mismas propiedades es subespacio, si no cumple las mismas propiedades, no
+
+203
+00:12:23.636 --> 00:12:24.116
+lo es.
+
+204
+00:12:25.296 --> 00:12:25.656
+Vale.
+
+205
+00:12:25.656 --> 00:12:26.656
+¿De acuerdo?
+
+206
+00:12:27.596 --> 00:12:29.396
+Yo puedo, por ejemplo, en R3,
+
+207
+00:12:31.576 --> 00:12:33.516
+definir un subespacio R2,
+
+208
+00:12:34.736 --> 00:12:35.276
+un plano,
+
+209
+00:12:36.576 --> 00:12:39.796
+siempre que sea un plano que pase por el origen, pase por el [0,0] .
+
+210
+00:12:40.876 --> 00:12:44.836
+Si yo defino un plano que no pasa por el [0,0] , no tengo el elemento
+
+211
+00:12:45.276 --> 00:12:49.016
+neutro del [0,0] , el cero, y por lo tanto eso ya no me valdría.
+
+212
+00:12:50.116 --> 00:12:54.096
+Pero tengo infinitos planos, subespacios, que
+
+213
+00:12:54.156 --> 00:12:56.256
+son subespacios del R3.
+
+214
+00:12:59.796 --> 00:13:02.396
+Pero esto es una definición, es cómo lo hemos definido.
+
+215
+00:13:02.436 --> 00:13:05.336
+Esto no es un resultado. El resultado es el teorema.
+
+216
+00:13:06.096 --> 00:13:06.596
+Este de aquí.
+
+217
+00:13:07.576 --> 00:13:09.896
+Sea V un espacio vectorial y sea
+
+218
+00:13:10.696 --> 00:13:13.356
+W un subconjunto no vacío de V.
+
+219
+00:13:16.236 --> 00:13:19.576
+Entonces, W es un subespacio de V solo si
+
+220
+00:13:20.696 --> 00:13:24.296
+se cumplen las siguientes condiciones.
+
+221
+00:13:24.336 --> 00:13:28.076
+Si U y V están en W, entonces su suma está en
+
+222
+00:13:28.416 --> 00:13:28.436
+W.
+
+223
+00:13:30.836 --> 00:13:34.496
+Si U está en W y C es un escalar, el
+
+224
+00:13:34.556 --> 00:13:36.396
+producto de un escalar por U está en W.
+
+225
+00:13:38.696 --> 00:13:41.436
+Vamos a ver. Esto es la definición, cómo lo defino.
+
+226
+00:13:42.396 --> 00:13:45.676
+Esto es cómo lo demuestro. Si me están pidiendo:
+
+227
+00:13:46.116 --> 00:13:49.936
+demuestra que este subconjunto es un subespacio de este
+
+228
+00:13:49.996 --> 00:13:53.356
+otro, tendré que comprobar que se cumple esta y se cumple esta.
+
+229
+00:13:57.416 --> 00:13:57.816
+Ejemplo:
+
+230
+00:14:00.036 --> 00:14:02.756
+sea W el conjunto de matrices simétricas.
+
+231
+00:14:03.296 --> 00:14:05.376
+Si son simétricas es que, ya lo hemos visto,
+
+232
+00:14:06.196 --> 00:14:08.776
+se pueden intercambiar filas por columnas y me queda lo mismo.
+
+233
+00:14:10.276 --> 00:14:11.976
+Por lo tanto, además, son
+
+234
+00:14:12.856 --> 00:14:16.736
+cuadradas, nxn, no rectangulares.
+
+235
+00:14:19.096 --> 00:14:22.835
+Me piden demostrar que W es un subespacio
+
+236
+00:14:24.236 --> 00:14:25.676
+de todas las matrices nxn.
+
+237
+00:14:28.696 --> 00:14:29.056
+Primero,
+
+238
+00:14:30.236 --> 00:14:34.056
+no está vacío, porque si está vacío, apaguemos los objetos.
+
+239
+00:14:34.056 --> 00:14:37.876
+¿Qué objetos son? Matrices cuadradas,
+
+240
+00:14:38.356 --> 00:14:41.916
+que además son simétricas. ¿Qué es lo que se
+
+241
+00:14:41.976 --> 00:14:44.216
+necesita? Demostrar las condiciones que acabamos de ver.
+
+242
+00:14:46.696 --> 00:14:49.736
+La suma tiene que estar, el producto por un escalar tiene que estar dentro.
+
+243
+00:14:50.636 --> 00:14:51.556
+Propiedades de cierre.
+
+244
+00:14:57.236 --> 00:15:01.016
+Sea A y B dos matrices cualesquiera, de
+
+245
+00:15:01.056 --> 00:15:01.816
+cualquier tamaño.
+
+246
+00:15:02.736 --> 00:15:03.996
+Están dentro de W
+
+247
+00:15:05.136 --> 00:15:06.076
+y se hace una escala.
+
+248
+00:15:07.796 --> 00:15:09.216
+Además, al ser simétricas,
+
+249
+00:15:10.196 --> 00:15:13.036
+la traspuesta de A es igual a A y la traspuesta de B es igual a B.
+
+250
+00:15:14.596 --> 00:15:15.556
+Porque es simétrico.
+
+251
+00:15:19.856 --> 00:15:21.576
+Así que la traspuesta de la suma,
+
+252
+00:15:23.356 --> 00:15:26.196
+por las propiedades de la traspuesta, va la suma de las dos traspuestas.
+
+253
+00:15:27.756 --> 00:15:29.876
+Y por esto de aquí, esto es igual a A más B.
+
+254
+00:15:34.596 --> 00:15:36.496
+Y por lo tanto, A más B es simétrica.
+
+255
+00:15:37.376 --> 00:15:39.156
+Y en consecuencia, está dentro
+
+256
+00:15:40.756 --> 00:15:40.896
+de W.
+
+257
+00:15:43.236 --> 00:15:44.676
+De igual modo, si multiplico
+
+258
+00:15:45.676 --> 00:15:47.456
+una C por A y lo traspongo,
+
+259
+00:15:49.336 --> 00:15:52.256
+esto es igual a C por la traspuesta de A y es igual a C por A.
+
+260
+00:15:54.276 --> 00:15:57.916
+Y por consiguiente, C A es simétrica y en consecuencia,
+
+261
+00:15:58.096 --> 00:15:58.456
+está
+
+262
+00:15:59.756 --> 00:16:00.916
+dentro de W.
+
+263
+00:16:03.896 --> 00:16:04.696
+Es cerrada
+
+264
+00:16:06.116 --> 00:16:09.676
+bajo la suma y bajo el producto por un escalar.
+
+265
+00:16:10.576 --> 00:16:13.676
+Por lo tanto, se cumplen estas dos condiciones.
+
+266
+00:16:14.156 --> 00:16:16.236
+Y se demuestra de este modo
+
+267
+00:16:17.076 --> 00:16:20.976
+que es un subespacio de las matrices
+
+268
+00:16:21.136 --> 00:16:24.756
+nxn. No es
+
+269
+00:16:24.796 --> 00:16:25.936
+fácil definir
+
+270
+00:16:27.256 --> 00:16:30.775
+subespacios, no todo lo que nos inventemos va a cumplir las
+
+271
+00:16:30.816 --> 00:16:31.496
+propiedades
+
+272
+00:16:33.456 --> 00:16:37.036
+de cierre. Aquí, ya te están dando algo que sí que lo cumple.
+
+273
+00:16:40.276 --> 00:16:40.696
+Más.
+
+274
+00:16:42.936 --> 00:16:44.216
+Esto es todavía más abstracto.
+
+275
+00:16:45.956 --> 00:16:49.816
+Sea S el conjunto de las funciones que satisfacen
+
+276
+00:16:49.896 --> 00:16:53.676
+esta ecuación diferencial. Da igual que es una ecuación diferencial, que lo
+
+277
+00:16:53.716 --> 00:16:55.976
+sepáis, que no, da igual, porque
+
+278
+00:16:56.956 --> 00:16:59.496
+el cometido de esto no es resolverla.
+
+279
+00:17:00.556 --> 00:17:03.976
+Lo que sí te está diciendo es una relación entre esa función y sus derivadas.
+
+280
+00:17:04.636 --> 00:17:07.356
+Y me dice que derivando dos veces
+
+281
+00:17:09.376 --> 00:17:09.997
+una función,
+
+282
+00:17:10.956 --> 00:17:13.056
+le resto esa misma función y me tiene que dar cero.
+
+283
+00:17:14.316 --> 00:17:15.017
+Eso es lo que me dice.
+
+284
+00:17:20.556 --> 00:17:23.536
+Ese es el conjunto de solución de esto.
+
+285
+00:17:25.876 --> 00:17:27.336
+No todas van a cumplirlo.
+
+286
+00:17:28.796 --> 00:17:30.616
+No todas las funciones van a cumplir eso.
+
+287
+00:17:31.796 --> 00:17:35.716
+Hay un espacio de soluciones. Y ese
+
+288
+00:17:35.736 --> 00:17:37.076
+espacio de soluciones,
+
+289
+00:17:38.036 --> 00:17:38.816
+por eso lo he llamado S,
+
+290
+00:17:40.296 --> 00:17:42.416
+es un subespacio de todas las funciones posibles.
+
+291
+00:17:42.416 --> 00:17:46.116
+¿Qué es lo que tiene que
+
+292
+00:17:46.156 --> 00:17:47.296
+cumplir? Que la suma
+
+293
+00:17:50.576 --> 00:17:54.156
+cierre y que se quede dentro de las soluciones y que el producto por un escalar le
+
+294
+00:17:54.216 --> 00:17:55.476
+pase lo mismo, se quede dentro.
+
+295
+00:17:56.496 --> 00:17:57.556
+Así que donde ponga
+
+296
+00:17:58.536 --> 00:17:58.556
+f,
+
+297
+00:17:59.416 --> 00:17:59.956
+como aquí,
+
+298
+00:18:00.976 --> 00:18:02.056
+pongo f más g.
+
+299
+00:18:03.616 --> 00:18:05.636
+Dos veces derivado menos f más g.
+
+300
+00:18:08.236 --> 00:18:10.836
+Que tiene que ser igual a cero, pero yo lo que hago aquí es agruparlo.
+
+301
+00:18:11.156 --> 00:18:13.516
+Por linealidad,
+
+302
+00:18:15.216 --> 00:18:18.236
+la derivada de una suma es la suma de las derivadas, aunque sean dos veces.
+
+303
+00:18:18.476 --> 00:18:19.196
+No pasa nada
+
+304
+00:18:21.016 --> 00:18:22.516
+Y esto es tal cual, lo mismo.
+
+305
+00:18:23.776 --> 00:18:27.696
+Yo puedo mover esta para allá y esta para allá, digámoslo así.
+
+306
+00:18:27.936 --> 00:18:28.536
+Y ya me queda
+
+307
+00:18:29.716 --> 00:18:31.816
+f dos prima menos f, que vale cero.
+
+308
+00:18:36.895 --> 00:18:39.616
+Más g dos prima menos g, que vale cero.
+
+309
+00:18:40.156 --> 00:18:43.876
+Da igual cómo lo llamemos, si f o g, pero como hemos dicho que tiene que
+
+310
+00:18:43.936 --> 00:18:44.936
+cumplirlo, ya está.
+
+311
+00:18:47.076 --> 00:18:50.596
+Así que la suma está dentro del espacio de solución.
+
+312
+00:18:52.156 --> 00:18:54.676
+De igual modo lo podemos hacer con el producto por un escalar.
+
+313
+00:18:56.716 --> 00:18:57.756
+Y también funciona.
+
+314
+00:18:58.856 --> 00:19:02.516
+Así que se cumplen las dos condiciones
+
+315
+00:19:03.616 --> 00:19:04.356
+que hemos visto.
+
+316
+00:19:08.916 --> 00:19:11.116
+Tanto para la suma como para el producto por un escalar.
+
+317
+00:19:13.096 --> 00:19:16.976
+Por lo tanto, S es cerrado, el espacio de soluciones es
+
+318
+00:19:17.036 --> 00:19:18.676
+un subespacio de todas las
+
+319
+00:19:20.016 --> 00:19:20.676
+funciones.
+
+320
+00:19:22.056 --> 00:19:22.956
+Por curiosidad,
+
+321
+00:19:24.436 --> 00:19:28.196
+estas son el tipo de soluciones que
+
+322
+00:19:28.256 --> 00:19:31.736
+tiene: potenciales multiplicadas por un parámetro, c sub uno y c sub dos.
+
+323
+00:19:32.856 --> 00:19:35.956
+Eso no lo tenéis que saber, no importa.
+
+324
+00:19:40.316 --> 00:19:42.956
+Otra definición: conjunto generador.
+
+325
+00:19:44.436 --> 00:19:46.716
+Yo tengo mis espacios, mis subespacios.
+
+326
+00:19:46.836 --> 00:19:50.076
+¿Cómo defino
+
+327
+00:19:50.496 --> 00:19:54.316
+esos espacios y subespacios? Lo defino con un conjunto generador,
+
+328
+00:19:54.936 --> 00:19:56.596
+y que ese es un conjunto de vectores.
+
+329
+00:19:59.716 --> 00:20:00.516
+Que le puedo llamar B.
+
+330
+00:20:01.996 --> 00:20:04.076
+Ya B que significa que será el conjunto.
+
+331
+00:20:04.716 --> 00:20:06.536
+Esto, una ristra de vectores.
+
+332
+00:20:08.356 --> 00:20:10.596
+Todos están en un espacio vectorial V.
+
+333
+00:20:16.036 --> 00:20:19.796
+Yo puedo hacer todas las combinaciones posibles, todas las combinaciones
+
+334
+00:20:19.856 --> 00:20:22.216
+lineales de todos estos elementos.
+
+335
+00:20:24.296 --> 00:20:28.196
+Y de tal modo que todos esos elementos van a estar dentro de este espacio vectorial
+
+336
+00:20:28.316 --> 00:20:28.416
+V.
+
+337
+00:20:30.815 --> 00:20:33.016
+Bien, todas esas posibles
+
+338
+00:20:34.276 --> 00:20:36.676
+combinaciones, todas las posibles, son estas de aquí.
+
+339
+00:20:37.796 --> 00:20:37.876
+Lo
+
+340
+00:20:39.716 --> 00:20:40.736
+escribo de esta manera.
+
+341
+00:20:42.396 --> 00:20:44.936
+O gen de B, porque B es esto.
+
+342
+00:20:46.956 --> 00:20:47.836
+De tal modo que
+
+343
+00:20:49.356 --> 00:20:52.476
+yo puedo escribirlo de esta manera, que el espacio vectorial
+
+344
+00:20:53.356 --> 00:20:53.636
+es
+
+345
+00:20:54.956 --> 00:20:56.896
+el generado por este conjunto B.
+
+346
+00:20:58.676 --> 00:21:01.116
+Y a eso lo llamo conjunto generador.
+
+347
+00:21:02.176 --> 00:21:02.596
+Es decir,
+
+348
+00:21:04.436 --> 00:21:07.656
+que si yo quiero definir un espacio o un
+
+349
+00:21:07.696 --> 00:21:10.736
+subespacio, necesito definirlo de esta manera.
+
+350
+00:21:12.196 --> 00:21:15.176
+V será igual al conjunto generado por B.
+
+351
+00:21:16.636 --> 00:21:19.436
+Sea B lo que sea para el caso en particular.
+
+352
+00:21:19.476 --> 00:21:21.516
+Por ejemplo, en R3.
+
+353
+00:21:23.696 --> 00:21:27.476
+Yo puedo generar por combinación lineal cualquier elemento de R3
+
+354
+00:21:28.676 --> 00:21:32.396
+con este conjunto. Solo sé que son cuatro, no importa.
+
+355
+00:21:33.016 --> 00:21:35.796
+No he puesto limitaciones al número de elementos que tiene que tener.
+
+356
+00:21:37.356 --> 00:21:40.516
+Pero esos me generan cualquier vector en R3.
+
+357
+00:21:41.276 --> 00:21:42.816
+Ni siquiera tengo que utilizarlos todos.
+
+358
+00:21:45.596 --> 00:21:48.476
+Otro conjunto generador en los polinomios de hasta grado dos.
+
+359
+00:21:49.216 --> 00:21:50.116
+Estos de aquí, uno,
+
+360
+00:21:51.296 --> 00:21:54.336
+x, que es un vector, en este caso, y x al cuadrado, que es otro.
+
+361
+00:21:57.776 --> 00:21:58.196
+Ya está.
+
+362
+00:22:00.176 --> 00:22:04.156
+Otro concepto, y que ya hemos visto varias veces, el concepto de
+
+363
+00:22:04.236 --> 00:22:06.076
+independencia lineal.
+
+364
+00:22:08.016 --> 00:22:11.936
+Un conjunto de vectores u sub uno, u sub dos, así hasta u sub k.
+
+365
+00:22:14.596 --> 00:22:17.796
+En un espacio vectorial V es linealmente
+
+366
+00:22:17.856 --> 00:22:20.036
+dependiente si existen escalares,
+
+367
+00:22:24.136 --> 00:22:26.116
+uno de los cuales no es cero, tales que
+
+368
+00:22:27.696 --> 00:22:28.376
+cumple esto.
+
+369
+00:22:30.176 --> 00:22:34.136
+Y un conjunto de vectores que no es linealmente dependiente, se dice que es
+
+370
+00:22:34.196 --> 00:22:38.156
+linealmente independiente. Esto es lo que vamos a estar buscando siempre,
+
+371
+00:22:38.615 --> 00:22:40.076
+la independencia lineal.
+
+372
+00:22:41.115 --> 00:22:42.196
+Porque cuando tenemos
+
+373
+00:22:44.236 --> 00:22:47.636
+vectores que son linealmente dependientes, un conjunto que sea linealmente
+
+374
+00:22:47.776 --> 00:22:49.996
+dependiente, es que sobra información.
+
+375
+00:22:51.176 --> 00:22:54.736
+Si me quiero quedar con la parte mínima de información, me tendré que ir a un
+
+376
+00:22:55.976 --> 00:22:58.276
+conjunto linealmente independiente.
+
+377
+00:23:02.636 --> 00:23:05.376
+El problema, esto son definiciones, es cómo lo llamo.
+
+378
+00:23:06.676 --> 00:23:08.436
+Esto es un resultado, no es un problema.
+
+379
+00:23:10.116 --> 00:23:11.836
+Un conjunto de vectores, el que sea,
+
+380
+00:23:13.096 --> 00:23:14.036
+en un espacio vectorial
+
+381
+00:23:15.816 --> 00:23:19.796
+V es linealmente dependiente si y solo si, al menos uno
+
+382
+00:23:19.816 --> 00:23:22.536
+de los vectores puede expresarse como una combinación lineal de los otros.
+
+383
+00:23:22.816 --> 00:23:23.876
+Es algo que ya vimos.
+
+384
+00:23:28.656 --> 00:23:32.476
+Hemos visto, por ejemplo, en el caso anterior, que teníamos un conjunto
+
+385
+00:23:32.536 --> 00:23:34.956
+generador para R3 y eran cuatro
+
+386
+00:23:36.416 --> 00:23:38.416
+vectores. Pero claro,
+
+387
+00:23:39.576 --> 00:23:40.436
+fijémonos.
+
+388
+00:23:43.356 --> 00:23:46.996
+Si yo sumo este y sumo este, me da
+
+389
+00:23:47.096 --> 00:23:47.576
+este.
+
+390
+00:23:48.856 --> 00:23:52.576
+Así que este conjunto es linealmente dependiente.
+
+391
+00:23:52.576 --> 00:24:00.856
+¿Cómo
+
+392
+00:24:00.896 --> 00:24:04.356
+podemos averiguar si los vectores son linealmente
+
+393
+00:24:04.396 --> 00:24:05.116
+dependientes o no?
+
+394
+00:24:06.596 --> 00:24:10.296
+Lo típico que ya hemos visto es montar una matriz, los ponemos como
+
+395
+00:24:10.356 --> 00:24:10.776
+filas,
+
+396
+00:24:12.696 --> 00:24:16.436
+aplicamos operaciones elementales por filas y vemos qué es lo que ocurre.
+
+397
+00:24:16.476 --> 00:24:17.296
+Si me aparecen
+
+398
+00:24:18.696 --> 00:24:20.916
+filas de ceros, son linealmente dependientes.
+
+399
+00:24:20.976 --> 00:24:24.816
+De hecho, en este caso particular, vemos que dos veces u
+
+400
+00:24:24.876 --> 00:24:26.076
+menos dos veces v me da w
+
+401
+00:24:27.716 --> 00:24:28.696
+Así que son linealmente
+
+402
+00:24:29.616 --> 00:24:30.596
+dependientes.
+
+403
+00:24:30.596 --> 00:24:34.676
+¿Y
+
+404
+00:24:34.716 --> 00:24:38.416
+qué pasa si en lugar de ser un espacio vectorial de
+
+405
+00:24:38.576 --> 00:24:41.496
+toda la vida de vectores que pinchan con flechita,
+
+406
+00:24:42.576 --> 00:24:46.536
+tenemos un espacio de polinomios de hasta grado dos?
+
+407
+00:24:48.336 --> 00:24:52.176
+No pasa nada. Yo tengo este conjunto, que es este
+
+408
+00:24:52.216 --> 00:24:55.976
+polinomio, este polinomio y este polinomio, que lo he llamado U,
+
+409
+00:24:56.616 --> 00:24:59.695
+V y W, con N negrita, porque son vectores.
+
+410
+00:24:59.695 --> 00:25:03.376
+¿Linealmente independiente o
+
+411
+00:25:03.416 --> 00:25:03.996
+dependiente?
+
+412
+00:25:08.676 --> 00:25:12.596
+Sí, porque dos veces U menos V, si lo hacemos, me da
+
+413
+00:25:12.736 --> 00:25:12.756
+W.
+
+414
+00:25:14.056 --> 00:25:15.736
+Así que son linealmente dependientes.
+
+415
+00:25:16.816 --> 00:25:17.096
+Este
+
+416
+00:25:18.216 --> 00:25:21.656
+método, por ciencia infusa, no os preocupéis, que más
+
+417
+00:25:21.716 --> 00:25:22.216
+adelante
+
+418
+00:25:23.056 --> 00:25:25.296
+vamos a ver un método mejor. De momento,
+
+419
+00:25:26.576 --> 00:25:30.336
+lo que nos tenemos que quedar es que la dependencia y dependencia
+
+420
+00:25:30.376 --> 00:25:33.916
+lineal que aplicábamos a R2, R3, R4,
+
+421
+00:25:34.756 --> 00:25:38.716
+se aplica perfectamente también a espacios de polinomios, espacios de matrices,
+
+422
+00:25:39.136 --> 00:25:42.096
+espacios de funciones. No nos podemos
+
+423
+00:25:42.176 --> 00:25:45.796
+imaginar un espacio poblado de
+
+424
+00:25:45.856 --> 00:25:46.556
+matrices.
+
+425
+00:25:47.776 --> 00:25:51.636
+No podemos visualizar un espacio lleno de polinomios.
+
+426
+00:25:51.976 --> 00:25:52.556
+No podemos.
+
+427
+00:25:54.196 --> 00:25:57.696
+Pero sí que podemos trabajar con ello desde el punto de vista algebraico.
+
+428
+00:25:58.516 --> 00:25:59.836
+Sí que podemos trabajarlo.
+
+429
+00:26:01.596 --> 00:26:02.256
+No importa
+
+430
+00:26:03.156 --> 00:26:04.516
+que no lo podamos visualizar.
+
+431
+00:26:06.636 --> 00:26:09.216
+Y ahora es lo que viene el concepto de base.
+
+432
+00:26:09.756 --> 00:26:10.636
+Esto es importante.
+
+433
+00:26:12.316 --> 00:26:15.916
+Teníamos un conjunto generador que me generaba todo ese
+
+434
+00:26:16.016 --> 00:26:19.696
+espacio. Y a la vez, tenemos el concepto de dependencia
+
+435
+00:26:20.056 --> 00:26:24.016
+lineal o independencia lineal. ¿Cuándo tendremos
+
+436
+00:26:24.076 --> 00:26:24.756
+una base?
+
+437
+00:26:26.256 --> 00:26:26.676
+Cuando
+
+438
+00:26:27.696 --> 00:26:30.576
+esa base genera el espacio y cuando
+
+439
+00:26:31.736 --> 00:26:35.296
+los elementos que forman esa base, ese conjunto, sean
+
+440
+00:26:35.336 --> 00:26:38.836
+linealmente independientes. Es decir, en el ejemplo de
+
+441
+00:26:38.916 --> 00:26:39.556
+antes.
+
+442
+00:26:49.336 --> 00:26:53.016
+Esto es un conjunto generador, pero no es una base. Me sobra uno.
+
+443
+00:26:56.056 --> 00:26:59.176
+Porque ese conjunto es linealmente dependiente y no lo puede ser.
+
+444
+00:27:00.676 --> 00:27:03.816
+No me vale como base. Esto así me vale como base.
+
+445
+00:27:04.976 --> 00:27:06.536
+Pero los cuatro, no.
+
+446
+00:27:08.276 --> 00:27:08.516
+Si
+
+447
+00:27:09.396 --> 00:27:13.336
+yo quiero formar una base para R3 y tengo estos
+
+448
+00:27:13.396 --> 00:27:13.716
+tres
+
+449
+00:27:14.716 --> 00:27:18.616
+vectores, no valen. ¿Por qué? Porque
+
+450
+00:27:18.656 --> 00:27:20.176
+son linealmente dependientes.
+
+451
+00:27:21.656 --> 00:27:22.976
+No me valdría.
+
+452
+00:27:26.316 --> 00:27:26.636
+Pero
+
+453
+00:27:30.216 --> 00:27:33.336
+yo puedo definir esos espacios
+
+454
+00:27:34.056 --> 00:27:37.516
+con un conjunto generador que sea linealmente independiente.
+
+455
+00:27:38.416 --> 00:27:41.956
+Es el mínimo número posible de
+
+456
+00:27:42.036 --> 00:27:44.936
+vectores en un conjunto generador, es lo que me están diciendo.
+
+457
+00:27:45.036 --> 00:27:49.056
+¿Cuántas
+
+458
+00:27:49.096 --> 00:27:51.576
+bases hay? Infinitas, todas las que me dé la gana.
+
+459
+00:27:53.276 --> 00:27:56.436
+Hay bases que son muy bonitas, que son las bases canónicas.
+
+460
+00:27:57.336 --> 00:28:01.236
+Cuidado, como llame una base, C, B, F, J, lo que
+
+461
+00:28:01.276 --> 00:28:03.576
+sea, da igual. No nos confundamos.
+
+462
+00:28:04.916 --> 00:28:07.236
+C no significa canónica ni nada por el estilo.
+
+463
+00:28:08.956 --> 00:28:12.016
+Pero sí que es verdad que si es la canónica, para R3 es esta.
+
+464
+00:28:13.876 --> 00:28:16.816
+Es 1, 0, 0. 0, 1, 0. 0, 0, 1.
+
+465
+00:28:17.936 --> 00:28:19.336
+Esta no es una base canónica
+
+466
+00:28:20.456 --> 00:28:22.316
+y trabajar con ella no es tan fácil.
+
+467
+00:28:24.316 --> 00:28:27.256
+Esta base canónica, a veces la llamamos, en el pasado, ijk.
+
+468
+00:28:28.856 --> 00:28:32.296
+Y también la podemos llamar e sub uno, e sub dos, e sub tres. Todo en negrita.
+
+469
+00:28:32.296 --> 00:28:33.936
+¿Por qué la llamamos canónica? Perdona.
+
+470
+00:28:35.316 --> 00:28:35.996
+Es el nombre.
+
+471
+00:28:38.916 --> 00:28:40.716
+Se llama canónica cuando,
+
+472
+00:28:42.076 --> 00:28:43.875
+en este caso, en R3, es esta.
+
+473
+00:28:44.995 --> 00:28:46.336
+Y esta no es canónica.
+
+474
+00:28:48.315 --> 00:28:50.636
+Es la más sencilla posible.
+
+475
+00:28:51.796 --> 00:28:54.876
+Y te voy a enumerar para cada espacio vectorial cuál es la canónica.
+
+476
+00:28:54.936 --> 00:28:58.796
+Ya te estoy diciendo para R3 que esta es la canónica, que ya
+
+477
+00:28:58.876 --> 00:28:59.616
+habíamos visto,
+
+478
+00:29:00.696 --> 00:29:03.476
+que está compuesto por estos vectores, que son estos de aquí.
+
+479
+00:29:06.296 --> 00:29:09.636
+La base canónica me permite expresar muy fácilmente
+
+480
+00:29:09.696 --> 00:29:12.036
+vectores en esa misma base canónica.
+
+481
+00:29:13.856 --> 00:29:17.796
+Por ejemplo, el [1, -2, 1] es uno por el
+
+482
+00:29:17.836 --> 00:29:21.716
+primer vector de la canónica, menos dos veces por el segundo vector de la
+
+483
+00:29:21.756 --> 00:29:22.356
+canónica,
+
+484
+00:29:23.296 --> 00:29:25.596
+más una vez por el tercer vector de la canónica.
+
+485
+00:29:26.636 --> 00:29:27.476
+Es tan fácil.
+
+486
+00:29:28.776 --> 00:29:31.036
+Es ideal trabajar con bases canónicas,
+
+487
+00:29:32.376 --> 00:29:36.336
+una para cada una. Pero hay infinidad de
+
+488
+00:29:36.396 --> 00:29:39.836
+bases vectoriales para un mismo espacio vectorial. La más sencilla es la canónica.
+
+489
+00:29:40.876 --> 00:29:41.956
+Y ahí te estoy dando cuál.
+
+490
+00:29:44.336 --> 00:29:45.516
+En matrices dos por dos,
+
+491
+00:29:47.456 --> 00:29:49.056
+esta va a ser la base canónica.
+
+492
+00:29:50.276 --> 00:29:53.556
+Obsérvese, uno y todos los demás cero. Uno y todos los demás ceros.
+
+493
+00:29:53.776 --> 00:29:54.796
+Uno y el demás cero.
+
+494
+00:29:57.676 --> 00:29:58.536
+Esta es otra base
+
+495
+00:29:59.596 --> 00:30:02.096
+de las matrices dos por dos, pero no es la canónica.
+
+496
+00:30:05.696 --> 00:30:08.256
+De tal modo que si yo quiero expresar esta matriz,
+
+497
+00:30:10.156 --> 00:30:11.816
+yo puedo multiplicar uno
+
+498
+00:30:13.616 --> 00:30:14.276
+por esta de acá,
+
+499
+00:30:15.636 --> 00:30:15.956
+más
+
+500
+00:30:17.036 --> 00:30:17.516
+dos
+
+501
+00:30:18.696 --> 00:30:19.176
+por esta de acá,
+
+502
+00:30:20.756 --> 00:30:21.856
+menos dos
+
+503
+00:30:22.876 --> 00:30:23.456
+por esta de acá.
+
+504
+00:30:25.676 --> 00:30:27.816
+Más tres por esta de acá.
+
+505
+00:30:31.116 --> 00:30:33.516
+Es tan fácil que hasta es ridículo
+
+506
+00:30:37.312 --> 00:30:41.052
+Otros ejemplos. En los polinomios de hasta grado dos,
+
+507
+00:30:42.772 --> 00:30:43.692
+la base canónica
+
+508
+00:30:44.672 --> 00:30:46.812
+es uno, X y X al cuadrado.
+
+509
+00:30:49.652 --> 00:30:52.312
+Una base que no es canónica es, por ejemplo, esta.
+
+510
+00:30:55.552 --> 00:30:57.732
+Cuidado, estamos hablando
+
+511
+00:30:59.852 --> 00:31:03.712
+de un espacio vectorial poblado por
+
+512
+00:31:03.772 --> 00:31:05.232
+polinomios de hasta grado dos.
+
+513
+00:31:06.812 --> 00:31:09.471
+Esto no es ningún sistema de ecuaciones.
+
+514
+00:31:10.392 --> 00:31:12.412
+Estas X no son incógnitas.
+
+515
+00:31:16.372 --> 00:31:19.512
+Si yo quiero expresar un polinomio, por ejemplo, este de aquí,
+
+516
+00:31:23.092 --> 00:31:25.332
+utilizando la base canónica, que es esta de aquí.
+
+517
+00:31:26.132 --> 00:31:27.752
+Esto es una vez por uno,
+
+518
+00:31:30.372 --> 00:31:31.972
+menos dos veces por X,
+
+519
+00:31:34.472 --> 00:31:34.752
+más
+
+520
+00:31:35.792 --> 00:31:36.372
+una vez
+
+521
+00:31:37.972 --> 00:31:41.872
+por X al cuadrado. Ya lo tengo. Es tan ridícula la base
+
+522
+00:31:41.912 --> 00:31:45.092
+canónica, que a veces dices: "Qué tontería estás haciendo.
+
+523
+00:31:45.552 --> 00:31:46.372
+Qué sencillito es".
+
+524
+00:31:47.472 --> 00:31:51.432
+Precisamente por eso la base canónica es tan atractiva, porque me
+
+525
+00:31:51.452 --> 00:31:55.432
+permite expresar un vector de una manera muy sencilla,
+
+526
+00:31:55.472 --> 00:31:59.052
+aunque sea estos vectores raros que son matrices
+
+527
+00:31:59.572 --> 00:32:00.592
+y polinomios.
+
+528
+00:32:05.092 --> 00:32:06.712
+Más cosas. Teorema.
+
+529
+00:32:11.652 --> 00:32:11.872
+Sea V
+
+530
+00:32:13.492 --> 00:32:17.272
+un espacio vectorial y sea B una base en concreto para ese espacio vectorial.
+
+531
+00:32:19.012 --> 00:32:22.832
+Para todo vector V contenido en ese espacio vectorial, existe
+
+532
+00:32:22.852 --> 00:32:26.312
+exactamente una forma de escribir V como una
+
+533
+00:32:26.352 --> 00:32:30.252
+combinación lineal de los vectores de la base B. Esto es lo que hemos hecho aquí.
+
+534
+00:32:31.712 --> 00:32:35.392
+Solamente hay una manera de escribir este polinomio
+
+535
+00:32:35.412 --> 00:32:37.712
+utilizando una base en concreto, que es esta.
+
+536
+00:32:38.252 --> 00:32:42.072
+Si utilizamos la otra y eres capaz de hacerlo, ya está.
+
+537
+00:32:44.112 --> 00:32:45.072
+Lo mismo para esto.
+
+538
+00:32:45.952 --> 00:32:49.932
+Solamente hay una manera de escribir este vector como
+
+539
+00:32:49.972 --> 00:32:53.872
+combinación lineal de los elementos de esta base canónica, que son estos de
+
+540
+00:32:53.932 --> 00:32:54.052
+aquí.
+
+541
+00:32:56.212 --> 00:32:57.792
+Eso es lo que nos dice este
+
+542
+00:33:01.152 --> 00:33:03.532
+teorema. Luego, además, definimos.
+
+543
+00:33:03.572 --> 00:33:04.832
+Dice: "Tengo la base
+
+544
+00:33:06.652 --> 00:33:07.832
+para un espacio vectorial V.
+
+545
+00:33:10.412 --> 00:33:11.852
+Sea V un vector en
+
+546
+00:33:12.672 --> 00:33:14.292
+ese espacio vectorial tal que
+
+547
+00:33:15.592 --> 00:33:16.712
+es una combinación lineal
+
+548
+00:33:18.592 --> 00:33:19.792
+de esos vectores de esa base".
+
+549
+00:33:23.992 --> 00:33:24.492
+Estupendo.
+
+550
+00:33:25.572 --> 00:33:27.332
+Esos coeficientes,
+
+551
+00:33:29.792 --> 00:33:30.312
+hasta n,
+
+552
+00:33:31.532 --> 00:33:34.912
+se llaman coordenadas. Ten en cuenta que esto es una definición.
+
+553
+00:33:40.252 --> 00:33:44.192
+De tal modo que este objeto de aquí es el vector columna, lo
+
+554
+00:33:44.212 --> 00:33:45.532
+voy a poner entre corchetes.
+
+555
+00:33:46.652 --> 00:33:49.832
+Este es el vector de coordenadas, que simplemente son las coordenadas de esos
+
+556
+00:33:49.852 --> 00:33:51.132
+vectores colocadas así.
+
+557
+00:33:52.672 --> 00:33:53.412
+Vector columna.
+
+558
+00:33:55.152 --> 00:33:55.732
+Como en
+
+559
+00:33:57.452 --> 00:34:01.352
+formato paisado poner vectores columnas es muy costoso, porque me llevaría
+
+560
+00:34:01.892 --> 00:34:05.792
+miles y miles de diapositivas, muchas veces lo voy a expresar como una
+
+561
+00:34:05.992 --> 00:34:08.692
+T de transpuesta. Fila y transpuesta.
+
+562
+00:34:10.692 --> 00:34:14.232
+Este es el vector coordinado o vector de coordenadas de V con
+
+563
+00:34:14.272 --> 00:34:15.493
+respecto a B.
+
+564
+00:34:16.493 --> 00:34:20.312
+Estos de aquí. ¿Qué vector de coordenadas
+
+565
+00:34:20.372 --> 00:34:22.533
+tenemos? Uno, menos dos, uno.
+
+566
+00:34:22.572 --> 00:34:26.092
+¿Qué vector de
+
+567
+00:34:26.132 --> 00:34:27.672
+coordenadas tendríamos? ¿Qué coordenadas?
+
+568
+00:34:28.513 --> 00:34:30.792
+Uno, dos, menos dos y tres.
+
+569
+00:34:32.712 --> 00:34:35.453
+De una manera elemental, porque estamos utilizando la base canónica.
+
+570
+00:34:41.252 --> 00:34:41.973
+Tengo este vector
+
+571
+00:34:44.953 --> 00:34:47.812
+y tengo la base canónica para ese R3.
+
+572
+00:34:47.812 --> 00:34:49.372
+¿Cómo lo puedo expresar?
+
+573
+00:34:50.412 --> 00:34:54.111
+El uno, menos dos, uno, como uno que multiplica al primer vector de la
+
+574
+00:34:54.171 --> 00:34:57.752
+base canónica, menos dos por el segundo vector de la base
+
+575
+00:34:57.791 --> 00:35:01.652
+canónica, más una vez el tercer vector de la base
+
+576
+00:35:01.692 --> 00:35:02.192
+canónica.
+
+577
+00:35:05.332 --> 00:35:07.912
+Uno, menos dos, uno.
+
+578
+00:35:09.912 --> 00:35:11.812
+Columna. Apuesta,
+
+579
+00:35:13.432 --> 00:35:15.552
+corchete. En la base
+
+580
+00:35:16.572 --> 00:35:16.712
+B.
+
+581
+00:35:17.952 --> 00:35:19.432
+Esta es la base canónica.
+
+582
+00:35:25.372 --> 00:35:27.572
+Ahora imaginemos que tenemos otra base distinta.
+
+583
+00:35:27.852 --> 00:35:29.392
+Esta ya no es la canónica.
+
+584
+00:35:32.072 --> 00:35:35.912
+Si yo quiero expresar este mismo vector utilizando esta
+
+585
+00:35:35.952 --> 00:35:36.572
+otra base C.
+
+586
+00:35:41.632 --> 00:35:43.932
+Ahora las coordenadas son menos uno,
+
+587
+00:35:46.352 --> 00:35:46.992
+menos uno
+
+588
+00:35:48.792 --> 00:35:51.712
+y dos. ¿Cómo ha llegado a eso? Lo veremos.
+
+589
+00:35:52.392 --> 00:35:52.912
+De momento,
+
+590
+00:35:54.372 --> 00:35:57.272
+imaginaos que tenemos un método para calcularlo.
+
+591
+00:35:59.932 --> 00:36:02.952
+Estas son las coordenadas. Si nos fijamos, estas coordenadas
+
+592
+00:36:04.152 --> 00:36:05.872
+son distintas a las de la otra.
+
+593
+00:36:13.852 --> 00:36:14.592
+Imaginemos
+
+594
+00:36:16.092 --> 00:36:16.772
+que yo tengo
+
+595
+00:36:17.592 --> 00:36:19.452
+el espacio de matrices dos por dos
+
+596
+00:36:20.832 --> 00:36:23.372
+y que yo quiero expresar este vector V
+
+597
+00:36:25.132 --> 00:36:29.012
+como una combinación lineal de los vectores de la base
+
+598
+00:36:29.052 --> 00:36:31.972
+canónica. Así que las coordenadas van a ser uno,
+
+599
+00:36:32.792 --> 00:36:34.832
+dos, menos dos y tres.
+
+600
+00:36:36.452 --> 00:36:39.312
+Uno, dos, menos dos y tres. ¿Vale?
+
+601
+00:36:43.520 --> 00:36:43.960
+¿Qué ha pasado?
+
+602
+00:36:49.040 --> 00:36:49.940
+Interesante.
+
+603
+00:36:50.880 --> 00:36:51.660
+Teníamos
+
+604
+00:36:52.480 --> 00:36:56.060
+un espacio poblado por matrices dos por dos,
+
+605
+00:36:56.560 --> 00:37:00.340
+que me cuesta imaginar. Sin embargo, cuando
+
+606
+00:37:01.080 --> 00:37:04.780
+traduzco mi problema a un problema de vectores de coordenadas,
+
+607
+00:37:05.140 --> 00:37:07.300
+recupero los vectores
+
+608
+00:37:08.180 --> 00:37:10.580
+de flechita, de los que pinchan de toda la vida.
+
+609
+00:37:13.400 --> 00:37:14.000
+Moraleja:
+
+610
+00:37:17.120 --> 00:37:20.740
+muchas veces podemos manipular vectores de coordenadas cuando
+
+611
+00:37:20.780 --> 00:37:24.140
+estemos en estos objetos, en estos espacios vectoriales
+
+612
+00:37:24.800 --> 00:37:27.720
+con matrices, polinomios, etcétera.
+
+613
+00:37:28.500 --> 00:37:29.720
+Cosa que es interesante.
+
+614
+00:37:35.160 --> 00:37:38.400
+Otra base distinta para las matrices dos por dos.
+
+615
+00:37:40.360 --> 00:37:43.620
+Solo sé que esta no es la canónica. Mira que ahí están dos.
+
+616
+00:37:47.620 --> 00:37:50.400
+De tal modo que un vector cualquiera, como ejemplo
+
+617
+00:37:50.780 --> 00:37:54.180
+esta matriz dos por dos en este espacio.
+
+618
+00:37:57.800 --> 00:38:00.080
+Se puede expresar de esta manera. De nuevo, acto de fe.
+
+619
+00:38:01.160 --> 00:38:05.120
+Si lo hacéis, da. Pero ¿cómo hemos averiguado esto? Lo veremos.
+
+620
+00:38:06.740 --> 00:38:07.280
+Menos dos,
+
+621
+00:38:09.120 --> 00:38:09.640
+cuatro,
+
+622
+00:38:12.640 --> 00:38:13.400
+menos seis,
+
+623
+00:38:14.440 --> 00:38:14.840
+tres.
+
+624
+00:38:20.940 --> 00:38:23.980
+Es el vector de coordenadas de este vector
+
+625
+00:38:26.280 --> 00:38:28.780
+para esa base. ¿Qué es lo que ocurre?
+
+626
+00:38:28.880 --> 00:38:32.600
+Que el vector de coordenadas en la base canónica coincide con el vector, pero
+
+627
+00:38:32.660 --> 00:38:35.480
+cuando es otra base distinta, ya no.
+
+628
+00:38:38.160 --> 00:38:41.140
+Y no es fácil calcular esos coeficientes.
+
+629
+00:38:43.020 --> 00:38:47.000
+Pero podemos ir más allá y decir: "Y si es un espacio
+
+630
+00:38:47.040 --> 00:38:48.560
+de polinomios de hasta grado dos".
+
+631
+00:38:49.180 --> 00:38:52.039
+De tal modo que yo tengo mi base canónica, que es esta de aquí.
+
+632
+00:38:53.379 --> 00:38:56.160
+Yo tengo mi vector, que es este de acá.
+
+633
+00:38:56.160 --> 00:38:59.920
+¿Cómo se puede
+
+634
+00:38:59.960 --> 00:39:00.440
+expresar?
+
+635
+00:39:02.040 --> 00:39:05.240
+Es trivial. Lo hemos visto. Uno, menos dos, uno.
+
+636
+00:39:06.580 --> 00:39:07.160
+Transpuesto
+
+637
+00:39:09.300 --> 00:39:09.580
+en B.
+
+638
+00:39:09.600 --> 00:39:13.860
+¿Y
+
+639
+00:39:13.920 --> 00:39:17.780
+si en lugar de la base canónica tengo otra base distinta que está
+
+640
+00:39:17.820 --> 00:39:21.700
+compuesta por uno más X, X más X al cuadrado y uno más X al
+
+641
+00:39:21.840 --> 00:39:22.180
+cuadrado?
+
+642
+00:39:24.460 --> 00:39:26.460
+O bien, si es eso, otro acto de fe.
+
+643
+00:39:27.660 --> 00:39:29.260
+Los coeficientes van a ser menos uno,
+
+644
+00:39:30.960 --> 00:39:31.440
+menos uno,
+
+645
+00:39:32.980 --> 00:39:35.300
+dos. Menos uno, menos uno, dos. Columna.
+
+646
+00:39:35.920 --> 00:39:37.420
+Cuesta porque no me cabe.
+
+647
+00:39:39.420 --> 00:39:41.460
+Así que es el vector de coordenadas
+
+648
+00:39:42.900 --> 00:39:44.360
+de ese vector,
+
+649
+00:39:45.720 --> 00:39:47.900
+de ese polinomio, de ese espacio
+
+650
+00:39:48.820 --> 00:39:52.800
+vectorial de todos los polinomios de hasta grado dos en la base C.
+
+651
+00:40:00.240 --> 00:40:01.260
+Y ahora es cuando:
+
+652
+00:40:02.400 --> 00:40:05.060
+¿cómo ha calculado esos coeficientes?
+
+653
+00:40:06.860 --> 00:40:10.120
+Me lo pone a preguntar en este problema.
+
+654
+00:40:12.000 --> 00:40:15.500
+Buscad las coordenadas del vector V, este de aquí,
+
+655
+00:40:16.220 --> 00:40:16.300
+en
+
+656
+00:40:17.200 --> 00:40:18.140
+esta base rosa.
+
+657
+00:40:18.300 --> 00:40:23.040
+¿Y
+
+658
+00:40:23.100 --> 00:40:26.120
+eso qué es? Es una combinación lineal,
+
+659
+00:40:27.440 --> 00:40:31.000
+donde estos coeficientes son los que yo tengo que averiguar.
+
+660
+00:40:32.480 --> 00:40:35.000
+Y esa combinación lineal me tiene que dar esto de acá.
+
+661
+00:40:36.820 --> 00:40:37.760
+Porque es esto de acá.
+
+662
+00:40:40.980 --> 00:40:43.860
+Si yo lo escribo, esta combinación lineal me da eso.
+
+663
+00:40:45.040 --> 00:40:46.660
+Si yo soy un poco más cuidadoso, digo: "¡Ahí va!
+
+664
+00:40:46.700 --> 00:40:48.640
+Pero si esto es un sistema de ecuaciones".
+
+665
+00:40:49.220 --> 00:40:52.780
+Cuatro ecuaciones con cuatro incógnitas. ¿Las incógnitas cuáles son? Estas.
+
+666
+00:40:56.780 --> 00:41:00.660
+Monto el sistema de ecuaciones, esta es la matriz
+
+667
+00:41:00.720 --> 00:41:03.479
+ampliada y este es el vector del lado derecho.
+
+668
+00:41:04.520 --> 00:41:06.520
+Que ahí no hay unos, qué mal.
+
+669
+00:41:09.860 --> 00:41:11.280
+Podemos hacer cositas.
+
+670
+00:41:13.080 --> 00:41:16.420
+Como este es 18 y 18, esto lo multiplico por menos uno, lo sumo ahí y tal.
+
+671
+00:41:16.460 --> 00:41:17.800
+Y mira, por lo tanto, aquí un cero.
+
+672
+00:41:18.760 --> 00:41:20.740
+Pero aquí ya a ver cómo nos apañamos.
+
+673
+00:41:22.520 --> 00:41:25.380
+Vamos a ver, un programa de ordenador, un Matlab,
+
+674
+00:41:26.640 --> 00:41:28.260
+te va a hacer eso a lo bruto.
+
+675
+00:41:29.440 --> 00:41:31.340
+Dependiendo de la precisión que tenga, va a
+
+676
+00:41:32.180 --> 00:41:32.660
+utilizar
+
+677
+00:41:33.960 --> 00:41:37.800
+operaciones en coma flotante y apagante, y si la matriz
+
+678
+00:41:37.900 --> 00:41:41.560
+no está mal condicionada, te calculará la solución
+
+679
+00:41:42.060 --> 00:41:43.960
+con una serie de decimales.
+
+680
+00:41:45.060 --> 00:41:48.540
+Pero si lo tiene que hacer un humano, cuando tenéis que hacer una EC,
+
+681
+00:41:49.120 --> 00:41:50.340
+lo lógico es ser astuto
+
+682
+00:41:51.340 --> 00:41:53.180
+y darse cuenta de cierto tipo de cosas.
+
+683
+00:41:53.460 --> 00:41:56.940
+Por ejemplo, esto es menos 12 y esto es un 11. Se diferencian de solamente un uno.
+
+684
+00:41:57.540 --> 00:41:58.780
+Yo puedo sumar una a la otra
+
+685
+00:42:00.680 --> 00:42:03.860
+para conseguir algo mucho más sencillo.
+
+686
+00:42:04.920 --> 00:42:05.940
+Un menos uno ahí.
+
+687
+00:42:08.180 --> 00:42:11.960
+Además, yo puedo multiplicar todo esto por menos uno y ya me queda un uno.
+
+688
+00:42:14.040 --> 00:42:14.280
+Ahí.
+
+689
+00:42:16.380 --> 00:42:16.840
+Muy bien.
+
+690
+00:42:19.020 --> 00:42:21.440
+Ese puede operar como pivote.
+
+691
+00:42:22.720 --> 00:42:24.760
+Yo puedo. Además,
+
+692
+00:42:27.300 --> 00:42:29.460
+dos veces F1
+
+693
+00:42:30.560 --> 00:42:33.040
+más F2 para que pueda salir aquí un cero.
+
+694
+00:42:35.200 --> 00:42:36.760
+Y luego intercambio esta y esta.
+
+695
+00:42:37.720 --> 00:42:38.560
+Y ya tengo un uno.
+
+696
+00:42:40.080 --> 00:42:43.980
+Y además utilizo este de pivote y multiplico todo esto por menos seis,
+
+697
+00:42:44.020 --> 00:42:45.380
+lo sumo para conseguir aquí mi cero
+
+698
+00:42:48.608 --> 00:42:52.568
+Vamos a ver, a veces hay que ir arrastrando alguna fracción, pero si podemos
+
+699
+00:42:52.668 --> 00:42:56.488
+evitarlo, como estoy yo aquí intentando evitarlo, pues mira qué bien.
+
+700
+00:42:58.168 --> 00:43:01.368
+Ya tengo mi primer pivote y con ceros debajo.
+
+701
+00:43:01.668 --> 00:43:02.448
+Perfecto.
+
+702
+00:43:05.628 --> 00:43:08.528
+Necesito aquí otro pivote. El más cómodo es este.
+
+703
+00:43:08.768 --> 00:43:09.508
+Intercambio
+
+704
+00:43:10.608 --> 00:43:11.328
+y obtengo eso.
+
+705
+00:43:12.948 --> 00:43:14.468
+Ahora utilizo este como pivote.
+
+706
+00:43:15.268 --> 00:43:18.788
+Multiplico esta fila por tres y la subo aquí para conseguir aquí un cero.
+
+707
+00:43:18.828 --> 00:43:22.108
+Multiplico esta fila por -2 para conseguir aquí un cero.
+
+708
+00:43:22.168 --> 00:43:24.328
+¿De acuerdo?
+
+709
+00:43:28.128 --> 00:43:28.628
+Y lo hago.
+
+710
+00:43:30.588 --> 00:43:34.348
+Intercambio esta y esta para que me quede ahí un pivote y aquí un cero.
+
+711
+00:43:34.588 --> 00:43:35.268
+Perfecto.
+
+712
+00:43:36.748 --> 00:43:37.628
+Me queda perfecto.
+
+713
+00:43:38.828 --> 00:43:39.228
+Es más,
+
+714
+00:43:40.068 --> 00:43:43.728
+lo puedo multiplicar esto por un -1/2 y ya me queda aquí un uno.
+
+715
+00:43:45.028 --> 00:43:46.628
+Ya tengo aquí todo unos.
+
+716
+00:43:49.628 --> 00:43:51.708
+Aquí además tengo ya dos ceros. Aprovechémoslo.
+
+717
+00:43:52.588 --> 00:43:55.868
+Multiplico esto por dos y lo sumo para conseguir aquí un cero.
+
+718
+00:43:59.188 --> 00:44:02.748
+Luego esta, tal cual por uno, sumada aquí para conseguir aquí un cero,
+
+719
+00:44:03.148 --> 00:44:05.408
+aquí, y esta por -1 para subir aquí otro cero.
+
+720
+00:44:10.008 --> 00:44:10.808
+Es justo sobre acá.
+
+721
+00:44:12.348 --> 00:44:12.868
+Solución:
+
+722
+00:44:13.868 --> 00:44:15.068
+P sub uno es igual a cero,
+
+723
+00:44:17.028 --> 00:44:18.548
+P sub dos es igual a 16,
+
+724
+00:44:19.948 --> 00:44:21.248
+P sub tres es igual a 12,
+
+725
+00:44:22.168 --> 00:44:23.448
+P sub cuatro es igual a tres.
+
+726
+00:44:25.588 --> 00:44:26.088
+Luego,
+
+727
+00:44:27.788 --> 00:44:29.388
+el vector de coordenadas
+
+728
+00:44:31.388 --> 00:44:32.088
+es este.
+
+729
+00:44:36.248 --> 00:44:38.488
+El problema de esto es que si cada vez
+
+730
+00:44:39.608 --> 00:44:43.228
+que tenemos que averiguar las coordenadas de un vector
+
+731
+00:44:43.888 --> 00:44:46.568
+para una base, que no sea la canónica, tenemos que hacer esto,
+
+732
+00:44:47.888 --> 00:44:49.408
+menudo infierno.
+
+733
+00:44:52.228 --> 00:44:54.808
+Así que no os preocupéis, porque vamos a ver la manera
+
+734
+00:44:57.268 --> 00:45:01.128
+para conseguir que esto sea mucho más sencillo, que hay que hacer unas operaciones
+
+735
+00:45:01.188 --> 00:45:05.008
+al principio para que una vez que tienes una receta, ya te vale
+
+736
+00:45:05.828 --> 00:45:06.828
+para todos esos casos.
+
+737
+00:45:09.008 --> 00:45:09.708
+Más cosas.
+
+738
+00:45:15.068 --> 00:45:15.788
+Fijaos.
+
+739
+00:45:17.708 --> 00:45:19.648
+Teníamos esas propiedades,
+
+740
+00:45:20.548 --> 00:45:23.348
+ese teorema que nos decía que la suma
+
+741
+00:45:24.468 --> 00:45:27.828
+de dos vectores es otro vector que está dentro de ese
+
+742
+00:45:27.848 --> 00:45:29.808
+espacio, etcétera. Pues bien,
+
+743
+00:45:31.608 --> 00:45:32.608
+aquí el lenguaje
+
+744
+00:45:33.768 --> 00:45:34.708
+es el mismo,
+
+745
+00:45:35.708 --> 00:45:37.068
+pero con vectores coordenadas.
+
+746
+00:45:39.728 --> 00:45:43.328
+Si tenemos vectores coordenadas, lo que sabíamos se cumple igualmente.
+
+747
+00:45:43.848 --> 00:45:44.408
+Mira qué bien.
+
+748
+00:45:49.808 --> 00:45:52.848
+Yo lo puedo sumar y lo puedo multiplicar por el escalar y no me salgo fuera.
+
+749
+00:45:53.408 --> 00:45:55.528
+Pero con vectores de coordenadas.
+
+750
+00:45:55.668 --> 00:45:59.328
+Una base B o una base C, como sea, no tiene por qué ser la
+
+751
+00:45:59.368 --> 00:45:59.848
+canónica.
+
+752
+00:46:04.528 --> 00:46:07.968
+Sea B una base de un espacio vectorial V y sea
+
+753
+00:46:09.508 --> 00:46:12.508
+su uno, su dos, su subta vectores en ese spa.
+
+754
+00:46:14.448 --> 00:46:18.348
+Entonces, estos serán linealmente independientes
+
+755
+00:46:18.848 --> 00:46:22.308
+solo si lo son sus vectores de coordenadas.
+
+756
+00:46:26.628 --> 00:46:27.448
+Si yo tengo
+
+757
+00:46:29.368 --> 00:46:32.988
+espacio de matrices, espacio de polinomios y esos bichos raros,
+
+758
+00:46:34.928 --> 00:46:38.908
+en lugar de calcularlo así como ha hecho antes el profe, que me lo he
+
+759
+00:46:38.968 --> 00:46:39.908
+tenido que creer,
+
+760
+00:46:40.768 --> 00:46:44.748
+este teorema lo que me dice es que si yo quiero demostrar que son linealmente
+
+761
+00:46:44.788 --> 00:46:45.688
+independientes,
+
+762
+00:46:46.668 --> 00:46:50.288
+simplemente tengo que trabajar con sus vectores de coordenadas. Ya está.
+
+763
+00:46:55.708 --> 00:46:57.228
+Entonces, si tenemos una base
+
+764
+00:46:59.688 --> 00:47:00.788
+en un espacio vectorial V,
+
+765
+00:47:01.608 --> 00:47:05.508
+primer punto, cualquier conjunto con más de N vectores en V debe ser
+
+766
+00:47:05.668 --> 00:47:07.128
+linealmente dependiente.
+
+767
+00:47:08.608 --> 00:47:12.048
+Si estamos en R tres y yo te doy cuatro, mira, no, hay uno que
+
+768
+00:47:13.848 --> 00:47:16.588
+se obtiene como mínimo de combinación lineal de los demás.
+
+769
+00:47:17.488 --> 00:47:21.268
+Y otro. Cualquier conjunto con menos de esos no
+
+770
+00:47:21.308 --> 00:47:21.888
+puede generar
+
+771
+00:47:22.928 --> 00:47:26.708
+R tres. Si yo te doy solamente dos vectores como una base
+
+772
+00:47:26.768 --> 00:47:27.548
+de R tres,
+
+773
+00:47:28.628 --> 00:47:32.468
+habrá vectores que no los puedas conseguir por mucho que te empeñes.
+
+774
+00:47:37.188 --> 00:47:39.628
+Ahora me dicen, este es el mismo caso de antes.
+
+775
+00:47:40.028 --> 00:47:40.968
+¿Es el conjunto
+
+776
+00:47:44.928 --> 00:47:48.788
+de estos tres vectores en el espacio de los
+
+777
+00:47:49.948 --> 00:47:51.408
+polinomios hasta grado dos,
+
+778
+00:47:53.188 --> 00:47:54.388
+linealmente independiente?
+
+779
+00:47:55.948 --> 00:47:56.328
+Primero,
+
+780
+00:47:57.408 --> 00:48:01.268
+el número es adecuado. No es dos porque no funcionaría, ni es cuatro, porque
+
+781
+00:48:01.288 --> 00:48:02.988
+nos pasamos y ya no sería una base.
+
+782
+00:48:06.328 --> 00:48:09.548
+Pero ¿cómo puedo demostrar que son linealmente dependientes?
+
+783
+00:48:13.268 --> 00:48:15.968
+Podemos utilizar sus vectores de coordenadas.
+
+784
+00:48:15.968 --> 00:48:19.268
+¿Cuál es el vector de coordenadas de este uno X, X al cuadrado?
+
+785
+00:48:19.268 --> 00:48:23.628
+[1,1,1]
+
+786
+00:48:23.628 --> 00:48:25.408
+. ¿Cuál es el vector de coordenadas de este otro?
+
+787
+00:48:26.488 --> 00:48:27.348
+Alguien que me lo diga.
+
+788
+00:48:29.168 --> 00:48:30.008
+Uno, -1, tres.
+
+789
+00:48:30.008 --> 00:48:34.388
+¿Cuál
+
+790
+00:48:34.428 --> 00:48:36.168
+es el vector de coordenada de este? Uno.
+
+791
+00:48:36.188 --> 00:48:39.668
+¿Perdón?
+
+792
+00:48:39.668 --> 00:48:44.848
+¿Alguien
+
+793
+00:48:44.868 --> 00:48:45.988
+tiene una pregunta o algo?
+
+794
+00:48:49.828 --> 00:48:50.968
+Entonces, si yo expreso
+
+795
+00:48:54.036 --> 00:48:57.576
+Estos tres vectores, que son polinomios, como si
+
+796
+00:48:57.636 --> 00:49:00.096
+fueran vectores de coordenadas,
+
+797
+00:49:01.236 --> 00:49:03.816
+yo ya puedo, gracias a esto de aquí,
+
+798
+00:49:05.076 --> 00:49:07.336
+utilizar lo que yo ya sé. Monto la matriz,
+
+799
+00:49:08.396 --> 00:49:10.236
+aplico procesos mentales por fila.
+
+800
+00:49:12.036 --> 00:49:13.796
+Son linealmente dependientes.
+
+801
+00:49:15.336 --> 00:49:15.676
+Ya está.
+
+802
+00:49:17.956 --> 00:49:20.776
+Si me piden la independencia o independencia lineal de
+
+803
+00:49:22.796 --> 00:49:23.876
+uno de estos casos
+
+804
+00:49:26.196 --> 00:49:29.676
+de matrices, de polinomios, etcétera,
+
+805
+00:49:32.216 --> 00:49:35.536
+lo único que tengo que hacer es conseguir los vectores de
+
+806
+00:49:35.596 --> 00:49:39.316
+coordenada. ¿Para qué
+
+807
+00:49:39.356 --> 00:49:41.416
+base? Para la más sencilla, la base canónica.
+
+808
+00:49:42.576 --> 00:49:43.136
+Claro está.
+
+809
+00:49:44.416 --> 00:49:46.556
+Si no, para qué complicarse la vida.
+
+810
+00:49:47.796 --> 00:49:50.676
+Y ya tengo vectores tipo flecha que puedo
+
+811
+00:49:50.736 --> 00:49:54.716
+perfectamente calcular si son linealmente
+
+812
+00:49:54.756 --> 00:49:56.016
+dependientes o independientes.
+
+813
+00:49:56.116 --> 00:50:01.816
+¿Y
+
+814
+00:50:01.856 --> 00:50:03.076
+qué es la dimensión?
+
+815
+00:50:05.076 --> 00:50:08.516
+Diremos que tiene dimensión finita si tiene una base
+
+816
+00:50:09.336 --> 00:50:11.556
+consistente en un número finito de vectores.
+
+817
+00:50:13.936 --> 00:50:17.596
+Y la dimensión de V, que vamos a denotar por dim V,
+
+818
+00:50:18.576 --> 00:50:21.296
+es el número de vectores de esa base.
+
+819
+00:50:22.396 --> 00:50:22.956
+Es decir,
+
+820
+00:50:23.856 --> 00:50:27.056
+en R3, ¿qué dimensión será? Tres.
+
+821
+00:50:28.056 --> 00:50:30.676
+R2, un plano que pasa por el origen, el que sea,
+
+822
+00:50:32.216 --> 00:50:33.656
+es dimensión dos. R,
+
+823
+00:50:34.736 --> 00:50:36.136
+recta que pasa por el origen,
+
+824
+00:50:37.196 --> 00:50:37.876
+es dimensión uno.
+
+825
+00:50:40.236 --> 00:50:43.356
+Los polinomios hasta grado dos, ¿cuál es la dimensión?
+
+826
+00:50:43.876 --> 00:50:44.736
+N más uno.
+
+827
+00:50:46.816 --> 00:50:49.276
+Las matrices rectangulares M por N,
+
+828
+00:50:49.396 --> 00:50:52.496
+¿cuál es la dimensión? N por N.
+
+829
+00:50:52.576 --> 00:50:56.616
+¿De
+
+830
+00:50:56.616 --> 00:50:56.836
+acuerdo?
+
+831
+00:50:57.596 --> 00:51:00.776
+Perdone. Entonces, ¿la dimensión de V
+
+832
+00:51:02.355 --> 00:51:02.936
+cuánto es?
+
+833
+00:51:04.056 --> 00:51:07.796
+Sí, vamos a ver. Esto es el espacio y su
+
+834
+00:51:07.836 --> 00:51:08.516
+dimensión.
+
+835
+00:51:09.256 --> 00:51:10.176
+Perdón. Okey.
+
+836
+00:51:10.936 --> 00:51:14.436
+Esto es quizá para resaltarlo de alguna manera.
+
+837
+00:51:15.136 --> 00:51:19.076
+Esto es el espacio, que son uno, dos, tres, cuatro y cinco casos, y la
+
+838
+00:51:19.116 --> 00:51:20.896
+dimensión de esos cinco casos.
+
+839
+00:51:26.756 --> 00:51:30.576
+Teorema: sea V un espacio vectorial con la dimensión igual a N.
+
+840
+00:51:33.296 --> 00:51:33.816
+Por cierto,
+
+841
+00:51:35.676 --> 00:51:39.436
+hay espacios de dimensión infinita, que aquí no los vamos a ver.
+
+842
+00:51:40.556 --> 00:51:43.936
+Se llaman espacios de Hilbert, son interesantes, se utilizan en mecánica
+
+843
+00:51:43.976 --> 00:51:45.436
+cuántica y ese tipo de cosas.
+
+844
+00:51:48.556 --> 00:51:52.436
+Cualquier conjunto linealmente independiente en V contiene como mucho
+
+845
+00:51:53.336 --> 00:51:54.976
+N vectores. Claro, a lo más.
+
+846
+00:51:58.456 --> 00:52:02.396
+Cualquier conjunto generador para V contiene al menos N vectores,
+
+847
+00:52:02.556 --> 00:52:03.396
+efectivamente.
+
+848
+00:52:05.676 --> 00:52:08.036
+Como mínimo. R3, tres.
+
+849
+00:52:09.536 --> 00:52:13.336
+Cualquier conjunto linealmente independiente de exactamente N
+
+850
+00:52:13.376 --> 00:52:15.896
+vectores en V es una base para V.
+
+851
+00:52:19.876 --> 00:52:21.396
+En R3, si dabas tres
+
+852
+00:52:22.396 --> 00:52:24.196
+linealmente independientes, esa es base.
+
+853
+00:52:28.216 --> 00:52:32.116
+Cualquier conjunto generador de V que consiste de exactamente N vectores es
+
+854
+00:52:32.176 --> 00:52:32.936
+una base para V.
+
+855
+00:52:33.836 --> 00:52:37.496
+Cualquier conjunto linealmente independiente en V se puede extender a una
+
+856
+00:52:37.536 --> 00:52:41.476
+base de V. Es decir, que si yo tengo dos vectores linealmente independientes
+
+857
+00:52:41.516 --> 00:52:44.936
+para R3, puedo extenderlo añadiendo otro, un tercero,
+
+858
+00:52:45.636 --> 00:52:49.296
+que sea linealmente independiente con los otros dos y formar ya una base para R3,
+
+859
+00:52:49.396 --> 00:52:49.836
+por ejemplo.
+
+860
+00:52:51.856 --> 00:52:55.656
+Cualquier conjunto generador para V puede reducirse a una base.
+
+861
+00:52:56.256 --> 00:52:58.496
+Efectivamente, habrá un conjunto generador.
+
+862
+00:52:58.536 --> 00:53:01.036
+Por ejemplo, tengo cinco vectores
+
+863
+00:53:03.836 --> 00:53:07.576
+que quiero definir con ese conjunto generador R3.
+
+864
+00:53:07.636 --> 00:53:08.296
+Me sobran dos.
+
+865
+00:53:09.596 --> 00:53:13.116
+Entonces, podré ver cuáles son los que son linealmente
+
+866
+00:53:13.155 --> 00:53:15.236
+dependientes de los otros y los elimino.
+
+867
+00:53:15.356 --> 00:53:18.936
+Me quedo con los tres, que son linealmente independientes, con suerte.
+
+868
+00:53:28.316 --> 00:53:32.296
+Cuidado, si no son linealmente independientes, aunque yo tenga el número
+
+869
+00:53:32.476 --> 00:53:33.836
+correcto de
+
+870
+00:53:34.776 --> 00:53:37.236
+elementos de la base, entonces no es base,
+
+871
+00:53:38.516 --> 00:53:40.456
+porque no son linealmente independientes.
+
+872
+00:53:45.256 --> 00:53:46.016
+Esta otra de aquí.
+
+873
+00:53:47.096 --> 00:53:47.736
+Tengo tres,
+
+874
+00:53:48.536 --> 00:53:51.996
+necesito uno. Esto no es base, la dimensión es cuatro.
+
+875
+00:53:52.876 --> 00:53:53.516
+Me da tres.
+
+876
+00:53:54.416 --> 00:53:55.636
+Tampoco es una base.
+
+877
+00:53:57.076 --> 00:54:00.276
+Este sí que es una base, porque son linealmente independientes y son exactamente
+
+878
+00:54:00.336 --> 00:54:02.696
+cuatro, ni dos, ni cinco, ni siete.
+
+879
+00:54:09.416 --> 00:54:13.396
+Vamos a ver ahora los subespacios asociados con matrices.
+
+880
+00:54:14.216 --> 00:54:16.576
+Hemos visto los espacios Rn,
+
+881
+00:54:17.576 --> 00:54:21.556
+espacios de funciones, espacios de polinomios, espacios de
+
+882
+00:54:21.616 --> 00:54:23.296
+matrices, etcétera.
+
+883
+00:54:24.456 --> 00:54:27.356
+Ahora vamos a ver otro, que son los subespacios asociados a matrices.
+
+884
+00:54:27.456 --> 00:54:28.756
+Es decir, yo voy a tener una matriz
+
+885
+00:54:31.276 --> 00:54:35.036
+y tengo un subespacio fila, un subespacio columna.
+
+886
+00:54:35.536 --> 00:54:36.836
+Esto es lo que me define aquí.
+
+887
+00:54:38.356 --> 00:54:38.816
+Una matriz
+
+888
+00:54:39.876 --> 00:54:42.696
+N por N. No tiene por qué ser cuadrada.
+
+889
+00:54:44.456 --> 00:54:46.396
+Que el espacio fila, y esto es una definición,
+
+890
+00:54:48.196 --> 00:54:51.836
+es el subespacio fila, lo vamos a llamar así, de Rn
+
+891
+00:54:51.876 --> 00:54:54.036
+generado por las filas de la matriz A
+
+892
+00:54:57.312 --> 00:54:58.392
+Vamos a ver si son
+
+893
+00:54:59.272 --> 00:55:02.532
+las tres. Suponed que son de R tres y tengo tres
+
+894
+00:55:03.432 --> 00:55:04.432
+números de tres por tres.
+
+895
+00:55:05.832 --> 00:55:07.552
+Si son lineamente independientes, eso me vale
+
+896
+00:55:10.752 --> 00:55:11.352
+como base.
+
+897
+00:55:12.332 --> 00:55:16.092
+El espacio columna es el subespacio, lo voy a llamar col de A
+
+898
+00:55:16.352 --> 00:55:18.512
+de Rn, generado por las columnas de A.
+
+899
+00:55:19.272 --> 00:55:22.892
+Lo mismo, si son columnas lineamente independientes y son las del número adecuado,
+
+900
+00:55:23.752 --> 00:55:26.512
+ya está, perfecto. Son esas mismas, no hace falta buscar más.
+
+901
+00:55:28.892 --> 00:55:31.772
+Esto se va a complicar en el momento en el que la matriz
+
+902
+00:55:32.712 --> 00:55:36.152
+tenga filas y columnas que sean lineamente dependientes unas de otras.
+
+903
+00:55:37.992 --> 00:55:39.392
+Entonces, ya no me vale cualquier cosa.
+
+904
+00:55:40.272 --> 00:55:40.812
+Definición:
+
+905
+00:55:42.212 --> 00:55:45.472
+una matriz rectangular m por n. El espacio nulo
+
+906
+00:55:46.172 --> 00:55:46.372
+de A
+
+907
+00:55:47.172 --> 00:55:48.712
+es el subespacio en Rn
+
+908
+00:55:49.752 --> 00:55:53.112
+que consiste en todas las soluciones del sistema homogéneo Ax igual a cero,
+
+909
+00:55:53.692 --> 00:55:55.552
+siendo cero el cero, cero, cero, cero, cero.
+
+910
+00:55:57.192 --> 00:55:59.032
+Se denota por Nul de A.
+
+911
+00:55:59.032 --> 00:56:02.872
+¿Cómo
+
+912
+00:56:02.912 --> 00:56:06.552
+vamos a definir el espacio fila, el espacio columna y el
+
+913
+00:56:06.592 --> 00:56:07.552
+espacio nulo?
+
+914
+00:56:09.872 --> 00:56:10.832
+Con bases.
+
+915
+00:56:11.792 --> 00:56:15.332
+Yo puedo definir un espacio dando una base para ese espacio,
+
+916
+00:56:16.012 --> 00:56:19.412
+de las infinitas posibles. Va a ser posible una que sea
+
+917
+00:56:19.472 --> 00:56:20.132
+sencilla.
+
+918
+00:56:21.832 --> 00:56:25.452
+Si a mí me piden: calcula el espacio fila de esta matriz,
+
+919
+00:56:26.272 --> 00:56:28.272
+tendré que dar una base.
+
+920
+00:56:30.612 --> 00:56:33.932
+Dame el espacio columna de esta matriz, tendré que dar una base para el
+
+921
+00:56:33.992 --> 00:56:34.672
+subespacio.
+
+922
+00:56:36.332 --> 00:56:39.232
+En este caso de aquí, igual, para el espacio nulo, una base.
+
+923
+00:56:41.372 --> 00:56:41.912
+Ejemplo.
+
+924
+00:56:43.592 --> 00:56:46.092
+Esto no es un sistema de ecuaciones.
+
+925
+00:56:48.512 --> 00:56:49.352
+Es una matriz.
+
+926
+00:56:51.212 --> 00:56:51.832
+Sin más.
+
+927
+00:56:53.472 --> 00:56:57.172
+No hay que imaginarse ni variables ni nada, ni una rayita aquí, porque no
+
+928
+00:56:57.232 --> 00:56:57.912
+existe.
+
+929
+00:56:59.892 --> 00:57:01.792
+Es el error que suelo ver.
+
+930
+00:57:02.912 --> 00:57:04.092
+Esto es una matriz, punto,
+
+931
+00:57:05.012 --> 00:57:08.952
+de una, dos, tres, cuatro, cinco columnas y una, dos, tres, cuatro
+
+932
+00:57:09.092 --> 00:57:12.792
+filas. Cuatro por cinco. Cuatro filas por cinco
+
+933
+00:57:12.832 --> 00:57:16.932
+columnas.
+
+934
+00:57:16.992 --> 00:57:18.332
+Si hacemos un Gauss-Jordan,
+
+935
+00:57:20.892 --> 00:57:23.812
+obtenemos la forma escalonada reducida por filas, que es esta.
+
+936
+00:57:24.592 --> 00:57:26.612
+Tarea para casa: intentar reproducir
+
+937
+00:57:26.672 --> 00:57:29.752
+esto. Pivote,
+
+938
+00:57:30.172 --> 00:57:32.952
+pivote, pivote y no hay más pivotes.
+
+939
+00:57:34.672 --> 00:57:36.752
+Ceros por arriba y por debajo de los pivotes.
+
+940
+00:57:38.132 --> 00:57:40.232
+Por donde se pueda. Por ahí encima no va a haber.
+
+941
+00:57:44.012 --> 00:57:47.612
+La tercera columna no tiene pivote. Vamos a ver.
+
+942
+00:57:52.172 --> 00:57:55.552
+Una posible base para el espacio fila es esa de ahí.
+
+943
+00:58:02.592 --> 00:58:06.032
+Me quedo con los que son lineamente independientes:
+
+944
+00:58:06.312 --> 00:58:06.732
+este,
+
+945
+00:58:08.412 --> 00:58:08.892
+este
+
+946
+00:58:10.452 --> 00:58:11.172
+y este.
+
+947
+00:58:12.152 --> 00:58:12.612
+Esta no.
+
+948
+00:58:19.152 --> 00:58:20.732
+Ya lo tengo. Espacio fila.
+
+949
+00:58:21.792 --> 00:58:23.672
+Una base estoy dando para el espacio fila.
+
+950
+00:58:26.672 --> 00:58:29.552
+Cuidado con el espacio columna.
+
+951
+00:58:31.592 --> 00:58:34.912
+Las operaciones por filas cambian el espacio columna.
+
+952
+00:58:35.612 --> 00:58:36.392
+Yo no puedo
+
+953
+00:58:38.052 --> 00:58:41.412
+ahora decir: "Me pillo esta,
+
+954
+00:58:44.132 --> 00:58:45.852
+esta y esta". Mentira.
+
+955
+00:58:50.272 --> 00:58:51.872
+Falso. Incorrecto.
+
+956
+00:58:55.912 --> 00:58:58.792
+Las operaciones elementales por filas me han cambiado el espacio columna, no puedo
+
+957
+00:58:58.832 --> 00:59:00.512
+utilizarlo. ¿Qué puedo hacer?
+
+958
+00:59:01.892 --> 00:59:02.472
+Pues vale.
+
+959
+00:59:04.212 --> 00:59:05.812
+Reconozco dónde están
+
+960
+00:59:06.612 --> 00:59:07.352
+los pivotes.
+
+961
+00:59:10.592 --> 00:59:11.072
+Aquí hay uno,
+
+962
+00:59:11.972 --> 00:59:13.552
+aquí hay otro y aquí hay otro.
+
+963
+00:59:15.992 --> 00:59:19.692
+En la primera columna, en la segunda y en la cuarta.
+
+964
+00:59:20.632 --> 00:59:21.772
+Primera columna,
+
+965
+00:59:22.952 --> 00:59:24.312
+segunda columna,
+
+966
+00:59:25.812 --> 00:59:26.732
+cuarta columna.
+
+967
+00:59:28.852 --> 00:59:32.032
+Y pillo este, este y este.
+
+968
+00:59:37.652 --> 00:59:38.452
+Espacio columna
+
+969
+00:59:39.592 --> 00:59:40.792
+definido como una base,
+
+970
+00:59:42.272 --> 00:59:46.212
+que son justo las originales, cuando todavía
+
+971
+00:59:46.292 --> 00:59:46.932
+no he hecho
+
+972
+00:59:49.132 --> 00:59:50.732
+ninguna operación elemental por filas.
+
+973
+00:59:50.732 --> 00:59:54.732
+¿Qué
+
+974
+00:59:54.912 --> 00:59:56.552
+otra alternativa habría?
+
+975
+00:59:59.132 --> 01:00:01.012
+Vamos a ver. Yo puedo trasponerla
+
+976
+01:00:03.472 --> 01:00:07.032
+y hacer operaciones elementales por filas, de tal modo que yo ya
+
+977
+01:00:07.092 --> 01:00:10.932
+estoy haciendo las operaciones por filas, estoy en realidad trabajando sobre las
+
+978
+01:00:10.992 --> 01:00:11.632
+columnas.
+
+979
+01:00:13.612 --> 01:00:16.612
+Y luego trasponer de nuevo al final y ya tengo
+
+980
+01:00:17.272 --> 01:00:19.432
+esta, esta y esta.
+
+981
+01:00:20.472 --> 01:00:22.232
+Y esto también es una base
+
+982
+01:00:25.272 --> 01:00:26.852
+que me da el espacio columna.
+
+983
+01:00:29.332 --> 01:00:33.252
+Es equivalente, porque tengo infinitas bases que me definen el
+
+984
+01:00:33.292 --> 01:00:34.172
+mismo espacio.
+
+985
+01:00:35.932 --> 01:00:37.392
+Fácil, lo más fácil.
+
+986
+01:00:38.672 --> 01:00:42.432
+Conceptualmente, si os molesta, pues haced algo de este
+
+987
+01:00:42.452 --> 01:00:44.772
+estilo. Pero no es necesario.
+
+988
+01:00:45.932 --> 01:00:48.672
+Es más, si uno pilla lo que
+
+989
+01:00:49.572 --> 01:00:50.172
+teníamos,
+
+990
+01:00:51.212 --> 01:00:52.032
+el original.
+
+991
+01:00:55.612 --> 01:00:56.232
+Está aquí.
+
+992
+01:01:00.072 --> 01:01:03.532
+Lo traspone y hace las operaciones por filas, tendrá lo mismo.
+
+993
+01:01:08.022 --> 01:01:11.962
+Ya tenemos el espacio fila y el espacio columna, que además hemos definido
+
+994
+01:01:12.242 --> 01:01:13.022
+por dos bases.
+
+995
+01:01:15.862 --> 01:01:17.302
+Nos falta el espacio nulo.
+
+996
+01:01:19.622 --> 01:01:20.222
+Me dicen
+
+997
+01:01:23.582 --> 01:01:25.302
+que son las soluciones del homogéneo.
+
+998
+01:01:26.842 --> 01:01:29.462
+Ahora sí que es un sistema. Añadimos [0,0,0,0] .
+
+999
+01:01:34.542 --> 01:01:37.622
+¿Cómo vamos a llamar a las variables en este caso?
+
+1000
+01:01:39.222 --> 01:01:40.722
+X, Y, Z, U y W.
+
+1001
+01:01:44.922 --> 01:01:47.802
+Pivote, pivote, pivote.
+
+1002
+01:01:50.462 --> 01:01:51.782
+X, variable principal.
+
+1003
+01:01:53.402 --> 01:01:56.602
+Y, variable principal. Z, variable principal.
+
+1004
+01:01:57.542 --> 01:01:57.982
+No, perdón.
+
+1005
+01:02:03.842 --> 01:02:05.542
+U, variable principal.
+
+1006
+01:02:06.982 --> 01:02:09.442
+Z y W son variables libres
+
+1007
+01:02:13.242 --> 01:02:16.942
+para las que voy a llamar, por ejemplo, Z =
+
+1008
+01:02:17.102 --> 01:02:17.262
+S,
+
+1009
+01:02:18.262 --> 01:02:19.102
+W = T.
+
+1010
+01:02:19.122 --> 01:02:23.742
+¿Qué
+
+1011
+01:02:23.782 --> 01:02:25.002
+es esto? Leo.
+
+1012
+01:02:26.622 --> 01:02:27.202
+X +
+
+1013
+01:02:31.442 --> 01:02:32.042
+1 vez Z,
+
+1014
+01:02:33.442 --> 01:02:33.742
+que vale S.
+
+1015
+01:02:36.022 --> 01:02:37.222
+X + S.
+
+1016
+01:02:40.002 --> 01:02:40.822
+U que vale cero,
+
+1017
+01:02:42.502 --> 01:02:44.102
+más esta de aquí, que es W =
+
+1018
+01:02:45.122 --> 01:02:45.142
+T.
+
+1019
+01:02:53.042 --> 01:02:54.122
+Esto de aquí. Leo.
+
+1020
+01:02:55.422 --> 01:02:55.522
+Y
+
+1021
+01:02:57.562 --> 01:03:00.822
+menos dos veces. Que es esta tercera.
+
+1022
+01:03:00.822 --> 01:03:01.322
+S + 0
+
+1023
+01:03:08.662 --> 01:03:11.322
++ tres veces T = 0.
+
+1024
+01:03:16.882 --> 01:03:19.242
+Esta otra es U -
+
+1025
+01:03:22.522 --> 01:03:23.222
+5T
+
+1026
+01:03:25.262 --> 01:03:25.582
+= 0.
+
+1027
+01:03:27.922 --> 01:03:28.302
+Además,
+
+1028
+01:03:29.602 --> 01:03:32.542
+esta y esta, si las paso al otro lado, pasan con menos.
+
+1029
+01:03:32.602 --> 01:03:34.382
+Esta pasa con más, esta pasa con menos.
+
+1030
+01:03:36.142 --> 01:03:37.742
+Además, tengo Z que vale S.
+
+1031
+01:03:39.302 --> 01:03:42.882
+Y esta que es pasa con más. U = 5T.
+
+1032
+01:03:44.562 --> 01:03:45.402
+Y W que vale T.
+
+1033
+01:03:46.222 --> 01:03:50.122
+Me las apaño para colocar en una columna todas las S y todas
+
+1034
+01:03:50.162 --> 01:03:53.902
+las T. ¿Qué es eso?
+
+1035
+01:03:54.422 --> 01:03:57.182
+Esto es que X, Y, Z, U, W
+
+1036
+01:03:58.522 --> 01:04:02.002
+es S veces por -1, 2, 1, 0, 0.
+
+1037
+01:04:06.762 --> 01:04:10.742
+Más T veces -1. A ver, aquí hay
+
+1038
+01:04:10.762 --> 01:04:14.582
+un error. -T, 5,
+
+1039
+01:04:14.842 --> 01:04:14.862
+0.
+
+1040
+01:04:14.862 --> 01:04:17.642
+-3.
+
+1041
+01:04:19.082 --> 01:04:19.262
+-3, sí.
+
+1042
+01:04:21.962 --> 01:04:23.382
+¿Qué es lo que
+
+1043
+01:04:24.242 --> 01:04:25.582
+está ocurriendo aquí? ¿Qué es esto?
+
+1044
+01:04:25.682 --> 01:04:27.242
+Esto es una combinación lineal,
+
+1045
+01:04:29.562 --> 01:04:33.502
+donde S y T son los coeficientes. Y esto son los elementos de
+
+1046
+01:04:33.542 --> 01:04:37.302
+la base. ¿La base de qué? Del espacio nulo.
+
+1047
+01:04:39.682 --> 01:04:42.962
+Una base para el espacio nulo son justo esos dos.
+
+1048
+01:04:45.862 --> 01:04:47.042
+Otra forma de expresarlo.
+
+1049
+01:04:49.222 --> 01:04:51.122
+El espacio generado por estos dos
+
+1050
+01:04:53.002 --> 01:04:54.102
+elementos, que son la base.
+
+1051
+01:05:01.622 --> 01:05:04.082
+El cambio de base lo dejamos para el próximo día.
+
+1052
+01:05:04.082 --> 01:05:06.122
+¿Dudas sobre esto?
+
+1053
+01:05:08.982 --> 01:05:11.782
+He intentado ir despacio para que se vea bien.
+
+1054
+01:05:12.822 --> 01:05:16.622
+Si tenéis dudas, me consultáis y esto lo podéis
+
+1055
+01:05:16.662 --> 01:05:20.302
+ver una y otra vez. Esta parte, además, hasta aquí, os lo
+
+1056
+01:05:21.482 --> 01:05:25.122
+colgaré mañana por la mañana. ¿Preguntas?
+
+1057
+01:05:28.881 --> 01:05:31.222
+Más que pregunta, hay que probarlo.
+
+1058
+01:05:32.022 --> 01:05:33.522
+A ver, Ettore, tú primero, dime.
+
+1059
+01:05:34.542 --> 01:05:36.942
+No, es que aquí hay que
+
+1060
+01:05:38.522 --> 01:05:40.902
+hacer diferentes ejercicios para ver.
+
+1061
+01:05:41.402 --> 01:05:42.202
+Exacto.
+
+1062
+01:05:43.022 --> 01:05:43.782
+Es la única manera.
+
+1063
+01:05:45.122 --> 01:05:47.242
+A ver, ¿quién más tenía alguna opinión?
+
+1064
+01:05:48.482 --> 01:05:50.262
+Habíais hablado Suárez.
+
+1065
+01:05:51.202 --> 01:05:54.062
+Sí, yo iba a decir exactamente lo mismo.
+
+1066
+01:05:54.142 --> 01:05:55.342
+Creo que necesitamos
+
+1067
+01:05:56.722 --> 01:05:59.162
+más ejercicios práctica. De pronto,
+
+1068
+01:06:00.002 --> 01:06:02.762
+con ejercicio se vayan resolviendo como más.
+
+1069
+01:06:02.942 --> 01:06:04.422
+Sobre todo ir asimilando
+
+1070
+01:06:05.302 --> 01:06:06.942
+la parte conceptual, porque
+
+1071
+01:06:07.742 --> 01:06:11.022
+si entendéis esto, esta de hoy
+
+1072
+01:06:11.782 --> 01:06:14.182
+y la del próximo día, vais a entender todo.
+
+1073
+01:06:15.102 --> 01:06:15.642
+Ya está hecho,
+
+1074
+01:06:16.502 --> 01:06:19.342
+porque es la parte conceptualmente más complicada.
+
+1075
+01:06:19.762 --> 01:06:22.182
+Lo demás puede ser de manipulación.
+
+1076
+01:06:22.862 --> 01:06:25.922
+Hasta ahora ha sido manipulación, dificultad con la manipulación.
+
+1077
+01:06:26.842 --> 01:06:28.102
+Operaciones elementales por fila.
+
+1078
+01:06:29.262 --> 01:06:30.522
+Ser ágil, ser astuto,
+
+1079
+01:06:31.342 --> 01:06:35.222
+como habéis visto en ese ejercicio donde he intentado ver cómo puedo hacer el
+
+1080
+01:06:35.262 --> 01:06:38.382
+truco para no acarrear fracciones
+
+1081
+01:06:38.682 --> 01:06:39.442
+espantosas.
+
+1082
+01:06:40.622 --> 01:06:44.202
+Ese tipo de manipulación. Y hasta ahora era definiciones y
+
+1083
+01:06:44.462 --> 01:06:48.362
+cómo se manipula. Nada más. Conceptualmente había algunos conceptos, pero no
+
+1084
+01:06:48.442 --> 01:06:51.682
+eran complicados. Lo de hoy ya sí que lo es.
+
+1085
+01:06:52.022 --> 01:06:54.742
+Lo de hoy hay unos conceptos que son abstractos.
+
+1086
+01:06:55.942 --> 01:06:58.982
+Hasta ahora eran flechitas, podían ver planos,
+
+1087
+01:06:59.362 --> 01:07:03.342
+rectas en R3, etcétera. Muchas soluciones a
+
+1088
+01:07:03.402 --> 01:07:06.642
+sistemas de ecuaciones se podían ver desde el punto de vista geométrico.
+
+1089
+01:07:07.802 --> 01:07:07.862
+A
+
+1090
+01:07:08.982 --> 01:07:11.242
+veces era fácil verlo, aquí ya no
+
+1091
+01:07:13.554 --> 01:07:17.114
+Ya tenemos objetos que son más abstractos, que están definidos
+
+1092
+01:07:17.174 --> 01:07:20.714
+matemáticamente, definiciones, teoremas, etcétera.
+
+1093
+01:07:21.714 --> 01:07:24.314
+Como por ejemplo, espacios de matrices.
+
+1094
+01:07:25.054 --> 01:07:26.434
+Fijaos lo bonito que es.
+
+1095
+01:07:27.794 --> 01:07:30.614
+No es un espacio normal este,
+
+1096
+01:07:32.314 --> 01:07:35.974
+donde aquí está el origen y yo puedo definir cada punto por un vector que
+
+1097
+01:07:36.014 --> 01:07:37.894
+apunta al punto este de aquí.
+
+1098
+01:07:38.694 --> 01:07:42.614
+Imaginaos que es la esquina, no la veis, pero tampoco
+
+1099
+01:07:42.654 --> 01:07:45.053
+la de arriba. Estos son los ejes coordenados.
+
+1100
+01:07:46.534 --> 01:07:49.974
+Yo puedo definir un vector, anclado en el origen como siempre, que me esté
+
+1101
+01:07:50.054 --> 01:07:51.214
+apuntando a este punto.
+
+1102
+01:07:52.014 --> 01:07:55.274
+Eso lo puedo imaginar, lo puedo visualizar, lo puedo ver.
+
+1103
+01:07:57.314 --> 01:07:58.994
+Ahora imaginaos que no hay eso,
+
+1104
+01:08:00.094 --> 01:08:02.074
+que lo que hay es un espacio de
+
+1105
+01:08:03.294 --> 01:08:04.534
+cuatro dimensiones
+
+1106
+01:08:05.974 --> 01:08:08.294
+poblado por matrices.
+
+1107
+01:08:09.174 --> 01:08:13.074
+No son puntos, son matrices o polinomios.
+
+1108
+01:08:13.814 --> 01:08:14.634
+Un espacio de
+
+1109
+01:08:16.735 --> 01:08:19.554
+tres dimensiones, que tres en teoría lo podrías ver.
+
+1110
+01:08:20.254 --> 01:08:22.934
+Dices: "Vale, tres lo veo", pero es que son polinomios.
+
+1111
+01:08:25.514 --> 01:08:28.614
+Y además, las definiciones de cada cosa.
+
+1112
+01:08:28.674 --> 01:08:32.235
+Hay que memorizar bien cuál es la diferencia entre una
+
+1113
+01:08:32.315 --> 01:08:34.934
+generada y una base y todas esas cosas.
+
+1114
+01:08:34.954 --> 01:08:35.775
+Sí.
+
+1115
+01:08:37.034 --> 01:08:39.534
+La base es que me genera
+
+1116
+01:08:40.534 --> 01:08:41.414
+todo el espacio
+
+1117
+01:08:42.315 --> 01:08:44.894
+con el mínimo número posible de vectores.
+
+1118
+01:08:44.974 --> 01:08:46.914
+Esa es la idea que te tienes que quedar en la cabeza.
+
+1119
+01:08:46.954 --> 01:08:48.574
+Es verdad que no es una definición matemática.
+
+1120
+01:08:48.614 --> 01:08:50.554
+La definición matemática buena la hemos visto.
+
+1121
+01:08:51.394 --> 01:08:55.315
+Pero para R3, por ejemplo, tengo tres vectores y esos
+
+1122
+01:08:55.374 --> 01:08:59.074
+tres me definen, esa base, todo ese espacio, por combinación
+
+1123
+01:08:59.114 --> 01:08:59.534
+lineal.
+
+1124
+01:09:01.034 --> 01:09:02.355
+Obtengo cualquier punto a
+
+1125
+01:09:03.214 --> 01:09:05.494
+base de combinación lineal de los tres básicos.
+
+1126
+01:09:06.474 --> 01:09:10.294
+No cuatro, porque sobra uno, no menos, porque entonces no me alcanza
+
+1127
+01:09:10.334 --> 01:09:11.374
+para cubrir todo.
+
+1128
+01:09:11.674 --> 01:09:12.374
+Para generar.
+
+1129
+01:09:13.054 --> 01:09:16.514
+Para generar todo esto. ¿Y qué es un espacio vectorial?
+
+1130
+01:09:16.775 --> 01:09:16.874
+Es
+
+1131
+01:09:18.174 --> 01:09:21.614
+un espacio con propiedades. Suma y
+
+1132
+01:09:21.673 --> 01:09:24.894
+multiplicación, de tal modo que yo, siempre que me
+
+1133
+01:09:25.114 --> 01:09:28.794
+circunscriba a esas dos y sea un espacio vectorial, quedo dentro.
+
+1134
+01:09:32.254 --> 01:09:33.214
+No me salgo fuera.
+
+1135
+01:09:35.634 --> 01:09:36.914
+Por ejemplo, si yo tengo
+
+1136
+01:09:39.554 --> 01:09:40.775
+un espacio R3
+
+1137
+01:09:45.195 --> 01:09:45.634
+y yo tengo
+
+1138
+01:09:46.574 --> 01:09:48.954
+un subespacio que corta el origen,
+
+1139
+01:09:50.714 --> 01:09:53.315
+R2. Esto es un subespacio. ¿Por qué?
+
+1140
+01:09:53.334 --> 01:09:54.894
+Porque si yo tengo aquí objetos
+
+1141
+01:09:56.294 --> 01:09:59.274
+embebidos en R2, en este R2 que pasa por el origen,
+
+1142
+01:10:00.274 --> 01:10:02.134
+haciendo esa operación, me quedo siempre dentro.
+
+1143
+01:10:03.134 --> 01:10:04.394
+No hay un vector que me sale fuera.
+
+1144
+01:10:07.574 --> 01:10:08.014
+No puede ser,
+
+1145
+01:10:09.514 --> 01:10:11.214
+porque entonces ya no sería un subespacio
+
+1146
+01:10:12.234 --> 01:10:12.794
+vectorial.
+
+1147
+01:10:19.634 --> 01:10:23.034
+Si no incluyo el cero, cero, porque ya no tengo las propiedades
+
+1148
+01:10:23.934 --> 01:10:24.634
+para que me dé cero.
+
+1149
+01:10:27.074 --> 01:10:27.954
+El cero estaría fuera.
+
+1150
+01:10:28.854 --> 01:10:29.694
+Efectivamente.
+
+1151
+01:10:30.534 --> 01:10:34.274
+Ese, como mínimo, ya no está, con lo cual
+
+1152
+01:10:34.654 --> 01:10:35.234
+mal asunto.
+
+1153
+01:10:36.334 --> 01:10:39.934
+Ahí no se ve bien, pero imaginamos
+
+1154
+01:10:49.414 --> 01:10:50.434
+que yo tengo uno así,
+
+1155
+01:10:51.734 --> 01:10:53.794
+paralelo aquí y que no me pasa por aquí.
+
+1156
+01:10:55.874 --> 01:10:56.154
+Esto
+
+1157
+01:10:57.674 --> 01:10:58.914
+no es un espacio vectorial.
+
+1158
+01:11:00.434 --> 01:11:04.374
+Porque no incluye esto, porque en las operaciones de suma y
+
+1159
+01:11:04.394 --> 01:11:07.734
+multiplicación por un escalar, tarde o temprano me va a dar uno de estos que no
+
+1160
+01:11:07.774 --> 01:11:08.094
+está.
+
+1161
+01:11:10.734 --> 01:11:13.394
+O algún otro vector que tampoco está. Este vector de aquí no está.
+
+1162
+01:11:16.554 --> 01:11:17.534
+Pero es de dos
+
+1163
+01:11:17.574 --> 01:11:21.254
+dimensiones. Son
+
+1164
+01:11:21.294 --> 01:11:24.014
+definiciones y es cuestión de asumirlo.
+
+1165
+01:11:24.094 --> 01:11:27.834
+Yo no sé qué es lo que ocurre, porque cuando yo lo
+
+1166
+01:11:27.874 --> 01:11:31.833
+explico y explico un concepto, el primer concepto
+
+1167
+01:11:31.894 --> 01:11:32.554
+lo entendéis.
+
+1168
+01:11:33.614 --> 01:11:35.954
+El segundo concepto ya lo entiende menos gente.
+
+1169
+01:11:36.594 --> 01:11:40.154
+El tercer concepto, que está basado en el segundo y en el primero, ya lo entiende
+
+1170
+01:11:40.194 --> 01:11:43.734
+menos gente. El cuarto concepto, que está basado en todos los
+
+1171
+01:11:43.794 --> 01:11:46.914
+anteriores, ya lo entiende aún menos gente, porque es difícil seguir el hilo.
+
+1172
+01:11:47.994 --> 01:11:51.654
+Lo ideal es que esto mañana, cuando yo lo cuelgue, os lo
+
+1173
+01:11:51.694 --> 01:11:52.154
+miráis.
+
+1174
+01:11:53.414 --> 01:11:55.054
+A ver qué es lo que me ha querido decir aquí.
+
+1175
+01:11:55.114 --> 01:11:58.714
+Esto, esto, vale, etcétera.
+
+1176
+01:11:59.594 --> 01:12:01.554
+Crear la lógica de cada uno.
+
+1177
+01:12:01.814 --> 01:12:04.594
+Poder asimilar qué es lo que me está diciendo, porque si yo
+
+1178
+01:12:05.354 --> 01:12:08.514
+sigo y cada vez meto una definición más y
+
+1179
+01:12:09.274 --> 01:12:10.234
+otra definición más, ya
+
+1180
+01:12:11.974 --> 01:12:12.494
+te has perdido.
+
+1181
+01:12:13.994 --> 01:12:15.694
+Hay que asimilar todo lo anterior.
+
+1182
+01:12:16.454 --> 01:12:18.474
+Y si no se asimila nada de esto de hoy,
+
+1183
+01:12:19.694 --> 01:12:21.074
+el resto de la asignatura se acabó hoy.
+
+1184
+01:12:21.994 --> 01:12:24.714
+Pero a la vez os digo que esta asignatura se aprueba.
+
+1185
+01:12:25.014 --> 01:12:27.214
+La mayor parte de la gente que hace un algo, la aprueba.
+
+1186
+01:12:28.214 --> 01:12:29.314
+Los que hacen trampas, no.
+
+1187
+01:12:30.894 --> 01:12:31.974
+Pero los que hacen un algo
+
+1188
+01:12:32.854 --> 01:12:34.714
+y la trabajan, la aprueban sin ningún problema.
+
+1189
+01:12:34.774 --> 01:12:38.194
+Y además suele ser con buena nota, porque no tiene misterio.
+
+1190
+01:12:38.294 --> 01:12:40.714
+¿Alguna preguntita más?
+
+1191
+01:12:43.274 --> 01:12:46.434
+La EC podemos hacer sin problema con lo que hemos visto
+
+1192
+01:12:47.214 --> 01:12:50.214
+hasta la clase anterior, ¿no? Se abría hoy, creo.
+
+1193
+01:12:51.594 --> 01:12:52.834
+Perdona, ¿dime?
+
+1194
+01:12:53.714 --> 01:12:54.134
+No entendí bien.
+
+1195
+01:12:54.174 --> 01:12:54.774
+La EC1
+
+1196
+01:12:57.054 --> 01:13:00.954
+que se abría hoy, ¿la podemos hacer sin problemas con lo que hemos visto
+
+1197
+01:13:00.994 --> 01:13:01.414
+hasta ahora?
+
+1198
+01:13:05.974 --> 01:13:07.954
+No se abre hoy, se acaba hoy.
+
+1199
+01:13:09.554 --> 01:13:11.814
+Creo recordar. Ya no me acuerdo.
+
+1200
+01:13:11.914 --> 01:13:15.814
+No, es el 1 de noviembre, el domingo, que se cierra.
+
+1201
+01:13:16.354 --> 01:13:16.674
+Sí, se
+
+1202
+01:13:17.654 --> 01:13:19.074
+abre hoy.
+
+1203
+01:13:19.854 --> 01:13:22.614
+Hemos avanzado más entonces de lo que se necesita.
+
+1204
+01:13:23.634 --> 01:13:24.814
+Vale, perfecto.
+
+1205
+01:13:25.574 --> 01:13:28.474
+Hasta la semana pasada con eso era suficiente.
+
+1206
+01:13:28.954 --> 01:13:32.914
+Esto no hace falta para la EC1.
+
+1207
+01:13:32.914 --> 01:13:34.914
+¿De acuerdo?
+
+1208
+01:13:35.734 --> 01:13:36.294
+Vale, okey.
+
+1209
+01:13:36.654 --> 01:13:37.854
+Es para ya después.
+
+1210
+01:13:38.894 --> 01:13:39.494
+Gracias.
+
+1211
+01:13:40.594 --> 01:13:42.234
+De nada. Hasta luego. ¿Hay adiós?
+
+1212
+01:13:43.774 --> 01:13:44.854
+Adiós. Gracias.
+
+1213
+01:13:44.914 --> 01:13:45.234
+Adiós.
+
+1214
+01:13:46.714 --> 01:13:47.274
+Gracias.

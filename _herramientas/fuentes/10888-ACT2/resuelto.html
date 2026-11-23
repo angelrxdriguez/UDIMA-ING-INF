@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Resuelto · Álgebra · Actividad de aprendizaje 2</title>
+<style>
+  @page :first { margin: 0; }
+  body { line-height: 13.4pt; }
+  h2 { margin-top: 12pt; }
+  .cadena { break-inside: avoid; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 4pt 6pt; margin: 6pt 0 8pt; }
+  .cadena > span { white-space: nowrap; }
+  .cadena .katex { font-size: .93em; }
+  .nota .lead, .caja .lead { font-family: Arial, Helvetica, sans-serif; }
+  .etc { font: bold 7.8pt Arial, sans-serif; color: #556068; letter-spacing: .4pt; text-transform: uppercase; margin: 7pt 0 1.5pt; break-after: avoid; }
+  pre { font: 8.9pt/11.3pt Consolas, 'Courier New', monospace; background: #f3f6f9; border-left: 3pt solid var(--azul);
+        padding: 5pt 9pt; margin: 0 0 8pt; white-space: pre; break-inside: avoid; }
+  pre.out { background: #f7f7f4; border-left-color: #8f979d; }
+  .cod { display: grid; grid-template-columns: 1fr 1fr; column-gap: 12pt; align-items: start; }
+  .cod pre { margin-bottom: 6pt; }
+  .figura { display: grid; grid-template-columns: 34% minmax(0, 1fr); column-gap: 14pt; align-items: start; }
+  .figura img { width: 100%; }
+  td.c, th.c { text-align: center; }
+  td.r { text-align: right; white-space: nowrap; }
+  .peq { font-size: 9.5pt; line-height: 12pt; }
+  .res td { padding-top: 2pt; padding-bottom: 2pt; }
+  .ok { color: #2e7d32; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<!-- ============================== PORTADA ============================== -->
+<div class="primera">
+<div class="portada">
+  <div class="sup">ÁLGEBRA · ACTIVIDAD DE APRENDIZAJE 2 · MATLAB</div>
+  <div class="titulo">Resuelto: circuito de Kirchhoff<br>y sistema mal condicionado</div>
+  <div class="sub">Planteamiento, comandos de Matlab con su salida, resolución a mano para el examen e interpretación</div>
+</div>
+
+<div class="caja resumen">
+  <div class="tit">La actividad en un minuto</div>
+  <div class="cue">
+    <ul style="margin-bottom:2pt">
+      <li><b>Problema 1.</b> Con la ley de Ohm ($V=RI$) y la ley de Kirchhoff del voltaje se escribe una ecuación por cada malla del
+      circuito. Sale un sistema 3 × 3 que Matlab resuelve con <code>rref</code> (Gauss-Jordan) o con <code>inv(A)*b</code>.</li>
+      <li><b>Problema 2.</b> Un sistema 4 × 4 cuya matriz está <b>mal condicionada</b>: al cortar los datos a dos decimales (un cambio de
+      apenas un 1 %), la solución cambia un 55 %. El número de condición, $\approx 570$, lo explica.</li>
+      <li>Es la misma red que el ejemplo 2 del Lay que hay en el aula (<i>Lay-circuitos.pdf</i>), con otros valores.</li>
+    </ul>
+  </div>
+</div>
+
+<h2 style="margin-top:6pt">Resultados</h2>
+<table class="res">
+  <tr><th>Apartado</th><th>Resultado</th></tr>
+  <tr><td>Problema 1</td><td>$I_1=\frac{86}{57}\approx 1{.}5088$ A, $\ I_2=\frac{8}{19}\approx 0{.}4211$ A, $\ I_3=-\frac{451}{171}\approx -2{.}6374$ A</td></tr>
+  <tr><td>Problema 2.1</td><td>$x\approx(84{.}8808,\ 10{.}9484,\ 14{.}5502,\ -28{.}7405)$, igual con <code>rref</code> y con <code>inv(A)*b</code></td></tr>
+  <tr><td>Problema 2.2</td><td>Datos truncados: $x\approx(38{.}3995,\ 5{.}3508,\ 6{.}2057,\ -12{.}7336)$</td></tr>
+  <tr><td>Problema 2.3</td><td>$\|A\|\approx2{.}0893$, $\ \|A^{-1}\|\approx272{.}6479$, $\ \mathrm{Cond}(A)\approx 569{.}65\gg1$: mal condicionada</td></tr>
+</table>
+
+<div class="nota idea">
+  <span class="lead">Cómo leer este documento.</span> Cada apartado tiene el planteamiento, el <b>input</b> de Matlab (recuadro azul)
+  y su <b>output</b> (recuadro gris). Las salidas se han calculado con aritmética exacta y se muestran como las escribe Matlab con el
+  formato por defecto (<code>format short</code>, 4 decimales); no se ha ejecutado Matlab en este equipo. Si escribes antes
+  <code>format long</code>, verás unos 15 decimales (<code>1.50877192982456…</code>). En Matlab el decimal va con
+  <b>punto</b>, y <code>8.4881e+01</code> significa $8{.}4881\cdot10^{1}=84{.}881$.
+</div>
+</div>
+
+<!-- ============================== PROBLEMA 1 ============================== -->
+<h1>Problema 1 · Corrientes del circuito</h1>
+
+<p>Se piden las corrientes $I_1$, $I_2$ e $I_3$ aplicando la ley de Ohm y las reglas de Kirchhoff, resolviendo el sistema con Matlab.</p>
+
+<div class="caja metodo">
+  <div class="tit">El método de las corrientes de malla (como en el Lay)</div>
+  <div class="cue">
+    <ul style="margin-bottom:2pt">
+      <li><b>Ley de Ohm:</b> una corriente $I$ que atraviesa una resistencia $R$ produce una caída de voltaje $V=RI$.</li>
+      <li><b>Ley de Kirchhoff del voltaje:</b> en cada malla, la suma de las caídas $RI$ es igual a la suma de las pilas de esa malla,
+      todo contado en el sentido de la corriente de la malla.</li>
+      <li><b>Signo de una pila:</b> la raya <b>larga</b> es el borne $+$. La pila cuenta $+E$ si la corriente de la malla <b>sale por su
+      borne $+$</b>, y $-E$ si sale por el $-$.</li>
+      <li><b>En una rama compartida</b> pasan dos corrientes de malla. Si las dos mallas giran en el mismo sentido, en esa rama van
+      en sentidos opuestos, y la caída es $R\,(I_{\text{propia}}-I_{\text{vecina}})$.</li>
+    </ul>
+    <p style="margin:3pt 0 2pt">Resultado práctico: en la ecuación de cada malla, el coeficiente de su propia corriente es <b>la suma de todas
+    sus resistencias</b>, y el de cada malla vecina es <b>menos la resistencia compartida</b>.</p>
+  </div>
+</div>
+
+<div class="figura">
+  <img src="circuito.png" alt="Circuito del enunciado">
+  <div>
+    <h3 style="margin-top:0">Lo que hay que leer en la figura</h3>
+    <ul>
+      <li>Las tres flechas giran en sentido <b>antihorario</b>: la punta está abajo a la izquierda. Por arriba, la corriente va de derecha
+      a izquierda; por abajo, de izquierda a derecha.</li>
+      <li>Pilas de 16 V y 20 V: raya larga ($+$) a la <b>izquierda</b>. Pila de 5 V: raya larga a la <b>derecha</b>.</li>
+      <li>La resistencia de 5 Ω está entre las mallas 1 y 2. La rama de 3 Ω con la pila de 5 V está entre las mallas 2 y 3.</li>
+      <li>Las mallas 1 y 3 no se tocan: en sus ecuaciones no aparece la otra.</li>
+    </ul>
+    <table class="peq">
+      <tr><th>Malla</th><th>Resistencias</th><th>Compartida con</th><th>Pilas</th></tr>
+      <tr><td>1</td><td>4 + 3 + 5 = 12</td><td>malla 2: 5 Ω</td><td>+16</td></tr>
+      <tr><td>2</td><td>5 + 1 + 2 + 3 = 11</td><td>malla 1: 5 Ω; malla 3: 3 Ω</td><td>+5</td></tr>
+      <tr><td>3</td><td>3 + 2 + 4 = 9</td><td>malla 2: 3 Ω</td><td>−5 − 20 = −25</td></tr>
+    </table>
+  </div>
+</div>
+
+<h2>Signo de cada pila</h2>
+<ul>
+  <li><b>16 V, malla 1.</b> Por arriba, $I_1$ va de derecha a izquierda: entra por el $-$ (derecha) y sale por el $+$ (izquierda). Cuenta <b>+16</b>.</li>
+  <li><b>5 V, malla 2.</b> Por la rama de abajo de la malla 2, $I_2$ va de izquierda a derecha: entra por el $-$ y sale por el $+$. Cuenta <b>+5</b>.</li>
+  <li><b>5 V, malla 3.</b> Esa misma rama es el techo de la malla 3, donde $I_3$ va de derecha a izquierda: sale por el $-$. Cuenta <b>−5</b>.</li>
+  <li><b>20 V, malla 3.</b> Por abajo, $I_3$ va de izquierda a derecha: entra por el $+$ y sale por el $-$. Cuenta <b>−20</b>.</li>
+</ul>
+
+<h2>Ecuaciones de las mallas</h2>
+$$\begin{aligned}
+\text{Malla 1:}\quad & 4I_1+3I_1+5(I_1-I_2)=16 &&\Longrightarrow\quad 12I_1-5I_2=16\\
+\text{Malla 2:}\quad & 1\cdot I_2+2I_2+5(I_2-I_1)+3(I_2-I_3)=5 &&\Longrightarrow\quad -5I_1+11I_2-3I_3=5\\
+\text{Malla 3:}\quad & 2I_3+4I_3+3(I_3-I_2)=-20-5 &&\Longrightarrow\quad -3I_2+9I_3=-25
+\end{aligned}$$
+<p>En forma matricial, $A\,\mathbf{i}=\mathbf{b}$:</p>
+$$\M{rrr}{12&-5&0\\-5&11&-3\\0&-3&9}\M{c}{I_1\\I_2\\I_3}=\M{r}{16\\5\\-25}$$
+<p class="gris">La matriz es simétrica, con la diagonal positiva y el resto negativo o cero. Siempre sale así cuando todas las
+mallas giran en el mismo sentido, y sirve para comprobar el planteamiento.</p>
+
+<h2>Resolución con Matlab</h2>
+<div class="etc">Input</div>
+<pre>A = [12 -5 0; -5 11 -3; 0 -3 9]     % coeficientes: una fila por malla
+b = [16; 5; -25]                    % pilas, como vector columna
+M = [A, b]                          % matriz ampliada
+R = rref(M)                         % Gauss-Jordan
+I = inv(A)*b                        % comprobación con la inversa</pre>
+<div class="etc">Output</div>
+<div class="cod">
+<pre class="out">A =
+
+    12    -5     0
+    -5    11    -3
+     0    -3     9
+
+b =
+
+    16
+     5
+   -25
+
+M =
+
+    12    -5     0    16
+    -5    11    -3     5
+     0    -3     9   -25</pre>
+<pre class="out">R =
+
+    1.0000         0         0    1.5088
+         0    1.0000         0    0.4211
+         0         0    1.0000   -2.6374
+
+I =
+
+    1.5088
+    0.4211
+   -2.6374</pre>
+</div>
+<p><code>rref</code> deja la matriz identidad a la izquierda, y la <b>última columna</b> es la solución. <code>inv(A)*b</code> da lo mismo.</p>
+
+<h2>Resolución a mano (lo que te pueden pedir en el examen)</h2>
+<p>En el examen no hay Matlab: el mismo sistema se resuelve por Gauss-Jordan sobre la matriz ampliada, con fracciones exactas.
+Cualquier secuencia de operaciones válida lleva al mismo resultado. Esta evita fracciones hasta el final.</p>
+<div class="cadena">
+  <span>$\M{rrr|r}{12&-5&0&16\\-5&11&-3&5\\0&-3&9&-25}$</span>
+  <span>$\xrightarrow{F_2\,\leftarrow\,3F_2+F_3}$</span>
+  <span>$\M{rrr|r}{12&-5&0&16\\-15&30&0&-10\\0&-3&9&-25}$</span>
+  <span>$\xrightarrow{F_2\,\leftarrow\,-\frac15F_2}$</span>
+  <span>$\M{rrr|r}{12&-5&0&16\\3&-6&0&2\\0&-3&9&-25}$</span>
+</div>
+<div class="cadena">
+  <span>$\xrightarrow{F_1\,\leftarrow\,F_1-4F_2}$</span>
+  <span>$\M{rrr|r}{0&19&0&8\\3&-6&0&2\\0&-3&9&-25}$</span>
+  <span>$\xrightarrow{F_1\leftrightarrow F_2}$</span>
+  <span>$\M{rrr|r}{\piv{3}&-6&0&2\\0&\piv{19}&0&8\\0&-3&9&-25}$</span>
+  <span>$\xrightarrow{F_2\,\leftarrow\,\frac1{19}F_2}$</span>
+  <span>$\M{rrr|r}{3&-6&0&2\\0&1&0&\frac{8}{19}\\0&-3&9&-25}$</span>
+</div>
+<div class="cadena">
+  <span>$\xrightarrow[F_3\,\leftarrow\,F_3+3F_2]{F_1\,\leftarrow\,F_1+6F_2}$</span>
+  <span>$\M{rrr|r}{3&0&0&\frac{86}{19}\\0&1&0&\frac{8}{19}\\0&0&9&-\frac{451}{19}}$</span>
+  <span>$\xrightarrow[F_3\,\leftarrow\,\frac19F_3]{F_1\,\leftarrow\,\frac13F_1}$</span>
+  <span>$\M{rrr|r}{1&0&0&\frac{86}{57}\\0&1&0&\frac{8}{19}\\0&0&1&-\frac{451}{171}}$</span>
+</div>
+<div class="pasos" style="grid-template-columns: 26% 74%">
+  <div>$F_2\leftarrow3F_2+F_3$</div><p class="gris">$3\cdot(-3)+9=0$: elimina $I_3$ de la fila 2 de un golpe.</p>
+  <div>$F_2\leftarrow-\frac15F_2$</div><p class="gris">Todo es múltiplo de $-5$: queda $3I_1-6I_2=2$.</p>
+  <div>$F_1\leftarrow F_1-4F_2$</div><p class="gris">$12-4\cdot3=0$: la fila 1 queda solo con $I_2$: $19I_2=8$.</p>
+  <div>$F_1+6F_2$, $\ F_3+3F_2$</div><p class="gris">$2+6\cdot\frac{8}{19}=\frac{86}{19}$ y $-25+3\cdot\frac{8}{19}=\frac{-475+24}{19}=-\frac{451}{19}$.</p>
+</div>
+
+<div class="nota comprueba">
+  <span class="lead">Comprobación</span> sustituyendo en las ecuaciones originales:
+  $$\begin{aligned}
+  &12\cdot\tfrac{86}{57}-5\cdot\tfrac{8}{19}=\tfrac{1032-120}{57}=\tfrac{912}{57}=16\ \ok\\
+  &-5\cdot\tfrac{86}{57}+11\cdot\tfrac{8}{19}-3\cdot\left(-\tfrac{451}{171}\right)=\tfrac{-1290+792+1353}{171}=\tfrac{855}{171}=5\ \ok\\
+  &-3\cdot\tfrac{8}{19}+9\cdot\left(-\tfrac{451}{171}\right)=\tfrac{-24-451}{19}=\tfrac{-475}{19}=-25\ \ok
+  \end{aligned}$$
+</div>
+
+<h2>Solución</h2>
+$$I_1=\frac{86}{57}\approx1{.}5088\ \text{A},\qquad I_2=\frac{8}{19}\approx0{.}4211\ \text{A},\qquad I_3=-\frac{451}{171}\approx-2{.}6374\ \text{A}$$
+<ul>
+  <li>$I_3$ es <b>negativa</b>: en la malla 3 la corriente real circula al revés de la flecha, es decir, en sentido horario.</li>
+  <li>En las ramas compartidas la corriente real es la diferencia (ley de Kirchhoff de la corriente). Por la resistencia de 5 Ω pasa
+  $I_1-I_2=\frac{62}{57}\approx1{.}0877$ A, en el sentido de $I_1$. Por la rama de 3 Ω y 5 V pasa
+  $I_2-I_3=\frac{523}{171}\approx3{.}0585$ A, en el sentido de $I_2$.</li>
+</ul>
+
+<div class="caja clase">
+  <div class="tit">Comparación con el ejemplo del aula (Lay, sección 1.10, ejemplo 2)</div>
+  <div class="cue">
+    <p>Es la misma red: mismas pilas en la misma posición y mallas en sentido antihorario. Solo cambian los valores, y los signos
+    del sistema caen en el mismo sitio:</p>
+    <table class="peq" style="margin-bottom:4pt">
+      <tr><th></th><th>Lay (ejemplo 2)</th><th>Esta actividad</th></tr>
+      <tr><td>Malla 1</td><td>$11I_1-3I_2=30$</td><td>$12I_1-5I_2=16$</td></tr>
+      <tr><td>Malla 2</td><td>$-3I_1+6I_2-I_3=5$</td><td>$-5I_1+11I_2-3I_3=5$</td></tr>
+      <tr><td>Malla 3</td><td>$-I_2+3I_3=-25$</td><td>$-3I_2+9I_3=-25$</td></tr>
+      <tr><td>Solución</td><td>$(3,\ 1,\ -8)$ A</td><td>$(1{.}5088,\ 0{.}4211,\ -2{.}6374)$ A</td></tr>
+    </table>
+    <p style="margin-bottom:2pt">El Lay dice que la pila es positiva si la corriente va «desde el lado positivo (más largo) hacia el
+    negativo». Significa que la corriente <b>sale por el borne $+$</b> y recorre el circuito hasta el $-$, que es la regla usada aquí.
+    Errata del PDF: donde pone «rama CD es $I_2+I_3=9$» debe decir $I_2-I_3=1-(-8)=9$.</p>
+  </div>
+</div>
+
+<!-- ============================== PROBLEMA 2 ============================== -->
+<h1 class="nueva">Problema 2 · Un sistema mal condicionado</h1>
+<p>Datos del enunciado:</p>
+$$A=\M{rrrr}{-0{.}185865&-0{.}387014&-0{.}530553&-0{.}964501\\-0{.}021981&0{.}389760&-0{.}593141&-0{.}240008\\-0{.}191130&0{.}019832&-0{.}676614&-0{.}901565\\0{.}139872&0{.}819616&-0{.}341303&0{.}540443};\qquad
+b=\M{r}{-0{.}012965\\0{.}669141\\0{.}060438\\0{.}347338}$$
+
+<h2>2.1 · Gauss-Jordan y la inversa</h2>
+<div class="etc">Input</div>
+<pre>A = [-0.185865 -0.387014 -0.530553 -0.964501;
+     -0.021981  0.389760 -0.593141 -0.240008;
+     -0.191130  0.019832 -0.676614 -0.901565;
+      0.139872  0.819616 -0.341303  0.540443];
+b = [-0.012965; 0.669141; 0.060438; 0.347338];
+R = rref([A, b])          % Gauss-Jordan sobre la matriz ampliada
+x = inv(A)*b              % inversa por el vector del lado derecho</pre>
+<div class="etc">Output</div>
+<div class="cod">
+<pre class="out">R =
+
+    1.0000         0         0         0   84.8808
+         0    1.0000         0         0   10.9484
+         0         0    1.0000         0   14.5502
+         0         0         0    1.0000  -28.7405</pre>
+<pre class="out">x =
+
+   84.8808
+   10.9484
+   14.5502
+  -28.7405</pre>
+</div>
+<p>Los dos métodos dan la misma solución:
+$x\approx(84{.}8808,\ 10{.}9484,\ 14{.}5502,\ -28{.}7405)$. Con más decimales (<code>format long</code>):
+$x_1=84{.}88082707$, $x_2=10{.}94843367$, $x_3=14{.}55017690$, $x_4=-28{.}74050627$.</p>
+<p class="gris">El punto y coma al final de <code>A = [...];</code> evita que Matlab repita la matriz en pantalla. Dentro de los
+corchetes, el espacio separa columnas y el <code>;</code> separa filas.</p>
+
+<h2>2.2 · Datos truncados a dos decimales</h2>
+<p><b>Truncar</b> es cortar: se quedan los dos primeros decimales y el resto se tira, sin redondear y conservando el signo. Por ejemplo,
+$0{.}389760\to0{.}38$ (redondeando sería $0{.}39$) y $-0{.}185865\to-0{.}18$ (no $-0{.}19$).</p>
+$$A_t=\M{rrrr}{-0{.}18&-0{.}38&-0{.}53&-0{.}96\\-0{.}02&0{.}38&-0{.}59&-0{.}24\\-0{.}19&0{.}01&-0{.}67&-0{.}90\\0{.}13&0{.}81&-0{.}34&0{.}54};\qquad
+b_t=\M{r}{-0{.}01\\0{.}66\\0{.}06\\0{.}34}$$
+<div class="etc">Input</div>
+<pre>At = [-0.18 -0.38 -0.53 -0.96;
+      -0.02  0.38 -0.59 -0.24;
+      -0.19  0.01 -0.67 -0.90;
+       0.13  0.81 -0.34  0.54];
+bt = [-0.01; 0.66; 0.06; 0.34];
+Rt = rref([At, bt])
+xt = inv(At)*bt</pre>
+<div class="etc">Output</div>
+<div class="cod">
+<pre class="out">Rt =
+
+    1.0000         0         0         0   38.3995
+         0    1.0000         0         0    5.3508
+         0         0    1.0000         0    6.2057
+         0         0         0    1.0000  -12.7336</pre>
+<pre class="out">xt =
+
+   38.3995
+    5.3508
+    6.2057
+  -12.7336</pre>
+</div>
+<p>Las matrices truncadas se llaman <code>At</code> y <code>bt</code> para no borrar la <code>A</code> original, que hace falta en el
+apartado 3.</p>
+
+<h2>2.3 · Número de condición</h2>
+<p>$\mathrm{Cond}(A)=\|A\|\cdot\|A^{-1}\|$, con la norma de Frobenius $\|M\|=\sqrt{\mathrm{tr}(M^TM)}$. La diagonal de $M^TM$ tiene
+las sumas de cuadrados de cada columna de $M$, así que <b>$\mathrm{tr}(M^TM)$ es la suma de los cuadrados de todas las entradas</b>.
+La norma de Frobenius es la «longitud» de la matriz vista como un vector.</p>
+<div class="etc">Input</div>
+<pre>Ai  = inv(A)                 % inversa de la matriz ORIGINAL (sin truncar)
+nA  = sqrt(trace(A'*A))      % norma de A
+nAi = sqrt(trace(Ai'*Ai))    % norma de la inversa
+c   = nA*nAi                 % número de condición</pre>
+<div class="etc">Output</div>
+<div class="cod">
+<pre class="out">Ai =
+
+  -76.5759  196.2550  -47.2586 -128.3419
+  -15.1586   25.5734   -1.4199  -18.0644
+  -19.4695   35.1178   -3.9841  -25.7968
+   30.5121  -67.3986   11.8683   46.1710</pre>
+<pre class="out">nA =
+
+    2.0893
+
+nAi =
+
+  272.6479
+
+c =
+
+  569.6541</pre>
+</div>
+<p>$\|A\|=\sqrt{4{.}3653}\approx2{.}0893$, $\ \|A^{-1}\|=\sqrt{74\,336{.}87}\approx272{.}6479$ y
+$\ \mathrm{Cond}(A)\approx 569{.}65$. No se usa la función <code>cond</code> de Matlab, como pide el enunciado. La transpuesta
+se escribe con la comilla recta <code>'</code>; la curva <code>’</code> que sale al copiar del PDF da error.</p>
+
+<h2>Comparación e interpretación</h2>
+<table>
+  <tr><th>Componente</th><th class="c">Datos originales (2.1)</th><th class="c">Datos truncados (2.2)</th><th class="c">Truncada / original</th></tr>
+  <tr><td>$x_1$</td><td class="c">84.8808</td><td class="c">38.3995</td><td class="c">0.45</td></tr>
+  <tr><td>$x_2$</td><td class="c">10.9484</td><td class="c">5.3508</td><td class="c">0.49</td></tr>
+  <tr><td>$x_3$</td><td class="c">14.5502</td><td class="c">6.2057</td><td class="c">0.43</td></tr>
+  <tr><td>$x_4$</td><td class="c">−28.7405</td><td class="c">−12.7336</td><td class="c">0.44</td></tr>
+</table>
+<ul>
+  <li><b>Los datos apenas cambian.</b> Al truncar, cada entrada se mueve menos de 0.01. En norma, $A$ cambia un 1.1 % y $b$ un 1.6 %:
+  $\frac{\|A-A_t\|}{\|A\|}\approx0{.}011$ y $\frac{\|b-b_t\|}{\|b\|}\approx0{.}016$.</li>
+  <li><b>La solución cambia muchísimo.</b> Todas las componentes se quedan en menos de la mitad. El cambio relativo es
+  $\frac{\|x-x_t\|}{\|x\|}\approx0{.}55$, un 55 %. Un error de un 1–2 % en los datos produce un error de un 55 % en el resultado.</li>
+  <li><b>El número de condición lo explica.</b> A grandes rasgos, error relativo de la solución
+  $\ \lesssim\ \mathrm{Cond}(A)\ \times$ error relativo de los datos.
+  Con $\mathrm{Cond}(A)\approx570$, un 1 % de error en los datos puede convertirse en cientos de veces más en la solución. La matriz
+  está <b>mal condicionada</b>: su número de condición es mucho mayor que 1.</li>
+  <li><b>Otras señales.</b> $A$ no tiene ninguna entrada mayor que 1, pero su inversa llega a 196. Además $\det A\approx-0{.}00066$:
+  $A$ está muy cerca de ser singular, es decir, de no tener inversa.</li>
+</ul>
+<div class="nota idea">
+  <span class="lead">Conclusión.</span> Gauss-Jordan y la inversa funcionan bien: con los mismos datos dan lo mismo. El problema está en
+  la matriz. Como está mal condicionada, cualquier error pequeño en los datos (medidas con pocos decimales, redondeos del ordenador) se
+  amplifica, y no podemos fiarnos de la solución aunque el método sea correcto. Con datos medidos a dos decimales, este sistema no
+  permite conocer la solución ni siquiera aproximadamente.
+</div>
+
+<!-- ============================== EXAMEN ============================== -->
+<h1 class="nueva">Para el examen</h1>
+
+<div class="caja metodo">
+  <div class="tit">Circuitos: receta</div>
+  <div class="cue">
+    <ol style="margin-bottom:2pt">
+      <li>Mira el sentido de cada flecha de malla y qué borne es el $+$ (la raya larga) en cada pila.</li>
+      <li>Diagonal: suma de todas las resistencias de la malla. Fuera de la diagonal: menos la resistencia compartida, o 0 si las
+      mallas no se tocan. La matriz debe salir simétrica.</li>
+      <li>Lado derecho: cada pila con $+$ si la corriente de la malla sale por su $+$, y con $-$ si no. Una pila en una rama compartida
+      aparece en las dos ecuaciones con signo contrario.</li>
+      <li>Resuelve por Gauss-Jordan con fracciones y comprueba sustituyendo en las ecuaciones.</li>
+      <li>Una corriente negativa va al revés de la flecha. La corriente de una rama compartida es la diferencia de las dos corrientes.</li>
+    </ol>
+  </div>
+</div>
+
+<div class="caja metodo">
+  <div class="tit">Número de condición a mano: un ejemplo 2 × 2</div>
+  <div class="cue">
+    <p>Sistema $x+y=2,\ \ x+1{.}01y=2{.}01$, de solución $(1,\,1)$. Si el 2.01 se mide como 2.02 (un 0.5 % de diferencia), queda
+    $0{.}01y=0{.}02$, así que $y=2$ y $x=0$: <b>la solución salta a $(0,\,2)$</b>.</p>
+    <div class="cadena" style="margin:3pt 0 5pt; gap:4pt 22pt">
+      <span>$A=\M{cc}{1&1\\1&1{.}01}$</span>
+      <span>$\det A=0{.}01$</span>
+      <span>$A^{-1}=\dfrac{1}{0{.}01}\M{rr}{1{.}01&-1\\-1&1}=\M{rr}{101&-100\\-100&100}$</span>
+    </div>
+    <p style="margin-bottom:2pt">$\|A\|=\sqrt{1+1+1+1{.}0201}\approx2{.}005$, $\ \|A^{-1}\|=\sqrt{101^2+3\cdot100^2}=\sqrt{40\,201}\approx200{.}5$
+    y $\mathrm{Cond}(A)\approx402\gg1$: mal condicionada. Para un 2 × 2, la inversa sale con la fórmula de abajo, y la norma
+    de Frobenius es la raíz de la suma de los cuadrados de las entradas.</p>
+    $$\M{cc}{a&b\\c&d}^{-1}=\frac{1}{ad-bc}\M{rr}{d&-b\\-c&a}$$
+  </div>
+</div>
+
+<div class="caja resumen">
+  <div class="tit">Matlab: lo único que hace falta</div>
+  <div class="cue">
+    <table class="peq" style="margin:0">
+      <tr><th>Para</th><th>Se escribe</th></tr>
+      <tr><td>Definir una matriz o un vector columna</td><td><code>A = [1 2 3; 4 5 6; 7 8 9]</code>, <code>b = [1; 2; 3]</code></td></tr>
+      <tr><td>Matriz ampliada y Gauss-Jordan</td><td><code>M = [A, b]</code>, <code>rref(M)</code>; la solución es la última columna</td></tr>
+      <tr><td>Inversa y producto</td><td><code>inv(A)</code>, <code>inv(A)*b</code></td></tr>
+      <tr><td>Transpuesta, traza y raíz</td><td><code>A'</code>, <code>trace(M)</code>, <code>sqrt(x)</code></td></tr>
+      <tr><td>Más decimales</td><td><code>format long</code> (en Octave también <code>output_precision(12)</code>)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="nota error">
+  <span class="lead">Errores típicos.</span> Leer mal el sentido de las flechas (aquí son antihorarias). Tomar la raya corta como
+  el $+$. Olvidar la pila de la rama compartida en una de las dos mallas. Redondear en vez de truncar. Escribir comas decimales
+  en Matlab. Calcular el número de condición con la matriz truncada en vez de la original.
+</div>
+
+</body>
+</html>
